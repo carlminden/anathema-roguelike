@@ -1,0 +1,112 @@
+/*******************************************************************************
+ * This file is part of AnathemaRL.
+ *
+ *     AnathemaRL is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     AnathemaRL is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with AnathemaRL.  If not, see <http://www.gnu.org/licenses/>.
+ *******************************************************************************/
+package com.anathema_roguelike.characters;
+
+import com.anathema_roguelike.characters.abilities.ActivatedAbility;
+import com.anathema_roguelike.dungeon.Direction;
+import com.anathema_roguelike.items.Consumable;
+import com.anathema_roguelike.main.Game;
+import com.anathema_roguelike.main.ui.UIConfig;
+import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
+
+import squidpony.squidgrid.gui.gdx.SquidInput;
+import squidpony.squidgrid.gui.gdx.SquidInput.KeyHandler;
+
+public class PlayerKeyHandler implements KeyHandler {
+	
+	Player player;
+	
+	public PlayerKeyHandler(Player player) {
+		this.player = player;
+	}
+
+	@Override
+	public void handle(char key, boolean alt, boolean ctrl, boolean shift) {
+		
+		switch (key) {
+	        case '.':
+	        	if(shift) {
+	        		player.takeStairs(Direction.DOWN);
+	        		return;
+	        	}
+	        case ',':
+	        	if(shift) {
+	        		player.takeStairs(Direction.UP);
+	        		return;
+	        	}
+	        case 'j':
+	        case SquidInput.DOWN_ARROW:
+	        	player.move(Direction.DOWN);
+	        	return;
+	        case 'k':
+	        case SquidInput.UP_ARROW:
+	        	player.move(Direction.UP);
+	        	return;
+	        case 'h':
+	        case SquidInput.LEFT_ARROW:
+	        	player.move(Direction.LEFT);
+	        	return;
+	        case 'l':
+	        case SquidInput.RIGHT_ARROW:
+	        	player.move(Direction.RIGHT);
+	        	return;
+	        case 'y':
+	        case SquidInput.UP_LEFT_ARROW:
+	        	player.move(Direction.UP_LEFT);
+	        	return;
+	        case 'u':
+	        case SquidInput.UP_RIGHT_ARROW:
+	        	player.move(Direction.UP_RIGHT);
+	        	return;
+	        case 'b':
+	        case SquidInput.DOWN_LEFT_ARROW:
+	        	player.move(Direction.DOWN_LEFT);
+	        	return;
+	        case 'n':
+	        case SquidInput.DOWN_RIGHT_ARROW:
+	        	player.move(Direction.DOWN_RIGHT);
+	        	return;
+	        case SquidInput.CENTER_ARROW:
+	        	player.setActionRemaining(false);
+	        	return;
+	        case 'a':
+	        	ActivatedAbility ability = new SelectionScreen<ActivatedAbility>(0, 0, UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3, "Activate an Ability", player.getAbilities(ActivatedAbility.class), true, 0f, .5f).run();
+	        	if(ability != null) {
+	        		ability.actviate();
+	        		player.setActionRemaining(false);
+	        	}
+	        	return;
+	        case 'c':
+	        	Consumable consumable = new SelectionScreen<Consumable>(0, 0, UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3, "Use a Consumable", player.getInventory().getItems(Consumable.class), true, 0f, .5f).run();
+	        	if(consumable != null) {
+	        		consumable.consume(player);
+	        		player.setActionRemaining(false);
+	        	}
+	        	return;
+	        case 'q':
+	        case SquidInput.ESCAPE:
+	            Game.getInstance().quit();
+	        	return;
+	        case ' ':
+	        	player.takeStairs(Direction.DOWN);
+	        	return;
+	        default:
+	        	return;
+        }
+	}
+
+}

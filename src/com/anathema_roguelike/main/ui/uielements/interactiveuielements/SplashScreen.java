@@ -1,0 +1,89 @@
+/*******************************************************************************
+ * This file is part of AnathemaRL.
+ *
+ *     AnathemaRL is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ *
+ *     AnathemaRL is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with AnathemaRL.  If not, see <http://www.gnu.org/licenses/>.
+ *******************************************************************************/
+package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
+
+import java.awt.event.KeyEvent;
+
+import com.anathema_roguelike.main.Game;
+import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.ui.uielements.Screen;
+import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Menu;
+import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.MenuItem;
+import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.OnSelectListener;
+
+public class SplashScreen extends Screen<String> {
+	
+	public SplashScreen() {
+		super(null, false);
+		final Menu<String> menu = new Menu<String>(1, 11, getWidth() - 1, 30, true, 2, false, 1f);
+		
+		menu.addMenuItem(new MenuItem<String>("New Game", new OnSelectListener<String>() {
+			
+			@Override
+			public void onSelect(String obj) {
+				menu.finish();
+				
+			}
+		}));
+
+		menu.addMenuItem(new MenuItem<String>("Other Option", new OnSelectListener<String>() {
+			
+			@Override
+			public void onSelect(String obj) {
+				
+			}
+		}));
+		
+		menu.addMenuItem(new MenuItem<String>("Exit", new OnSelectListener<String>() {
+			
+			@Override
+			public void onSelect(String obj) {
+				Game.getInstance().quit();
+			}
+		}));
+		
+        setFocusedUIElement(menu);
+	}
+	
+	@Override
+	protected void renderContent() {
+		
+		super.renderContent();
+		
+        renderStringCentered(DisplayLayer.UI_FOREGROUND, 0, "Anathema");
+        renderStringCentered(DisplayLayer.UI_FOREGROUND, 1, "A stealth roguelike");
+        renderStringCentered(DisplayLayer.UI_FOREGROUND, 3, "Copyright (C) 2016 Carl Minden");
+        renderStringCentered(DisplayLayer.UI_FOREGROUND, 6, "This program comes with ABSOLUTELY NO WARRANTY, This is free software, and you are welcome to redistribute it under certain conditions.");
+        renderStringCentered(DisplayLayer.UI_FOREGROUND, 8, "------------------------------");
+	}
+	
+	@Override
+	public void processKeyEvent(char key, boolean alt, boolean ctrl, boolean shift) {
+		
+		switch(key) {
+	        case 'Q':
+	        case KeyEvent.VK_ESCAPE:
+	        	Game.getInstance().quit();
+		}
+		
+		super.processKeyEvent(key, alt, ctrl, shift);
+	}
+        
+    private void showLegalNotices() {
+    	//TODO do this or some other thing to make shit legal
+    }
+}
