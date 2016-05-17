@@ -21,8 +21,8 @@ public class UIConfig {
 	public static final int DUNGEON_MAP_HEIGHT = 57;
 	public static final int TERM_HEIGHT = 60;
 	public static final int TERM_WIDTH = 160;
-	public static final int CELL_WIDTH = 12;
-	public static final int CELL_HEIGHT = 24;
+	public static final int CELL_WIDTH = 8;
+	public static final int CELL_HEIGHT = 16;
 	public static final int SCREEN_START_X = 1;
 	public static final int SCREEN_START_Y = 1;
 	public static final int MAP_START_Y = 0;

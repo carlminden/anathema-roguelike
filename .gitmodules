@@ -1,0 +1,3 @@
+[submodule "res/wiki"]
+	path = res/wiki
+	url = https://github.com/carlminden/anathema-roguelike.wiki.git

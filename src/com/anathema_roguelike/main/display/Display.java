@@ -73,11 +73,11 @@ public class Display extends RenderSurface {
 		//tcf.height(cellHeight).initBySize();
 		
 		TextCellFactory tcf = new TextCellFactory();
-		tcf.fontDistanceField("assets/Inconsolata-LGC-Custom-distance.fnt", "assets/Inconsolata-LGC-Custom-distance.png");
+		tcf.fontDistanceField("Inconsolata-LGC-Custom-distance.fnt", "Inconsolata-LGC-Custom-distance.png");
 		
 		display = new SquidLayers(UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, cellWidth, cellHeight, tcf);
 		
-		display.setTextSize(cellWidth, cellHeight);
+		display.setTextSize(cellWidth, cellHeight + 1);
 		display.setAnimationDuration(0.03f);
 		display.setPosition(0, 0);
 		
@@ -130,7 +130,7 @@ public class Display extends RenderSurface {
 		int angle = (int) Math.toDegrees(Math.atan2(y2 - y1, x2 - x1));
 		
 		batch.setColor(color.r, color.g, color.b, color.a);
-		batch.draw(tex, x1, y1, 0f, 2f, length, 2f, 1f, 1f, angle, 0, 0, tex.getWidth(), tex.getHeight(), false, false);
+		batch.draw(tex, x1, y1, 0f, 1f, length, 1f, 1f, 1f, angle, 0, 0, tex.getWidth(), tex.getHeight(), false, false);
 	}
 	
 	public void lock() {

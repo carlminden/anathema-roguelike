@@ -70,14 +70,14 @@ public class Outline implements Renderable {
 		x += position.getX();
 		y += position.getY();
 		
-		Game.getInstance().getDisplay().drawLine(x * UIConfig.CELL_WIDTH - 1, (y + 1) * UIConfig.CELL_HEIGHT - 2, (x + 1) * UIConfig.CELL_WIDTH, (y + 1) * UIConfig.CELL_HEIGHT - 2, color);
+		Game.getInstance().getDisplay().drawLine(x * UIConfig.CELL_WIDTH - 1, (y + 1) * UIConfig.CELL_HEIGHT - 1, (x + 1) * UIConfig.CELL_WIDTH, (y + 1) * UIConfig.CELL_HEIGHT - 1, color);
 	}
 	
 	private void left(int x, int y, SColor color) {
 		x += position.getX();
 		y += position.getY();
 		
-		Game.getInstance().getDisplay().drawLine(x * UIConfig.CELL_WIDTH + 1, y * UIConfig.CELL_HEIGHT, x * UIConfig.CELL_WIDTH + 1, (y + 1) * UIConfig.CELL_HEIGHT, color);
+		Game.getInstance().getDisplay().drawLine(x * UIConfig.CELL_WIDTH, y * UIConfig.CELL_HEIGHT, x * UIConfig.CELL_WIDTH, (y + 1) * UIConfig.CELL_HEIGHT, color);
 	}
 	
 	private void right(int x, int y, SColor color) {
