@@ -19,12 +19,11 @@ package com.anathema_roguelike.characters.monsters;
 import com.anathema_roguelike.characters.Monster;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.classes.Rogue;
-import com.anathema_roguelike.characters.stats.abilityscores.Agility;
-import com.anathema_roguelike.characters.stats.abilityscores.Constitution;
-import com.anathema_roguelike.characters.stats.abilityscores.Intelligence;
-import com.anathema_roguelike.characters.stats.abilityscores.Perception;
-import com.anathema_roguelike.characters.stats.abilityscores.Strength;
-import com.anathema_roguelike.characters.stats.tertiarystats.NormalVision;
+import com.anathema_roguelike.characters.stats.attributes.Agility;
+import com.anathema_roguelike.characters.stats.attributes.Constitution;
+import com.anathema_roguelike.characters.stats.attributes.Intelligence;
+import com.anathema_roguelike.characters.stats.attributes.Perception;
+import com.anathema_roguelike.characters.stats.attributes.Strength;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
@@ -42,8 +41,6 @@ public class Orc extends Monster {
 		setAbilityScore(Perception.class, 10);
 		
 		setClass(new Rogue());
-		
-		setTertiaryStat(null, NormalVision.class, 15);
 	}
 	
 	@Override

@@ -19,19 +19,15 @@ package com.anathema_roguelike.characters;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import com.anathema_roguelike.characters.ai.AI;
 import com.anathema_roguelike.characters.ai.Faction;
-import com.anathema_roguelike.characters.events.MoveEvent;
-import com.anathema_roguelike.dungeon.DungeonLevel;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.display.DungeonMap.Layer;
-import com.google.common.eventbus.Subscribe;
+import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.stimuli.PercievedStimulus;
 
 public abstract class NPC extends Character {
 	
@@ -39,29 +35,31 @@ public abstract class NPC extends Character {
 	
 	private ArrayList<Character> visibleCharacters;
 	
-	private ArrayList<Map.Entry<Character, Point>> sortedLastKnown;
-	private HashMap<Character, Point> lastKnownPositions;
+	private PercievedStimulus mostInterestingStimulus;
 	
-	private Comparator<Map.Entry<Character, Point>> distanceMap = new Comparator<Map.Entry<Character, Point>>() {
+	private Comparator<PercievedStimulus> stimuliComparator = new Comparator<PercievedStimulus>() {
 
 		@Override
-		public int compare(Map.Entry<Character, Point> o1, Map.Entry<Character, Point> o2) {
-			
-			int x1 = getX() - o1.getValue().getX();
-			int y1 = getY() - o1.getValue().getY();
+		public int compare(PercievedStimulus o1, PercievedStimulus o2) {
+			 
+			int x1 = getX() - o1.getPosition().getX();
+			int y1 = getY() - o1.getPosition().getY();
 			int d1 = x1*x1 + y1*y1;
 			
-			int x2 = getX() - o2.getValue().getX();
-			int y2 = getY() - o2.getValue().getY();
+			int x2 = getX() - o2.getPosition().getX();
+			int y2 = getY() - o2.getPosition().getY();
 			int d2 = x2*x2 + y2*y2;
 			
 			
-			if(d1 > d2) {
+			int stimulus1 = o1.getMagnitude() + 20/d1;
+			int stimulus2 = o2.getMagnitude() + 20/d2;
+			
+			if(stimulus1 > stimulus2) {
 				return 1;
-			} else if(d2 > d1) {
+			} else if(stimulus2 > stimulus1) {
 				return -1;
 			} else {
-				return o1.getValue().compareTo(o2.getValue());
+				return 0;
 			}
 		}
 	};
@@ -96,12 +94,11 @@ public abstract class NPC extends Character {
 		ai = new AI(this);
 		
 		visibleCharacters = new ArrayList<>();
-		lastKnownPositions = new HashMap<>();
 	}
 
 	@Override
 	public void onDeath() {
-		DungeonLevel level = Game.getInstance().getState().getDungeonLevel(getDepth());
+		Environment level = Game.getInstance().getState().getEnvironment(getDepth());
 		
 		level.removeEntity(this);
 		
@@ -119,8 +116,17 @@ public abstract class NPC extends Character {
 	
 	@Override
 	public void onTurn() {
-		observeSurroundings();
-		ai.performAction();
+		if(getPercievedStimuli().size() > 0) {
+			mostInterestingStimulus = Collections.max(getPercievedStimuli(), stimuliComparator);
+		} else {
+			mostInterestingStimulus = null;
+		}
+		
+		while(getActionRemaining()) {
+			observeSurroundings();
+			ai.performAction();
+		}
+		
 		observeSurroundings();
 	}
 
@@ -140,26 +146,12 @@ public abstract class NPC extends Character {
 		visibleCharacters.add(character);
 	}
 
-	public Map.Entry<Character, Point> getLastSeenNearestEnemy() {
-		for(Map.Entry<Character, Point> lastKnown : sortedLastKnown) {
-			if(!Faction.friendly(this, lastKnown.getKey())) {
-				return lastKnown;
-			}
-		}
-
-		return null;
-	}
-	
-	public void putLastKnownPosition(Character character, Point p) {
-		lastKnownPositions.put(character, p);
-	}
-	
-	public void forgetLastKnownPosition(Character character) {
-		lastKnownPositions.remove(character);
+	public PercievedStimulus getMostInterestingStimulus() {
+		return mostInterestingStimulus;
 	}
 	
 	public void observeSurroundings() {
-		DungeonLevel level = getDungeonLevel();
+		Environment level = getEnvironment();
 		
 		computeVisibility();
 		
@@ -168,12 +160,8 @@ public abstract class NPC extends Character {
 		for(Character character : level.getEntities(Character.class)) {
 			if(canSee(character)) {
 				addVisibleCharacters(character);
-				putLastKnownPosition(character, character.getPosition());
 			}
 		}
-		
-		sortedLastKnown = new ArrayList<Map.Entry<Character, Point>>(lastKnownPositions.entrySet());
-		Collections.sort(sortedLastKnown, distanceMap);
 		
 		Collections.sort(visibleCharacters, distanceList);
 	}
@@ -181,12 +169,5 @@ public abstract class NPC extends Character {
 	@Override
 	protected void renderThis() {
 		Game.getInstance().getMap().renderEntity(Layer.NPCS, this);
-	}
-	
-	@Subscribe
-	public void processMoveEvent(MoveEvent e) {
-		if(canSee(e.getCharacter())) {
-			putLastKnownPosition(e.getCharacter(), e.getPoint());
-		}
 	}
 }

@@ -22,7 +22,7 @@ import java.util.Collection;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.effects.Duration;
 import com.anathema_roguelike.characters.effects.Effect;
-import com.anathema_roguelike.characters.stats.tertiarystats.resources.Resource;
+import com.anathema_roguelike.characters.stats.resources.Resource;
 
 public abstract class ModifierGroup extends Effect {
 	private ArrayList<Modifier> modifiers = new ArrayList<>();
@@ -61,7 +61,7 @@ public abstract class ModifierGroup extends Effect {
 		super.activate(affectedCharacter);
 		
 		for(Modifier modifier : resourceModifiers) {
-			affectedCharacter.modifyTertiaryStat(getSource(), (Class<? extends Resource>) modifier.getAffectedStat(), modifier.getStaticAmount());
+			affectedCharacter.modifyResource(getSource(), (Class<? extends Resource>) modifier.getAffectedStat(), modifier.getStaticAmount());
 		}
 		
 	}

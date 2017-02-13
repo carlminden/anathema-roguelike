@@ -19,9 +19,9 @@ package com.anathema_roguelike.fov;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import com.anathema_roguelike.dungeon.Direction;
-import com.anathema_roguelike.dungeon.DungeonLevel;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.environment.Environment;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Entity;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.eventbus.Subscribe;
@@ -36,9 +36,9 @@ public class LightLevels extends FOVProcessor {
 	
 	HashMap<Integer, float[][]> computedLightLevels = new HashMap<>();
 	
-	private DungeonLevel level;
+	private Environment level;
 	
-	public LightLevels(int width, int height, DungeonLevel level) {
+	public LightLevels(int width, int height, Environment level) {
 		super(width, height, level.getFOVResistances());
 		
 		computedLightLevels.put(Direction.UP, new float[width][height]);

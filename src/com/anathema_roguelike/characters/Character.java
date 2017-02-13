@@ -16,9 +16,11 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters;
 import java.util.Collection;
+import java.util.LinkedList;
 
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.abilities.AbilitySet;
+import com.anathema_roguelike.characters.actions.Action;
 import com.anathema_roguelike.characters.ai.AIPathFinder;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.attacks.BasicAttackAbility;
@@ -32,21 +34,22 @@ import com.anathema_roguelike.characters.effects.descriptors.Descriptor;
 import com.anathema_roguelike.characters.events.MoveEvent;
 import com.anathema_roguelike.characters.events.ResourceChangedEvent;
 import com.anathema_roguelike.characters.events.TurnEvent;
+import com.anathema_roguelike.characters.inventory.Inventory;
+import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.characters.stats.Stat;
 import com.anathema_roguelike.characters.stats.StatSet;
-import com.anathema_roguelike.characters.stats.abilityscores.AbilityScore;
-import com.anathema_roguelike.characters.stats.secondarystats.Concealment;
-import com.anathema_roguelike.characters.stats.secondarystats.DamageBonus;
-import com.anathema_roguelike.characters.stats.tertiarystats.TertiaryStat;
-import com.anathema_roguelike.characters.stats.tertiarystats.resources.CurrentHealth;
-import com.anathema_roguelike.characters.stats.tertiarystats.resources.Damage;
-import com.anathema_roguelike.characters.stats.tertiarystats.resources.Resource;
-import com.anathema_roguelike.dungeon.Direction;
-import com.anathema_roguelike.dungeon.Doorway;
-import com.anathema_roguelike.dungeon.DungeonLevel;
-import com.anathema_roguelike.dungeon.Point;
-import com.anathema_roguelike.dungeon.Stairs;
-import com.anathema_roguelike.items.Weapon;
+import com.anathema_roguelike.characters.stats.attributes.Attribute;
+import com.anathema_roguelike.characters.stats.itemstats.Concealment;
+import com.anathema_roguelike.characters.stats.resources.BoundedResource;
+import com.anathema_roguelike.characters.stats.resources.CurrentHealth;
+import com.anathema_roguelike.characters.stats.resources.Damage;
+import com.anathema_roguelike.characters.stats.resources.Resource;
+import com.anathema_roguelike.characters.stats.secondarystats.Health;
+import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.environment.Environment;
+import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.environment.features.Doorway;
+import com.anathema_roguelike.environment.terrain.grounds.Stairs;
 import com.anathema_roguelike.main.Config;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.Game;
@@ -54,9 +57,12 @@ import com.anathema_roguelike.main.display.BufferMask;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.ui.messages.Message;
-import com.anathema_roguelike.main.utilities.Roll;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
+import com.anathema_roguelike.stimuli.Motion;
+import com.anathema_roguelike.stimuli.PercievedStimulus;
+import com.anathema_roguelike.stimuli.Stimulus;
+import com.anathema_roguelike.stimuli.StimulusEvent;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.eventbus.EventBus;
@@ -85,6 +91,8 @@ public abstract class Character extends Entity {
 	private double facing = Direction.UP;
 	BufferMask currentVisibility;
 	
+	private LinkedList<PercievedStimulus> percievedStimuli = new LinkedList<>();
+	
 	public abstract void onDeath();
 	public abstract void killedBy(Character attacker);
 	
@@ -103,6 +111,7 @@ public abstract class Character extends Entity {
 	
 	public void takeTurn() {
 		setActionRemaining(true);
+		pruneStimuli();
 		onTurn();
 	}
 	
@@ -122,20 +131,8 @@ public abstract class Character extends Entity {
 		
 		level++;
 		
-		stats.get(CurrentHealth.class).reset(null);
+		stats.get(CurrentHealth.class).set(this, getModifiedStatScore(Health.class));
 		
-	}
-	
-	public Roll rollD20() {
-		
-		int roll = Utils.roll(1, 20);
-		boolean crit = false;
-		
-		if(roll == 20) {
-			crit = true;
-		}
-		
-		return new Roll(roll, crit);
 	}
 	
 	public boolean getActionRemaining() {
@@ -236,75 +233,78 @@ public abstract class Character extends Entity {
 		return turn;
 	}
 
-	public boolean moveCharacterBy(int x,  int y, boolean turn) {
-		return moveCharacterTo(new Point(getX() + x, getY() + y), turn, false);
-	}
-	
 	public boolean moveCharacterBy(int x,  int y) {
-		return moveCharacterBy(x, y, true);
-	}
-	
-	public boolean move(int direction, boolean turn) {
-		setActionRemaining(false);
-		return moveCharacterTo(Direction.offset(getPosition(), direction), turn, false);
+		return moveCharacterTo(new Point(getX() + x, getY() + y), false);
 	}
 	
 	public boolean move(int direction) {
-		return move(direction, true);
+		return moveCharacterTo(Direction.offset(getPosition(), direction), false);
 	}
 	
-	public boolean moveCharacterTo(Point point, boolean turn, boolean teleport) {
+	public void takeAction(Action action) {
+		action.take(this);
+	}
+	
+	public boolean moveCharacterTo(Point point, boolean teleport) {
 		
-		DungeonLevel level = Game.getInstance().getState().getDungeonLevel(getDepth());
+		Environment level = Game.getInstance().getState().getEnvironment(getDepth());
 		
-		Collection<Character> characters = level.getEntitiesAt(point, Character.class);
-		
-		if(characters.size() > 0) {
-			Character character = characters.iterator().next();
-			
-			if(character != null) {
-				if(!Faction.friendly(character, this)) {
-					basicAttack(character.getPosition());
-				}
-				
-				return false;
-			}
-		}
-		
-		
-		if(level.isPassable(point)) {
-			
-			if(turn) {
-				setFacing(Direction.angleOf(new Point(getX(), getY()), point));
-			}
-			
-			AIPathFinder pathfinder = new AIPathFinder(this);
-			Path path = pathfinder.getPath(getPosition(), point);
-			
-			Point currentPosition = getPosition();
-			
-			for(Point p : path) {
-				getDungeonLevel().getEventBus().post(new MoveEvent(this, p));
-				
-				getDungeonLevel().moveEntityTo(this, p);
-				
-				currentPosition = p;
-			}
-			
-			
-			return true;
-		} else if(level.getDungeonCell(point) instanceof Doorway && this instanceof Player) {
-			Doorway door = (Doorway)level.getDungeonCell(point);
+		if(!level.isPassable(point)) {
+			return false;
+		} else if(level.getLocation(point).getTerrain() instanceof Doorway && this instanceof Player) {
+			Doorway door = (Doorway)level.getLocation(point).getTerrain();
 			door.open();
 			
 			return true;
 		} else {
-			return false;
+			
+			if(teleport) { 
+				
+				Collection<Character> characters = level.getEntitiesAt(point, Character.class);
+				
+				if(characters.size() > 0) {
+					return false;
+				} else {
+					getEnvironment().moveEntityTo(this, point);
+					
+					return true;
+				}
+			} else {
+				
+				AIPathFinder pathfinder = new AIPathFinder(this);
+				Path path = pathfinder.getPath(getPosition(), point);
+				
+				//shouldnt try to move into the space they are already in
+				path.remove(0);
+				
+				for(Point p : path) {
+					Collection<Character> characters = level.getEntitiesAt(p, Character.class);
+					
+					if(characters.size() > 0) {
+						Character character = level.getEntitiesAt(p, Character.class).iterator().next();
+						
+						if(!Faction.friendly(character, this)) {
+							basicAttack(character.getPosition());
+						}
+						
+						return false;
+					}
+					
+					//need to decide how/if to not pay cost when the character cant actually move
+					getEnvironment().getEventBus().post(new MoveEvent(this, p));
+					
+					getEnvironment().getEventBus().post(new StimulusEvent(new Motion(this, 100)));
+					
+					getEnvironment().moveEntityTo(this, p);
+				}
+				
+				return true;
+			}
 		}
 	}
 	
 	public boolean moveCharacterTo(Point point) {
-		return moveCharacterTo(point, true, false);
+		return moveCharacterTo(point, false);
 	}
 	
 	public void damage(Character attacker, int damage) {
@@ -323,55 +323,46 @@ public abstract class Character extends Entity {
 		return alive;
 	}
 	
-	public int getBasicAttackDamage() {
-		
-		int weaponDamage = inventory.getEquipedItem(Weapon.class).getWeaponDamage(this).roll();
-		
-		int modifiers = getModifiedStatScore(DamageBonus.class);
-		
-		return weaponDamage + modifiers;
+	public int getPrimaryWeaponDamage() {
+		return inventory.getEquipedItem(PrimaryWeapon.class).getWeaponDamage(this);
 	}
 	
-	public int getModifiedStatScore(Class<? extends Stat> stat) {
-		int base = stats.get(stat).getAmount();
-		int modifier = effects.getStatBonus(stat); 
+	public <T extends Number> T getModifiedStatScore(Class<? extends Stat<T>> stat) {
+		T base = stats.get(stat).getAmount();
+		T modifier = effects.getStatBonus(stat);
 		
-		return (int) ((base + modifier) * effects.getStatMultiplier(stat));
+		return Utils.multiplyNumbers(Utils.addNumbers(base, modifier), effects.getStatMultiplier(stat));
 	}
 	
-	public int getBaseStatScore(Class<? extends Stat> stat) {
+	public <T extends Number> T getBaseStatScore(Class<? extends Stat<T>> stat) {
 		return stats.get(stat).getAmount();
 	}
 	
-	public int getResourceMax(Class<? extends Resource> resource) {
+	public int getResourceMax(Class<? extends BoundedResource> resource) {
 		return stats.get(resource).getMaximum();
 	}
 	
-	public int getAbilityModifier(Class<? extends AbilityScore> ability) {
-		return AbilityScore.getModifier(getModifiedStatScore(ability));
-	}
-	
-	public void setAbilityScore(Class<? extends AbilityScore> ability, int amount) {
+	public void setAbilityScore(Class<? extends Attribute> ability, int amount) {
 		stats.get(ability).setScore(amount);
 	}
 	
-	public void setTertiaryStat(Object source, Class<? extends TertiaryStat> stat, int amount) {
+	public void setResource(Object source, Class<? extends Resource> stat, int amount) {
 		stats.get(stat).set(source, amount);
 	}
 	
-	public void modifyTertiaryStat(Object source, Class<? extends TertiaryStat> stat, int amount) {
-		TertiaryStat tertiaryStat = stats.get(stat);
-		tertiaryStat.modify(source, amount);
+	public void modifyResource(Object source, Class<? extends Resource> stat, int amount) {
+		Resource resource = stats.get(stat);
+		resource.modify(source, amount);
 	}
 	
 	public boolean takeStairs(int direction) {
-		DungeonLevel level = Game.getInstance().getState().getDungeonLevel(getDepth());
+		Environment level = Game.getInstance().getState().getEnvironment(getDepth());
 		
 		int zOffset = 0;
 		int newStairDirection = 0;
 		
-		if(level.getDungeonCell(getPosition()) instanceof Stairs) {
-			Stairs stairs = (Stairs) level.getDungeonCell(getPosition());
+		if(level.getLocation(getPosition()).getTerrain() instanceof Stairs) {
+			Stairs stairs = (Stairs) level.getLocation(getPosition()).getTerrain();
 			if(stairs.takeStairs(direction)) {
 				if(direction == Direction.UP) {
 					zOffset = -1;
@@ -386,7 +377,7 @@ public abstract class Character extends Entity {
 					return false;
 				}
 				
-				DungeonLevel newLevel = Game.getInstance().getState().getDungeonLevel(getDepth() + zOffset);
+				Environment newLevel = Game.getInstance().getState().getEnvironment(getDepth() + zOffset);
 				Point stairsPosition = newLevel.getStairs(newStairDirection).getPosition();
 				
 				setDepth(getDepth() + zOffset);
@@ -402,8 +393,8 @@ public abstract class Character extends Entity {
 		return false;
 	}
 	
-	public DungeonLevel getDungeonLevel() {
-		return Game.getInstance().getState().getDungeonLevel(getDepth());
+	public Environment getEnvironment() {
+		return Game.getInstance().getState().getEnvironment(getDepth());
 	}
 	
 	public boolean canSee(Character character) {	
@@ -423,7 +414,7 @@ public abstract class Character extends Entity {
 		if(currentVisibility.get(character.getX(), character.getY())) {
 			double concealment = character.getModifiedStatScore(Concealment.class) / 100.0;
 			
-			double light = getDungeonLevel().getLightLevels().get(character.getPosition());
+			double light = getEnvironment().getLightLevels().get(character.getPosition());
 			
 			double distance = getPosition().distance(character.getPosition());
 			
@@ -431,11 +422,11 @@ public abstract class Character extends Entity {
 				return 1;
 			}
 			
-			if(character instanceof Player) {
+			if(this instanceof Player) {
 //				System.out.println("CONCEALMENT: " + concealment + ", LIGHT: " + light + "DISTANCE: " + distance + " = " + (concealment * light * (8 / distance)));
 			}
 			
-			return Math.min(1, concealment * light * (8 / distance));
+			return Math.min(1, light * (8 / distance));
 		} else {
 			return 0;
 		}
@@ -451,8 +442,8 @@ public abstract class Character extends Entity {
 	}
 	
 	public void computeVisibility() {
-		getDungeonLevel().getLightLevels().recomputeLightLevels();
-		currentVisibility = getDungeonLevel().getLitFOVProcessor().computeLitFOVMask(this);
+		getEnvironment().getLightLevels().recomputeLightLevels();
+		currentVisibility = getEnvironment().getLitFOVProcessor().computeLitFOVMask(this);
 	}
 
 	public boolean isVulnerableTo(Class<? extends Descriptor> descriptor) {
@@ -464,5 +455,18 @@ public abstract class Character extends Entity {
 	
 	public void setFacing(double facing) {
 		this.facing = facing;
+	}
+	
+	@Subscribe
+	public void percieveStimulus(Stimulus stimulus) {
+		percievedStimuli.add(stimulus.computePercievedStimulus(this));
+	}
+	
+	protected void pruneStimuli() {
+		Iterables.removeIf(percievedStimuli, (PercievedStimulus s) -> s.getMagnitude() <= 0);
+	}
+	
+	public LinkedList<PercievedStimulus> getPercievedStimuli() {
+		return percievedStimuli;
 	}
 }

@@ -21,7 +21,7 @@ import java.util.Collection;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.targetmodes.TargetMode;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;

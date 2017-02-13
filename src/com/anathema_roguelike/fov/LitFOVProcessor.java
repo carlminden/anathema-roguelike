@@ -18,9 +18,9 @@ package com.anathema_roguelike.fov;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.Player;
-import com.anathema_roguelike.characters.stats.tertiarystats.NormalVision;
-import com.anathema_roguelike.dungeon.Direction;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.characters.stats.secondarystats.Vision;
+import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.BufferMask;
 
@@ -51,7 +51,7 @@ public class LitFOVProcessor extends FOVProcessor {
 	public BufferMask computeLitFOVMask(Character character) {
 		
 		this.character = character;
-		this.visionDistance = character.getModifiedStatScore(NormalVision.class);
+		this.visionDistance = character.getModifiedStatScore(Vision.class).intValue();
 		
 		mask = new BufferMask(width, height);
 		

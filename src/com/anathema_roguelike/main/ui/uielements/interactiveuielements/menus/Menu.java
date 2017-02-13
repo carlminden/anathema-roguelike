@@ -18,7 +18,7 @@ package com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus;
 
 import java.util.ArrayList;
 
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;

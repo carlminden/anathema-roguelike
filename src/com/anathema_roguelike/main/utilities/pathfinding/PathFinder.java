@@ -20,8 +20,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-import com.anathema_roguelike.dungeon.Direction;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.environment.Point;
 
 public abstract class PathFinder {
 	

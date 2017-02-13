@@ -192,12 +192,20 @@ public class Game extends ApplicationAdapter {
 		}
 	}
 	
+	public long getElapsedTime() {
+		if(state == null) {
+			return 0;
+		} else {
+			return state.getElapsedTime();
+		}
+	}
+	
 	public long getTurn() {
 		
 		if(state == null || state.getPlayer() == null) {
 			return 0;
+		} else {
+			return state.getPlayer().getTurn();
 		}
-		
-		return state.getPlayer().getTurn();
 	}	
 }

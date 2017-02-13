@@ -17,7 +17,7 @@
 package com.anathema_roguelike.characters.events;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 
 public class MoveEvent {
 	

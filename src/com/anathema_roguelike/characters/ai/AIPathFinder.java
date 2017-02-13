@@ -17,8 +17,8 @@
 package com.anathema_roguelike.characters.ai;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.dungeon.DungeonLevel;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Environment;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 import com.anathema_roguelike.main.utilities.pathfinding.PathFinder;
@@ -27,7 +27,7 @@ import com.google.common.collect.Iterables;
 
 public class AIPathFinder extends PathFinder {
 	
-	private DungeonLevel level;
+	private Environment level;
 	private Character character;
 	
 	public AIPathFinder(Character character) {
@@ -36,7 +36,7 @@ public class AIPathFinder extends PathFinder {
 	
 	@Override
 	public Path getPath(Point src, Point dst) {
-		this.level = Game.getInstance().getState().getDungeonLevel(character.getDepth());
+		this.level = Game.getInstance().getState().getEnvironment(character.getDepth());
 		return super.getPath(src, dst);
 	}
 	

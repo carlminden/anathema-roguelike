@@ -19,7 +19,7 @@ package com.anathema_roguelike.main.ui.charactercreation.abilityscoreselectors;
 import java.util.Collection;
 
 import com.anathema_roguelike.characters.Player;
-import com.anathema_roguelike.characters.stats.abilityscores.AbilityScore;
+import com.anathema_roguelike.characters.stats.attributes.Attribute;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
@@ -34,7 +34,7 @@ public class AbilityArray extends AbilityScoreSelector {
 	@Override
 	public void selectScores(Player player) {
 		
-		Collection<Class<? extends AbilityScore>> abilities = Utils.getListedSubclasses(AbilityScore.class);
+		Collection<Class<? extends Attribute>> abilities = Utils.getListedSubclasses(Attribute.class);
 		
 		for(int i = 0; i < array.length; i++) {
 			
@@ -42,9 +42,9 @@ public class AbilityArray extends AbilityScoreSelector {
 			instructions.appendMessage(Integer.toString(array[i]), Color.GREEN);
 			instructions.appendMessage(" points");
 		
-			SelectionScreen<Class<? extends AbilityScore>> selectorScreen = new SelectionScreen<Class<? extends AbilityScore>>("Select your Ability Scores", abilities, instructions, false);
+			SelectionScreen<Class<? extends Attribute>> selectorScreen = new SelectionScreen<Class<? extends Attribute>>("Select your Ability Scores", abilities, instructions, false);
 			
-			Class<? extends AbilityScore> ability = selectorScreen.run();
+			Class<? extends Attribute> ability = selectorScreen.run();
 			
 			player.setAbilityScore(ability, array[i]);
 			abilities.remove(ability);

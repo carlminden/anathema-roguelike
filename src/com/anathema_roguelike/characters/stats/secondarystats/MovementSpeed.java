@@ -20,7 +20,7 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.main.utilities.Listed;
 
 @Listed
-public class MovementSpeed extends SecondaryStat {
+public class MovementSpeed extends SecondaryStat<Double> {
 
 	public MovementSpeed(Character character) {
 		super(character);
@@ -28,8 +28,8 @@ public class MovementSpeed extends SecondaryStat {
 	}
 
 	@Override
-	public int getAmount() {
-		return 0;
+	public Double getAmount() {
+		return 1.0;
 	}
 	
 }

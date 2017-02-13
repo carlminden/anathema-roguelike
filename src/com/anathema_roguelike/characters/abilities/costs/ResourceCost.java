@@ -18,8 +18,8 @@ package com.anathema_roguelike.characters.abilities.costs;
 
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.effects.Calculation;
-import com.anathema_roguelike.characters.stats.tertiarystats.resources.Damage;
-import com.anathema_roguelike.characters.stats.tertiarystats.resources.Resource;
+import com.anathema_roguelike.characters.stats.resources.Damage;
+import com.anathema_roguelike.characters.stats.resources.Resource;
 
 public class ResourceCost extends AbilityCost {
 	

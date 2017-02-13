@@ -18,11 +18,11 @@ package com.anathema_roguelike.characters.stats;
 
 import com.anathema_roguelike.characters.Character;
 
-public abstract class Stat {
+public abstract class Stat<T extends Number> {
 	
 	private Character character;
 	
-	public abstract int getAmount();
+	public abstract T getAmount();
 	
 	public Stat(Character character) {
 		this.character = character;

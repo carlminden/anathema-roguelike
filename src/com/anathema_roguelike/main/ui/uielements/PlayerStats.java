@@ -18,16 +18,18 @@ package com.anathema_roguelike.main.ui.uielements;
 
 
 import com.anathema_roguelike.characters.Player;
-import com.anathema_roguelike.characters.stats.abilityscores.Agility;
-import com.anathema_roguelike.characters.stats.abilityscores.Constitution;
-import com.anathema_roguelike.characters.stats.abilityscores.Intelligence;
-import com.anathema_roguelike.characters.stats.abilityscores.Perception;
-import com.anathema_roguelike.characters.stats.abilityscores.Strength;
-import com.anathema_roguelike.characters.stats.secondarystats.DamageBonus;
+import com.anathema_roguelike.characters.inventory.Chest;
+import com.anathema_roguelike.characters.inventory.Feet;
+import com.anathema_roguelike.characters.inventory.Head;
+import com.anathema_roguelike.characters.inventory.Legs;
+import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
+import com.anathema_roguelike.characters.stats.attributes.Agility;
+import com.anathema_roguelike.characters.stats.attributes.Constitution;
+import com.anathema_roguelike.characters.stats.attributes.Intelligence;
+import com.anathema_roguelike.characters.stats.attributes.Perception;
+import com.anathema_roguelike.characters.stats.attributes.Strength;
+import com.anathema_roguelike.characters.stats.resources.CurrentHealth;
 import com.anathema_roguelike.characters.stats.secondarystats.Health;
-import com.anathema_roguelike.characters.stats.tertiarystats.resources.CurrentHealth;
-import com.anathema_roguelike.items.Armor;
-import com.anathema_roguelike.items.Weapon;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.utilities.Utils;
@@ -89,12 +91,15 @@ public class PlayerStats extends UIElement {
 	}
 	
 	public void renderOtherStats() {
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "DMG: 1d6 +" + player.getModifiedStatScore(DamageBonus.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "DMG: DEPRECATED");
 	}
 	
 	public void renderInventory() {
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Weapon: " + player.getInventory().getEquipedItem(Weapon.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Armor:  " + player.getInventory().getEquipedItem(Armor.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Weapon: " + player.getInventory().getEquipedItem(PrimaryWeapon.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Head:  " + player.getInventory().getEquipedItem(Head.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Chest:  " + player.getInventory().getEquipedItem(Chest.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Legs:  " + player.getInventory().getEquipedItem(Legs.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Feet:  " + player.getInventory().getEquipedItem(Feet.class));
 	}
 	
 	public void renderExp() {

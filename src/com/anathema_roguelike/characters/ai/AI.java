@@ -20,8 +20,10 @@ import java.security.SecureRandom;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.NPC;
-import com.anathema_roguelike.dungeon.Direction;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.characters.actions.MoveAction;
+import com.anathema_roguelike.characters.actions.TurnAction;
+import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 
 public class AI {
@@ -41,25 +43,26 @@ public class AI {
 		if(npc.getVisibleEnemies().count() > 0) {
 			enemy = npc.getVisibleEnemies().findFirst().get();
 			target = enemy.getPosition();
-		} else if(npc.getLastSeenNearestEnemy() != null) {
-			enemy = npc.getLastSeenNearestEnemy().getKey();
-			target = npc.getLastSeenNearestEnemy().getValue();
+		} else if(npc.getMostInterestingStimulus() != null) {
+			target = npc.getMostInterestingStimulus().getPosition();
 		}
 		
-		if(enemy != null) {
+		if(target != null) {
 			Path path = pathfinder.getPath(npc.getPosition(), target);
 			
 			if(path != null && !npc.getPosition().equals(target)) {
-				npc.moveCharacterTo(path.get(1));
 				
-				if(!npc.getPosition().equals(target)) {
-					npc.setFacing(Direction.angleOf(npc.getPosition(), target));
+				if(npc.getFacing() != Direction.angleOf(npc.getPosition(), target)) {
+					npc.takeAction(new TurnAction(Direction.angleOf(npc.getPosition(), target)));
+				} else {
+					npc.takeAction(new MoveAction(Direction.of(npc.getPosition(), path.get(1))));
 				}
 			} else {
-				if(npc.getPosition().equals(target)) {
-					npc.forgetLastKnownPosition(enemy);
-				}
 				randomStep();
+				
+				if(npc.getPosition().equals(target) && target == npc.getMostInterestingStimulus().getPosition()) {
+					npc.getPercievedStimuli().remove(npc.getMostInterestingStimulus());
+				}
 			}
 		} else {
 			randomStep();
@@ -72,17 +75,16 @@ public class AI {
 		SecureRandom rand = new SecureRandom();
 		double action = rand.nextDouble();
 		
-		Point step = null;
-		
 		if(action < .6) {
 			//continue walking
 			Point continueWalking = Direction.offset(npc.getPosition(), Direction.angleToDirection(npc.getFacing()));
 			
-			if(npc.getDungeonLevel().isPassable(continueWalking)) {
-				step = continueWalking;
+			if(npc.getEnvironment().isPassable(continueWalking)) {
+				npc.takeAction(new MoveAction(Direction.angleToDirection(npc.getFacing())));
 			} else {
 				//turn around
-				step = Direction.offset(npc.getPosition(), Direction.angleToDirection((npc.getFacing() + 180) % 360));
+				
+				npc.takeAction(new TurnAction((npc.getFacing() + 180) % 360));
 			}
 		} else if (action < .9) {
 			//do nothing
@@ -90,22 +92,7 @@ public class AI {
 			//random turn
 			int angle = rand.nextInt(180) - 90;
 			
-			step = Direction.offset(npc.getPosition(), Direction.angleToDirection(((npc.getFacing() + angle) + 360) % 360));
+			npc.takeAction(new TurnAction(((npc.getFacing() + angle) + 360) % 360));
 		}
-		
-		if(step != null) {
-			int angle = 0;
-			
-			while(!npc.getDungeonLevel().isPassable(step) && angle <= 360) {
-				
-				
-				step = Direction.offset(npc.getPosition(), Direction.angleToDirection((npc.getFacing() + angle) % 360));
-				
-				angle += 45;
-			}
-			
-			npc.moveCharacterTo(step);
-		}
-		
 	}
 }

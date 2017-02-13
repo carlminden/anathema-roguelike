@@ -19,8 +19,8 @@ package com.anathema_roguelike.characters.abilities.targetingstrategies.shapes;
 import java.util.Collection;
 import java.util.HashSet;
 
-import com.anathema_roguelike.dungeon.Direction;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.environment.Point;
 
 public class Square extends Shape {
 	

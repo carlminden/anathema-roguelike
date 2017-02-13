@@ -21,7 +21,6 @@ import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.Range;
 import com.anathema_roguelike.characters.attacks.applicators.PhysicalAttackApplicator;
 import com.anathema_roguelike.characters.effects.Calculation;
-import com.anathema_roguelike.main.utilities.Roll;
 
 public abstract class PhysicalAttack extends Attack {
 	
@@ -34,19 +33,9 @@ public abstract class PhysicalAttack extends Attack {
 	public AttackCalculation calculate() {
 		int damageResult = (int) getDamageCalculation().calculate();
 		
-		Roll attackRoll = getAttacker().rollD20();
+		damageResult = damageResult + getAttacker().getLevel() * 2;
 		
-		int roll = attackRoll.getRoll();
-		
-		boolean crit = false;
-		
-		if(attackRoll.isCrit()) {
-			damageResult = damageResult + getAttacker().getLevel() * 2;
-			crit = true;
-		} else {
-			crit = false;
-		}
-		return new PhysicalAttackCalculation(roll, getModifier(), damageResult, crit);
+		return new PhysicalAttackCalculation(0, getModifier(), damageResult, false);
 	}
 	
 	@Override

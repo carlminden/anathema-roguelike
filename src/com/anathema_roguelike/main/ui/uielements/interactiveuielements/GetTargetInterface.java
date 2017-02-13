@@ -18,7 +18,7 @@ package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.TargetingStrategy;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.animations.Blink;
 import com.anathema_roguelike.main.display.Color;

@@ -22,7 +22,7 @@ import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Ci
 import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.targetmodes.TargetsMode;
 import com.anathema_roguelike.characters.effects.Calculation;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 import com.google.common.base.Predicate;
 
 public class Spread extends AreaOfEffect {

@@ -17,8 +17,8 @@
 package com.anathema_roguelike.main;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.dungeon.DungeonLevel;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Environment;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
@@ -61,8 +61,8 @@ public abstract class Entity implements Renderable {
 		position = new Point(p);
 	}
 	
-	public DungeonLevel getDungeonLevel() {
-		return Game.getInstance().getState().getDungeonLevel(depth);
+	public Environment getEnvironment() {
+		return Game.getInstance().getState().getEnvironment(depth);
 	}
 	
 	public int getX() {

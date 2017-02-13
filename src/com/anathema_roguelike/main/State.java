@@ -21,18 +21,19 @@ import java.util.ArrayList;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.Player;
 import com.anathema_roguelike.characters.events.TurnEvent;
-import com.anathema_roguelike.dungeon.Direction;
-import com.anathema_roguelike.dungeon.DungeonLevel;
-import com.anathema_roguelike.dungeon.Point;
-import com.anathema_roguelike.dungeon.generation.CaveDungeonGenerator;
-import com.anathema_roguelike.dungeon.generation.DungeonGenerator;
+import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.environment.Environment;
+import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.environment.generation.CaveDungeonGenerator;
+import com.anathema_roguelike.environment.generation.DungeonGenerator;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.ui.charactercreation.CharacterCreationUI;
 
 public class State implements Renderable {
 	
+	private long elapsedTime = 0;
 	private Player player;
-	private volatile ArrayList<DungeonLevel> dungeonLevels;
+	private volatile ArrayList<Environment> dungeonLevels;
 //	private DungeonGenerator dungeonLevelFactory = new DefaultDungeonLevelGenerator();
 	private DungeonGenerator dungeonLevelFactory = new CaveDungeonGenerator();
 //	private DungeonGenerator dungeonLevelFactory = new BigRoomDungeonGenerator();
@@ -43,7 +44,7 @@ public class State implements Renderable {
 	
 	public void computeNextState() {
 		
-		DungeonLevel level = getCurrentLevel();
+		Environment level = getCurrentLevel();
 		
 		for(Character character : new ArrayList<>(level.getEntities(Character.class))) {
 			if(character.isAlive() || character instanceof Player) {
@@ -51,6 +52,8 @@ public class State implements Renderable {
 					character.takeTurn();
 			}
 		}
+		
+		elapsedTime += 1000;
 	}
 	
 	public void render() {
@@ -62,11 +65,11 @@ public class State implements Renderable {
 		return player;
 	}
 	
-	public DungeonLevel getCurrentLevel() {
-		return getDungeonLevel(player.getDepth());
+	public Environment getCurrentLevel() {
+		return getEnvironment(player.getDepth());
 	}
 
-	public DungeonLevel getDungeonLevel(int z) {
+	public Environment getEnvironment(int z) {
 		if(z < 0 || z >= Config.DUNGEON_DEPTH) {
 			return null;
 		}
@@ -79,7 +82,7 @@ public class State implements Renderable {
 	public void generateDungeonLevels() {
 		for(int i = 0; i < Config.DUNGEON_DEPTH; i++) {
 			
-			DungeonLevel newLevel = dungeonLevelFactory.createLevel(i);
+			Environment newLevel = dungeonLevelFactory.createLevel(i);
 			
 			dungeonLevels.add(newLevel);
 			
@@ -88,14 +91,18 @@ public class State implements Renderable {
 			}
 		}
 	}
-
+	
+	public long getElapsedTime() {
+		return elapsedTime;
+	}
+	
 	public void init() {
-		dungeonLevels = new ArrayList<DungeonLevel>();
+		dungeonLevels = new ArrayList<Environment>();
 		generateDungeonLevels();
 		
 		player = CharacterCreationUI.createCharacter();
 		
-		Point upstairs = getDungeonLevel(0).getStairs(Direction.UP).getPosition();
+		Point upstairs = getEnvironment(0).getStairs(Direction.UP).getPosition();
 		
 		dungeonLevels.get(0).addEntity(player, upstairs);
 	}

@@ -18,7 +18,7 @@ package com.anathema_roguelike.characters.abilities.conditions;
 
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.effects.Calculation;
-import com.anathema_roguelike.characters.stats.tertiarystats.resources.Resource;
+import com.anathema_roguelike.characters.stats.resources.Resource;
 import com.anathema_roguelike.main.utilities.BooleanCondition;
 import com.anathema_roguelike.main.utilities.Utils;
 

@@ -17,8 +17,8 @@
 package com.anathema_roguelike.characters;
 
 import com.anathema_roguelike.characters.abilities.ActivatedAbility;
-import com.anathema_roguelike.dungeon.Direction;
-import com.anathema_roguelike.items.Consumable;
+import com.anathema_roguelike.characters.actions.MoveAction;
+import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
@@ -50,35 +50,35 @@ public class PlayerKeyHandler implements KeyHandler {
 	        	}
 	        case 'j':
 	        case SquidInput.DOWN_ARROW:
-	        	player.move(Direction.DOWN);
+	        	player.takeAction(new MoveAction(Direction.DOWN));
 	        	return;
 	        case 'k':
 	        case SquidInput.UP_ARROW:
-	        	player.move(Direction.UP);
+	        	player.takeAction(new MoveAction(Direction.UP));
 	        	return;
 	        case 'h':
 	        case SquidInput.LEFT_ARROW:
-	        	player.move(Direction.LEFT);
+	        	player.takeAction(new MoveAction(Direction.LEFT));
 	        	return;
 	        case 'l':
 	        case SquidInput.RIGHT_ARROW:
-	        	player.move(Direction.RIGHT);
+	        	player.takeAction(new MoveAction(Direction.RIGHT));
 	        	return;
 	        case 'y':
 	        case SquidInput.UP_LEFT_ARROW:
-	        	player.move(Direction.UP_LEFT);
+	        	player.takeAction(new MoveAction(Direction.UP_LEFT));
 	        	return;
 	        case 'u':
 	        case SquidInput.UP_RIGHT_ARROW:
-	        	player.move(Direction.UP_RIGHT);
+	        	player.takeAction(new MoveAction(Direction.UP_RIGHT));
 	        	return;
 	        case 'b':
 	        case SquidInput.DOWN_LEFT_ARROW:
-	        	player.move(Direction.DOWN_LEFT);
+	        	player.takeAction(new MoveAction(Direction.DOWN_LEFT));
 	        	return;
 	        case 'n':
 	        case SquidInput.DOWN_RIGHT_ARROW:
-	        	player.move(Direction.DOWN_RIGHT);
+	        	player.takeAction(new MoveAction(Direction.DOWN_RIGHT));
 	        	return;
 	        case SquidInput.CENTER_ARROW:
 	        	player.setActionRemaining(false);
@@ -87,13 +87,6 @@ public class PlayerKeyHandler implements KeyHandler {
 	        	ActivatedAbility ability = new SelectionScreen<ActivatedAbility>(0, 0, UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3, "Activate an Ability", player.getAbilities(ActivatedAbility.class), true, 0f, .5f).run();
 	        	if(ability != null) {
 	        		ability.actviate();
-	        		player.setActionRemaining(false);
-	        	}
-	        	return;
-	        case 'c':
-	        	Consumable consumable = new SelectionScreen<Consumable>(0, 0, UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3, "Use a Consumable", player.getInventory().getItems(Consumable.class), true, 0f, .5f).run();
-	        	if(consumable != null) {
-	        		consumable.consume(player);
 	        		player.setActionRemaining(false);
 	        	}
 	        	return;

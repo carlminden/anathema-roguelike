@@ -16,7 +16,7 @@
  *******************************************************************************/
 package com.anathema_roguelike.fov;
 
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 
 public class DirectionVector {
 	private Point position;

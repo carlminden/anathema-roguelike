@@ -46,8 +46,8 @@ public class Color {
 	public static final SColor NO_LIGHT_BACKGROUND = new SColor(0x080913);
 	public static final SColor FULL_LIGHT_BACKGROUND = new SColor(0x171E4E);
 	public static final SColor NO_LIGHT_PLAYER = new SColor(0x4F4F4F);
-	public static final SColor UNDETECTED = new SColor(128, 125, 21);
-	public static final SColor REMEMBERED = new SColor(64, 17, 85);
+	public static final SColor UNAWARE = new SColor(64, 127, 127);
+	public static final SColor ALERTED = new SColor(128, 125, 21);
 	public static final SColor DETECTED = new SColor(85, 0, 0);
 	
 	public static final HashBasedTable<SColor, Float, SColor> opacityCache = HashBasedTable.create();

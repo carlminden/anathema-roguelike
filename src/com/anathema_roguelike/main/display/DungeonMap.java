@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 import com.anathema_roguelike.characters.NPC;
 import com.anathema_roguelike.characters.Player;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.fov.LightLevels;
 import com.anathema_roguelike.fov.TotalLightShader;
 import com.anathema_roguelike.fov.VisibleLightBackgroundShader;
@@ -154,8 +154,8 @@ public class DungeonMap implements Renderable, Rectangular {
 		Player player = Game.getInstance().getState().getPlayer();
 		BufferMask visibility = player.getCurrentVisibility();
 		
-		BufferMask enemyUndetectedVision = new BufferMask(dungeonWidth, dungeonHeight);
-		BufferMask enemyRememberedVision = new BufferMask(dungeonWidth, dungeonHeight);
+		BufferMask enemyUnawareVision = new BufferMask(dungeonWidth, dungeonHeight);
+		BufferMask enemyAlertedVision = new BufferMask(dungeonWidth, dungeonHeight);
 		BufferMask enemyDetectedVision = new BufferMask(dungeonWidth, dungeonHeight);
 		
 		
@@ -164,34 +164,34 @@ public class DungeonMap implements Renderable, Rectangular {
 				if(character.canSee(player)) {
 					enemyDetectedVision.or(character.getCurrentVisibility());
 				} else {
-					if(character.getLastSeenNearestEnemy() == null) {
-						enemyUndetectedVision.or(character.getCurrentVisibility());
+					if(character.getMostInterestingStimulus() == null) {
+						enemyUnawareVision.or(character.getCurrentVisibility());
 					} else {
-						enemyRememberedVision.or(character.getCurrentVisibility());
+						enemyAlertedVision.or(character.getCurrentVisibility());
 					}
 				}
 			}
 		}
 		
-		enemyUndetectedVision.nand(enemyRememberedVision);
-		enemyUndetectedVision.nand(enemyDetectedVision);
+		enemyUnawareVision.nand(enemyAlertedVision);
+		enemyUnawareVision.nand(enemyDetectedVision);
 		
-		enemyRememberedVision.nand(enemyDetectedVision);
+		enemyAlertedVision.nand(enemyDetectedVision);
 		
-		renderFoVOverlay(visibility, enemyUndetectedVision, Color.UNDETECTED);
-		renderFoVOverlay(visibility, enemyRememberedVision, Color.REMEMBERED);
+		renderFoVOverlay(visibility, enemyUnawareVision, Color.UNAWARE);
+		renderFoVOverlay(visibility, enemyAlertedVision, Color.ALERTED);
 		renderFoVOverlay(visibility, enemyDetectedVision, Color.DETECTED);
 		
 		for(NPC character : state.getCurrentLevel().getEntities(NPC.class)) {
 			if(player.canSee(character)) {
-				if(!character.canSee(player) && character.getLastSeenNearestEnemy() != null) {
+				if(!character.canSee(player) && character.getMostInterestingStimulus() != null) {
 					
 					//TODO needs work
 					
-					Point p = character.getLastSeenNearestEnemy().getValue();
+					Point p = character.getMostInterestingStimulus().getPosition();
 					
 					if(p != null) {
-						Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + p.getX(), getY() + p.getY(), '@', Color.REMEMBERED);
+						Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + p.getX(), getY() + p.getY(), '@', Color.ALERTED);
 					}
 				}
 			}

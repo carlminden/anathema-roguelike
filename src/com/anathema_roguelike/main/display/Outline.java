@@ -16,7 +16,7 @@
  *******************************************************************************/
 package com.anathema_roguelike.main.display;
 
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.ui.UIConfig;
 

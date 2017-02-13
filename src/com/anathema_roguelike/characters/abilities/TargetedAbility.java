@@ -21,7 +21,7 @@ import java.util.Collection;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.conditions.ValidTargetPointInRangeRequirement;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.TargetingStrategy;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.GetTargetInterface;
 import com.google.common.base.Predicate;
 

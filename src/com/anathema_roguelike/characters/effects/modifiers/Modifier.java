@@ -23,19 +23,19 @@ import com.anathema_roguelike.characters.stats.Stat;
 
 public class Modifier {
 	
-	private Class<? extends Stat> affectedStat;
+	private Class<? extends Stat<?>> affectedStat;
 	private Calculation<Integer> staticCalculation;
 	private Calculation<Double> multiplicativeCalculation;
 	private Effect group;
 	private Object source;
 	
-	public Modifier(Object source, Class<? extends Stat> affectedStat,
+	public Modifier(Object source, Class<? extends Stat<?>> affectedStat,
 			Calculation<Integer> staticCalculation, Calculation<Double> multiplicativeCalculation) {
 		
 		init(source, affectedStat, staticCalculation, multiplicativeCalculation);
 	}
 	
-	public void init(Object source, Class<? extends Stat> affectedStat,
+	public void init(Object source, Class<? extends Stat<?>> affectedStat,
 			Calculation<Integer> staticCalculation, Calculation<Double> multiplicativeCalculation) {
 		
 		this.source = source;
@@ -44,11 +44,11 @@ public class Modifier {
 		this.multiplicativeCalculation = multiplicativeCalculation;
 	}
 	
-	public Modifier(Object source, Class<? extends Stat> affectedStat, int amount) {
+	public Modifier(Object source, Class<? extends Stat<?>> affectedStat, int amount) {
 		init(source, affectedStat, new FixedCalculation<Integer>(amount), null);
 	}
 	
-	public Modifier(Object source, Class<? extends Stat> affectedStat, double amount) {
+	public Modifier(Object source, Class<? extends Stat<?>> affectedStat, double amount) {
 		init(source, affectedStat, null, new FixedCalculation<Double>(amount));
 	}
 	
@@ -62,7 +62,7 @@ public class Modifier {
 		return source;
 	}
 
-	public Class<? extends Stat> getAffectedStat() {
+	public Class<? extends Stat<?>> getAffectedStat() {
 		return affectedStat;
 	}
 

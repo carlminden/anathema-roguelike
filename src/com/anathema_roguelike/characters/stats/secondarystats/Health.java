@@ -17,21 +17,21 @@
 package com.anathema_roguelike.characters.stats.secondarystats;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.stats.abilityscores.Constitution;
+import com.anathema_roguelike.characters.stats.attributes.Constitution;
 import com.anathema_roguelike.main.utilities.Listed;
 
 @Listed
-public class Health extends SecondaryStat {
+public class Health extends SecondaryStat<Integer> {
 
 	public Health(Character character) {
 		super(character);
 	}
 
 	@Override
-	public int getAmount() {
-		int con = getCharacter().getAbilityModifier(Constitution.class);
+	public Integer getAmount() {
+		int con = getCharacter().getModifiedStatScore(Constitution.class);
 		
-		return (5 + con) * (getCharacter().getLevel() + 1);
+		return 50 + con * 5 * getCharacter().getLevel();
 	}
 
 }

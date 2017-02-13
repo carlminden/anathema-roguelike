@@ -21,7 +21,7 @@ import java.util.HashSet;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Shape;
-import com.anathema_roguelike.dungeon.DungeonLevel;
+import com.anathema_roguelike.environment.Environment;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 
@@ -31,7 +31,7 @@ public class TargetsMode extends TargetMode {
 	public Collection<Character> getTargets(Shape shape, Character character, Predicate<Character> targetValidator) {
 		
 		HashSet<Character> ret = new HashSet<>();
-		DungeonLevel level = character.getDungeonLevel();
+		Environment level = character.getEnvironment();
 		
 		for(Character target : Collections2.filter(level.getEntities(Character.class), targetValidator)) {
 			if(shape.validPoint(target.getPosition())) {

@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import com.anathema_roguelike.characters.effects.Calculation;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 
 public class Circle extends Shape {
 	

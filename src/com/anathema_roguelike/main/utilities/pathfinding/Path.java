@@ -18,7 +18,7 @@ package com.anathema_roguelike.main.utilities.pathfinding;
 
 import java.util.ArrayList;
 
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 
 public class Path extends ArrayList<Point> {
 

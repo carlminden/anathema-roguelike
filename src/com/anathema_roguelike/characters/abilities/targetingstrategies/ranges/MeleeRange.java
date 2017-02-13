@@ -23,8 +23,8 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Square;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.targetmodes.PointsMode;
-import com.anathema_roguelike.dungeon.Direction;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.environment.Point;
 
 public class MeleeRange extends Range {
 

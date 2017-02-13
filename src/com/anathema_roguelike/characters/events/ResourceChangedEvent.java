@@ -16,17 +16,17 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.events;
 
-import com.anathema_roguelike.characters.stats.tertiarystats.resources.Resource;
+import com.anathema_roguelike.characters.stats.resources.Resource;
 
 public class ResourceChangedEvent {
 
 	private Object source;
-	private int amount;
+	private double amount;
 	private Class<? extends Resource> resource;
 	
-	public ResourceChangedEvent(Object source, Class<? extends Resource> resource, int amount) {
+	public ResourceChangedEvent(Object source, Class<? extends Resource> resource, double difference) {
 		this.source = source;
-		this.amount = amount;
+		this.amount = difference;
 		this.resource = resource;
 	}
 
@@ -34,7 +34,7 @@ public class ResourceChangedEvent {
 		return source;
 	}
 
-	public int getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 	

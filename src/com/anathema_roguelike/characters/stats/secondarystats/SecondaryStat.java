@@ -16,17 +16,19 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.stats.secondarystats;
 
+import java.math.BigDecimal;
+
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.stats.Stat;
 
-public abstract class SecondaryStat extends Stat {
+public abstract class SecondaryStat<T extends Number> extends Stat<T> {
 
 	public SecondaryStat(Character character) {
 		super(character);
 	}
 	
 	@Override
-	public int getAmount() {
-		return 0;
+	public T getAmount() {
+		return (T) new BigDecimal(0);
 	}
 }

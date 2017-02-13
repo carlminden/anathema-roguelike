@@ -19,14 +19,17 @@ package com.anathema_roguelike.main.utilities;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
-import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.reflections.Reflections;
 
@@ -62,19 +65,49 @@ public class Utils {
 		}
 	}
 	
+	public static <T extends Number> T addNumbers(Number a, Number b) {
+		a = zeroIfNull(a);
+		b = zeroIfNull(b);
+		
+	    if(a instanceof Double || b instanceof Double) {
+	        return (T) new Double(a.doubleValue() + b.doubleValue());
+	    } else if(a instanceof Float || b instanceof Float) {
+	        return (T) new Float(a.floatValue() + b.floatValue());
+	    } else if(a instanceof Long || b instanceof Long) {
+	        return (T) new Long(a.longValue() + b.longValue());
+	    } else {
+	        return (T) new Integer(a.intValue() + b.intValue());
+	    }
+	}
+	
+	public static <T extends Number> T multiplyNumbers(Number a, double b) {
+		a = zeroIfNull(a);
+		
+	    if(a instanceof Double) {
+	        return (T) new Double(a.doubleValue() * b);
+	    } else if(a instanceof Float) {
+	        return (T) new Float(a.floatValue() * b);
+	    } else if(a instanceof Long) {
+	        return (T) new Long((long) (a.longValue() * b));
+	    } else {
+	        return (T) new Integer((int) (a.intValue() * b));
+	    }
+	}
+	
+	private static <T extends Number> Number zeroIfNull(T n) {
+		return n == null ? new BigDecimal(0) : n;
+	}
+	
 	public static <T extends Number> T clamp(T n, T l, T h) {
 	    return (n.doubleValue() > h.doubleValue() ? h : (n.doubleValue() < l.doubleValue() ? l : n));
 	}
 	
-	public static int roll(int dice, int sides) {
-		Random rand = new Random();
-		int sum = 0;
-		
-		for(int i = 0; i < dice; i++) {
-			sum += rand.nextInt(sides) + 1;
-		}
-		
-		return sum;
+	public static <T, E> Set<T> getKeysByValue(Map<T, E> map, E value) {
+	    return map.entrySet()
+			.stream()
+			.filter(entry -> Objects.equals(entry.getValue(), value))
+			.map(Map.Entry::getKey)
+			.collect(Collectors.toSet());
 	}
 	
 	public static Class<?> getSuperclass(Object subclass) {
@@ -139,6 +172,16 @@ public class Utils {
 				return cls.isAnnotationPresent(annotation);
 			}
 		}));
+	}
+	
+	public static <T> Collection<T> filterBySubclass(Collection<? super T> unfiltered, Class<T> type) {
+		return (Collection<T>) Collections2.filter(unfiltered, item -> {
+			if(item != null) {
+				return (type.isAssignableFrom(item.getClass()));
+			} else {
+				return false;
+			}
+		});
 	}
 	
 	public static Set<Class<?>> getAnnotatedClasses(Class<? extends Annotation> annotation) {

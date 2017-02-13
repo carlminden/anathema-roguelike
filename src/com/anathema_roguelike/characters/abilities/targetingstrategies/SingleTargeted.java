@@ -22,7 +22,7 @@ import java.util.HashSet;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.Range;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.targetmodes.PointsMode;
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
@@ -40,7 +40,7 @@ public class SingleTargeted extends TargetingStrategy {
 	@Override
 	public Collection<Character> getTargets(Character character, Point targetedPoint) {
 		HashSet<Character> ret = new HashSet<>();
-		Collection<Character> targets = character.getDungeonLevel().getEntitiesAt(targetedPoint, Character.class);
+		Collection<Character> targets = character.getEnvironment().getEntitiesAt(targetedPoint, Character.class);
 		
 		if(!targets.isEmpty()) {
 			ret.add(targets.iterator().next());

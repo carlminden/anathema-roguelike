@@ -16,7 +16,7 @@
  *******************************************************************************/
 package com.anathema_roguelike.main.utilities.pathfinding;
 
-import com.anathema_roguelike.dungeon.Point;
+import com.anathema_roguelike.environment.Point;
 
 public class Node implements Comparable<Node> {
 	private Node parent;

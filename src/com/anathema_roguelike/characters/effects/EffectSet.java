@@ -26,6 +26,7 @@ import com.anathema_roguelike.characters.effects.descriptors.VulnerabilityCollec
 import com.anathema_roguelike.characters.effects.modifiers.Modifier;
 import com.anathema_roguelike.characters.events.TurnEvent;
 import com.anathema_roguelike.characters.stats.Stat;
+import com.anathema_roguelike.main.utilities.Utils;
 import com.google.common.eventbus.Subscribe;
 
 public class EffectSet {
@@ -45,28 +46,28 @@ public class EffectSet {
 		this.vulnerabilities = new VulnerabilityCollection(character);
 	}
 	
-	public int getStatBonus(Class<? extends Stat> stat) {
+	public <T extends Number> T getStatBonus(Class<? extends Stat<T>> stat) {
 		
-		int bonus = 0;
+		T bonus = null;
 		
 		for(Buff buff : buffs) {
 			for(Modifier modifier : buff.getModifiers()) {
 				if(modifier.getAffectedStat() == stat) {
-					bonus += modifier.getStaticAmount();
+					 bonus = (T) Utils.addNumbers(bonus, modifier.getStaticAmount());
 				}
 			}
 		}
 		
 		for(Condition condition : conditions) {
 			for(Modifier modifier : condition.getModifiers()) {
-				bonus += modifier.getStaticAmount();
+				bonus = (T) Utils.addNumbers(bonus, modifier.getStaticAmount());
 			}
 		}
 		
 		return bonus;
 	}
 	
-	public double getStatMultiplier(Class<? extends Stat> stat) {
+	public double getStatMultiplier(Class<? extends Stat<?>> stat) {
 		
 		double bonus = 1;
 		

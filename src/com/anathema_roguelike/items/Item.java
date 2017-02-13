@@ -23,8 +23,8 @@ import com.anathema_roguelike.characters.effects.HasEffect;
 import com.anathema_roguelike.characters.effects.buffs.Buff;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.display.DungeonMap.Layer;
+import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public abstract class Item extends Entity implements HasEffect {
 	
@@ -34,18 +34,6 @@ public abstract class Item extends Entity implements HasEffect {
 
 	public Item(VisualRepresentation visualRepresentation) {
 		super(visualRepresentation);
-	}
-
-	private int quality = MUNDANE;
-	
-	public static final int MUNDANE = 0;
-	public static final int LESSER = 1;
-	public static final int GREATER = 2;
-	public static final int RELIC = 3;
-	public static final int ARTIFACTS = 4;
-	
-	public int getQuality() {
-		return quality;
 	}
 	
 	@Override
