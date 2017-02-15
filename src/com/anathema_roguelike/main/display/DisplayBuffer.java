@@ -94,6 +94,16 @@ public class DisplayBuffer extends RenderSurface {
 		}
 	}
 	
+	public void renderDebug(DisplayLayer layer, int x, int y, int width, int height) {
+		render(layer, x, y, width, height, new DisplayCellTransformation() {
+			
+			@Override
+			public DisplayCell compute(DisplayBuffer buffer, int x, int y, char string, SColor color, boolean display) {
+				return new DisplayCell('X', Color.ERROR, display);
+			}
+		});
+	}
+	
 	public void applyMask(BufferMask mask) {
 		for(int i = 0; i < getWidth(); i++) {
 			for(int j = 0; j < getHeight(); j++) {

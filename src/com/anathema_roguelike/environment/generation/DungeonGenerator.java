@@ -59,7 +59,7 @@ public abstract class DungeonGenerator {
 		
 		for(int i = 0; i < map.length; i++) {
 			for(int j = 0; j < map[i].length; j++) {
-				map[i][j] = new Location(new StoneWall(level, new Point(i, j)));
+				map[i][j] = new Location(level.getEventBus(), new StoneWall(level, new Point(i, j)));
 			}
 		}
 		

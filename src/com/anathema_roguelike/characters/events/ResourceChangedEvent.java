@@ -16,7 +16,7 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.events;
 
-import com.anathema_roguelike.characters.stats.resources.Resource;
+import com.anathema_roguelike.stats.characterstats.resources.Resource;
 
 public class ResourceChangedEvent {
 

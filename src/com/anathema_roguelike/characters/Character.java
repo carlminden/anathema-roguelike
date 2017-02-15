@@ -25,26 +25,11 @@ import com.anathema_roguelike.characters.ai.AIPathFinder;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.attacks.BasicAttackAbility;
 import com.anathema_roguelike.characters.classes.CharacterClass;
-import com.anathema_roguelike.characters.effects.Effect;
-import com.anathema_roguelike.characters.effects.EffectSet;
-import com.anathema_roguelike.characters.effects.buffs.BuffCollection;
-import com.anathema_roguelike.characters.effects.conditions.Condition;
-import com.anathema_roguelike.characters.effects.conditions.ConditionCollection;
-import com.anathema_roguelike.characters.effects.descriptors.Descriptor;
 import com.anathema_roguelike.characters.events.MoveEvent;
 import com.anathema_roguelike.characters.events.ResourceChangedEvent;
 import com.anathema_roguelike.characters.events.TurnEvent;
 import com.anathema_roguelike.characters.inventory.Inventory;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
-import com.anathema_roguelike.characters.stats.Stat;
-import com.anathema_roguelike.characters.stats.StatSet;
-import com.anathema_roguelike.characters.stats.attributes.Attribute;
-import com.anathema_roguelike.characters.stats.itemstats.Concealment;
-import com.anathema_roguelike.characters.stats.resources.BoundedResource;
-import com.anathema_roguelike.characters.stats.resources.CurrentHealth;
-import com.anathema_roguelike.characters.stats.resources.Damage;
-import com.anathema_roguelike.characters.stats.resources.Resource;
-import com.anathema_roguelike.characters.stats.secondarystats.Health;
 import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Point;
@@ -57,30 +42,36 @@ import com.anathema_roguelike.main.display.BufferMask;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.ui.messages.Message;
-import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
-import com.anathema_roguelike.stimuli.Motion;
+import com.anathema_roguelike.stats.HasStats;
+import com.anathema_roguelike.stats.StatSet;
+import com.anathema_roguelike.stats.characterstats.CharacterStat;
+import com.anathema_roguelike.stats.characterstats.CharacterStatSet;
+import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
+import com.anathema_roguelike.stats.characterstats.resources.BoundedResource;
+import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
+import com.anathema_roguelike.stats.characterstats.resources.Damage;
+import com.anathema_roguelike.stats.characterstats.resources.Resource;
+import com.anathema_roguelike.stats.characterstats.secondarystats.Concealment;
+import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
 import com.anathema_roguelike.stimuli.PercievedStimulus;
 import com.anathema_roguelike.stimuli.Stimulus;
-import com.anathema_roguelike.stimuli.StimulusEvent;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 
-public abstract class Character extends Entity {
+public abstract class Character extends Entity implements HasStats<Character, CharacterStat> {
 	
 	private int faction;
 	
 	private int level;
 	private CharacterClass charClass;
-	private StatSet stats = new StatSet(this);
+	
 	private boolean actionRemaining = false;
 	private long turn = 0;
 	
 	private AbilitySet abilities = new AbilitySet();
-	
-	private EffectSet effects;
 	
 	private Inventory inventory = new Inventory(this);
 	
@@ -91,6 +82,7 @@ public abstract class Character extends Entity {
 	private double facing = Direction.UP;
 	BufferMask currentVisibility;
 	
+	private CharacterStatSet stats = new CharacterStatSet(this, eventBus);
 	private LinkedList<PercievedStimulus> percievedStimuli = new LinkedList<>();
 	
 	public abstract void onDeath();
@@ -101,7 +93,6 @@ public abstract class Character extends Entity {
 	public Character(VisualRepresentation representation) {
 		super(representation);
 		level = 0;
-		effects = new EffectSet(this);
 		
 		Game.getInstance().getEventBus().register(this);
 		eventBus.register(this);
@@ -131,8 +122,13 @@ public abstract class Character extends Entity {
 		
 		level++;
 		
-		stats.get(CurrentHealth.class).set(this, getModifiedStatScore(Health.class));
+		getStat(CurrentHealth.class).set(this, (int) getStatAmount(Health.class));
 		
+	}
+	
+	@Override
+	public StatSet<Character, CharacterStat> getStatSet() {
+		return stats;
 	}
 	
 	public boolean getActionRemaining() {
@@ -159,30 +155,6 @@ public abstract class Character extends Entity {
 		return level;
 	}
 	
-	public void applyEffect(Effect effect) {
-		effects.apply(effect);
-	}
-	
-	public void removeEffect(Effect effect) {
-		effects.remove(effect);
-	}
-	
-	public void cureCondition(Class<? extends Condition> condition) {
-		effects.cureCondition(condition);
-	}
-	
-	public boolean hasCondition(Class<? extends Condition> condition) {
-		return effects.hasCondition(condition);
-	}
-	
-	public ConditionCollection getConditionSet() {
-		return effects.getConditions();
-	}
-	
-	public BuffCollection getBuffs() {
-		return effects.getBuffs();
-	}
-	
 	public <T extends Ability> Iterable<T> getAbilities(Class<T> superclass) {
 		return abilities.get(superclass);
 	}
@@ -197,10 +169,6 @@ public abstract class Character extends Entity {
 	
 	public void removeAbility(Ability ability) {
 		abilities.remove(ability);
-	}
-
-	protected StatSet getStats() {
-		return stats;
 	}
 	
 	public boolean hasAbility(Class<? extends Ability> ability) {
@@ -293,8 +261,6 @@ public abstract class Character extends Entity {
 					//need to decide how/if to not pay cost when the character cant actually move
 					getEnvironment().getEventBus().post(new MoveEvent(this, p));
 					
-					getEnvironment().getEventBus().post(new StimulusEvent(new Motion(this, 100)));
-					
 					getEnvironment().moveEntityTo(this, p);
 				}
 				
@@ -311,7 +277,7 @@ public abstract class Character extends Entity {
 		
 		applyEffect(new Damage(attacker, CurrentHealth.class, damage));
 		
-		if(getModifiedStatScore(CurrentHealth.class) <= 0 && isAlive()) {
+		if(getStatAmount(CurrentHealth.class) <= 0 && isAlive()) {
 			alive = false;
 			//TODO not sure if this should actually be 2 callbacks
 			killedBy(attacker);
@@ -327,31 +293,20 @@ public abstract class Character extends Entity {
 		return inventory.getEquipedItem(PrimaryWeapon.class).getWeaponDamage(this);
 	}
 	
-	public <T extends Number> T getModifiedStatScore(Class<? extends Stat<T>> stat) {
-		T base = stats.get(stat).getAmount();
-		T modifier = effects.getStatBonus(stat);
-		
-		return Utils.multiplyNumbers(Utils.addNumbers(base, modifier), effects.getStatMultiplier(stat));
-	}
-	
-	public <T extends Number> T getBaseStatScore(Class<? extends Stat<T>> stat) {
-		return stats.get(stat).getAmount();
-	}
-	
 	public int getResourceMax(Class<? extends BoundedResource> resource) {
-		return stats.get(resource).getMaximum();
+		return getStat(resource).getMaximum();
 	}
 	
 	public void setAbilityScore(Class<? extends Attribute> ability, int amount) {
-		stats.get(ability).setScore(amount);
+		stats.getStat(ability).setScore(amount);
 	}
 	
 	public void setResource(Object source, Class<? extends Resource> stat, int amount) {
-		stats.get(stat).set(source, amount);
+		stats.getStat(stat).set(source, amount);
 	}
 	
 	public void modifyResource(Object source, Class<? extends Resource> stat, int amount) {
-		Resource resource = stats.get(stat);
+		Resource resource = stats.getStat(stat);
 		resource.modify(source, amount);
 	}
 	
@@ -412,7 +367,7 @@ public abstract class Character extends Entity {
 		}
 		
 		if(currentVisibility.get(character.getX(), character.getY())) {
-			double concealment = character.getModifiedStatScore(Concealment.class) / 100.0;
+			double concealment = character.getStatAmount(Concealment.class) / 100.0;
 			
 			double light = getEnvironment().getLightLevels().get(character.getPosition());
 			
@@ -446,9 +401,6 @@ public abstract class Character extends Entity {
 		currentVisibility = getEnvironment().getLitFOVProcessor().computeLitFOVMask(this);
 	}
 
-	public boolean isVulnerableTo(Class<? extends Descriptor> descriptor) {
-		return effects.isVulnerableTo(descriptor);
-	}
 	public double getFacing() {
 		return facing;
 	}

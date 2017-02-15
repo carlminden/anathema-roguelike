@@ -23,16 +23,16 @@ import com.anathema_roguelike.characters.inventory.Feet;
 import com.anathema_roguelike.characters.inventory.Head;
 import com.anathema_roguelike.characters.inventory.Legs;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
-import com.anathema_roguelike.characters.stats.attributes.Agility;
-import com.anathema_roguelike.characters.stats.attributes.Constitution;
-import com.anathema_roguelike.characters.stats.attributes.Intelligence;
-import com.anathema_roguelike.characters.stats.attributes.Perception;
-import com.anathema_roguelike.characters.stats.attributes.Strength;
-import com.anathema_roguelike.characters.stats.resources.CurrentHealth;
-import com.anathema_roguelike.characters.stats.secondarystats.Health;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.stats.characterstats.attributes.Agility;
+import com.anathema_roguelike.stats.characterstats.attributes.Constitution;
+import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
+import com.anathema_roguelike.stats.characterstats.attributes.Perception;
+import com.anathema_roguelike.stats.characterstats.attributes.Strength;
+import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
+import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
@@ -73,8 +73,8 @@ public class PlayerStats extends UIElement {
 	
 	public void renderResources() {
 		
-		int currentHP = player.getModifiedStatScore(CurrentHealth.class);
-		int maxHP = player.getModifiedStatScore(Health.class);
+		int currentHP = (int) player.getStatAmount(CurrentHealth.class);
+		int maxHP = (int) player.getStatAmount(Health.class);
 		
 		SColor color = Color.factory.blend(Color.RED, Color.GREEN, (double) currentHP / (double) maxHP);		
 		
@@ -83,11 +83,11 @@ public class PlayerStats extends UIElement {
 	}
 	
 	public void renderAbilities() {
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "STR: " + player.getModifiedStatScore(Strength.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "AGI: " + player.getModifiedStatScore(Agility.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "CON: " + player.getModifiedStatScore(Constitution.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "INT: " + player.getModifiedStatScore(Intelligence.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "PER: " + player.getModifiedStatScore(Perception.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "STR: " + player.getStatAmount(Strength.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "AGI: " + player.getStatAmount(Agility.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "CON: " + player.getStatAmount(Constitution.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "INT: " + player.getStatAmount(Intelligence.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "PER: " + player.getStatAmount(Perception.class));
 	}
 	
 	public void renderOtherStats() {

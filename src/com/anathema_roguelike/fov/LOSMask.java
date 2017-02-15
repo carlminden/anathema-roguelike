@@ -18,9 +18,9 @@ package com.anathema_roguelike.fov;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.Player;
-import com.anathema_roguelike.characters.stats.secondarystats.Vision;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.BufferMask;
+import com.anathema_roguelike.stats.characterstats.secondarystats.Vision;
 
 import squidpony.squidgrid.FOV;
 
@@ -41,7 +41,7 @@ public class LOSMask extends FOVProcessor {
 	
 	public BufferMask getFOVMask(Character character) {
 		
-		int visionDistance = character.getModifiedStatScore(Vision.class).intValue();
+		int visionDistance = (int) character.getStatAmount(Vision.class);
 		
 		int angle;
 		

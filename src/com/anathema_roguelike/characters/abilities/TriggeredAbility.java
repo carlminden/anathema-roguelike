@@ -29,6 +29,7 @@ public abstract class TriggeredAbility<T> extends Ability {
 		this.triggerEventType = triggerEventType;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Subscribe
 	public void trigger(Object trigger) {
 		if(triggerEventType.isAssignableFrom(trigger.getClass()) && checkRequirementsAndExpendCostsIfTrue()) {

@@ -18,11 +18,11 @@ package com.anathema_roguelike.main.animations;
 
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.VisualRepresentation;
-import com.anathema_roguelike.main.display.DungeonMap.Layer;
+import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 
 public class Blink extends Animation {
 
-	public Blink(VisualRepresentation representation, Layer layer) {
+	public Blink(VisualRepresentation representation, DungeonLayer layer) {
 		super(representation, layer);
 	}
 

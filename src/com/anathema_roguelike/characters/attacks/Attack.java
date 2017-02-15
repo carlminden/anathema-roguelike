@@ -17,21 +17,13 @@
 package com.anathema_roguelike.characters.attacks;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.abilities.AbilityResults;
-import com.anathema_roguelike.characters.abilities.Result;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.Range;
 import com.anathema_roguelike.characters.attacks.applicators.AttackApplicator;
-import com.anathema_roguelike.characters.effects.Calculation;
-import com.anathema_roguelike.characters.effects.descriptors.Descriptor;
-import com.anathema_roguelike.characters.effects.descriptors.Volley;
-import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.Color;
-import com.anathema_roguelike.main.ui.messages.Message;
-import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.stats.effects.Calculation;
 
 public abstract class Attack {
 	
@@ -39,16 +31,15 @@ public abstract class Attack {
 	private Character attacker;
 	
 	private Range range;
-	private HashSet<Class<? extends Descriptor>> descriptors = new HashSet<>();
 	
 	private AttackApplicator applicator;
 	
-	private Calculation<Integer> damageCalculation;
+	private Calculation damageCalculation;
 	private int modifier;
 	
 	protected Attack() {}
 	
-	public Attack(Ability ability, Character attacker, Range range, AttackApplicator applicator, int modifier, Calculation<Integer> damageCalculation) {
+	public Attack(Ability ability, Character attacker, Range range, AttackApplicator applicator, int modifier, Calculation damageCalculation) {
 		this.ability = ability;
 		this.attacker = attacker;
 		this.range = range;
@@ -78,39 +69,6 @@ public abstract class Attack {
 		
 		final AttackCalculation attackCalculation = recalculate();
 		
-		if(hasDescriptor(Volley.class)) {
-			descriptors.remove(Volley.class);
-			int targets = 0;
-			int damage = 0;
-			
-			for(Character extraTarget : getRange().getEnemies(getAttacker())) {
-				if(!extraTarget.equals(target)) {
-					//TODO secondary effects of volley'd attacks only happen to the main target, need to maybe mark attacks somehow as secondary, not sure.
-					AttackResults volleyResults = applyToTarget(attackCalculation, extraTarget, false);
-					if(volleyResults.isHit()) {
-						targets++;
-						damage += volleyResults.getCalculation().getDamageResult();
-					}
-					
-					extraResults.addAllResults(volleyResults);
-				}
-			}
-			
-			final int finalTargets = targets;
-			final int finalDamage = damage;
-			
-			final Attack thiz = this;
-			
-			extraResults.addResult(new Result() {
-				
-				@Override
-				public void execute() {
-					if(finalTargets > 0) {
-						Game.getInstance().getUserInterface().addMessage(new Message(Utils.getName(thiz) + " Volleys, hitting " + finalTargets + " additional targets for a total of " + finalDamage + " extra damage", Color.ABILITY));
-					}
-				}
-			});
-		}
 		
 		AttackResults results = applyToTarget(attackCalculation, target, print);
 		
@@ -138,10 +96,6 @@ public abstract class Attack {
 		return results;
 	}
 	
-	public void addDescriptor(Class<? extends Descriptor> descriptor) {
-		descriptors.add(descriptor);
-	}
-	
 	public Range getRange() {
 		return range;
 	}
@@ -150,16 +104,8 @@ public abstract class Attack {
 		return attacker;
 	}
 
-	public Calculation<Integer> getDamageCalculation() {
+	public Calculation getDamageCalculation() {
 		return damageCalculation;
-	}
-
-	public HashSet<Class<? extends Descriptor>> getDescriptors() {
-		return descriptors;
-	}
-	
-	public boolean hasDescriptor(Class<? extends Descriptor> descriptor) {
-		return descriptors.contains(descriptor);
 	}
 
 	public Collection<Character> getEnemiesInRange() {

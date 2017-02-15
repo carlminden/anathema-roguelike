@@ -23,7 +23,7 @@ import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public class StoneWall extends Wall {
 	
-	public StoneWall(Environment level, Point point) {
-		super(level, point, new VisualRepresentation('\u2588', Color.DARK_GRAY), 1.0, 0.7);
+	public StoneWall(Environment environment, Point point) {
+		super(environment, point, new VisualRepresentation('\u2588', Color.DARK_GRAY), 1.0, 0.7);
 	}
 }

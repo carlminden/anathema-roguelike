@@ -19,19 +19,12 @@ package com.anathema_roguelike.characters.attacks;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.MeleeRange;
-import com.anathema_roguelike.characters.effects.Calculation;
 
 public class BasicMeleeAttack extends PhysicalAttack {
 	
 	protected BasicMeleeAttack() {}
 	
 	public BasicMeleeAttack(Ability ability, final Character attacker) {
-		super(ability, attacker, new MeleeRange(), 0, new Calculation<Integer>() {
-			
-			@Override
-			public Integer calculate() {
-				return 50;
-			}
-		});
+		super(ability, attacker, new MeleeRange(), 0, () -> 50.0);
 	}
 }

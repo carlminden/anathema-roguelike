@@ -17,16 +17,12 @@
 package com.anathema_roguelike.items;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.effects.Duration;
-import com.anathema_roguelike.characters.effects.FixedDuration;
-import com.anathema_roguelike.characters.effects.HasEffect;
-import com.anathema_roguelike.characters.effects.buffs.Buff;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.DungeonMap.Layer;
+import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
-public abstract class Item extends Entity implements HasEffect {
+public abstract class Item extends Entity {
 	
 	public Item(char representation) {
 		super(representation);
@@ -37,13 +33,8 @@ public abstract class Item extends Entity implements HasEffect {
 	}
 	
 	@Override
-	public Buff getEffect() {
-		return new Buff(this, new FixedDuration(Duration.PERMANENT));
-	}
-	
-	@Override
 	protected void renderThis() {
-		Game.getInstance().getMap().renderEntity(Layer.NORMAL, this);
+		Game.getInstance().getMap().renderEntity(DungeonLayer.NORMAL, this);
 	}
 	
 	@Override

@@ -20,12 +20,11 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.targetmodes.TargetsMode;
-import com.anathema_roguelike.characters.effects.Calculation;
 
 public class CircularRange extends Range {
 	
 	private int radius;
-	private float scaleFactor;
+	private double scaleFactor;
 	
 	public CircularRange(int radius, float scaleFactor) {
 		super(new TargetsMode());
@@ -35,12 +34,6 @@ public class CircularRange extends Range {
 	
 	@Override
 	protected Shape getShape(final Character character) {
-		return new Circle(character.getPosition(), new Calculation<Integer>() {
-			
-			@Override
-			public Integer calculate() {
-				return (int) (radius + scaleFactor*character.getLevel());
-			}
-		});
+		return new Circle(character.getPosition(), () -> (radius + scaleFactor*character.getLevel()));
 	}
 }

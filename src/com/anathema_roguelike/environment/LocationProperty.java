@@ -17,10 +17,13 @@
 package com.anathema_roguelike.environment;
 
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.DungeonMap.Layer;
+import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.HasEffect;
+import com.anathema_roguelike.stats.locationstats.LocationStat;
 
-public abstract class LocationProperty {
+public abstract class LocationProperty implements HasEffect<Effect<Location, LocationStat>> {
 	
 	private VisualRepresentation visualRepresentation;
 	private VisualRepresentation fogOfWarRepresentation;
@@ -30,9 +33,10 @@ public abstract class LocationProperty {
 	private boolean passable;
 	private double opacity;
 	private double damping;
+	private double brightness = 0;
 	
-	Layer layer;
-	Layer fogOfWarLayer;
+	DungeonLayer layer;
+	DungeonLayer fogOfWarLayer;
 	
 	public LocationProperty(Environment level, Point position, VisualRepresentation representation, VisualRepresentation fogOfWarRepresentation, boolean foreground, boolean passable, double opacity, double damping) {
 		this.environment = level;
@@ -44,11 +48,11 @@ public abstract class LocationProperty {
 		this.damping = damping;
 		
 		if(foreground) {
-			layer = Layer.DUNGEON_FOREGROUND;
-			fogOfWarLayer = Layer.FOG_OF_WAR_FOREGROUND;
+			layer = DungeonLayer.FOREGROUND;
+			fogOfWarLayer = DungeonLayer.FOG_OF_WAR_FOREGROUND;
 		} else {
-			layer = Layer.DUNGEON_BACKGROUND;
-			fogOfWarLayer = Layer.FOG_OF_WAR_BACKGROUND;
+			layer = DungeonLayer.BACKGROUND;
+			fogOfWarLayer = DungeonLayer.FOG_OF_WAR_BACKGROUND;
 		}
 	}
 	
@@ -64,20 +68,28 @@ public abstract class LocationProperty {
 		return passable;
 	}
 	
-	public double getDamping() {
-		return damping;
-	}
-	
 	public double getOpacity() {
 		return opacity;
 	}
 	
+	public double getDamping() {
+		return damping;
+	}
+	
+	public double getBrightness() {
+		return brightness;
+	}
+	
+	protected void setBrightness(double brightness) {
+		this.brightness = brightness;
+	}
+	
 	protected void renderToFogOfWar(int x, int y) {
-		Game.getInstance().getMap().renderVisualRepresentation(fogOfWarLayer, x, y, getFogOfWarRepresentation());
+		Game.getInstance().getMap().renderVisualRepresentation(DungeonLayer.FOG_OF_WAR_FOREGROUND, x, y, getFogOfWarRepresentation());
 	}
 	
 	protected void render(int x, int y) {
-		Game.getInstance().getMap().renderVisualRepresentation(layer, x, y, getRepresentation());
+		Game.getInstance().getMap().renderVisualRepresentation(DungeonLayer.FOREGROUND, x, y, getRepresentation());
 		
 		renderToFogOfWar(x, y);
 	}

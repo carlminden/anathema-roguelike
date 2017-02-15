@@ -24,8 +24,8 @@ public class Stairs extends Ground {
 	
 	private int direction;
 
-	public Stairs(Environment level, Point point, int direction) {
-		super(level, point, (direction == Direction.UP) ? '<' : '>', 0, 0);
+	public Stairs(Environment environment, Point point, int direction) {
+		super(environment, point, (direction == Direction.UP) ? '<' : '>', 0, 0);
 		
 		this.direction = direction;
 	}

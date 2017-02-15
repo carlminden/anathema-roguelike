@@ -16,11 +16,10 @@
  *******************************************************************************/
 package com.anathema_roguelike.items.armor;
 
-import com.anathema_roguelike.characters.stats.itemstats.Defense;
 import com.anathema_roguelike.items.EquippableItem;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
-public abstract class Armor extends EquippableItem<Defense> {
+public abstract class Armor extends EquippableItem {
 	public Armor(VisualRepresentation representation) {
 		super(representation);
 	}

@@ -19,29 +19,20 @@ package com.anathema_roguelike.items.weapons;
 import java.util.Random;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.effects.buffs.Buff;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
-import com.anathema_roguelike.characters.stats.itemstats.BaseWeaponDamage;
-import com.anathema_roguelike.characters.stats.itemstats.WeaponStat;
-import com.anathema_roguelike.characters.stats.itemstats.Weight;
-import com.anathema_roguelike.characters.stats.secondarystats.Accuracy;
-import com.anathema_roguelike.characters.stats.secondarystats.BonusWeaponDamage;
-import com.anathema_roguelike.characters.stats.secondarystats.WeaponDamageMultiplier;
 import com.anathema_roguelike.items.EquippableItem;
 import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.stats.characterstats.secondarystats.Accuracy;
+import com.anathema_roguelike.stats.characterstats.secondarystats.BonusWeaponDamage;
+import com.anathema_roguelike.stats.characterstats.secondarystats.WeaponDamageMultiplier;
+import com.anathema_roguelike.stats.itemstats.BaseWeaponDamage;
+import com.anathema_roguelike.stats.itemstats.Weight;
 
-public abstract class Weapon extends EquippableItem<WeaponStat> {
+public abstract class Weapon extends EquippableItem {
 	
 	public Weapon(VisualRepresentation representation) {
 		super(representation);
 		
-	}
-	
-	@Override
-	public Buff getEffect() {
-		Buff buff = super.getEffect();
-		
-		return buff;
 	}
 	
 	@Override
@@ -63,9 +54,9 @@ public abstract class Weapon extends EquippableItem<WeaponStat> {
 		double baseWeaponDamage = primaryWeapon.getStat(BaseWeaponDamage.class);
 		double weight = primaryWeapon.getStat(Weight.class);
 		
-		int bonusWeaponDamage = character.getModifiedStatScore(BonusWeaponDamage.class);
-		double weaponDamageMultiplier = character.getModifiedStatScore(WeaponDamageMultiplier.class);
-		int accuracy = character.getModifiedStatScore(Accuracy.class);
+		int bonusWeaponDamage = (int) character.getStatAmount(BonusWeaponDamage.class);
+		double weaponDamageMultiplier = character.getStatAmount(WeaponDamageMultiplier.class);
+		int accuracy = (int) character.getStatAmount(Accuracy.class);
 		
 		weaponDamageMultiplier += 0.05 * weight;
 		

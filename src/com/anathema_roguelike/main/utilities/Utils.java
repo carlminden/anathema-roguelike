@@ -19,7 +19,6 @@ package com.anathema_roguelike.main.utilities;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -37,8 +36,8 @@ import com.anathema_roguelike.main.display.Color;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
-import com.google.common.collect.Sets;
 
+import gigadot.rebound.Rebound;
 import squidpony.squidgrid.gui.gdx.SColor;
 
 public class Utils {
@@ -63,39 +62,6 @@ public class Utils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public static <T extends Number> T addNumbers(Number a, Number b) {
-		a = zeroIfNull(a);
-		b = zeroIfNull(b);
-		
-	    if(a instanceof Double || b instanceof Double) {
-	        return (T) new Double(a.doubleValue() + b.doubleValue());
-	    } else if(a instanceof Float || b instanceof Float) {
-	        return (T) new Float(a.floatValue() + b.floatValue());
-	    } else if(a instanceof Long || b instanceof Long) {
-	        return (T) new Long(a.longValue() + b.longValue());
-	    } else {
-	        return (T) new Integer(a.intValue() + b.intValue());
-	    }
-	}
-	
-	public static <T extends Number> T multiplyNumbers(Number a, double b) {
-		a = zeroIfNull(a);
-		
-	    if(a instanceof Double) {
-	        return (T) new Double(a.doubleValue() * b);
-	    } else if(a instanceof Float) {
-	        return (T) new Float(a.floatValue() * b);
-	    } else if(a instanceof Long) {
-	        return (T) new Long((long) (a.longValue() * b));
-	    } else {
-	        return (T) new Integer((int) (a.intValue() * b));
-	    }
-	}
-	
-	private static <T extends Number> Number zeroIfNull(T n) {
-		return n == null ? new BigDecimal(0) : n;
 	}
 	
 	public static <T extends Number> T clamp(T n, T l, T h) {
@@ -124,22 +90,23 @@ public class Utils {
 		return getSubclasses(superclass, annotation, Predicates.<Class<? extends T>>alwaysTrue());
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, Class<? extends Annotation> annotation, Predicate<Class<? extends T>> predicate) {
 		ArrayList<Class<? extends T>> ret = new ArrayList<>();
 		
-		Set<Class<?>> annotated = getAnnotatedClasses(annotation);
+		//Set<Class<?>> annotated = getAnnotatedClasses(annotation);
 		
 		if(subtypeCache.containsKey(superclass)) {
 			ret = new ArrayList<>((ArrayList<Class<? extends T>>)subtypeCache.get(superclass));
 		} else {
 		
-			Reflections reflections = new Reflections("com.anathema_roguelike");
-	
-			Set<Class<? extends T>> subTypes = reflections.getSubTypesOf(superclass);
+			Rebound rebound = new Rebound("com.anathema_roguelike");
 			
-			Collection<Class<? extends T>> intersection = Sets.intersection(subTypes, annotated);
+			Set<Class<? extends T>> subTypes = rebound.getSubClassesOf(superclass);
 			
-			ArrayList<Class<? extends T>> sorted = new ArrayList<>(intersection);
+			//Collection<Class<? extends T>> intersection = Sets.intersection(subTypes, annotated);
+			
+			ArrayList<Class<? extends T>> sorted = new ArrayList<>(subTypes);
 			Collections.sort(sorted,
 				new Comparator<Class<? extends T>>() {
 					@Override
@@ -174,6 +141,7 @@ public class Utils {
 		}));
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> Collection<T> filterBySubclass(Collection<? super T> unfiltered, Class<T> type) {
 		return (Collection<T>) Collections2.filter(unfiltered, item -> {
 			if(item != null) {

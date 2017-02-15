@@ -19,20 +19,20 @@ package com.anathema_roguelike.main.animations;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.VisualRepresentation;
-import com.anathema_roguelike.main.display.DungeonMap.Layer;
+import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 
 public abstract class Animation extends Entity {
 	
 	private Long startTime = null;
-	private Layer layer;
+	private DungeonLayer layer;
 
-	public Animation(char representation, Layer layer) {
+	public Animation(char representation, DungeonLayer layer) {
 		super(representation);
 		
 		this.layer = layer;
 	}
 	
-	public Animation(VisualRepresentation representation, Layer layer) {
+	public Animation(VisualRepresentation representation, DungeonLayer layer) {
 		super(representation);
 		
 		this.layer = layer;
@@ -62,7 +62,7 @@ public abstract class Animation extends Entity {
 		return startTime;
 	}
 	
-	public Layer getLayer() {
+	public DungeonLayer getLayer() {
 		return layer;
 	}
 }

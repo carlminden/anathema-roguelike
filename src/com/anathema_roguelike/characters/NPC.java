@@ -25,7 +25,7 @@ import com.anathema_roguelike.characters.ai.AI;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.DungeonMap.Layer;
+import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stimuli.PercievedStimulus;
 
@@ -168,6 +168,6 @@ public abstract class NPC extends Character {
 
 	@Override
 	protected void renderThis() {
-		Game.getInstance().getMap().renderEntity(Layer.NPCS, this);
+		Game.getInstance().getMap().renderEntity(DungeonLayer.NPCS, this);
 	}
 }

@@ -35,8 +35,8 @@ public class DisplayCell {
 		display = value.getDisplay();
 	}
 
-	public DisplayCell(char string, SColor color, boolean display) {
-		this.character = string;
+	public DisplayCell(char c, SColor color, boolean display) {
+		this.character = c;
 		this.color = color;
 		this.display = display;
 	}

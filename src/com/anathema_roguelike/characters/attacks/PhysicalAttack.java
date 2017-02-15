@@ -20,22 +20,22 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.Range;
 import com.anathema_roguelike.characters.attacks.applicators.PhysicalAttackApplicator;
-import com.anathema_roguelike.characters.effects.Calculation;
+import com.anathema_roguelike.stats.effects.Calculation;
 
 public abstract class PhysicalAttack extends Attack {
 	
 	protected PhysicalAttack() {}
 	
-	public PhysicalAttack(Ability ability, Character attacker, Range range, int attackModifier, Calculation<Integer> damageCalculation) {
+	public PhysicalAttack(Ability ability, Character attacker, Range range, int attackModifier, Calculation damageCalculation) {
 		super(ability, attacker, range, new PhysicalAttackApplicator(), attackModifier, damageCalculation);
 	}
 
 	public AttackCalculation calculate() {
-		int damageResult = (int) getDamageCalculation().calculate();
+		double damageResult = getDamageCalculation().get();
 		
 		damageResult = damageResult + getAttacker().getLevel() * 2;
 		
-		return new PhysicalAttackCalculation(0, getModifier(), damageResult, false);
+		return new PhysicalAttackCalculation(0, getModifier(), (int) damageResult, false);
 	}
 	
 	@Override

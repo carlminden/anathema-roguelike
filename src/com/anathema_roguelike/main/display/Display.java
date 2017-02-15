@@ -36,7 +36,7 @@ import squidpony.squidgrid.gui.gdx.TextCellFactory;
 
 public class Display extends RenderSurface {
 	
-	public enum DisplayLayer { DUNGEON_BACKGROUND, UNUNSED, DUNGEON_FOREGROUND, DUNGEON_OVERLAY, UI_BACKGROUND, UI_FOREGROUND }
+	public enum DisplayLayer { DUNGEON_LIGHT, UNUNSED, DUNGEON_FOREGROUND, DUNGEON_OVERLAY, UI_BACKGROUND, UI_FOREGROUND }
 		
 	private SpriteBatch batch;
 	private Pixmap pixmap;
@@ -113,6 +113,19 @@ public class Display extends RenderSurface {
 				o.render();
 			}
 		}
+		outlines.clear();
+		batch.end();
+	}
+	
+	public void draw(DisplayLayer layer) {
+		batch.begin();
+		
+		display.getLayer(layer.ordinal()).draw(batch, 1f);
+		
+		for(Outline o : new ArrayList<>(outlines.get(layer))) {
+			o.render();
+		}
+		
 		outlines.clear();
 		batch.end();
 	}

@@ -24,9 +24,9 @@ import com.anathema_roguelike.characters.abilities.conditions.AbilityRequirement
 import com.anathema_roguelike.characters.abilities.conditions.CooldownRequirement;
 import com.anathema_roguelike.characters.abilities.costs.AbilityCost;
 import com.anathema_roguelike.characters.abilities.costs.CooldownCost;
-import com.anathema_roguelike.characters.effects.Duration;
 import com.anathema_roguelike.characters.events.TurnEvent;
 import com.anathema_roguelike.main.utilities.BooleanCondition;
+import com.anathema_roguelike.stats.effects.Duration;
 import com.google.common.eventbus.Subscribe;
 
 public abstract class Ability {

@@ -18,16 +18,16 @@ package com.anathema_roguelike.characters.abilities.targetingstrategies;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.SelfOnly;
-import com.anathema_roguelike.characters.effects.Calculation;
+import com.anathema_roguelike.stats.effects.Calculation;
 import com.google.common.base.Predicate;
 
 public class PointBlankAreaOfEffect extends Spread {
 
-	public PointBlankAreaOfEffect(Calculation<Integer> radius, Predicate<Character> targetValidator) {
+	public PointBlankAreaOfEffect(Calculation radius, Predicate<Character> targetValidator) {
 		super(new SelfOnly(), radius, targetValidator);
 	}
 	
-	public PointBlankAreaOfEffect(Calculation<Integer> radius) {
+	public PointBlankAreaOfEffect(Calculation radius) {
 		super(new SelfOnly(), radius);
 	}
 }

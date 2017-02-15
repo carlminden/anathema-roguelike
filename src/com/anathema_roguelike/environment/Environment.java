@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.anathema_roguelike.environment.terrain.Terrain;
 import com.anathema_roguelike.environment.terrain.grounds.Stairs;
 import com.anathema_roguelike.fov.LightLevels;
 import com.anathema_roguelike.fov.LitFOVProcessor;
@@ -29,6 +30,7 @@ import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.DisplayBuffer;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.utilities.datastructures.CollectionUtils;
+import com.anathema_roguelike.stats.locationstats.Opacity;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 
@@ -43,6 +45,7 @@ public class Environment implements Renderable {
 	
 	private DisplayBuffer fogOfWarForeground;
 	private DisplayBuffer fogOfWarBackground;
+	private DisplayBuffer fogOfWarLight;
 	private LightLevels lightLevels;
 	private LitFOVProcessor litFOVProcessor;
 	
@@ -56,6 +59,7 @@ public class Environment implements Renderable {
 		
 		fogOfWarForeground = new DisplayBuffer(width, height);
 		fogOfWarBackground = new DisplayBuffer(width, height);
+		fogOfWarLight = new DisplayBuffer(width, height);
 		lightLevels = new LightLevels(width, height, this);
 		litFOVProcessor = new LitFOVProcessor(width, height, fovResistance, lightLevels);
 		
@@ -66,7 +70,7 @@ public class Environment implements Renderable {
 		
 		for(int i = 0; i < width; i++) {
 			for(int j = 0; j < height; j++) {
-				fovResistance[i][j] = getLocation(i, j).getOpacity();
+				fovResistance[i][j] = getLocation(i, j).getStatAmount(Opacity.class);
 			}
 		}
 	}
@@ -133,7 +137,7 @@ public class Environment implements Renderable {
 		return map;
 	}
 	
-	public void setTerrain(LocationProperty terrain, int x, int y) {
+	public void setTerrain(Terrain terrain, int x, int y) {
 		map[x][y].setTerrain(terrain);
 	}
 	
@@ -193,6 +197,10 @@ public class Environment implements Renderable {
 	public DisplayBuffer getFogOfWarBackground() {
 		return fogOfWarBackground;
 	}
+	
+	public DisplayBuffer getFogOfWarLight() {
+		return fogOfWarLight;
+	}
 
 	public LightLevels getLightLevels() {
 		return lightLevels;
@@ -213,6 +221,6 @@ public class Environment implements Renderable {
 		
 		Location location = getLocation(point.getX(), point.getY());
 		
-		fovResistance[point.getX()][point.getY()] = location.getOpacity();
+		fovResistance[point.getX()][point.getY()] = location.getStatAmount(Opacity.class);
 	}
 }

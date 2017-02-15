@@ -35,6 +35,10 @@ public class VisibleLightBackgroundShader extends LightLevelShader {
 		double light = Math.min(getLightLevels().get(x, y) + PerlinNoise.noise(x, y) * .15, 1.3);
 		
 		DisplayCell cell = buffer.get(x, y);
+		
+		if(cell.getDisplay()) {
+			//return cell;
+		}
 
 		SColor backgroundColor = cell.getColor();
 		

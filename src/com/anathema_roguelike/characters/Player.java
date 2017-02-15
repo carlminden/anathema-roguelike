@@ -17,18 +17,20 @@
 package com.anathema_roguelike.characters;
 
 
+import com.anathema_roguelike.characters.abilities.Buff;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.classes.Rogue;
-import com.anathema_roguelike.characters.effects.Duration;
-import com.anathema_roguelike.characters.effects.FixedDuration;
-import com.anathema_roguelike.characters.effects.buffs.Buff;
-import com.anathema_roguelike.characters.effects.modifiers.Modifier;
-import com.anathema_roguelike.characters.stats.attributes.Perception;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
-import com.anathema_roguelike.main.display.DungeonMap.Layer;
+import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.InputHandler;
 import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.stats.characterstats.CharacterStat;
+import com.anathema_roguelike.stats.characterstats.attributes.Perception;
+import com.anathema_roguelike.stats.effects.AdditiveCalculation;
+import com.anathema_roguelike.stats.effects.Duration;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.Modifier;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
@@ -52,9 +54,10 @@ public class Player extends Character {
 		
 		
 		
-		Buff concealment = new Buff(this, new FixedDuration(Duration.PERMANENT));
-		concealment.addModifier(new Modifier(this, Perception.class, 20));
-		applyEffect(concealment);
+		Effect<Character, CharacterStat> testModifiers = new Buff(
+				this, Duration.permanent(),
+				new Modifier<CharacterStat>(Perception.class, AdditiveCalculation.build(() -> 20.0)));
+		applyEffect(testModifiers);
 		
 		setName("Carl");
 		
@@ -107,7 +110,7 @@ public class Player extends Character {
 	
 	@Override
 	protected void renderThis() {
-		Game.getInstance().getMap().renderEntity(Layer.PLAYER, this);
+		Game.getInstance().getMap().renderEntity(DungeonLayer.PLAYER, this);
 		
 		double greatestVisibility = 0;
 		
@@ -119,7 +122,7 @@ public class Player extends Character {
 		
 		SColor color = Color.factory.blend(Color.NO_LIGHT_PLAYER, Color.WHITE, greatestVisibility + .2);
 		
-		Game.getInstance().getMap().renderChar(Layer.PLAYER, getX(), getY(), getRepresentation().getChar(), color);
+		Game.getInstance().getMap().renderChar(DungeonLayer.PLAYER, getX(), getY(), getRepresentation().getChar(), color);
 	}
 
 	@Override

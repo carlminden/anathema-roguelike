@@ -17,17 +17,17 @@
 package com.anathema_roguelike.characters.abilities.conditions;
 
 import com.anathema_roguelike.characters.abilities.Ability;
-import com.anathema_roguelike.characters.effects.Calculation;
-import com.anathema_roguelike.characters.stats.resources.Resource;
 import com.anathema_roguelike.main.utilities.BooleanCondition;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.stats.characterstats.resources.Resource;
+import com.anathema_roguelike.stats.effects.Calculation;
 
 public class ResourceRequirement extends AbilityRequirement {
 	
 	private Class<? extends Resource> resource;
-	private Calculation<Integer> calculation;
+	private Calculation calculation;
 
-	public ResourceRequirement(Ability ability, Class<? extends Resource> resource, Calculation<Integer> calculation) {
+	public ResourceRequirement(Ability ability, Class<? extends Resource> resource, Calculation calculation) {
 		super(ability);
 		
 		this.resource = resource;
@@ -40,7 +40,7 @@ public class ResourceRequirement extends AbilityRequirement {
 
 			@Override
 			public boolean isTrue() {
-				return getAbility().getCharacter().getModifiedStatScore(resource) >= calculation.calculate().intValue();
+				return getAbility().getCharacter().getStatAmount(resource) >= calculation.get().intValue();
 			}
 		};
 	}

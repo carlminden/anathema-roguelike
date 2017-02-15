@@ -40,7 +40,7 @@ import squidpony.squidgrid.gui.gdx.SColor;
 
 public class Game extends ApplicationAdapter {
 	
-    private State state;
+	private State state;
     private EventBus eventBus;
     private UserInterface ui;
     private Display display;
@@ -54,6 +54,7 @@ public class Game extends ApplicationAdapter {
     private static Game instance = null;
 
 	public static void main(String[] args) {
+		
 		Thread.currentThread().setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
 			
 			@Override

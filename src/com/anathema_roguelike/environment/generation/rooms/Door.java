@@ -105,7 +105,7 @@ public class Door extends DungeonFeature {
 	public void place(DungeonGenerator generator) {
 		Location[][] map = generator.getMap();
 		
-		map[getX()][getY()].setTerrain(new Doorway(generator.getLevel(), getPosition(), direction));
+		map[getX()][getY()].addFeature(new Doorway(generator.getLevel(), getPosition(), direction));
 		
 	}
 

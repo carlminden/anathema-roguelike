@@ -16,11 +16,10 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.abilities;
 
-import com.anathema_roguelike.characters.effects.Duration;
-import com.anathema_roguelike.characters.effects.HasEffect;
+import com.anathema_roguelike.stats.effects.Duration;
 import com.google.common.eventbus.EventBus;
 
-public abstract class SelfTargetedAbility extends ActivatedAbility implements HasEffect {
+public abstract class SelfTargetedAbility extends ActivatedAbility implements HasBuff {
 	
 	private EventBus eventBus = new EventBus();
 	
@@ -29,7 +28,7 @@ public abstract class SelfTargetedAbility extends ActivatedAbility implements Ha
 	}
 
 	public Duration getDuration() {
-		return getEffect().getDuration();
+		return getEffect().get().getDuration();
 	}
 
 	public void registerForEvents(Object obj) {
@@ -42,7 +41,7 @@ public abstract class SelfTargetedAbility extends ActivatedAbility implements Ha
 			
 			@Override
 			public void execute() {
-				getCharacter().applyEffect(getEffect());
+				getCharacter().applyEffect(getEffect().get());
 			}
 		});
 	}

@@ -2,7 +2,7 @@ package com.anathema_roguelike.characters.inventory;
 
 import com.anathema_roguelike.items.EquippableItem;
 
-public abstract class Slot<T extends EquippableItem<?>> {
+public abstract class Slot<T extends EquippableItem> {
 	
 	private T item;
 	

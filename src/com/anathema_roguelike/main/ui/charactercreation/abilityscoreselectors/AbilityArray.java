@@ -19,12 +19,12 @@ package com.anathema_roguelike.main.ui.charactercreation.abilityscoreselectors;
 import java.util.Collection;
 
 import com.anathema_roguelike.characters.Player;
-import com.anathema_roguelike.characters.stats.attributes.Attribute;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
 import com.anathema_roguelike.main.utilities.Listed;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
 
 @Listed
 public class AbilityArray extends AbilityScoreSelector {

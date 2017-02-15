@@ -19,13 +19,13 @@ package com.anathema_roguelike.characters.monsters;
 import com.anathema_roguelike.characters.Monster;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.classes.Rogue;
-import com.anathema_roguelike.characters.stats.attributes.Agility;
-import com.anathema_roguelike.characters.stats.attributes.Constitution;
-import com.anathema_roguelike.characters.stats.attributes.Intelligence;
-import com.anathema_roguelike.characters.stats.attributes.Perception;
-import com.anathema_roguelike.characters.stats.attributes.Strength;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.stats.characterstats.attributes.Agility;
+import com.anathema_roguelike.stats.characterstats.attributes.Constitution;
+import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
+import com.anathema_roguelike.stats.characterstats.attributes.Perception;
+import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 
 public class Orc extends Monster {
 

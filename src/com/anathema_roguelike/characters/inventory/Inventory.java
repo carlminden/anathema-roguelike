@@ -21,19 +21,19 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.stats.itemstats.Defense;
 import com.anathema_roguelike.items.EquippableItem;
 import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.items.armor.Armor;
 import com.anathema_roguelike.items.weapons.Unarmed;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.stats.itemstats.ArmorStat;
 
 public class Inventory {
 	
 	private Character character;
 	
-	private HashMap<Class<? extends Slot<?>>, EquippableItem<?>> defaultItems = new HashMap<>();
-	private HashMap<Class<? extends Slot<?>>, EquippableItem<?>> equipedItems;
+	private HashMap<Class<? extends Slot<?>>, EquippableItem> defaultItems = new HashMap<>();
+	private HashMap<Class<? extends Slot<?>>, EquippableItem> equipedItems;
 	
 	private HashSet<Item> backpack = new HashSet<>();
 	
@@ -47,17 +47,18 @@ public class Inventory {
 		defaultItems.put(Chest.class, null);
 		defaultItems.put(Head.class, null);
 		
-		equipedItems = new HashMap<Class<? extends Slot<?>>, EquippableItem<?>>(defaultItems);
+		equipedItems = new HashMap<Class<? extends Slot<?>>, EquippableItem>(defaultItems);
 	}
 	
-	public <T extends EquippableItem<?>> T getEquipedItem(Class<? extends Slot<T>> slot) {
+	@SuppressWarnings("unchecked")
+	public <T extends EquippableItem> T getEquipedItem(Class<? extends Slot<T>> slot) {
 		
-		EquippableItem<?> item = equipedItems.get(slot);
+		EquippableItem item = equipedItems.get(slot);
 		
 		return (T) item;
 	}
 	
-	public <T extends EquippableItem<?>> Collection<T> getEquippedItems(final Class<T> type) {
+	public <T extends EquippableItem> Collection<T> getEquippedItems(final Class<T> type) {
 		return Utils.filterBySubclass(equipedItems.values(), type);
 	}
 	
@@ -73,7 +74,7 @@ public class Inventory {
 		return getUnequippedItems(Item.class);
 	}
 
-	public <T extends EquippableItem<?>> void equip(T item, Class<? extends Slot<T>> slot) {
+	public <T extends EquippableItem> void equip(T item, Class<? extends Slot<T>> slot) {
 		
 		empty(slot);
 		
@@ -83,7 +84,7 @@ public class Inventory {
 	
 	public void empty(Class<? extends Slot<?>> slot) {
 		
-		EquippableItem<?> currentlyEquipped = equipedItems.get(slot);
+		EquippableItem currentlyEquipped = equipedItems.get(slot);
 		
 		if(currentlyEquipped != null) {
 			equipedItems.put(slot, defaultItems.get(slot));
@@ -110,13 +111,13 @@ public class Inventory {
 	public void remove(Item item) {
 		
 		if(item instanceof EquippableItem) {
-			Utils.getKeysByValue(equipedItems, (EquippableItem<?>)item).forEach(s -> empty(s));;
+			Utils.getKeysByValue(equipedItems, (EquippableItem)item).forEach(s -> empty(s));;
 		} else {
 			backpack.remove(item);
 		}
 	}
 	
-	public Double getDefense(Class<? extends Defense> stat) {
+	public Double getDefense(Class<? extends ArmorStat> stat) {
 		return getEquippedItems(Armor.class).parallelStream().mapToDouble(a -> a.getStat(stat)).sum();
 	}
 }

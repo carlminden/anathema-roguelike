@@ -5,7 +5,7 @@ import com.anathema_roguelike.environment.LocationProperty;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
-public class Feature extends LocationProperty {
+public abstract class Feature extends LocationProperty {
 	
 	public enum Priority { LOW, DEFAULT, HIGH, DEBUG }
 	

@@ -17,12 +17,10 @@
 package com.anathema_roguelike.characters.abilities;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.effects.Effect;
-import com.anathema_roguelike.characters.effects.HasEffect;
 
-public abstract class PassiveAbility extends Ability implements HasEffect {
+public abstract class PassiveAbility extends Ability implements HasBuff {
 
-	Effect passiveEffect;
+	Buff passiveEffect;
 	
 	public PassiveAbility(Object source) {
 		super(source);
@@ -30,9 +28,9 @@ public abstract class PassiveAbility extends Ability implements HasEffect {
 	
 	@Override
 	public void grant(Character character) {
-		passiveEffect = getEffect();
-		character.applyEffect(passiveEffect);
-		
+		if(getEffect().isPresent()) {
+			character.applyEffect(getEffect().get());
+		}
 		super.grant(character);
 	}
 

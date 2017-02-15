@@ -4,24 +4,33 @@ import java.util.Collection;
 
 import com.anathema_roguelike.environment.features.Feature;
 import com.anathema_roguelike.environment.terrain.Terrain;
+import com.anathema_roguelike.stats.HasStats;
+import com.anathema_roguelike.stats.StatSet;
+import com.anathema_roguelike.stats.locationstats.EnvironmentStatSet;
+import com.anathema_roguelike.stats.locationstats.LocationStat;
 import com.google.common.collect.TreeMultiset;
+import com.google.common.eventbus.EventBus;
 
-public class Location {
-	private LocationProperty terrain;
+public class Location implements HasStats<Location, LocationStat> {
+	
+	private EnvironmentStatSet stats;
+	private Terrain terrain;
 	
 	private TreeMultiset<Feature> features = TreeMultiset.create(
 			(o1, o2) -> o2.getRenderPriority().compareTo(o1.getRenderPriority()
 	));
 	
-	public Location(Terrain terrain) {
-		this.terrain = terrain;
+	public Location(EventBus eventBus, Terrain terrain) {
+		stats = new EnvironmentStatSet(this, eventBus);
+		
+		setTerrain(terrain);
 	}
 	
 	public LocationProperty getTerrain() {
 		return terrain;
 	}
 	
-	public void setTerrain(LocationProperty terrain) {
+	public void setTerrain(Terrain terrain) {
 		this.terrain = terrain;
 	}
 	
@@ -37,16 +46,16 @@ public class Location {
 		return terrain.isPassable();
 	}
 
-	public double getOpacity() {
-		return 1 - (1 - terrain.getOpacity()) * features.stream().mapToDouble(Feature::getOpacity)
-				.reduce(1, (t, f) -> t * (1 - f));
-	}
-
 	public void render(int x, int y) {
 		terrain.render(x, y);
 		
 		for(Feature feature : features) {
 			feature.render(x, y);
 		}
+	}
+
+	@Override
+	public StatSet<Location, LocationStat> getStatSet() {
+		return stats;
 	}
 }

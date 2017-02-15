@@ -20,16 +20,22 @@ import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
-import com.anathema_roguelike.main.display.DungeonMap.Layer;
+import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 
 public class Stone extends Ground {
 	
-	public Stone(Environment level, Point point) {
-		super(level, point, '.', 0, 0);
+	public Stone(Environment environment, Point point) {
+		super(environment, point, '.', 0, 0);
 	}
 	
 	@Override
 	public void renderToFogOfWar(int x, int y) {
-		Game.getInstance().getMap().renderChar(Layer.LIT_FOG_OF_WAR_FOREGROUND, x, y, getRepresentation().getChar(), Color.FOG_OF_WAR_GROUND);
+		Game.getInstance().getMap().renderChar(DungeonLayer.LIT_FOG_OF_WAR_FOREGROUND, x, y, getRepresentation().getChar(), Color.FOG_OF_WAR_GROUND);
+	}
+	
+	@Override
+	protected void render(int x, int y) {
+		// TODO Auto-generated method stub
+		super.render(x, y);
 	}
 }

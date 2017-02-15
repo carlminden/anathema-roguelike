@@ -21,21 +21,21 @@ import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.Ra
 import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.targetmodes.TargetsMode;
-import com.anathema_roguelike.characters.effects.Calculation;
 import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.stats.effects.Calculation;
 import com.google.common.base.Predicate;
 
 public class Spread extends AreaOfEffect {
 	
-	private Calculation<Integer> radius;
+	private Calculation radius;
 	
-	public Spread(Range range, Calculation<Integer> radius, Predicate<Character> targetValidator) {
+	public Spread(Range range, Calculation radius, Predicate<Character> targetValidator) {
 		super(range, new TargetsMode(), targetValidator);
 		
 		this.radius = radius;
 	}
 	
-	public Spread(Range range, Calculation<Integer> radius) {
+	public Spread(Range range, Calculation radius) {
 		super(range, new TargetsMode());
 		
 		this.radius = radius;
