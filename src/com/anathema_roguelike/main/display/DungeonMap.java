@@ -80,49 +80,31 @@ public class DungeonMap implements Renderable, Rectangular {
 		
 		BufferMask visibility = player.getCurrentVisibility();
 		
-		DisplayBuffer visibleForeground = dungeonLayers.get(DungeonLayer.FOREGROUND);
 		DisplayBuffer visibleLight = dungeonLayers.get(DungeonLayer.LIGHT);
+		DisplayBuffer visibleBackground = dungeonLayers.get(DungeonLayer.BACKGROUND);
+		DisplayBuffer visibleForeground = dungeonLayers.get(DungeonLayer.FOREGROUND);
 		
 		visibleForeground.compose(dungeonLayers.get(DungeonLayer.NORMAL));
 		
-		DisplayBuffer litFogOfWarForeground = dungeonLayers.get(DungeonLayer.LIT_FOG_OF_WAR_FOREGROUND);
-		DisplayBuffer litFogOfWarLight = dungeonLayers.get(DungeonLayer.LIT_FOG_OF_WAR_LIGHT);
+		DisplayBuffer fogOfWarLight = generateLayer(lightLevels, visibility, visibleLight,
+				dungeonLayers.get(DungeonLayer.LIT_FOG_OF_WAR_LIGHT),
+				Game.getInstance().getState().getCurrentLevel().getFogOfWarLight(),
+				dungeonLayers.get(DungeonLayer.FOG_OF_WAR_LIGHT));
 		
-		litFogOfWarForeground.transform(new TotalLightShader(lightLevels));
-		litFogOfWarForeground.applyMask(visibility);
+		DisplayBuffer fogOfWarBackground = generateLayer(lightLevels, visibility, visibleBackground,
+				dungeonLayers.get(DungeonLayer.LIT_FOG_OF_WAR_BACKGROUND),
+				Game.getInstance().getState().getCurrentLevel().getFogOfWarBackground(),
+				dungeonLayers.get(DungeonLayer.FOG_OF_WAR_BACKGROUND));
 		
-		litFogOfWarLight.transform(new TotalLightShader(lightLevels));
-		litFogOfWarLight.applyMask(visibility);
-		
-		DisplayBuffer fogOfWarForeground = Game.getInstance().getState().getCurrentLevel().getFogOfWarForeground();
-		
-		DisplayBuffer newFogOfWarForeground = dungeonLayers.get(DungeonLayer.FOG_OF_WAR_FOREGROUND);
-		newFogOfWarForeground.applyMask(visibility);
-		
-		fogOfWarForeground.compose(litFogOfWarForeground);
-		fogOfWarForeground.compose(newFogOfWarForeground, new DisplayCellTransformation() {
-			
-			@Override
-			public DisplayCell compute(DisplayBuffer buffer, int x, int y, char string, SColor color, boolean display) {
-				return new DisplayCell(string, Color.factory.dimmer(color), display);
-			}
-		});
-		
-		DisplayBuffer fogOfWarLight = Game.getInstance().getState().getCurrentLevel().getFogOfWarLight();
-		
-		DisplayBuffer newFogOfWarLight = dungeonLayers.get(DungeonLayer.FOG_OF_WAR_LIGHT);
-		newFogOfWarLight.applyMask(visibility);
-		
-		fogOfWarLight.compose(litFogOfWarLight);
-		fogOfWarLight.compose(newFogOfWarLight, new DisplayCellTransformation() {
-			
-			@Override
-			public DisplayCell compute(DisplayBuffer buffer, int x, int y, char string, SColor color, boolean display) {
-				return new DisplayCell(string, Color.factory.dimmer(color), display);
-			}
-		});
+		DisplayBuffer fogOfWarForeground = generateLayer(lightLevels, visibility, visibleForeground,
+				dungeonLayers.get(DungeonLayer.LIT_FOG_OF_WAR_FOREGROUND),
+				Game.getInstance().getState().getCurrentLevel().getFogOfWarForeground(),
+				dungeonLayers.get(DungeonLayer.FOG_OF_WAR_FOREGROUND));
 		
 		visibleForeground.compose(dungeonLayers.get(DungeonLayer.NPCS));
+		
+		visibleBackground.transform(new VisibleLightForegroundShader(lightLevels));
+		visibleBackground.applyMask(visibility);
 		
 		visibleForeground.transform(new VisibleLightForegroundShader(lightLevels));
 		visibleForeground.applyMask(visibility);
@@ -132,26 +114,47 @@ public class DungeonMap implements Renderable, Rectangular {
 		for(int i = 0; i < dungeonWidth; i++) {
 			for(int j = 0; j < dungeonHeight; j++) {
 				Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_LIGHT, getX() + i, getY() + j, ' ', Color.BLACK);
+				Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_BACKGROUND, getX() + i, getY() + j, ' ', Color.BLACK);
 				Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_FOREGROUND, getX() + i, getY() + j, ' ', Color.BLACK);
 				Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + i, getY() + j, ' ', Color.BLACK);
 			}
 		}
 		
 		fogOfWarLight.render(DisplayLayer.DUNGEON_LIGHT, getX(), getY(), getWidth(), getHeight());
+		fogOfWarBackground.render(DisplayLayer.DUNGEON_BACKGROUND, getX(), getY(), getWidth(), getHeight());
 		fogOfWarForeground.render(DisplayLayer.DUNGEON_FOREGROUND, getX(), getY(), getWidth(), getHeight());
-		
-		
 		
 		visibleLight.transform(new VisibleLightBackgroundShader(lightLevels));
 		visibleLight.applyMask(visibility);
 		
 		visibleLight.render(DisplayLayer.DUNGEON_LIGHT, getX(), getY(), getWidth(), getHeight());
+		visibleBackground.render(DisplayLayer.DUNGEON_BACKGROUND, getX(), getY(), getWidth(), getHeight());
 		visibleForeground.render(DisplayLayer.DUNGEON_FOREGROUND, getX(), getY(), getWidth(), getHeight());
 		
 		renderFoVs();
 	}
 	
-	public void renderFoVs() {
+	private DisplayBuffer generateLayer(LightLevels lightLevels, BufferMask visibility, DisplayBuffer visible,
+			DisplayBuffer litFogOfWar, DisplayBuffer fogOfWar, DisplayBuffer newFogOfWar) {
+		
+		litFogOfWar.transform(new TotalLightShader(lightLevels));
+		litFogOfWar.applyMask(visibility);
+		
+		newFogOfWar.applyMask(visibility);
+		
+		fogOfWar.compose(litFogOfWar);
+		fogOfWar.compose(newFogOfWar, new DisplayCellTransformation() {
+			
+			@Override
+			public DisplayCell compute(DisplayBuffer buffer, int x, int y, char string, SColor color, boolean display) {
+				return new DisplayCell(string, Color.factory.dimmer(color), display);
+			}
+		});
+		
+		return fogOfWar;
+	}
+	
+	private void renderFoVs() {
 		
 		Player player = Game.getInstance().getState().getPlayer();
 		BufferMask visibility = player.getCurrentVisibility();

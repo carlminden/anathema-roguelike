@@ -36,7 +36,7 @@ import squidpony.squidgrid.gui.gdx.TextCellFactory;
 
 public class Display extends RenderSurface {
 	
-	public enum DisplayLayer { DUNGEON_LIGHT, UNUNSED, DUNGEON_FOREGROUND, DUNGEON_OVERLAY, UI_BACKGROUND, UI_FOREGROUND }
+	public enum DisplayLayer { DUNGEON_LIGHT, DUNGEON_BACKGROUND, DUNGEON_FOREGROUND, DUNGEON_OVERLAY, UI_BACKGROUND, UI_FOREGROUND }
 		
 	private SpriteBatch batch;
 	private Pixmap pixmap;

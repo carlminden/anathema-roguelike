@@ -85,11 +85,11 @@ public abstract class LocationProperty implements HasEffect<Effect<Location, Loc
 	}
 	
 	protected void renderToFogOfWar(int x, int y) {
-		Game.getInstance().getMap().renderVisualRepresentation(DungeonLayer.FOG_OF_WAR_FOREGROUND, x, y, getFogOfWarRepresentation());
+		Game.getInstance().getMap().renderVisualRepresentation(fogOfWarLayer, x, y, getFogOfWarRepresentation());
 	}
 	
 	protected void render(int x, int y) {
-		Game.getInstance().getMap().renderVisualRepresentation(DungeonLayer.FOREGROUND, x, y, getRepresentation());
+		Game.getInstance().getMap().renderVisualRepresentation(layer, x, y, getRepresentation());
 		
 		renderToFogOfWar(x, y);
 	}
