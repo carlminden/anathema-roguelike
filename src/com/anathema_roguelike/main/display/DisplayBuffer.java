@@ -37,6 +37,19 @@ public class DisplayBuffer extends RenderSurface {
 	    }
 	}
 	
+	public DisplayBuffer(int width, int height, boolean display) {
+		super(width, height);
+		
+		buffer = new DisplayCell[width][height];
+		
+		for(int i = 0; i < width; i++) {
+			for(int j = 0; j < height; j++) {
+				buffer[i][j] = new DisplayCell();
+				buffer[i][j].setDisplay(display);
+			}
+	    }
+	}
+	
 	public DisplayBuffer(DisplayBuffer oldBuffer, DisplayCellTransformation transform) {
 		super(oldBuffer.getWidth(), oldBuffer.getHeight());
 		

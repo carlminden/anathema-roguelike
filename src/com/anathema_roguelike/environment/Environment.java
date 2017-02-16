@@ -57,9 +57,9 @@ public class Environment implements Renderable {
 	public Environment(int depth) {
 		this.depth = depth;
 		
-		fogOfWarForeground = new DisplayBuffer(width, height);
-		fogOfWarBackground = new DisplayBuffer(width, height);
-		fogOfWarLight = new DisplayBuffer(width, height);
+		fogOfWarForeground = new DisplayBuffer(width, height, false);
+		fogOfWarBackground = new DisplayBuffer(width, height, false);
+		fogOfWarLight = new DisplayBuffer(width, height, false);
 		lightLevels = new LightLevels(width, height, this);
 		litFOVProcessor = new LitFOVProcessor(width, height, fovResistance, lightLevels);
 		
