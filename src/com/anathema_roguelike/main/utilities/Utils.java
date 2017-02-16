@@ -86,15 +86,14 @@ public class Utils {
 		
 		
 	}
-	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, Class<? extends Annotation> annotation) {
-		return getSubclasses(superclass, annotation, Predicates.<Class<? extends T>>alwaysTrue());
+	
+	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass) {
+		return getSubclasses(superclass, Predicates.alwaysTrue());
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, Class<? extends Annotation> annotation, Predicate<Class<? extends T>> predicate) {
+	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, Predicate<Class<? extends T>> predicate) {
 		ArrayList<Class<? extends T>> ret = new ArrayList<>();
-		
-		//Set<Class<?>> annotated = getAnnotatedClasses(annotation);
 		
 		if(subtypeCache.containsKey(superclass)) {
 			ret = new ArrayList<>((ArrayList<Class<? extends T>>)subtypeCache.get(superclass));
@@ -103,8 +102,6 @@ public class Utils {
 			Rebound rebound = new Rebound("com.anathema_roguelike");
 			
 			Set<Class<? extends T>> subTypes = rebound.getSubClassesOf(superclass);
-			
-			//Collection<Class<? extends T>> intersection = Sets.intersection(subTypes, annotated);
 			
 			ArrayList<Class<? extends T>> sorted = new ArrayList<>(subTypes);
 			Collections.sort(sorted,
@@ -121,24 +118,6 @@ public class Utils {
 		}
 		
 		return Collections2.filter(ret, predicate);
-	}
-	
-	public static <T> Collection<Class<? extends T>> getListedSubclasses(Class<T> superclass) {
-		return getSubclasses(superclass, Listed.class, Predicates.<Class<? extends T>>alwaysTrue());
-	}
-	
-	public static <T> Collection<Class<? extends T>> getListedSubclasses(Class<T> superclass, Class<? extends Annotation> annotation) {
-		return getListedSubclasses(superclass, annotation, Predicates.<Class<? extends T>>alwaysTrue());
-	}
-	
-	public static <T> Collection<Class<? extends T>> getListedSubclasses(Class<T> superclass, final Class<? extends Annotation> annotation, Predicate<Class<? extends T>> predicate) {
-		return getSubclasses(superclass, Listed.class, Predicates.and(predicate, new Predicate<Class<? extends T>>() {
-
-			@Override
-			public boolean apply(Class<? extends T> cls) {
-				return cls.isAnnotationPresent(annotation);
-			}
-		}));
 	}
 	
 	@SuppressWarnings("unchecked")

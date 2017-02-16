@@ -16,9 +16,6 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.classes;
 
-import com.anathema_roguelike.main.utilities.Listed;
-
-@Listed
 public class Monk extends CharacterClass {
 
 	@Override

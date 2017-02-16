@@ -27,7 +27,7 @@ public class AutoClassToInstanceMap<T> {
 	
 	public AutoClassToInstanceMap(Class<T> type, Class<?>[] parameterTypes, Object... args) {
 		try {
-			for(Class<? extends T> t : Utils.getListedSubclasses(type)) {
+			for(Class<? extends T> t : Utils.getSubclasses(type)) {
 				classToInstanceMap.put(t, t.getConstructor(parameterTypes).newInstance(args));
 			}
 		} catch (InstantiationException | IllegalAccessException

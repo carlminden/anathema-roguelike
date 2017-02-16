@@ -26,7 +26,7 @@ import com.anathema_roguelike.main.utilities.Utils;
 public class ClassSelection {
 	public static void selectClass(Player player) {
 		
-		Collection<Class<? extends CharacterClass>> classes = Utils.getListedSubclasses(CharacterClass.class);
+		Collection<Class<? extends CharacterClass>> classes = Utils.getSubclasses(CharacterClass.class);
 		
 		SelectionScreen<Class<? extends CharacterClass>> classSelectionScreen = new SelectionScreen<Class<? extends CharacterClass>>("Select your Class", classes, false);
 		

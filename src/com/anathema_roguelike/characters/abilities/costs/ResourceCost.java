@@ -16,17 +16,20 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.abilities.costs;
 
+import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.stats.characterstats.resources.Damage;
 import com.anathema_roguelike.stats.characterstats.resources.Resource;
 import com.anathema_roguelike.stats.effects.Calculation;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.HasEffect;
 
-public class ResourceCost extends AbilityCost {
+public abstract class ResourceCost<T extends Resource> extends AbilityCost implements HasEffect<Effect<Character, T>> {
 	
-	private Class<? extends Resource> resource;
+	private Class<T> resource;
 	private Calculation calculation;
 	
-	public ResourceCost(Ability ability, Class<? extends Resource> resource, Calculation calculation) {
+	public ResourceCost(Ability ability, Class<T> resource, Calculation calculation) {
 		super(ability);
 		
 		this.resource = resource;
@@ -35,7 +38,7 @@ public class ResourceCost extends AbilityCost {
 
 	@Override
 	public void pay() {
-		getAbility().getCharacter().applyEffect(new Damage(getAbility(), resource, calculation));
+		getAbility().getCharacter().applyEffect(new Damage<T>(this, resource, calculation));
 	}
 	
 }

@@ -23,11 +23,11 @@ import com.anathema_roguelike.stats.Stat;
 
 public class ModifierGroup<T extends Stat<?>> {
 	private Duration duration;
-	private Object source;
+	private HasEffect<? extends Effect<?, T>> source;
 	private ArrayList<Modifier<? extends T>> modifiers;
 	
 	@SafeVarargs
-	public ModifierGroup(Object source, Modifier<? extends T>... modifiers) {
+	public ModifierGroup(HasEffect<? extends Effect<?, T>> source, Modifier<? extends T>... modifiers) {
 		this.duration = new FixedDuration(Duration.PERMANENT);
 		this.source = source;
 		
@@ -35,7 +35,7 @@ public class ModifierGroup<T extends Stat<?>> {
 	}
 	
 	@SafeVarargs
-	public ModifierGroup(Object source, Duration duration, Modifier<? extends T>... modifiers) {
+	public ModifierGroup(HasEffect<? extends Effect<?, T>> source, Duration duration, Modifier<? extends T>... modifiers) {
 		this.duration = Duration.copy(duration);
 		this.source = source;
 		

@@ -50,7 +50,6 @@ import com.anathema_roguelike.stats.characterstats.CharacterStatSet;
 import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
 import com.anathema_roguelike.stats.characterstats.resources.BoundedResource;
 import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
-import com.anathema_roguelike.stats.characterstats.resources.Damage;
 import com.anathema_roguelike.stats.characterstats.resources.Resource;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Concealment;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
@@ -86,7 +85,6 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	private LinkedList<PercievedStimulus> percievedStimuli = new LinkedList<>();
 	
 	public abstract void onDeath();
-	public abstract void killedBy(Character attacker);
 	
 	protected abstract void onTurn();
 	
@@ -273,20 +271,12 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		return moveCharacterTo(point, false);
 	}
 	
-	public void damage(Character attacker, int damage) {
-		
-		applyEffect(new Damage(attacker, CurrentHealth.class, damage));
-		
-		if(getStatAmount(CurrentHealth.class) <= 0 && isAlive()) {
-			alive = false;
-			//TODO not sure if this should actually be 2 callbacks
-			killedBy(attacker);
-			onDeath();
-		}
-	}
-	
 	public boolean isAlive() {
 		return alive;
+	}
+	
+	public void kill() {
+		alive = false;
 	}
 	
 	public int getPrimaryWeaponDamage() {

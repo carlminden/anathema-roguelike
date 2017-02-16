@@ -61,9 +61,6 @@ public class PlayerStats extends UIElement {
 		renderOtherStats();
 		renderPos++;
 		renderInventory();
-		renderPos++;
-		renderExp();
-		
 	}
 	
 	public void renderChar() {
@@ -101,22 +98,4 @@ public class PlayerStats extends UIElement {
 		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Legs:  " + player.getInventory().getEquipedItem(Legs.class));
 		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Feet:  " + player.getInventory().getEquipedItem(Feet.class));
 	}
-	
-	public void renderExp() {
-		
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Experience: ");
-		
-		renderPos++;
-		
-		int current = player.getExp();
-		int next = Player.getRequiredExp(player.getLevel() + 1);
-		float ratio = ((float)current/(float)next);
-		
-		int length = (int) (ratio * (getWidth() + 3));
-		
-		for(int i = 0; i < length; i++) {
-			renderString(DisplayLayer.UI_FOREGROUND, i, renderPos, " ", Color.DARK_GREEN);
-		}
-	}
-
 }

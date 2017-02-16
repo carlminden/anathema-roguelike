@@ -22,11 +22,9 @@ import com.anathema_roguelike.characters.Player;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
-import com.anathema_roguelike.main.utilities.Listed;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
 
-@Listed
 public class AbilityArray extends AbilityScoreSelector {
 	
 	public static int[] array = new int[] {16, 14, 14, 12, 10};
@@ -34,7 +32,7 @@ public class AbilityArray extends AbilityScoreSelector {
 	@Override
 	public void selectScores(Player player) {
 		
-		Collection<Class<? extends Attribute>> abilities = Utils.getListedSubclasses(Attribute.class);
+		Collection<Class<? extends Attribute>> abilities = Utils.getSubclasses(Attribute.class);
 		
 		for(int i = 0; i < array.length; i++) {
 			

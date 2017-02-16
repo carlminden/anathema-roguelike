@@ -107,14 +107,6 @@ public abstract class NPC extends Character {
 	}
 	
 	@Override
-	public void killedBy(Character attacker) {
-		if(attacker instanceof Player) {
-			//TODO calculate real experience
-			((Player)attacker).grantExperience(1);
-		}
-	}
-	
-	@Override
 	public void onTurn() {
 		if(getPercievedStimuli().size() > 0) {
 			mostInterestingStimulus = Collections.max(getPercievedStimuli(), stimuliComparator);

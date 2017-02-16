@@ -17,9 +17,7 @@
 package com.anathema_roguelike.stats.characterstats.attributes;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.main.utilities.Listed;
 
-@Listed
 public class Strength extends Attribute {
 
 	public Strength(Character character, int base) {

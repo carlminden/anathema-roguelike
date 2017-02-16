@@ -21,11 +21,9 @@ import com.anathema_roguelike.characters.Player;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
-import com.anathema_roguelike.main.utilities.Listed;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
 
-@Listed
 public class CurrentHealth extends BoundedResource {
 
 	public CurrentHealth(Character character) {
@@ -35,13 +33,20 @@ public class CurrentHealth extends BoundedResource {
 	@Override
 	public void modify(Object source, int amount) {
 		if(amount < 0) {
-			double temphp = getObject().getStatAmount(TemporaryHealth.class);
+			
+			Character character = getObject();
+			
+			double temphp = character.getStatAmount(TemporaryHealth.class);
 			
 			getObject().modifyResource(source, TemporaryHealth.class, amount);
 			
 			int remainder = (int) Math.min(0, amount + temphp);
 			
 			super.modify(source, remainder);
+			
+			if(getAmount() <= 0 && character.isAlive()) {
+				character.onDeath();
+			}
 		} else if( amount > 0) {
 			super.modify(source, amount);
 		}

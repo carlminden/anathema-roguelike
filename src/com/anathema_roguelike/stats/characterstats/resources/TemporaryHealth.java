@@ -21,9 +21,7 @@ import com.anathema_roguelike.characters.Player;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
-import com.anathema_roguelike.main.utilities.Listed;
 
-@Listed
 public class TemporaryHealth extends Resource {
 
 	public TemporaryHealth(Character character) {

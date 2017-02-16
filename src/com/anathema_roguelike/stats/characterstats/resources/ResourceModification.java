@@ -21,21 +21,22 @@ import com.anathema_roguelike.stats.effects.Calculation;
 import com.anathema_roguelike.stats.effects.Duration;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.FixedCalculation;
+import com.anathema_roguelike.stats.effects.HasEffect;
 
-public abstract class ResourceModification extends Effect<Character, Resource> {
+public abstract class ResourceModification<T extends Resource> extends Effect<Character, T> {
 	
 	private Calculation calculation;
 	private Class<? extends Resource> resource;
 	private Object source;
 	
-	public ResourceModification(Object source, Class<? extends Resource> resource, int amount) {
+	public ResourceModification(HasEffect<? extends Effect<Character, T>> source, Class<? extends Resource> resource, int amount) {
 		super(source, Duration.instant());
 		
 		this.resource = resource;
 		this.calculation = new FixedCalculation(amount);
 	}
 	
-	public ResourceModification(Object source, Class<? extends Resource> resource, Calculation calculation) {
+	public ResourceModification(HasEffect<? extends Effect<Character, T>> source, Class<? extends Resource> resource, Calculation calculation) {
 		super(source, Duration.instant());
 		this.resource = resource;
 		this.calculation = calculation;

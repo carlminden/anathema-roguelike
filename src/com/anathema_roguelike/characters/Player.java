@@ -37,7 +37,6 @@ import squidpony.squidgrid.gui.gdx.SColor;
 public class Player extends Character {
 	
 	private String name;
-	private int experience = 0;
 	
 	private InputHandler inputHandler = new InputHandler(new PlayerKeyHandler(this));
 	
@@ -55,7 +54,7 @@ public class Player extends Character {
 		
 		
 		Effect<Character, CharacterStat> testModifiers = new Buff(
-				this, Duration.permanent(),
+				null, Duration.permanent(),
 				new Modifier<CharacterStat>(Perception.class, AdditiveCalculation.build(() -> 20.0)));
 		applyEffect(testModifiers);
 		
@@ -72,18 +71,9 @@ public class Player extends Character {
 		this.name = name;
 	}
 	
-	public int getExp() {
-		return experience;
-	}
-	
-	@Override
-	public void killedBy(Character attacker) {
-		System.out.println("YOU WERE KILLED BY " + attacker);
-	}
-	
 	@Override
 	public void onDeath() {
-		// TODO Auto-generated method stub
+		System.out.println("YOU WERE KILLED");
 	}
 	
 	@Override
@@ -97,15 +87,6 @@ public class Player extends Character {
 		Game.getInstance().getInput().proccessInput(inputHandler, () -> { return !getActionRemaining(); }, null );
 		
 		Game.getInstance().getDisplay().lock();
-	}
-
-	public void grantExperience(int exp) {
-		experience += exp;
-		
-		if(experience >= getRequiredExp(getLevel() + 1) && (getLevel() < 20)) {
-			levelUp();
-			experience = 0;
-		}
 	}
 	
 	@Override
