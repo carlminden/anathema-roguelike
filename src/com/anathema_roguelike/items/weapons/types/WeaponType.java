@@ -25,6 +25,16 @@ public abstract class WeaponType extends WeaponProperty implements ItemType<Weap
 	@Parsed(field = "Damage")
 	private double damage;
 	
+	public WeaponType() {
+		super();
+	}
+	
+	public WeaponType(String name, double weight, double attackSpeed, double damage) {
+		super(name, weight);
+		this.attackSpeed = attackSpeed;
+		this.damage = damage;
+	}
+	
 	public double getAttackSpeed() {
 		return attackSpeed;
 	}

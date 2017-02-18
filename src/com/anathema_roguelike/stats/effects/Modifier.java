@@ -18,25 +18,25 @@ package com.anathema_roguelike.stats.effects;
 
 import com.anathema_roguelike.stats.Stat;
 
-public class Modifier<T extends Stat<?>> {
+public class Modifier<S extends Stat<?>> {
 	
-	private Class<? extends T> affectedStat;
+	private Class<? extends S> affectedStat;
 	private AdditiveCalculation additiveModifier;
 	private MultiplicativeCalculation multiplicativeModifier;
 	
-	public Modifier(Class<? extends T> affectedStat, AdditiveCalculation additiveModifier) {
+	public Modifier(Class<? extends S> affectedStat, AdditiveCalculation additiveModifier) {
 
 		this.affectedStat = affectedStat;
 		this.additiveModifier = additiveModifier;
 	}
 	
-	public Modifier(Class<? extends T> affectedStat, MultiplicativeCalculation multiplicativeModifier) {
+	public Modifier(Class<? extends S> affectedStat, MultiplicativeCalculation multiplicativeModifier) {
 
 		this.affectedStat = affectedStat;
 		this.multiplicativeModifier = multiplicativeModifier;
 	}
 	
-	public Class<? extends T> getAffectedStat() {
+	public Class<? extends S> getAffectedStat() {
 		return affectedStat;
 	}
 

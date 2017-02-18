@@ -45,16 +45,6 @@ public class Weapon extends EquippableItem {
 		applyEffect(material.getEffect());
 	}
 	
-	@Override
-	public void equip(Character character) {
-		super.equip(character);
-	}
-	
-	@Override
-	public void remove(Character character) {
-		super.remove(character);
-	}
-	
 	public WeaponType getType() {
 		return type;
 	}

@@ -9,7 +9,7 @@ import com.google.common.collect.HashMultimap;
 
 public abstract class ItemFactory<T extends Item> implements HasWeightedProbability {
 	
-	private HashMultimap<Class<? extends ItemProperty<? extends T>>, ItemFactory<? extends T>> factories = HashMultimap.create();
+	private HashMultimap<Class<? extends ItemType<? extends T>>, ItemFactory<? extends T>> factories = HashMultimap.create();
 	
 	protected <F extends ItemFactory<? extends T>> void addFactory(F factory) {
 		factories.put(factory.getSupportedType(), factory);
@@ -21,11 +21,16 @@ public abstract class ItemFactory<T extends Item> implements HasWeightedProbabil
 	}
 	
 	@SuppressWarnings("unchecked")
-	private <P extends ItemProperty<? extends T>, F extends ItemFactory<T>> Set<F> getFactories(Class<? extends P> type) {
+	private <P extends ItemType<? extends T>, F extends ItemFactory<T>> Set<F> getFactories(Class<? extends P> type) {
 		return (Set<F>) factories.get(type);
 	}
 	
-	public <S extends T, I extends ItemProperty<S>> S generate(Class<? extends I> type) {
+	@SuppressWarnings("unchecked")
+	public <S extends T, I extends ItemType<S>> S generate(Class<? extends I> type) {
+		
+		if(type.equals(getSupportedType())) {
+			return (S) generate();
+		}
 		
 		if(getFactories(type).isEmpty()) {
 			throw new RuntimeException("This Factory does not support that type");
@@ -44,5 +49,5 @@ public abstract class ItemFactory<T extends Item> implements HasWeightedProbabil
 		return Utils.getWeightedRandomSample(factories.values()).generate();
 	}
 	
-	public abstract Class<? extends ItemProperty<? extends T>> getSupportedType();
+	public abstract Class<? extends ItemType<? extends T>> getSupportedType();
 }

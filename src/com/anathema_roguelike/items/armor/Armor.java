@@ -23,7 +23,29 @@ import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public abstract class Armor extends EquippableItem {
 	
-	public Armor(Optional<VisualRepresentation> representation) {
+	private ArmorType type;
+	private ArmorMaterial material;
+	
+	public Armor(Optional<VisualRepresentation> representation, ArmorType type, ArmorMaterial material) {
 		super(representation);
+		
+		this.type = type;
+		this.material = material;
+		
+		applyEffect(type.getEffect());
+		applyEffect(material.getEffect());
+	}
+	
+	public ArmorType getType() {
+		return type;
+	}
+	
+	public ArmorMaterial getMaterial() {
+		return material;
+	}
+	
+	@Override
+	public String toString() {
+		return material.getName() + " " + type.getName();
 	}
 }

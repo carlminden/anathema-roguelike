@@ -54,6 +54,7 @@ import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
 import com.anathema_roguelike.stats.characterstats.resources.Resource;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Concealment;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
+import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission;
 import com.anathema_roguelike.stimuli.PercievedStimulus;
 import com.anathema_roguelike.stimuli.Stimulus;
 import com.google.common.base.Predicate;
@@ -401,6 +402,11 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	public void setFacing(double facing) {
 		this.facing = facing;
+	}
+	
+	@Override
+	public double getLightEmission() {
+		return getStatAmount(LightEmission.class);
 	}
 	
 	@Subscribe

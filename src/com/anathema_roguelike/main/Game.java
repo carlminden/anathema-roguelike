@@ -22,8 +22,8 @@ import java.util.Random;
 
 import com.anathema_roguelike.items.StandardItemFactory;
 import com.anathema_roguelike.items.weapons.Weapon;
-import com.anathema_roguelike.items.weapons.types.Spear;
-import com.anathema_roguelike.items.weapons.types.WeaponType;
+import com.anathema_roguelike.items.weapons.types.MeleeWeaponType;
+import com.anathema_roguelike.items.weapons.types.RangedWeaponType;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display;
 import com.anathema_roguelike.main.display.DungeonMap;
@@ -137,10 +137,10 @@ public class Game extends ApplicationAdapter {
 		
 		StandardItemFactory f = new StandardItemFactory();
 		
-		Weapon a = f.generate(WeaponType.class);
+		Weapon a = f.generate(MeleeWeaponType.class);
 		
 		for(int i = 0; i < 20; i++) {
-			System.out.println(f.generate(Spear.class));
+			System.out.println(f.generate(RangedWeaponType.class));
 		}
 		
 		latch.await();

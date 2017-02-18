@@ -14,12 +14,14 @@
  *     You should have received a copy of the GNU General Public License
  *     along with AnathemaRL.  If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
-package com.anathema_roguelike.items.weapons;
+package com.anathema_roguelike.items.weapons.natural_weapons;
+
+import com.anathema_roguelike.items.weapons.types.MeleeWeaponType;
 
 public class Unarmed extends NaturalWeapon {
 
 	public Unarmed() {
-		super();
+		super(new MeleeWeaponType("Unarmed", 2.0, 1.0, 10.0), new NaturalWeaponMaterial(""));
 	}
 
 }

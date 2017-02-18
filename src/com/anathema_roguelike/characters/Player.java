@@ -22,6 +22,9 @@ import java.util.Optional;
 import com.anathema_roguelike.characters.abilities.Buff;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.classes.Rogue;
+import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
+import com.anathema_roguelike.items.StandardItemFactory;
+import com.anathema_roguelike.items.weapons.types.MeleeWeaponType;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
@@ -50,7 +53,7 @@ public class Player extends Character {
 		
 		setClass(new Rogue());
 		
-		
+		getInventory().equip(new StandardItemFactory().generate(MeleeWeaponType.class), PrimaryWeapon.class);
 		
 		Optional<Buff> testModifiers = Optional.of(new Buff(
 				null,

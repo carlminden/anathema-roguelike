@@ -24,7 +24,7 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.items.EquippableItem;
 import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.items.armor.Armor;
-import com.anathema_roguelike.items.weapons.Unarmed;
+import com.anathema_roguelike.items.weapons.natural_weapons.Unarmed;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.itemstats.ArmorStat;
 import com.google.common.eventbus.EventBus;

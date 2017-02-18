@@ -12,6 +12,14 @@ import com.anathema_roguelike.stats.itemstats.Weight;
 
 public class MetalWeaponMaterial extends WeaponMaterial {
 	
+	public MetalWeaponMaterial() {
+		super();
+	}
+	
+	public MetalWeaponMaterial(String name, double weight, double damage) {
+		super(name, weight, damage);
+	}
+
 	@Override
 	public Optional<Effect<EquippableItem, ItemStat>> getEffect() {
 		

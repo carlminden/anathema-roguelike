@@ -14,6 +14,15 @@ public abstract class ArmorProperty extends ItemProperty<Armor> {
 	@Parsed(field = "Attenuation")
 	private double attenuation;
 	
+	public ArmorProperty() {
+		super();
+	}
+	
+	public ArmorProperty(String name, double weight) {
+		super(name, weight);
+		// TODO Auto-generated constructor stub
+	}
+	
 	protected double getConcealment() {
 		return concealment;
 	}

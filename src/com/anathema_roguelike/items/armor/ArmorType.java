@@ -15,6 +15,14 @@ import com.anathema_roguelike.stats.itemstats.Weight;
 
 public class ArmorType extends ArmorProperty implements ItemType<Armor> {
 	
+	public ArmorType() {
+		super();
+	}
+	
+	public ArmorType(String name, double weight) {
+		super(name, weight);
+	}
+
 	@Override
 	public Optional<Effect<EquippableItem, ItemStat>> getEffect() {
 		

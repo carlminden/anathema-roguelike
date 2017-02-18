@@ -11,11 +11,7 @@ public class StandardItemFactory extends ItemFactory<Item> {
 	}
 	
 	@Override
-	public Class<? extends ItemProperty<? extends Item>> getSupportedType() {
-		return null;
-	}
-	
-	public static void main(String[] args) {
-		
+	public Class<? extends ItemType<? extends Item>> getSupportedType() {
+		return AnyItem.class;
 	}
 }

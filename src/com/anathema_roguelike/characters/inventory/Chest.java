@@ -1,7 +1,7 @@
 package com.anathema_roguelike.characters.inventory;
 
-import com.anathema_roguelike.items.armor.ChestArmor;
+import com.anathema_roguelike.items.armor.Chestpiece;
 
-public class Chest extends Slot<ChestArmor> {
+public class Chest extends Slot<Chestpiece> {
 
 }

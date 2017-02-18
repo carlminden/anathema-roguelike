@@ -19,6 +19,7 @@ package com.anathema_roguelike.characters.monsters;
 import java.util.Optional;
 
 import com.anathema_roguelike.characters.Monster;
+import com.anathema_roguelike.characters.abilities.Buff;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.classes.Rogue;
 import com.anathema_roguelike.main.display.Color;
@@ -28,6 +29,9 @@ import com.anathema_roguelike.stats.characterstats.attributes.Constitution;
 import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
 import com.anathema_roguelike.stats.characterstats.attributes.Perception;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
+import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission;
+import com.anathema_roguelike.stats.effects.AdditiveCalculation;
+import com.anathema_roguelike.stats.effects.Modifier;
 
 public class Orc extends Monster {
 
@@ -43,15 +47,12 @@ public class Orc extends Monster {
 		setAbilityScore(Perception.class, 20);
 		
 		setClass(new Rogue());
+		
+		applyEffect(Optional.of(new Buff(null, new Modifier<LightEmission>(LightEmission.class, AdditiveCalculation.build(() -> 10.0)))));
 	}
 	
 	@Override
 	public String toString() {
 		return "The Orc";
-	}
-	
-	@Override
-	public double getLightEmission() {
-		return 10;
 	}
 }

@@ -5,6 +5,14 @@ import com.anathema_roguelike.items.weapons.WeaponMaterial;
 
 public class MeleeWeaponType extends WeaponType {
 	
+	public MeleeWeaponType() {
+		super();
+	}
+	
+	public MeleeWeaponType(String name, double weight, double attackSpeed, double damage) {
+		super(name, weight, attackSpeed, damage);
+	}
+
 	@Override
 	public double getRange() {
 		return 1;

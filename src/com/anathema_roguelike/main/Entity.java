@@ -85,4 +85,8 @@ public abstract class Entity implements Renderable {
 			renderThis();
 		}
 	}
+
+	public double getLightEmission() {
+		return 0;
+	}
 }

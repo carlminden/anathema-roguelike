@@ -14,6 +14,15 @@ public abstract class ItemProperty<T extends Item> implements HasEffect<Effect<E
 	@Parsed(field = "Weight")
 	private double weight;
 	
+	public ItemProperty() {
+	}
+	
+	public ItemProperty(String name, double weight) {
+		super();
+		this.name = name;
+		this.weight = weight;
+	}
+
 	public String getName() {
 		return name;
 	}

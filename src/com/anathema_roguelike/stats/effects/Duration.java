@@ -16,7 +16,9 @@
  *******************************************************************************/
 package com.anathema_roguelike.stats.effects;
 
-public abstract class Duration implements Calculation, Comparable<Duration> {
+import java.util.function.Supplier;
+
+public abstract class Duration implements Supplier<Double>, Comparable<Duration> {
 	
 	public static int INSTANT = 0;
 	public static int EXTREMELY_SHORT = 1;
