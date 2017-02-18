@@ -16,6 +16,8 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.abilities.costs;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.stats.characterstats.resources.Damage;
@@ -38,7 +40,7 @@ public abstract class ResourceCost<T extends Resource> extends AbilityCost imple
 
 	@Override
 	public void pay() {
-		getAbility().getCharacter().applyEffect(new Damage<T>(this, resource, calculation));
+		getAbility().getCharacter().applyEffect(Optional.of(new Damage<T>(this, resource, calculation)));
 	}
 	
 }

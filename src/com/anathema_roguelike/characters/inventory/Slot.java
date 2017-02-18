@@ -13,16 +13,4 @@ public abstract class Slot<T extends EquippableItem> {
 	public void equip(T item) {
 		this.item = item;
 	}
-	
-	public T unequip() {
-		T ret = item;
-		
-		item = getDefaultItem();
-		
-		return ret;
-	}
-	
-	protected T getDefaultItem() {
-		return null;
-	}
 }

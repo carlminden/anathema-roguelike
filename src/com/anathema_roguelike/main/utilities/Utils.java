@@ -30,6 +30,8 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.math3.distribution.EnumeratedDistribution;
+import org.apache.commons.math3.util.Pair;
 import org.reflections.Reflections;
 
 import com.anathema_roguelike.main.display.Color;
@@ -64,6 +66,16 @@ public class Utils {
 		}
 	}
 	
+	public static <T extends HasWeightedProbability> T getWeightedRandomSample(Collection<T> col) {
+		ArrayList<Pair<T, Double>> list = new ArrayList<>();
+		
+		col.forEach(i -> {
+			list.add(new Pair<>(i, i.getWeightedProbability()));
+		});
+		
+		return new EnumeratedDistribution<>(list).sample();
+	}
+	
 	public static <T extends Number> T clamp(T n, T l, T h) {
 	    return (n.doubleValue() > h.doubleValue() ? h : (n.doubleValue() < l.doubleValue() ? l : n));
 	}
@@ -88,20 +100,32 @@ public class Utils {
 	}
 	
 	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass) {
-		return getSubclasses(superclass, Predicates.alwaysTrue());
+		return getSubclasses(superclass, false, false, Predicates.alwaysTrue());
+	}
+	
+	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, boolean includeAbstract) {
+		return getSubclasses(superclass, includeAbstract, false, Predicates.alwaysTrue());
+	}
+	
+	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, boolean includeAbstract, boolean includeSuperclass) {
+		return getSubclasses(superclass, includeAbstract, includeSuperclass, Predicates.alwaysTrue());
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, Predicate<Class<? extends T>> predicate) {
+	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, boolean includeAbstract, boolean includeSuperclass, Predicate<Class<? extends T>> predicate) {
 		ArrayList<Class<? extends T>> ret = new ArrayList<>();
 		
 		if(subtypeCache.containsKey(superclass)) {
 			ret = new ArrayList<>((ArrayList<Class<? extends T>>)subtypeCache.get(superclass));
 		} else {
 		
-			Rebound rebound = new Rebound("com.anathema_roguelike");
+			Rebound rebound = new Rebound("com.anathema_roguelike", includeAbstract);
 			
 			Set<Class<? extends T>> subTypes = rebound.getSubClassesOf(superclass);
+			
+			if(!includeSuperclass) {
+				subTypes.remove(superclass);
+			}
 			
 			ArrayList<Class<? extends T>> sorted = new ArrayList<>(subTypes);
 			Collections.sort(sorted,

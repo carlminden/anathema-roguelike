@@ -16,6 +16,8 @@
  *******************************************************************************/
 package com.anathema_roguelike.items;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.Game;
@@ -28,7 +30,7 @@ public abstract class Item extends Entity {
 		super(representation);
 	}
 
-	public Item(VisualRepresentation visualRepresentation) {
+	public Item(Optional<VisualRepresentation> visualRepresentation) {
 		super(visualRepresentation);
 	}
 	

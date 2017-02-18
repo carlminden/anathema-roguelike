@@ -17,6 +17,7 @@
 package com.anathema_roguelike.characters;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Optional;
 
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.abilities.AbilitySet;
@@ -71,10 +72,9 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	private long turn = 0;
 	
 	private AbilitySet abilities = new AbilitySet();
-	
-	private Inventory inventory = new Inventory(this);
-	
 	private EventBus eventBus = new EventBus();
+	
+	private Inventory inventory = new Inventory(this, eventBus);
 	
 	private boolean alive = true;
 	
@@ -88,7 +88,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	protected abstract void onTurn();
 	
-	public Character(VisualRepresentation representation) {
+	public Character(Optional<VisualRepresentation> representation) {
 		super(representation);
 		level = 0;
 		
@@ -102,6 +102,10 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		setActionRemaining(true);
 		pruneStimuli();
 		onTurn();
+	}
+	
+	public EventBus getEventBus() {
+		return eventBus;
 	}
 	
 	public void registerHandler(Object obj) {

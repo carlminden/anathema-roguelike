@@ -19,6 +19,6 @@ package com.anathema_roguelike.characters.abilities.targetingstrategies.ranges;
 public class MediumRange extends CircularRange {
 
 	public MediumRange() {
-		super(5, .25f);
+		super(5);
 	}
 }

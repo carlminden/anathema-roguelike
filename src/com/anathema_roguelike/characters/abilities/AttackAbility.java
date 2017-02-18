@@ -37,9 +37,12 @@ public abstract class AttackAbility<T extends Attack> extends OffensiveTargetedA
 	}
 	
 	@Override
-	protected AbilityResults onActivate(Character target) {
-		T attack = getAttack();
-		
-		return attack.fullAttack(target, true);
+	protected boolean onActivate(Character target) {
+		if(getAttack().getEffect().isPresent()) {
+			target.applyEffect(getAttack().getEffect());
+			return true;
+		} else {
+			throw new RuntimeException("Missing Effect");
+		}
 	}
 }

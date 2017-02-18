@@ -7,6 +7,6 @@ import com.google.common.eventbus.EventBus;
 public class CharacterStatSet extends StatSet<Character, CharacterStat> {
 
 	public CharacterStatSet(Character object, EventBus eventBus) {
-		super(object, Character.class, CharacterStat.class, eventBus);
+		super(object, Character.class, CharacterStat.class);
 	}
 }

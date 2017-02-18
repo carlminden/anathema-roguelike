@@ -19,15 +19,15 @@ package com.anathema_roguelike.stats;
 import com.anathema_roguelike.main.utilities.AutoClassToInstanceMap;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.EffectCollection;
-import com.google.common.eventbus.EventBus;
+import com.anathema_roguelike.stats.effects.HasEffect;
 
 public class StatSet<T, S extends Stat<? extends T>> {
 	
 	private EffectCollection<T, S> effects;
 	private AutoClassToInstanceMap<S> stats;
 	
-	public StatSet(T object, Class<T> objectType, Class<S> statType, EventBus eventBus) {
-		effects = new EffectCollection<T, S>(eventBus);
+	public StatSet(T object, Class<T> objectType, Class<S> statType) {
+		effects = new EffectCollection<T, S>();
 		stats = new AutoClassToInstanceMap<>(statType, new Class[] { objectType }, object);
 	}
 	
@@ -39,8 +39,8 @@ public class StatSet<T, S extends Stat<? extends T>> {
 		effects.apply(effect);
 	}
 	
-	public void removeEffect(Effect<? extends T, ? extends S> effect) {
-		effects.remove(effect);
+	public void removeEffectBySource(HasEffect<? extends Effect<? extends T, ? extends S>> source) {
+		effects.removeBySource(source);
 	}
 	
 	public <G extends S> G getStat(Class<G> stat) {

@@ -16,11 +16,13 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public abstract class Monster extends NPC {
 	
-	public Monster(VisualRepresentation representation) {
+	public Monster(Optional<VisualRepresentation> representation) {
 		super(representation);
 	}
 }

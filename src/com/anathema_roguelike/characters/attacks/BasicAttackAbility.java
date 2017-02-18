@@ -20,14 +20,14 @@ import com.anathema_roguelike.characters.abilities.AttackAbility;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.SingleTargeted;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.MeleeRange;
 
-public class BasicAttackAbility extends AttackAbility<BasicMeleeAttack> {
+public class BasicAttackAbility extends AttackAbility<BasicAttack> {
 
 	public BasicAttackAbility(Object source) {
-		super(source, BasicMeleeAttack.class, new SingleTargeted(new MeleeRange()));
+		super(source, BasicAttack.class, new SingleTargeted(new MeleeRange()));
 	}
 
 	@Override
-	public BasicMeleeAttack getAttack() {
-		return new BasicMeleeAttack(this, getCharacter());
+	public BasicAttack getAttack() {
+		return new BasicAttack(this, getCharacter());
 	}
 }

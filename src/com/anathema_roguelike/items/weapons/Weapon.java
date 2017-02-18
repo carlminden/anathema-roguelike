@@ -16,11 +16,13 @@
  *******************************************************************************/
 package com.anathema_roguelike.items.weapons;
 
+import java.util.Optional;
 import java.util.Random;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.weapons.types.WeaponType;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Accuracy;
 import com.anathema_roguelike.stats.characterstats.secondarystats.BonusWeaponDamage;
@@ -28,11 +30,19 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.WeaponDamageMu
 import com.anathema_roguelike.stats.itemstats.BaseWeaponDamage;
 import com.anathema_roguelike.stats.itemstats.Weight;
 
-public abstract class Weapon extends EquippableItem {
+public class Weapon extends EquippableItem {
 	
-	public Weapon(VisualRepresentation representation) {
+	private WeaponType type;
+	private WeaponMaterial material;
+	
+	public Weapon(Optional<VisualRepresentation> representation, WeaponType type, WeaponMaterial material) {
 		super(representation);
 		
+		this.type = type;
+		this.material = material;
+		
+		applyEffect(type.getEffect());
+		applyEffect(material.getEffect());
 	}
 	
 	@Override
@@ -45,14 +55,25 @@ public abstract class Weapon extends EquippableItem {
 		super.remove(character);
 	}
 	
-	public abstract int getRange();
+	public WeaponType getType() {
+		return type;
+	}
+	
+	public WeaponMaterial getMaterial() {
+		return material;
+	}
+	
+	@Override
+	public String toString() {
+		return material.getName() + " " + type.getName();
+	}
 
 	public int getWeaponDamage(Character character) {
 		
 		Weapon primaryWeapon = character.getInventory().getEquipedItem(PrimaryWeapon.class);
 		
-		double baseWeaponDamage = primaryWeapon.getStat(BaseWeaponDamage.class);
-		double weight = primaryWeapon.getStat(Weight.class);
+		double baseWeaponDamage = primaryWeapon.getStatAmount(BaseWeaponDamage.class);
+		double weight = primaryWeapon.getStatAmount(Weight.class);
 		
 		int bonusWeaponDamage = (int) character.getStatAmount(BonusWeaponDamage.class);
 		double weaponDamageMultiplier = character.getStatAmount(WeaponDamageMultiplier.class);

@@ -27,6 +27,7 @@ import com.anathema_roguelike.items.armor.Armor;
 import com.anathema_roguelike.items.weapons.Unarmed;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.itemstats.ArmorStat;
+import com.google.common.eventbus.EventBus;
 
 public class Inventory {
 	
@@ -37,7 +38,7 @@ public class Inventory {
 	
 	private HashSet<Item> backpack = new HashSet<>();
 	
-	public Inventory(Character character) {
+	public Inventory(Character character, EventBus eventBus) {
 		this.character = character;
 		
 		defaultItems.put(PrimaryWeapon.class, new Unarmed());
@@ -118,6 +119,6 @@ public class Inventory {
 	}
 	
 	public Double getDefense(Class<? extends ArmorStat> stat) {
-		return getEquippedItems(Armor.class).parallelStream().mapToDouble(a -> a.getStat(stat)).sum();
+		return getEquippedItems(Armor.class).parallelStream().mapToDouble(a -> a.getStatAmount(stat)).sum();
 	}
 }

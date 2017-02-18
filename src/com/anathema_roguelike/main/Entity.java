@@ -16,9 +16,12 @@
  *******************************************************************************/
 package com.anathema_roguelike.main;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
@@ -27,19 +30,14 @@ public abstract class Entity implements Renderable {
 	private int depth;
 	private Point position;
 	
-	private VisualRepresentation representation;
+	private Optional<VisualRepresentation> representation;
 	
-	public Entity(VisualRepresentation representation) {
+	public Entity(Optional<VisualRepresentation> representation) {
 		this.representation = representation; 
 	}
 	
 	public Entity(char representation) {
-		this.representation = new VisualRepresentation(representation); 
-	}
-	
-	//should be abstract and handle more senses than vision
-	public double getLightEmission() {
-		return 0;
+		this.representation = Optional.of(new VisualRepresentation(representation)); 
 	}
 	
 	public abstract boolean isVisibleTo(Character character);
@@ -74,10 +72,10 @@ public abstract class Entity implements Renderable {
 	}
 	
 	public VisualRepresentation getRepresentation() {
-		return representation;
+		return representation.orElse(new VisualRepresentation('X', Color.ERROR));
 	}
 
-	public void setRepresentation(VisualRepresentation representation) {
+	public void setRepresentation(Optional<VisualRepresentation> representation) {
 		this.representation = representation;
 	}
 	

@@ -23,17 +23,15 @@ import com.anathema_roguelike.characters.abilities.targetingstrategies.targetmod
 
 public class CircularRange extends Range {
 	
-	private int radius;
-	private double scaleFactor;
+	private double radius;
 	
-	public CircularRange(int radius, float scaleFactor) {
+	public CircularRange(int radius) {
 		super(new TargetsMode());
 		this.radius = radius;
-		this.scaleFactor = scaleFactor;
 	}
 	
 	@Override
 	protected Shape getShape(final Character character) {
-		return new Circle(character.getPosition(), () -> (radius + scaleFactor*character.getLevel()));
+		return new Circle(character.getPosition(), () -> (radius));
 	}
 }

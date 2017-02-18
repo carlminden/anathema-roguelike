@@ -18,7 +18,7 @@ package com.anathema_roguelike.characters.abilities;
 
 public abstract class ActivatedAbility extends Ability {
 	
-	protected abstract AbilityResults onActivate();
+	protected abstract boolean onActivate();
 	
 	public ActivatedAbility(Object source) {
 		super(source);
@@ -26,11 +26,10 @@ public abstract class ActivatedAbility extends Ability {
 	
 	public void actviate() {
 		if(requirementsMet()) {
-			AbilityResults results = onActivate();
+			boolean activated = onActivate();
 			
-			if(results != null) {
+			if(activated) {
 				payAbilityCosts();
-				processResults(results);
 			}
 		} else {
 			printUnmetConditionMessages();

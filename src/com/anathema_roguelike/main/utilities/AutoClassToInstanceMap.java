@@ -17,6 +17,7 @@
 package com.anathema_roguelike.main.utilities;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 
 import com.google.common.collect.ClassToInstanceMap;
 import com.google.common.collect.MutableClassToInstanceMap;
@@ -39,7 +40,25 @@ public class AutoClassToInstanceMap<T> {
 		}
 	}
 	
+	public AutoClassToInstanceMap(Class<T> type) {
+		try {
+			for(Class<? extends T> t : Utils.getSubclasses(type)) {
+				classToInstanceMap.put(t, t.getConstructor().newInstance());
+			}
+		} catch (InstantiationException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+	
 	public <I extends T> I get(Class<? extends I> key) {
 		return classToInstanceMap.getInstance(key);
+	}
+	
+	public Collection<T> getValues() {
+		return classToInstanceMap.values();
 	}
 }

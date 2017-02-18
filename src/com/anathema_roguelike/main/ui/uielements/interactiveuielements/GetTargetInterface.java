@@ -16,14 +16,16 @@
  *******************************************************************************/
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.characters.abilities.Ability;
 import com.anathema_roguelike.characters.abilities.targetingstrategies.TargetingStrategy;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.animations.Blink;
 import com.anathema_roguelike.main.display.Color;
-import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
+import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.Border;
@@ -41,7 +43,7 @@ public class GetTargetInterface extends InteractiveUIElement<Point> {
 	private Ability ability;
 	
 	//TODO: the whole animation system needs to be rebuilt
-	private Blink animation = new Blink(new VisualRepresentation('X', Color.RED), DungeonLayer.FOREGROUND);
+	private Blink animation = new Blink(Optional.of(new VisualRepresentation('X', Color.RED)), DungeonLayer.FOREGROUND);
 	
 	public GetTargetInterface(Ability ability, TargetingStrategy strategy) {
 		super(0, UIConfig.MAP_START_Y, UIConfig.DUNGEON_MAP_WIDTH, UIConfig.DUNGEON_MAP_HEIGHT, true, 0f);

@@ -36,13 +36,12 @@ public abstract class SelfTargetedAbility extends ActivatedAbility implements Ha
 	}
 	
 	@Override
-	public AbilityResults onActivate() {
-		return new AbilityResults(new Result() {
-			
-			@Override
-			public void execute() {
-				getCharacter().applyEffect(getEffect().get());
-			}
-		});
+	public boolean onActivate() {
+		if(getEffect().isPresent()) {
+			getCharacter().applyEffect(getEffect());
+			return true;
+		} else {
+			throw new RuntimeException("Missing Effect");
+		}
 	}
 }

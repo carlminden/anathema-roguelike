@@ -17,22 +17,15 @@
 package com.anathema_roguelike.characters.events;
 
 import com.anathema_roguelike.characters.attacks.Attack;
-import com.anathema_roguelike.characters.attacks.AttackResults;
 
 public class AttackEvent {
 	
-	private AttackResults result;
 	private Attack attack;
 	
-	public AttackEvent(Attack attackOnTarget, AttackResults result) {
-		this.result = result;
+	public AttackEvent(Attack attackOnTarget) {
 		this.attack = attackOnTarget;
 	}
 	
-	public AttackResults getAttackResult() {
-		return result;
-	}
-
 	public Attack getAttack() {
 		return attack;
 	}

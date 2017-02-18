@@ -18,22 +18,18 @@ package com.anathema_roguelike.characters.abilities;
 
 import com.google.common.eventbus.Subscribe;
 
-public abstract class TriggeredAbility<T> extends Ability {
+public abstract class TriggeredAbility<T extends Trigger> extends Ability {
 	
-	Class<T> triggerEventType;
+	protected abstract boolean onTrigger(T trigger);
 	
-	protected abstract AbilityResults onTrigger(T trigger);
-	
-	public TriggeredAbility(Object source, Class<T> triggerEventType) {
+	public TriggeredAbility(Object source) {
 		super(source);
-		this.triggerEventType = triggerEventType;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Subscribe
-	public void trigger(Object trigger) {
-		if(triggerEventType.isAssignableFrom(trigger.getClass()) && checkRequirementsAndExpendCostsIfTrue()) {
-			processResults(onTrigger((T) trigger));
+	public void trigger(T trigger) {
+		if(checkRequirementsAndExpendCostsIfTrue()) {
+			onTrigger((T) trigger);
 		}
 	}
 }

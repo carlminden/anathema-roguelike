@@ -16,6 +16,8 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.monsters;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.characters.Monster;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.classes.Rogue;
@@ -30,7 +32,7 @@ import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 public class Orc extends Monster {
 
 	public Orc() {
-		super(new VisualRepresentation('o', Color.GREEN));
+		super(Optional.of(new VisualRepresentation('o', Color.GREEN)));
 		
 		setFaction(Faction.MONSTER);
 		
@@ -38,7 +40,7 @@ public class Orc extends Monster {
 		setAbilityScore(Agility.class, 14);
 		setAbilityScore(Constitution.class, 14);
 		setAbilityScore(Intelligence.class, 12);
-		setAbilityScore(Perception.class, 10);
+		setAbilityScore(Perception.class, 20);
 		
 		setClass(new Rogue());
 	}

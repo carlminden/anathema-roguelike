@@ -16,10 +16,12 @@
  *******************************************************************************/
 package com.anathema_roguelike.main.animations;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.main.Entity;
-import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
+import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public abstract class Animation extends Entity {
 	
@@ -32,7 +34,7 @@ public abstract class Animation extends Entity {
 		this.layer = layer;
 	}
 	
-	public Animation(VisualRepresentation representation, DungeonLayer layer) {
+	public Animation(Optional<VisualRepresentation> representation, DungeonLayer layer) {
 		super(representation);
 		
 		this.layer = layer;

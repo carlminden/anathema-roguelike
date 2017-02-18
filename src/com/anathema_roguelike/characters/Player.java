@@ -17,6 +17,8 @@
 package com.anathema_roguelike.characters;
 
 
+import java.util.Optional;
+
 import com.anathema_roguelike.characters.abilities.Buff;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.classes.Rogue;
@@ -25,11 +27,8 @@ import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.InputHandler;
 import com.anathema_roguelike.main.display.VisualRepresentation;
-import com.anathema_roguelike.stats.characterstats.CharacterStat;
 import com.anathema_roguelike.stats.characterstats.attributes.Perception;
 import com.anathema_roguelike.stats.effects.AdditiveCalculation;
-import com.anathema_roguelike.stats.effects.Duration;
-import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.Modifier;
 
 import squidpony.squidgrid.gui.gdx.SColor;
@@ -45,7 +44,7 @@ public class Player extends Character {
 	}
 	
 	public Player() {
-		super(new VisualRepresentation('@'));
+		super(Optional.of(new VisualRepresentation('@')));
 		
 		setFaction(Faction.PLAYER);
 		
@@ -53,9 +52,11 @@ public class Player extends Character {
 		
 		
 		
-		Effect<Character, CharacterStat> testModifiers = new Buff(
-				null, Duration.permanent(),
-				new Modifier<CharacterStat>(Perception.class, AdditiveCalculation.build(() -> 20.0)));
+		Optional<Buff> testModifiers = Optional.of(new Buff(
+				null,
+				new Modifier<Perception>(Perception.class, AdditiveCalculation.build(() -> 20.0))));
+		
+		
 		applyEffect(testModifiers);
 		
 		setName("Carl");
@@ -104,11 +105,6 @@ public class Player extends Character {
 		SColor color = Color.factory.blend(Color.NO_LIGHT_PLAYER, Color.WHITE, greatestVisibility + .2);
 		
 		Game.getInstance().getMap().renderChar(DungeonLayer.PLAYER, getX(), getY(), getRepresentation().getChar(), color);
-	}
-
-	@Override
-	public double getLightEmission() {
-		return 0;
 	}
 	
 	@Override

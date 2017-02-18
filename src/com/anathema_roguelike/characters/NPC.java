@@ -19,6 +19,7 @@ package com.anathema_roguelike.characters;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.anathema_roguelike.characters.ai.AI;
@@ -88,7 +89,7 @@ public abstract class NPC extends Character {
 		}
 	};
 
-	public NPC(VisualRepresentation representation) {
+	public NPC(Optional<VisualRepresentation> representation) {
 		super(representation);
 		
 		ai = new AI(this);

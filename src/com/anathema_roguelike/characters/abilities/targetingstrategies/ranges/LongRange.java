@@ -18,6 +18,6 @@ package com.anathema_roguelike.characters.abilities.targetingstrategies.ranges;
 
 public class LongRange extends CircularRange {
 	public LongRange() {
-		super(10, .25f);
+		super(10);
 	}
 }

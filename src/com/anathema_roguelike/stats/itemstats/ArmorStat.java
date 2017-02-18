@@ -7,9 +7,4 @@ public abstract class ArmorStat extends ItemStat {
 	public ArmorStat(EquippableItem item) {
 		super(item);
 	}
-	
-	@Override
-	public double getAmount() {
-		return getObject().getStat(this.getClass());
-	}
 }

@@ -1,0 +1,13 @@
+Name,Concealment,Veil,Attenuation,Weight
+Cloth,1,0.5,1,0.5
+Leather,1,1,1,1
+Chainmail,0.5,1.5,-0.5,1.5
+Plate,0.4,1.75,-0.75,2
+Umbralsilk,1.25,1,1,0.25
+Dragonhide,1.5,0.5,1.75,1
+Cold Iron,0.5,2,-0.5,1
+Blacksteel,1.5,1.75,-0.75,2
+Shadoweave,2.5,0,0.5,0.5
+Silenai Crystal,0.5,0,3,1.5
+Mithril,-1.5,1.75,1,0.5
+Mageplate,-1,3,-0.5,2.5

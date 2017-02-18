@@ -16,11 +16,14 @@
  *******************************************************************************/
 package com.anathema_roguelike.items.armor;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.items.EquippableItem;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public abstract class Armor extends EquippableItem {
-	public Armor(VisualRepresentation representation) {
+	
+	public Armor(Optional<VisualRepresentation> representation) {
 		super(representation);
 	}
 }

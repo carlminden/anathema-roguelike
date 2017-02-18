@@ -29,7 +29,7 @@ public abstract class TargetedAbility extends ActivatedAbility {
 
 	private TargetingStrategy strategy;
 	
-	protected abstract AbilityResults onActivate(Character target);
+	protected abstract boolean onActivate(Character target);
 	
 	public abstract Predicate<Character> getTargetValidator();
 	
@@ -42,18 +42,17 @@ public abstract class TargetedAbility extends ActivatedAbility {
 		addRequirement(new ValidTargetPointInRangeRequirement(this, strategy));
 	}
 	
-	public void activate(Point targetedPoint) {
-		AbilityResults results = new AbilityResults();
+	public boolean activate(Point targetedPoint) {
 		
 		for(Character target : strategy.getTargets(getCharacter(), targetedPoint)) {
-			results.addAllResults(onActivate(target));
+			onActivate(target);
 		}
 		
-		processResults(results);
+		return true;
 	}
 	
 	@Override
-	protected AbilityResults onActivate() {
+	protected boolean onActivate() {
 		
 		Collection<Point> validTargets = strategy.getValidTargetPoints(getCharacter());
 		Point targetedPoint;
@@ -65,16 +64,9 @@ public abstract class TargetedAbility extends ActivatedAbility {
 		}
 		
 		if(targetedPoint != null) {
-			
-			AbilityResults results = new AbilityResults();
-			
-			for(Character target : strategy.getTargets(getCharacter(), targetedPoint)) {
-				results.addAllResults(onActivate(target));
-			}
-			
-			return results;
+			return activate(targetedPoint);
 		} else {
-			return null;
+			return false;
 		}
 	}
 	

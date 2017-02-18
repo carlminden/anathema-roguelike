@@ -16,33 +16,35 @@
  *******************************************************************************/
 package com.anathema_roguelike.items;
 
-import java.util.HashMap;
+import java.util.Optional;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.stats.HasStats;
+import com.anathema_roguelike.stats.StatSet;
 import com.anathema_roguelike.stats.itemstats.ItemStat;
+import com.anathema_roguelike.stats.itemstats.ItemStatSet;
 
-public abstract class EquippableItem extends Item {
+public abstract class EquippableItem extends Item implements HasStats<EquippableItem, ItemStat> {
 	
-	private HashMap<Class<? extends ItemStat>, Double> stats = new HashMap<>();
+	private ItemStatSet stats;
 	
-	public EquippableItem(VisualRepresentation representation) {
+	public EquippableItem(Optional<VisualRepresentation> representation) {
 		super(representation);
+		
+		this.stats = new ItemStatSet(this);
 	}
 	
-	protected void putStat(Class<? extends ItemStat> stat, double value) {
-		stats.put(stat, value);
-	}
-	
-	public Double getStat(Class<? extends ItemStat> stat) {
-		return stats.get(stat);
-	}
-
 	public void equip(Character character) {
 		
 	}
 	
 	public void remove(Character character) {
 		
+	}
+	
+	@Override
+	public StatSet<EquippableItem, ItemStat> getStatSet() {
+		return stats;
 	}
 }

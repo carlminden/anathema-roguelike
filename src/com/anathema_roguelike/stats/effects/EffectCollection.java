@@ -17,26 +17,26 @@
 package com.anathema_roguelike.stats.effects;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 import com.anathema_roguelike.characters.events.TurnEvent;
+import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.stats.Stat;
-import com.google.common.eventbus.EventBus;
+import com.google.common.collect.HashBiMap;
 import com.google.common.eventbus.Subscribe;
 
 public class EffectCollection<T, S extends Stat<? extends T>> {
 	
-	private HashSet<Effect<? extends T, ? extends S>> effects = new HashSet<>();
+	private HashBiMap<HasEffect<? extends Effect<? extends T, ? extends S>>, Effect<? extends T, ? extends S>> effects = HashBiMap.create();
 	
-	public EffectCollection(EventBus eventBus) {
-		eventBus.register(this);
+	public EffectCollection() {
+		Game.getInstance().getEventBus().register(this);
 	}
 	
 	public double getStatBonus(Class<? extends S> stat) {
 		
 		double bonus = 0;
 		
-		for(Effect<? extends T, ? extends S> effect : effects) {
+		for(Effect<? extends T, ? extends S> effect : effects.values()) {
 			for(Modifier<? extends S> modifier : effect.getModifiers()) {
 				if(modifier.getAffectedStat() == stat) {
 					 bonus = bonus + modifier.getStaticAmount();
@@ -51,7 +51,7 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		
 		double bonus = 1;
 		
-		for(Effect<? extends T, ? extends S> effect : effects) {
+		for(Effect<? extends T, ? extends S> effect : effects.values()) {
 			for(Modifier<? extends S> modifier : effect.getModifiers()) {
 				if(modifier.getAffectedStat() == stat) {
 					bonus *= modifier.getMultiplier();
@@ -69,43 +69,26 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 	}
 	
 	public Collection<? extends Effect<? extends T, ? extends S>> getEffects() {
-		return effects;
+		return effects.values();
 	}
 	
 	public void apply(Effect<? extends T, ? extends S> effect) {
 		effect.getDuration().activate();
 		
-		effects.add(effect);
+		effects.forcePut(effect.getSource(), effect);
 	}
 	
-	public void remove(Effect<? extends T, ? extends S> effect) {
-		effects.remove(effect);
-	}
-	
-	public void addStuff(Effect<T, ? extends S> effect) {
-		if(!effect.getDuration().isExpired()) {
-			effects.add(effect);
-		}
+	public void removeBySource(HasEffect<? extends Effect<? extends T, ? extends S>> source) {
+		effects.inverse().remove(source);
 	}
 	
 	public void decrement() {
-		for(Effect<? extends T, ? extends S> effect : effects) {
+		for(Effect<? extends T, ? extends S> effect : effects.values()) {
 			effect.getDuration().decrement();
 		}
 	}
 	
 	public void removeExpired() {
-		
-		HashSet<Effect<? extends T, ? extends S>> expired = new HashSet<>();
-		
-		for(Effect<? extends T, ? extends S> effect : effects) {
-			if(effect.getDuration().isExpired()) {
-				expired.add(effect);
-			}
-		}
-		
-		for(Effect<? extends T, ? extends S> modifier : expired) {
-			remove(modifier);
-		}
+		effects.entrySet().removeIf(entry -> entry.getValue().getDuration().isExpired());
 	}
 }

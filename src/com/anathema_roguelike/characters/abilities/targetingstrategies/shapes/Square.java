@@ -19,25 +19,19 @@ package com.anathema_roguelike.characters.abilities.targetingstrategies.shapes;
 import java.util.Collection;
 import java.util.HashSet;
 
-import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.stats.effects.Calculation;
 
 public class Square extends Shape {
 	
 	private Point origin;
-	private int sideLength;
+	private Calculation sideLengthCalculation;
 	
-	public Square(Point origin, int sideLength) {
+	
+	public Square(Point origin, Calculation sideLengthCalculation) {
 		
 		this.origin = origin;
-		this.sideLength = sideLength;
-	}
-	
-	public static Square aroundPoint(Point center, int radius) {
-		int sideLength = (radius * 2) + 1;
-		Point origin = Direction.offset(center, Direction.UP_LEFT, radius);
-		
-		return new Square(origin, sideLength);
+		this.sideLengthCalculation = sideLengthCalculation;
 	}
 
 	@Override
@@ -49,6 +43,8 @@ public class Square extends Shape {
 		int originX = origin.getX();
 		int originY = origin.getY();
 		
+		double sideLength = sideLengthCalculation.get();
+		
 		return x >= originX && x < (originX + sideLength) && y >= originY && y < (originY + sideLength);
 	}
 
@@ -58,6 +54,8 @@ public class Square extends Shape {
 		
 		int x = origin.getX();
 		int y = origin.getY();
+		
+		double sideLength = sideLengthCalculation.get();
 		
 		for(int i = 0; i < sideLength; i++) {
 			for(int j = 0; j < sideLength; j++) {

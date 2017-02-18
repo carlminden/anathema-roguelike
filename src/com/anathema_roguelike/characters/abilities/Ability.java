@@ -36,10 +36,6 @@ public abstract class Ability {
 	private Collection<AbilityRequirement> requirements = new ArrayList<>();
 	private Collection<AbilityCost> costs = new ArrayList<>();
 	
-	public void processResults(AbilityResults results) {
-		results.applyResults();
-	}
-	
 	public Ability(Object source) {
 		initialize();
 		

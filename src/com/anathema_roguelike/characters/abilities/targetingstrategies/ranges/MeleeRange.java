@@ -25,6 +25,7 @@ import com.anathema_roguelike.characters.abilities.targetingstrategies.shapes.Sq
 import com.anathema_roguelike.characters.abilities.targetingstrategies.targetmodes.PointsMode;
 import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.stats.effects.FixedCalculation;
 
 public class MeleeRange extends Range {
 
@@ -47,8 +48,7 @@ public class MeleeRange extends Range {
 
 	@Override
 	protected Shape getShape(Character character) {
-		//TODO should probably have a melee range stat that is used but that will require other infrastructure
-		return Square.aroundPoint(character.getPosition(), 1);
+		return new Square(character.getPosition(), new FixedCalculation(1));
 	}
 
 }

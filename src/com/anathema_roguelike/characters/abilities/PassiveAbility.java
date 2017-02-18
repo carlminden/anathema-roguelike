@@ -20,26 +20,20 @@ import com.anathema_roguelike.characters.Character;
 
 public abstract class PassiveAbility extends Ability implements HasBuff {
 
-	Buff passiveEffect;
-	
 	public PassiveAbility(Object source) {
 		super(source);
 	}
 	
 	@Override
 	public void grant(Character character) {
-		if(getEffect().isPresent()) {
-			character.applyEffect(getEffect().get());
-		}
+		
+		character.applyEffect(getEffect());
 		super.grant(character);
 	}
 
 	@Override
 	public void remove(Character character) {
-		if(passiveEffect != null) {
-			character.removeEffect(passiveEffect);
-		}
-		passiveEffect = null;
+		character.removeEffectBySource(this);
 		
 		super.remove(character);
 	}

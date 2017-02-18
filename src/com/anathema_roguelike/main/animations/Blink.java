@@ -16,13 +16,15 @@
  *******************************************************************************/
 package com.anathema_roguelike.main.animations;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
+import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public class Blink extends Animation {
 
-	public Blink(VisualRepresentation representation, DungeonLayer layer) {
+	public Blink(Optional<VisualRepresentation> representation, DungeonLayer layer) {
 		super(representation, layer);
 	}
 

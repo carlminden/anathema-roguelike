@@ -16,9 +16,10 @@
  *******************************************************************************/
 package com.anathema_roguelike.items.weapons;
 
-public class Unarmed extends MeleeWeapon {
+public class Unarmed extends NaturalWeapon {
 
 	public Unarmed() {
-		super(null);
+		super();
 	}
+
 }
