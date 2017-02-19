@@ -10,12 +10,12 @@ import com.anathema_roguelike.stats.effects.Modifier;
 public class Buff extends Effect<Character, CharacterStat> {
 	
 	@SafeVarargs
-	public Buff(HasEffect<? extends Effect<Character, CharacterStat>> source, Modifier<? extends CharacterStat>... modifiers) {
+	public Buff(HasEffect<? extends Effect<Character, CharacterStat>> source, Modifier<Character, ? extends CharacterStat>... modifiers) {
 		super(source, modifiers);
 	}
 
 	@SafeVarargs
-	public Buff(HasEffect<? extends Effect<Character, CharacterStat>> source, Duration duration, Modifier<? extends CharacterStat>... modifiers) {
+	public Buff(HasEffect<? extends Effect<Character, CharacterStat>> source, Duration duration, Modifier<Character, ? extends CharacterStat>... modifiers) {
 		super(source, duration, modifiers);
 	}
 }

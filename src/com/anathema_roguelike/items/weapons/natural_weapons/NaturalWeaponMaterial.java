@@ -23,8 +23,8 @@ public class NaturalWeaponMaterial extends WeaponMaterial {
 		
 		
 		return Optional.of(new Effect<EquippableItem, ItemStat>(this,
-				new Modifier<BaseWeaponDamage>(BaseWeaponDamage.class, MultiplicativeCalculation.build(() -> getDamage())),
-				new Modifier<Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
+				new Modifier<EquippableItem, BaseWeaponDamage>(BaseWeaponDamage.class, MultiplicativeCalculation.build(() -> getDamage())),
+				new Modifier<EquippableItem, Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
 		) {});
 	}
 }

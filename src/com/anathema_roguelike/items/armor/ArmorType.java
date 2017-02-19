@@ -27,10 +27,10 @@ public class ArmorType extends ArmorProperty implements ItemType<Armor> {
 	public Optional<Effect<EquippableItem, ItemStat>> getEffect() {
 		
 		return Optional.of(new Effect<EquippableItem, ItemStat>(this,
-				new Modifier<ConcealmentDefense>(ConcealmentDefense.class, AdditiveCalculation.build(() -> getConcealment())),
-				new Modifier<AttenuationDefense>(AttenuationDefense.class, AdditiveCalculation.build(() -> getAttenuation())),
-				new Modifier<VeilDefense>(VeilDefense.class, AdditiveCalculation.build(() -> getVeil())),
-				new Modifier<Weight>(Weight.class, AdditiveCalculation.build(() -> getWeight()))
+				new Modifier<EquippableItem, ConcealmentDefense>(ConcealmentDefense.class, AdditiveCalculation.build(() -> getConcealment())),
+				new Modifier<EquippableItem, AttenuationDefense>(AttenuationDefense.class, AdditiveCalculation.build(() -> getAttenuation())),
+				new Modifier<EquippableItem, VeilDefense>(VeilDefense.class, AdditiveCalculation.build(() -> getVeil())),
+				new Modifier<EquippableItem, Weight>(Weight.class, AdditiveCalculation.build(() -> getWeight()))
 		) {});
 	}
 }

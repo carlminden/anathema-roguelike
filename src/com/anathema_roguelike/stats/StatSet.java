@@ -27,7 +27,7 @@ public class StatSet<T, S extends Stat<? extends T>> {
 	private AutoClassToInstanceMap<S> stats;
 	
 	public StatSet(T object, Class<T> objectType, Class<S> statType) {
-		effects = new EffectCollection<T, S>();
+		effects = new EffectCollection<T, S>(object);
 		stats = new AutoClassToInstanceMap<>(statType, new Class[] { objectType }, object);
 	}
 	
@@ -35,7 +35,7 @@ public class StatSet<T, S extends Stat<? extends T>> {
 		return effects;
 	}
 	
-	public void applyEffect(Effect<? extends T, ? extends S> effect) {
+	public void applyEffect(Effect<T, ? extends S> effect) {
 		effects.apply(effect);
 	}
 	

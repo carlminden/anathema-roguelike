@@ -51,10 +51,10 @@ public abstract class WeaponType extends WeaponProperty implements ItemType<Weap
 	public Optional<Effect<EquippableItem, ItemStat>> getEffect() {
 		
 		return Optional.of(new Effect<EquippableItem, ItemStat>(this,
-				new Modifier<WeaponSpeed>(WeaponSpeed.class, AdditiveCalculation.build(() -> getAttackSpeed())),
-				new Modifier<BaseWeaponDamage>(BaseWeaponDamage.class, AdditiveCalculation.build(() -> getDamage())),
-				new Modifier<WeaponRange>(WeaponRange.class, AdditiveCalculation.build(() -> getRange())),
-				new Modifier<Weight>(Weight.class, AdditiveCalculation.build(() -> getWeight()))
+				new Modifier<EquippableItem, WeaponSpeed>(WeaponSpeed.class, AdditiveCalculation.build(() -> getAttackSpeed())),
+				new Modifier<EquippableItem, BaseWeaponDamage>(BaseWeaponDamage.class, AdditiveCalculation.build(() -> getDamage())),
+				new Modifier<EquippableItem, WeaponRange>(WeaponRange.class, AdditiveCalculation.build(() -> getRange())),
+				new Modifier<EquippableItem, Weight>(Weight.class, AdditiveCalculation.build(() -> getWeight()))
 		) {});
 	}
 }

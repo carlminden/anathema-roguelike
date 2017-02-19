@@ -28,8 +28,12 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 	
 	private HashBiMap<HasEffect<? extends Effect<? extends T, ? extends S>>, Effect<? extends T, ? extends S>> effects = HashBiMap.create();
 	
-	public EffectCollection() {
+	private T affected;
+	
+	public EffectCollection(T affected) {
 		Game.getInstance().getEventBus().register(this);
+		
+		this.affected = affected;
 	}
 	
 	public double getStatBonus(Class<? extends S> stat) {
@@ -37,11 +41,7 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		double bonus = 0;
 		
 		for(Effect<? extends T, ? extends S> effect : effects.values()) {
-			for(Modifier<? extends S> modifier : effect.getModifiers()) {
-				if(modifier.getAffectedStat() == stat) {
-					 bonus = bonus + modifier.getStaticAmount();
-				}
-			}
+			bonus += effect.getAdditiveBonus(stat); 
 		}
 		
 		return bonus;
@@ -52,11 +52,7 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		double bonus = 1;
 		
 		for(Effect<? extends T, ? extends S> effect : effects.values()) {
-			for(Modifier<? extends S> modifier : effect.getModifiers()) {
-				if(modifier.getAffectedStat() == stat) {
-					bonus *= modifier.getMultiplier();
-				}
-			}
+			bonus *= effect.getMultiplier(stat); 
 		}
 		
 		return bonus;
@@ -72,10 +68,12 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		return effects.values();
 	}
 	
-	public void apply(Effect<? extends T, ? extends S> effect) {
-		effect.getDuration().activate();
+	public void apply(Effect<T, ? extends S> effect) {
 		
 		effects.forcePut(effect.getSource(), effect);
+		effect.getDuration().activate();
+		
+		effect.applyTo(affected);
 	}
 	
 	public void removeBySource(HasEffect<? extends Effect<? extends T, ? extends S>> source) {

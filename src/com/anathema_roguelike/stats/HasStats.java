@@ -16,7 +16,7 @@ public interface HasStats<T, S extends Stat<? extends T>> {
 		return getStatSet().getValue(stat);
 	}
 	
-	public default void applyEffect(Optional<? extends Effect<? extends T, ? extends S>> effect) {
+	public default void applyEffect(Optional<? extends Effect<T, ? extends S>> effect) {
 		effect.ifPresent(e -> getStatSet().applyEffect(e));
 	}
 	

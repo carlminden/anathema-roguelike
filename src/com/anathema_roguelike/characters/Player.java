@@ -57,7 +57,7 @@ public class Player extends Character {
 		
 		Optional<Buff> testModifiers = Optional.of(new Buff(
 				null,
-				new Modifier<Perception>(Perception.class, AdditiveCalculation.build(() -> 20.0))));
+				new Modifier<Character, Perception>(Perception.class, AdditiveCalculation.build(() -> 20.0))));
 		
 		
 		applyEffect(testModifiers);

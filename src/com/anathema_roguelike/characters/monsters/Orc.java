@@ -18,6 +18,7 @@ package com.anathema_roguelike.characters.monsters;
 
 import java.util.Optional;
 
+import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.Monster;
 import com.anathema_roguelike.characters.abilities.Buff;
 import com.anathema_roguelike.characters.ai.Faction;
@@ -48,7 +49,9 @@ public class Orc extends Monster {
 		
 		setClass(new Rogue());
 		
-		applyEffect(Optional.of(new Buff(null, new Modifier<LightEmission>(LightEmission.class, AdditiveCalculation.build(() -> 10.0)))));
+		applyEffect(Optional.of(new Buff(null, new Modifier<Character, LightEmission>(
+				LightEmission.class, AdditiveCalculation.build(() -> 10.0)))));
+		
 	}
 	
 	@Override

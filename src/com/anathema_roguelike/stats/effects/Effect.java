@@ -9,28 +9,55 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 	
 	private HasEffect<? extends Effect<T, ? extends S>> source;
 	private Duration duration;
-	private ArrayList<Modifier<? extends S>> modifiers;
+	private ArrayList<Modifier<T, ? extends S>> modifiers;
+	private T target;
 	
 	@SafeVarargs
-	public Effect(HasEffect<? extends Effect<T, S>> source, Modifier<? extends S>... modifiers) {
+	public Effect(HasEffect<? extends Effect<T, S>> source, Modifier<T, ? extends S>... modifiers) {
 		this.source = source;
 		this.duration = new FixedDuration(Duration.PERMANENT);
-		this.modifiers = new ArrayList<Modifier<? extends S>>(Arrays.asList(modifiers));
+		this.modifiers = new ArrayList<Modifier<T, ? extends S>>(Arrays.asList(modifiers));
 	}
 	
 	@SafeVarargs
-	public Effect(HasEffect<? extends Effect<T, S>> source, Duration duration, Modifier<? extends S>... modifiers) {
+	public Effect(HasEffect<? extends Effect<T, S>> source, Duration duration, Modifier<T, ? extends S>... modifiers) {
 		this.source = source;
 		this.duration = Duration.copy(duration);
-		this.modifiers = new ArrayList<Modifier<? extends S>>(Arrays.asList(modifiers));
+		this.modifiers = new ArrayList<Modifier<T, ? extends S>>(Arrays.asList(modifiers));
 	}
 	
 	public HasEffect<? extends Effect<T, ? extends S>> getSource() {
 		return source;
 	}
 	
-	public ArrayList<Modifier<? extends S>> getModifiers() {
+	public ArrayList<Modifier<T, ? extends S>> getModifiers() {
 		return modifiers;
+	}
+	
+	public double getAdditiveBonus(Class<? extends Stat<?>> stat) {
+		
+		double ret = 0;
+		
+		for(Modifier<T, ? extends S> modifier : getModifiers()) {
+			if(modifier.getAffectedStat().equals(stat)) {
+				ret = ret + modifier.getAdditiveAmount(getTarget());
+			}
+		}
+		
+		return ret;
+	}
+	
+	public double getMultiplier(Class<? extends Stat<?>> stat) {
+		
+		double ret = 1.0;
+		
+		for(Modifier<T, ? extends S> modifier : getModifiers()) {
+			if(modifier.getAffectedStat().equals(stat)) {
+				ret *= modifier.getMultiplier(getTarget());
+			}
+		}
+		
+		return ret;
 	}
 	
 	public Duration getDuration() {
@@ -44,11 +71,29 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 		builder.append("Effect: ");
 		builder.append("Duration: " + duration.getRemaining());
 		modifiers.forEach(m -> builder.append(" Modifier: " + m.getAffectedStat().getSimpleName()
-				+ " +" + m.getStaticAmount() + " *" + m.getMultiplier()));
+				+ " +" + m.getAdditiveAmount(getTarget()) + " *" + m.getMultiplier(getTarget())));
 		
 		return builder.toString();
 	}
 	
-	public void onApplicationCallback(T callback) {};
-	public void onExpirationCallback(T callback) {};
+	final public void applyTo(T target) {
+		
+		this.target = target;
+		
+		onApplicationCallback(target);
+	}
+	
+	final public void remove() {
+		
+		onExpirationCallback(getTarget());
+		
+		this.target = null;
+	}
+	
+	public void onApplicationCallback(T target) {};
+	public void onExpirationCallback(T target) {};
+	
+	public T getTarget() {
+		return target;
+	};
 }

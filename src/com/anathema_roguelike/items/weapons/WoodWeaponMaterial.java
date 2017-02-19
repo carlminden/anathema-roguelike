@@ -33,9 +33,9 @@ public class WoodWeaponMaterial extends WeaponMaterial {
 	public Optional<Effect<EquippableItem, ItemStat>> getEffect() {
 		
 		return Optional.of(new Effect<EquippableItem, ItemStat>(this,
-				new Modifier<BaseWeaponDamage>(BaseWeaponDamage.class, MultiplicativeCalculation.build(() -> getDamage())),
-				new Modifier<WeaponRange>(WeaponRange.class, MultiplicativeCalculation.build(() -> getRange())),
-				new Modifier<Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
+				new Modifier<EquippableItem, BaseWeaponDamage>(BaseWeaponDamage.class, MultiplicativeCalculation.build(() -> getDamage())),
+				new Modifier<EquippableItem, WeaponRange>(WeaponRange.class, MultiplicativeCalculation.build(() -> getRange())),
+				new Modifier<EquippableItem, Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
 		) {});
 	}
 }

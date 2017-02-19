@@ -24,7 +24,7 @@ import com.univocity.parsers.csv.CsvParserSettings;
 
 public abstract class ItemPropertyCache {
 	
-	public static HashBasedTable<Class<? extends ItemProperty>, String, ItemProperty> propertyCache = HashBasedTable.create();
+	public static HashBasedTable<Class<? extends ItemProperty<?>>, String, ItemProperty<?>> propertyCache = HashBasedTable.create();
 	
 	static {
 		loadPropertyFile(ArmorMaterial.class, "res/items/materials/armor_materials.csv");
@@ -44,7 +44,7 @@ public abstract class ItemPropertyCache {
 	
 	
 	@SuppressWarnings("unchecked")
-	public static <T extends ItemProperty> Collection<? extends T> getProperties(Class<T> type) {
+	public static <T extends ItemProperty<?>> Collection<? extends T> getProperties(Class<T> type) {
 		
 		Collection<T> properties = new HashSet<>();
 		
@@ -59,12 +59,12 @@ public abstract class ItemPropertyCache {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <T extends ItemProperty> T getProperty(Class<T> type, String name) {
+	public static <T extends ItemProperty<?>> T getProperty(Class<T> type, String name) {
 		return (T) ItemPropertyCache.propertyCache.row(type).get(name);
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static <T extends ItemProperty> void loadPropertyFile(Class<T> type, String filename) {
+	private static <T extends ItemProperty<?>> void loadPropertyFile(Class<T> type, String filename) {
 		BeanListProcessor<T> rowProcessor = new BeanListProcessor<T>(type);
 
 	    CsvParserSettings parserSettings = new CsvParserSettings();

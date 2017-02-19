@@ -8,7 +8,7 @@ import com.anathema_roguelike.stats.locationstats.LocationStat;
 public class EnvironmentEffect extends Effect <Location, LocationStat>{
 	
 	@SafeVarargs
-	public EnvironmentEffect(HasEffect<Effect <Location, LocationStat>> source, Modifier<? extends LocationStat>... modifiers) {
+	public EnvironmentEffect(HasEffect<Effect <Location, LocationStat>> source, Modifier<Location, ? extends LocationStat>... modifiers) {
 		super(source, modifiers);
 	}
 }

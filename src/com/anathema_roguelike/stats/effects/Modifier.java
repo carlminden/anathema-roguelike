@@ -18,7 +18,7 @@ package com.anathema_roguelike.stats.effects;
 
 import com.anathema_roguelike.stats.Stat;
 
-public class Modifier<S extends Stat<?>> {
+public class Modifier<T, S extends Stat<?>> {
 	
 	private Class<? extends S> affectedStat;
 	private AdditiveCalculation additiveModifier;
@@ -40,7 +40,7 @@ public class Modifier<S extends Stat<?>> {
 		return affectedStat;
 	}
 
-	public double getStaticAmount() {
+	public double getAdditiveAmount(T arg) {
 		if(additiveModifier != null) {
 			return additiveModifier.get();
 		} else {
@@ -52,7 +52,7 @@ public class Modifier<S extends Stat<?>> {
 		return multiplicativeModifier;
 	}
 	
-	public double getMultiplier() {
+	public double getMultiplier(T arg) {
 		if(multiplicativeModifier != null) {
 			return multiplicativeModifier.get();
 		} else {
