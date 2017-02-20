@@ -13,6 +13,6 @@ public class WeaponWeight extends SecondaryStat {
 	
 	@Override
 	public double getAmount() {
-		return getObject().getInventory().getEquipedItem(PrimaryWeapon.class).getStatAmount(Weight.class);
+		return getObject().getInventory().getSlot(PrimaryWeapon.class).getEquippedItem().getStatAmount(Weight.class);
 	}
 }

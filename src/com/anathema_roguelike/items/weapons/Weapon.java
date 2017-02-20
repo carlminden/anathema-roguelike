@@ -60,7 +60,7 @@ public class Weapon extends EquippableItem {
 
 	public int getWeaponDamage(Character character) {
 		
-		Weapon primaryWeapon = character.getInventory().getEquipedItem(PrimaryWeapon.class);
+		Weapon primaryWeapon = character.getInventory().getSlot(PrimaryWeapon.class).getEquippedItem();
 		
 		double baseWeaponDamage = primaryWeapon.getStatAmount(BaseWeaponDamage.class);
 		double weight = primaryWeapon.getStatAmount(Weight.class);

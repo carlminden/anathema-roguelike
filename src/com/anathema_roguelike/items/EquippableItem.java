@@ -22,12 +22,16 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stats.HasStats;
 import com.anathema_roguelike.stats.StatSet;
+import com.anathema_roguelike.stats.characterstats.CharacterStat;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.HasEffect;
 import com.anathema_roguelike.stats.itemstats.ItemStat;
 import com.anathema_roguelike.stats.itemstats.ItemStatSet;
 
-public abstract class EquippableItem extends Item implements HasStats<EquippableItem, ItemStat> {
+public abstract class EquippableItem extends Item implements HasStats<EquippableItem, ItemStat>, HasEffect<Effect<Character, CharacterStat>> {
 	
 	private ItemStatSet stats;
+	private Optional<Character> wearer;
 	
 	public EquippableItem(Optional<VisualRepresentation> representation) {
 		super(representation);
@@ -35,12 +39,18 @@ public abstract class EquippableItem extends Item implements HasStats<Equippable
 		this.stats = new ItemStatSet(this);
 	}
 	
-	public void equip(Character character) {
-		
+	public void equippedTo(Character character) {
+		this.wearer = Optional.of(character);
+		character.applyEffect(getEffect());
 	}
 	
-	public void remove(Character character) {
-		
+	public void removedFrom(Character character) {
+		this.wearer = null;
+		character.removeEffectBySource(this);
+	}
+	
+	public Optional<Character> getWearer() {
+		return wearer;
 	}
 	
 	@Override

@@ -17,7 +17,7 @@ public class PrimaryWeaponRange extends Range {
 
 	@Override
 	protected Shape getShape(Character character) {
-		double range = character.getInventory().getEquipedItem(PrimaryWeapon.class).getStatAmount(WeaponRange.class);
+		double range = character.getInventory().getSlot(PrimaryWeapon.class).getEquippedItem().getStatAmount(WeaponRange.class);
 		
 		if(range == 1) {
 			return new Square(character.getPosition(), new FixedCalculation(1));

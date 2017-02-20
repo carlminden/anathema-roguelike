@@ -23,8 +23,11 @@ import com.anathema_roguelike.characters.abilities.Buff;
 import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.classes.Rogue;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
-import com.anathema_roguelike.items.StandardItemFactory;
-import com.anathema_roguelike.items.weapons.types.MeleeWeaponType;
+import com.anathema_roguelike.characters.inventory.SecondaryWeapon;
+import com.anathema_roguelike.items.Amulet;
+import com.anathema_roguelike.items.EquippableItemFactory;
+import com.anathema_roguelike.items.armor.ArmorType;
+import com.anathema_roguelike.items.weapons.types.WeaponType;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
@@ -53,7 +56,32 @@ public class Player extends Character {
 		
 		setClass(new Rogue());
 		
-		getInventory().equip(new StandardItemFactory().generate(MeleeWeaponType.class), PrimaryWeapon.class);
+		EquippableItemFactory f = new EquippableItemFactory();
+		
+		getInventory().equip(f.generate(ArmorType.class));
+		getInventory().equip(f.generate(ArmorType.class));
+		getInventory().equip(f.generate(ArmorType.class));
+		getInventory().equip(f.generate(ArmorType.class));
+		getInventory().equip(f.generate(ArmorType.class));
+		getInventory().equip(f.generate(ArmorType.class));
+		getInventory().equip(f.generate(ArmorType.class));
+		
+		getInventory().getSlot(PrimaryWeapon.class).equip(f.generate(WeaponType.class));
+		getInventory().getSlot(SecondaryWeapon.class).equip(f.generate(WeaponType.class));
+		getInventory().getSlot(PrimaryWeapon.class).equip(f.generate(WeaponType.class));
+		getInventory().getSlot(SecondaryWeapon.class).equip(f.generate(WeaponType.class));
+		
+		getInventory().equip(f.generate(Amulet.class));
+		getInventory().equip(f.generate(Amulet.class));
+		getInventory().equip(f.generate(Amulet.class));
+		getInventory().equip(f.generate(Amulet.class));
+		getInventory().equip(f.generate(Amulet.class));
+		getInventory().equip(f.generate(Amulet.class));
+		getInventory().equip(f.generate(Amulet.class));
+		
+		System.out.println(getInventory().getEquippedItems());
+		System.out.println("Backpack: ");
+		System.out.println(getInventory().getUnequippedItems());
 		
 		Optional<Buff> testModifiers = Optional.of(new Buff(
 				null,

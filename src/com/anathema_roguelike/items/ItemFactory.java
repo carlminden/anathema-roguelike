@@ -7,7 +7,7 @@ import com.anathema_roguelike.main.utilities.HasWeightedProbability;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.google.common.collect.HashMultimap;
 
-public abstract class ItemFactory<T extends Item> implements HasWeightedProbability {
+public abstract class ItemFactory<T extends EquippableItem> implements HasWeightedProbability {
 	
 	private HashMultimap<Class<? extends ItemType<? extends T>>, ItemFactory<? extends T>> factories = HashMultimap.create();
 	

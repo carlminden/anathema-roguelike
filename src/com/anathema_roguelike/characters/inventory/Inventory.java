@@ -16,15 +16,17 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.inventory;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.items.EquippableItem;
 import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.items.armor.Armor;
-import com.anathema_roguelike.items.weapons.natural_weapons.Unarmed;
+import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
+import com.anathema_roguelike.main.utilities.AutoClassToInstanceMap;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.itemstats.ArmorStat;
 import com.google.common.eventbus.EventBus;
@@ -33,34 +35,39 @@ public class Inventory {
 	
 	private Character character;
 	
-	private HashMap<Class<? extends Slot<?>>, EquippableItem> defaultItems = new HashMap<>();
-	private HashMap<Class<? extends Slot<?>>, EquippableItem> equipedItems;
+	@SuppressWarnings("rawtypes")
+	private AutoClassToInstanceMap<Slot> slots;
 	
 	private HashSet<Item> backpack = new HashSet<>();
 	
+	@SuppressWarnings("rawtypes")
 	public Inventory(Character character, EventBus eventBus) {
 		this.character = character;
 		
-		defaultItems.put(PrimaryWeapon.class, new Unarmed());
-		defaultItems.put(SecondaryWeapon.class, null);
-		defaultItems.put(Feet.class, null);
-		defaultItems.put(Legs.class, null);
-		defaultItems.put(Chest.class, null);
-		defaultItems.put(Head.class, null);
+		slots = new AutoClassToInstanceMap<Slot>(Slot.class, new Class[] { Character.class }, character);
 		
-		equipedItems = new HashMap<Class<? extends Slot<?>>, EquippableItem>(defaultItems);
+	}
+	
+	public <T extends Slot<? extends EquippableItem>> T  getSlot(Class<T> slot) {
+		return slots.get(slot);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T extends EquippableItem> T getEquipedItem(Class<? extends Slot<T>> slot) {
+	public <T extends EquippableItem> Collection<T> getItems(final Class<T> type) {
+		Collection<Item> items = new HashSet<>(backpack);
 		
-		EquippableItem item = equipedItems.get(slot);
+		slots.getValues().forEach(s -> items.addAll(s.getEquippedItems()));
 		
-		return (T) item;
+		return Utils.filterBySubclass(items, type);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public <T extends EquippableItem> Collection<T> getEquippedItems(final Class<T> type) {
-		return Utils.filterBySubclass(equipedItems.values(), type);
+		Collection<Item> items = new HashSet<>();
+		
+		slots.getValues().forEach(s -> items.addAll(s.getEquippedItems()));
+		
+		return Utils.filterBySubclass(items, type);
 	}
 	
 	public Collection<EquippableItem> getEquippedItems() {
@@ -72,50 +79,45 @@ public class Inventory {
 	}
 	
 	public Collection<Item> getUnequippedItems() {
-		return getUnequippedItems(Item.class);
+		return backpack;
 	}
 
-	public <T extends EquippableItem> void equip(T item, Class<? extends Slot<T>> slot) {
-		
-		empty(slot);
-		
-		item.equip(character);
-		equipedItems.put(slot, item);
+	public <T extends EquippableItem> void equip(Class<? extends Slot<T>> slot, T item) {
+		getSlot(slot).equip(item);
+		item.equippedTo(character);
 	}
 	
-	public void empty(Class<? extends Slot<?>> slot) {
+	public <T extends EquippableItem> void equip(T item) {
+		Collection<Slot<T>> validSlots = getValidSlots(item);
 		
-		EquippableItem currentlyEquipped = equipedItems.get(slot);
+		Slot<T> slot = new SelectionScreen<Slot<T>>("Equip to which Slot?", validSlots, true).run();
 		
-		if(currentlyEquipped != null) {
-			equipedItems.put(slot, defaultItems.get(slot));
-			currentlyEquipped.remove(character);
-			
-			backpack.add(currentlyEquipped);
+		if(slot != null) {
+			slot.equip(item);
 		}
+		
+		item.equippedTo(character);
+	}
+	
+	public <T extends EquippableItem> void remove(T item) {
+		
+		for(Slot<T> s : getValidSlots(item)) {
+			s.remove(item);
+		}
+		
+		
+//		getValidSlots(item).forEach(s -> {
+//			s.remove(item);
+//		});
+	}
+	
+	public <T extends EquippableItem> Collection<Slot<T>> getValidSlots(T item) {
+		return slots.getValues().stream().filter(s -> s.validItem(item))
+				.collect(Collectors.toCollection(() -> new ArrayList<Slot<T>>()));
 	}
 	
 	public void pickUp(Item item) {
 		backpack.add(item);
-	}
-	
-	public void drop(Item item) {
-		remove(item);
-		
-		//TODO put the item on the ground
-	}
-	
-	public boolean isEquipped(Item item) {
-		return equipedItems.containsValue(item);
-	}
-	
-	public void remove(Item item) {
-		
-		if(item instanceof EquippableItem) {
-			Utils.getKeysByValue(equipedItems, (EquippableItem)item).forEach(s -> empty(s));;
-		} else {
-			backpack.remove(item);
-		}
 	}
 	
 	public Double getDefense(Class<? extends ArmorStat> stat) {

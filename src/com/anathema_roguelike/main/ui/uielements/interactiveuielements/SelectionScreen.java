@@ -70,6 +70,8 @@ public class SelectionScreen<T> extends Screen<T> {
 		
 		if(menu.getItems().isEmpty()) {
 			return null;
+		} else if(menu.getItems().size() == 1) {
+			return menu.getItems().get(0).getItem();
 		}
 		
 		return super.run();

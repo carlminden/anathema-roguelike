@@ -1,5 +1,5 @@
 package com.anathema_roguelike.items;
 
-public interface AnyItem extends ItemType<Item> {
+public interface AnyItem extends ItemType<EquippableItem> {
 
 }

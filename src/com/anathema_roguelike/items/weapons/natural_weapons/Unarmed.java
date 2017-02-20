@@ -21,7 +21,7 @@ import com.anathema_roguelike.items.weapons.types.MeleeWeaponType;
 public class Unarmed extends NaturalWeapon {
 
 	public Unarmed() {
-		super(new MeleeWeaponType("Unarmed", 2.0, 1.0, 10.0), new NaturalWeaponMaterial(""));
+		super(new MeleeWeaponType("", 2.0, 1.0, 10.0), new UnarmedWeaponMaterial());
 	}
 
 }

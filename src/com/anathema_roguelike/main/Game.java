@@ -20,10 +20,6 @@ package com.anathema_roguelike.main;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Random;
 
-import com.anathema_roguelike.items.StandardItemFactory;
-import com.anathema_roguelike.items.weapons.Weapon;
-import com.anathema_roguelike.items.weapons.types.MeleeWeaponType;
-import com.anathema_roguelike.items.weapons.types.RangedWeaponType;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display;
 import com.anathema_roguelike.main.display.DungeonMap;
@@ -134,14 +130,6 @@ public class Game extends ApplicationAdapter {
     }
 	
 	private void start() {
-		
-		StandardItemFactory f = new StandardItemFactory();
-		
-		Weapon a = f.generate(MeleeWeaponType.class);
-		
-		for(int i = 0; i < 20; i++) {
-			System.out.println(f.generate(RangedWeaponType.class));
-		}
 		
 		latch.await();
 		

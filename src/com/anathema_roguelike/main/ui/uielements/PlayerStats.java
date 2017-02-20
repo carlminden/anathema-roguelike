@@ -23,6 +23,7 @@ import com.anathema_roguelike.characters.inventory.Feet;
 import com.anathema_roguelike.characters.inventory.Head;
 import com.anathema_roguelike.characters.inventory.Legs;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
+import com.anathema_roguelike.characters.inventory.SecondaryWeapon;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.utilities.Utils;
@@ -32,7 +33,10 @@ import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
 import com.anathema_roguelike.stats.characterstats.attributes.Perception;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
+import com.anathema_roguelike.stats.characterstats.secondarystats.Attenuation;
+import com.anathema_roguelike.stats.characterstats.secondarystats.Concealment;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
+import com.anathema_roguelike.stats.characterstats.secondarystats.Veil;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
@@ -88,14 +92,17 @@ public class PlayerStats extends UIElement {
 	}
 	
 	public void renderOtherStats() {
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "DMG: DEPRECATED");
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Concealment: " +  + player.getStatAmount(Concealment.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Veil: " +  + player.getStatAmount(Veil.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Attenuation: " +  + player.getStatAmount(Attenuation.class));
 	}
 	
 	public void renderInventory() {
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Weapon: " + player.getInventory().getEquipedItem(PrimaryWeapon.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Head:  " + player.getInventory().getEquipedItem(Head.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Chest:  " + player.getInventory().getEquipedItem(Chest.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Legs:  " + player.getInventory().getEquipedItem(Legs.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Feet:  " + player.getInventory().getEquipedItem(Feet.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Primary Weapon: " + player.getInventory().getSlot(PrimaryWeapon.class).getEquippedItem());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Secondary Weapon: " + player.getInventory().getSlot(SecondaryWeapon.class).getEquippedItem());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Head:  " + player.getInventory().getSlot(Head.class).getEquippedItem());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Chest:  " + player.getInventory().getSlot(Chest.class).getEquippedItem());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Legs:  " + player.getInventory().getSlot(Legs.class).getEquippedItem());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Feet:  " + player.getInventory().getSlot(Feet.class).getEquippedItem());
 	}
 }

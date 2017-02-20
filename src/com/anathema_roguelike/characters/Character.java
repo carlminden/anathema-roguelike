@@ -66,7 +66,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	private int faction;
 	
-	private int level;
+	private int level = 1;
 	private CharacterClass charClass;
 	
 	private boolean actionRemaining = false;
@@ -91,7 +91,6 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	public Character(Optional<VisualRepresentation> representation) {
 		super(representation);
-		level = 0;
 		
 		Game.getInstance().getEventBus().register(this);
 		eventBus.register(this);
@@ -285,7 +284,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	}
 	
 	public int getPrimaryWeaponDamage() {
-		return inventory.getEquipedItem(PrimaryWeapon.class).getWeaponDamage(this);
+		return inventory.getSlot(PrimaryWeapon.class).getEquippedItem().getWeaponDamage(this);
 	}
 	
 	public int getResourceMax(Class<? extends BoundedResource> resource) {

@@ -49,6 +49,7 @@ public class Color {
 	public static final SColor UNAWARE = new SColor(64, 127, 127);
 	public static final SColor ALERTED = new SColor(128, 125, 21);
 	public static final SColor DETECTED = new SColor(85, 0, 0);
+	public static final SColor ENCHANTED_ITEM = SColor.YELLOW;
 	
 	public static final HashBasedTable<SColor, Float, SColor> opacityCache = HashBasedTable.create();
 	

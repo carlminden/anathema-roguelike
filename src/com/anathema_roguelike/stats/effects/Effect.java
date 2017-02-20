@@ -30,8 +30,12 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 		return source;
 	}
 	
-	public ArrayList<Modifier<T, ? extends S>> getModifiers() {
+	private ArrayList<Modifier<T, ? extends S>> getModifiers() {
 		return modifiers;
+	}
+	
+	public void addModifier(Modifier<T, ? extends S> modifier) {
+		modifiers.add(modifier);
 	}
 	
 	public double getAdditiveBonus(Class<? extends Stat<?>> stat) {
