@@ -26,7 +26,7 @@ import com.google.common.eventbus.Subscribe;
 
 public class EffectCollection<T, S extends Stat<? extends T>> {
 	
-	private HashBiMap<HasEffect<? extends Effect<? extends T, ? extends S>>, Effect<? extends T, ? extends S>> effects = HashBiMap.create();
+	private HashBiMap<HasEffect<? extends Effect<? extends T, ?>>, Effect<? extends T, ?>> effects = HashBiMap.create();
 	
 	private T affected;
 	
@@ -40,7 +40,7 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		
 		double bonus = 0;
 		
-		for(Effect<? extends T, ? extends S> effect : effects.values()) {
+		for(Effect<? extends T, ?> effect : effects.values()) {
 			bonus += effect.getAdditiveBonus(stat); 
 		}
 		
@@ -51,7 +51,7 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		
 		double bonus = 1;
 		
-		for(Effect<? extends T, ? extends S> effect : effects.values()) {
+		for(Effect<? extends T, ?> effect : effects.values()) {
 			bonus *= effect.getMultiplier(stat); 
 		}
 		
@@ -64,11 +64,11 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		removeExpired();
 	}
 	
-	public Collection<? extends Effect<? extends T, ? extends S>> getEffects() {
+	public Collection<? extends Effect<? extends T, ?>> getEffects() {
 		return effects.values();
 	}
 	
-	public void apply(Effect<T, ? extends S> effect) {
+	public void apply(Effect<T, ?> effect) {
 		
 		effects.forcePut(effect.getSource(), effect);
 		effect.getDuration().activate();
@@ -76,12 +76,12 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		effect.applyTo(affected);
 	}
 	
-	public void removeBySource(HasEffect<? extends Effect<? extends T, ? extends S>> source) {
+	public void removeBySource(HasEffect<? extends Effect<? extends T, ?>> source) {
 		effects.inverse().remove(source);
 	}
 	
 	public void decrement() {
-		for(Effect<? extends T, ? extends S> effect : effects.values()) {
+		for(Effect<? extends T, ?> effect : effects.values()) {
 			effect.getDuration().decrement();
 		}
 	}

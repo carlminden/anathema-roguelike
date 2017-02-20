@@ -16,52 +16,21 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters.attacks;
 
-import java.util.Collection;
-
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.abilities.Ability;
-import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.Range;
 import com.anathema_roguelike.stats.characterstats.CharacterStat;
-import com.anathema_roguelike.stats.effects.Calculation;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
 
-public abstract class Attack implements HasEffect<Effect<Character, CharacterStat>>{
+public abstract class Attack implements HasEffect<Effect<Character, ? extends CharacterStat>>{
 	
-	private Ability ability;
 	private Character attacker;
 	
-	private Range range;
-	
-	private Calculation damageCalculation;
-	
-	protected Attack() {}
-	
-	public Attack(Ability ability, Character attacker, Range range, Calculation damageCalculation) {
-		this.ability = ability;
+	public Attack(Character attacker) {
 		this.attacker = attacker;
-		this.range = range;
-		this.damageCalculation = damageCalculation;
 		
-	}
-	
-	public Range getRange() {
-		return range;
 	}
 	
 	public Character getAttacker() {
 		return attacker;
-	}
-
-	public Calculation getDamageCalculation() {
-		return damageCalculation;
-	}
-
-	public Collection<Character> getEnemiesInRange() {
-		return range.getEnemies(getAttacker());
-	}
-
-	public Ability getAbility() {
-		return ability;
 	}
 }

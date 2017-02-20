@@ -29,14 +29,14 @@ public abstract class ResourceModification<T extends Resource> extends Effect<Ch
 	private Class<? extends Resource> resource;
 	private Object source;
 	
-	public ResourceModification(HasEffect<? extends Effect<Character, T>> source, Class<? extends Resource> resource, int amount) {
+	public ResourceModification(HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> resource, int amount) {
 		super(source, Duration.instant());
 		
 		this.resource = resource;
 		this.calculation = new FixedCalculation(amount);
 	}
 	
-	public ResourceModification(HasEffect<? extends Effect<Character, T>> source, Class<? extends Resource> resource, Calculation calculation) {
+	public ResourceModification(HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> resource, Calculation calculation) {
 		super(source, Duration.instant());
 		this.resource = resource;
 		this.calculation = calculation;

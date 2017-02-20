@@ -28,6 +28,6 @@ public class BasicAttackAbility extends AttackAbility<BasicAttack> {
 
 	@Override
 	public BasicAttack getAttack() {
-		return new BasicAttack(this, getCharacter());
+		return new BasicAttack(getCharacter());
 	}
 }

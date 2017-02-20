@@ -58,28 +58,33 @@ public class Weapon extends EquippableItem {
 		return material.getName() + " " + type.getName();
 	}
 
-	public int getWeaponDamage(Character character) {
+	public int getWeaponDamage() {
 		
-		Weapon primaryWeapon = character.getInventory().getSlot(PrimaryWeapon.class).getEquippedItem();
-		
-		double baseWeaponDamage = primaryWeapon.getStatAmount(BaseWeaponDamage.class);
-		double weight = primaryWeapon.getStatAmount(Weight.class);
-		
-		int bonusWeaponDamage = (int) character.getStatAmount(BonusWeaponDamage.class);
-		double weaponDamageMultiplier = character.getStatAmount(WeaponDamageMultiplier.class);
-		int accuracy = (int) character.getStatAmount(Accuracy.class);
-		
-		weaponDamageMultiplier += 0.05 * weight;
-		
-		accuracy = Math.min(50, accuracy);
-		
-		double min = -0.25 + (double)accuracy/100;
-		double max = 0.25;
-		
-		Random r = new Random();
-		
-		double accuracyMultiplier =  1 + min + (max - min) * r.nextDouble();
-		
-		return (int) (((baseWeaponDamage * accuracyMultiplier) + bonusWeaponDamage) * (weaponDamageMultiplier));
+		if(getWearer().isPresent()) {
+			Character character = getWearer().get();
+			Weapon primaryWeapon = character.getInventory().getSlot(PrimaryWeapon.class).getEquippedItem();
+			
+			double baseWeaponDamage = primaryWeapon.getStatAmount(BaseWeaponDamage.class);
+			double weight = primaryWeapon.getStatAmount(Weight.class);
+			
+			int bonusWeaponDamage = (int) character.getStatAmount(BonusWeaponDamage.class);
+			double weaponDamageMultiplier = character.getStatAmount(WeaponDamageMultiplier.class);
+			int accuracy = (int) character.getStatAmount(Accuracy.class);
+			
+			weaponDamageMultiplier += 0.05 * weight;
+			
+			accuracy = Math.min(50, accuracy);
+			
+			double min = -0.25 + (double)accuracy/100;
+			double max = 0.25;
+			
+			Random r = new Random();
+			
+			double accuracyMultiplier =  1 + min + (max - min) * r.nextDouble();
+			
+			return (int) (((baseWeaponDamage * accuracyMultiplier) + bonusWeaponDamage) * (weaponDamageMultiplier));
+		} else {
+			throw new RuntimeException("Cannot get Weapon Damage of unequipped Weapon");
+		}
 	}
 }

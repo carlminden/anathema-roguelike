@@ -7,30 +7,30 @@ import com.anathema_roguelike.stats.Stat;
 
 public abstract class Effect<T, S extends Stat<? extends T>> {
 	
-	private HasEffect<? extends Effect<T, ? extends S>> source;
+	private HasEffect<? extends Effect<T, ?>> source;
 	private Duration duration;
-	private ArrayList<Modifier<T, ? extends S>> modifiers;
+	private ArrayList<Modifier<T, ?>> modifiers;
 	private T target;
 	
 	@SafeVarargs
-	public Effect(HasEffect<? extends Effect<T, S>> source, Modifier<T, ? extends S>... modifiers) {
+	public Effect(HasEffect<? extends Effect<T, ?>> source, Modifier<T, ?>... modifiers) {
 		this.source = source;
 		this.duration = new FixedDuration(Duration.PERMANENT);
-		this.modifiers = new ArrayList<Modifier<T, ? extends S>>(Arrays.asList(modifiers));
+		this.modifiers = new ArrayList<Modifier<T, ?>>(Arrays.asList(modifiers));
 	}
 	
 	@SafeVarargs
-	public Effect(HasEffect<? extends Effect<T, S>> source, Duration duration, Modifier<T, ? extends S>... modifiers) {
+	public Effect(HasEffect<? extends Effect<T, ?>> source, Duration duration, Modifier<T, ?>... modifiers) {
 		this.source = source;
 		this.duration = Duration.copy(duration);
-		this.modifiers = new ArrayList<Modifier<T, ? extends S>>(Arrays.asList(modifiers));
+		this.modifiers = new ArrayList<Modifier<T, ?>>(Arrays.asList(modifiers));
 	}
 	
-	public HasEffect<? extends Effect<T, ? extends S>> getSource() {
+	public HasEffect<? extends Effect<T, ?>> getSource() {
 		return source;
 	}
 	
-	private ArrayList<Modifier<T, ? extends S>> getModifiers() {
+	private ArrayList<Modifier<T, ?>> getModifiers() {
 		return modifiers;
 	}
 	
@@ -42,7 +42,7 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 		
 		double ret = 0;
 		
-		for(Modifier<T, ? extends S> modifier : getModifiers()) {
+		for(Modifier<T, ?> modifier : getModifiers()) {
 			if(modifier.getAffectedStat().equals(stat)) {
 				ret = ret + modifier.getAdditiveAmount(getTarget());
 			}
@@ -55,7 +55,7 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 		
 		double ret = 1.0;
 		
-		for(Modifier<T, ? extends S> modifier : getModifiers()) {
+		for(Modifier<T, ?> modifier : getModifiers()) {
 			if(modifier.getAffectedStat().equals(stat)) {
 				ret *= modifier.getMultiplier(getTarget());
 			}

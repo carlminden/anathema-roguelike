@@ -284,7 +284,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	}
 	
 	public int getPrimaryWeaponDamage() {
-		return inventory.getSlot(PrimaryWeapon.class).getEquippedItem().getWeaponDamage(this);
+		return inventory.getSlot(PrimaryWeapon.class).getEquippedItem().getWeaponDamage();
 	}
 	
 	public int getResourceMax(Class<? extends BoundedResource> resource) {

@@ -23,11 +23,11 @@ import com.anathema_roguelike.stats.effects.HasEffect;
 
 public class Damage<T extends Resource> extends ResourceModification<T> {
 
-	public Damage(HasEffect<? extends Effect<Character, T>> source, Class<T> resource, int amount) {
+	public Damage(HasEffect<? extends Effect<Character, ?>> source, Class<T> resource, int amount) {
 		super(source, resource, amount * -1);
 	}
 	
-	public Damage(HasEffect<? extends Effect<Character, T>> source, Class<T> resource, final Calculation calculation) {
+	public Damage(HasEffect<? extends Effect<Character, ?>> source, Class<T> resource, Calculation calculation) {
 		super(source, resource, () -> calculation.get() * -1);
 	}
 }
