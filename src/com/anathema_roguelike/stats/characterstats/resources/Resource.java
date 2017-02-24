@@ -17,8 +17,15 @@
 package com.anathema_roguelike.stats.characterstats.resources;
 
 import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.characters.Player;
 import com.anathema_roguelike.characters.events.ResourceChangedEvent;
+import com.anathema_roguelike.main.Game;
+import com.anathema_roguelike.main.display.Color;
+import com.anathema_roguelike.main.ui.messages.Message;
+import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.characterstats.CharacterStat;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.HasEffect;
 
 public abstract class Resource extends CharacterStat {
 	
@@ -29,15 +36,15 @@ public abstract class Resource extends CharacterStat {
 		
 	}
 	
-	public void modify(Object source, int amount) {
-		set(source, this.amount + amount);
+	public void modify(Character initiator, HasEffect<? extends Effect<Character, ?>> source, int amount) {
+		set(initiator, source, (int) (getAmount() + amount));
 	}
 	@Override
 	public double getAmount() {
 		return amount;
 	}
 	
-	public void set(Object source, int amount) {
+	public void set(Character initiator, HasEffect<? extends Effect<Character, ?>> source, int amount) {
 		
 		int currentAmount = (int) getAmount();
 		
@@ -45,14 +52,59 @@ public abstract class Resource extends CharacterStat {
 		
 		getObject().postEvent(new ResourceChangedEvent(source, getClass(), difference));
 		
-		if(source != null) {
-			printResourceChangedMessage(source, getObject(), (int)difference);
+		if(initiator != null) {
+			if(difference > 0) {
+				printResourceGainedMessage(initiator, source, getObject(), difference);
+			} else if(difference < 0) {
+				printResourceLostMessage(initiator, source, getObject(), Math.abs(difference));
+			}
 		}
 		
 		this.amount = amount;
 	}
 
-	protected void printResourceChangedMessage(Object source, Character target, int amount) {
+	protected void printResourceGainedMessage(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Character target, int amount) {
 		
+		if(getObject() instanceof Player) {
+			Message m = new Message("You gain " + amount + " points of " + Utils.getName(this), Color.GREEN);
+			
+			if(initiator instanceof Player) {
+				m.appendMessage(" from your ", Color.GREEN);
+			} else {
+				m.appendMessage(" from the " + Utils.getName(initiator) + "'s ", Color.GREEN);
+			}
+			
+			m.appendMessage(Utils.getName(source), Color.GREEN);
+			
+			Game.getInstance().getUserInterface().addMessage(m);
+		} else if(initiator instanceof Player) {
+			Message m = new Message("You grant " + amount + " points of " + Utils.getName(this), Color.GREEN);
+			
+			m.appendMessage(" to the " + Utils.getName(target) + " with your " + Utils.getName(source), Color.GREEN);
+			
+			Game.getInstance().getUserInterface().addMessage(m);
+		}
+	}
+	
+	protected void printResourceLostMessage(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Character target, int amount) {
+		if(getObject() instanceof Player) {
+			Message m = new Message("You lose " + amount + " points of " + Utils.getName(this), Color.RED);
+			
+			if(initiator instanceof Player) {
+				m.appendMessage(" from your ", Color.RED);
+			} else {
+				m.appendMessage(" from the " + Utils.getName(initiator) + "'s ", Color.RED);
+			}
+			
+			m.appendMessage(Utils.getName(source), Color.RED);
+			
+			Game.getInstance().getUserInterface().addMessage(m);
+		} else if(initiator instanceof Player) {
+			Message m = new Message("You deal " + amount + " points of " + Utils.getName(this));
+			
+			m.appendMessage(" damage to the " + Utils.getName(target) + " with your " + Utils.getName(source));
+			
+			Game.getInstance().getUserInterface().addMessage(m);
+		}
 	}
 }

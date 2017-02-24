@@ -20,7 +20,7 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.Player;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.BufferMask;
-import com.anathema_roguelike.stats.characterstats.secondarystats.Vision;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Vision;
 
 import squidpony.squidgrid.FOV;
 

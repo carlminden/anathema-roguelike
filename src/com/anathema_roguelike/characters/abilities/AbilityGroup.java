@@ -23,8 +23,8 @@ import com.anathema_roguelike.characters.Character;
 
 public abstract class AbilityGroup extends Ability {
 	
-	public AbilityGroup(Object source) {
-		super(source);
+	public AbilityGroup() {
+		super();
 	}
 
 	private HashSet<Ability> abilities = new HashSet<>();

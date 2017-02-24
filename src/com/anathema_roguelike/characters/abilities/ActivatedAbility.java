@@ -20,8 +20,8 @@ public abstract class ActivatedAbility extends Ability {
 	
 	protected abstract boolean onActivate();
 	
-	public ActivatedAbility(Object source) {
-		super(source);
+	public ActivatedAbility() {
+		super();
 	}
 	
 	public void actviate() {

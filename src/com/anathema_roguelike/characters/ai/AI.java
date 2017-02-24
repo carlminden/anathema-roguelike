@@ -75,7 +75,7 @@ public class AI {
 		SecureRandom rand = new SecureRandom();
 		double action = rand.nextDouble();
 		
-		if(action < .6) {
+		if(action < 2) {
 			//continue walking
 			Point continueWalking = Direction.offset(npc.getPosition(), Direction.angleToDirection(npc.getFacing()));
 			

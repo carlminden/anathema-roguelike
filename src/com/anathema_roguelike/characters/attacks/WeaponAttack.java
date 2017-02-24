@@ -19,7 +19,7 @@ public abstract class WeaponAttack extends Attack {
 		
 		final Character character = getAttacker();
 		
-		return Optional.of(new Damage<CurrentHealth>(this, CurrentHealth.class, () -> {
+		return Optional.of(new Damage<CurrentHealth>(character, this, CurrentHealth.class, () -> {
 			return (double)character.getPrimaryWeaponDamage();
 		}));
 	}

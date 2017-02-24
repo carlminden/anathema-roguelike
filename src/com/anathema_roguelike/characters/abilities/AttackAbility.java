@@ -26,8 +26,8 @@ public abstract class AttackAbility<T extends Attack> extends OffensiveTargetedA
 	
 	protected abstract T getAttack();
 	
-	public AttackAbility(Object source, Class<T> type, TargetingStrategy strategy) {
-		super(source, strategy);
+	public AttackAbility(Class<T> type, TargetingStrategy strategy) {
+		super(strategy);
 		
 		this.type = type;
 	}

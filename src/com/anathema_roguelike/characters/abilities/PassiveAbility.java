@@ -20,8 +20,8 @@ import com.anathema_roguelike.characters.Character;
 
 public abstract class PassiveAbility extends Ability implements HasBuff {
 
-	public PassiveAbility(Object source) {
-		super(source);
+	public PassiveAbility() {
+		super();
 	}
 	
 	@Override

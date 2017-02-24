@@ -17,10 +17,8 @@
 package com.anathema_roguelike.stats.characterstats.resources;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.Player;
-import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.Color;
-import com.anathema_roguelike.main.ui.messages.Message;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.HasEffect;
 
 public class TemporaryHealth extends Resource {
 
@@ -29,21 +27,14 @@ public class TemporaryHealth extends Resource {
 	}
 	
 	@Override
-	public void modify(Object source, int modification) {
+	public void modify(Character initiator, HasEffect<? extends Effect<Character, ?>> source, int modification) {
 		if(modification > 0) {
 			if(getAmount() < modification) {
-				set(source, modification);
+				set(initiator, source, modification);
 			}
 		} else {
-			set(source, Math.max(0, (int) getAmount() + modification));
+			set(initiator, source, Math.max(0, (int) getAmount() + modification));
 		}
 		
-	}
-	
-	@Override
-	protected void printResourceChangedMessage(Object source, Character target, int amount) {
-		if(target instanceof Player && amount > 0) {
-			Game.getInstance().getUserInterface().addMessage(new Message("You have gained " + amount + " points of temporary health", Color.GREEN));
-		}
 	}
 }

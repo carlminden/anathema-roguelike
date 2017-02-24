@@ -33,6 +33,7 @@ import com.anathema_roguelike.characters.inventory.Inventory;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Environment;
+import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.environment.features.Doorway;
 import com.anathema_roguelike.environment.terrain.grounds.Stairs;
@@ -52,9 +53,10 @@ import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
 import com.anathema_roguelike.stats.characterstats.resources.BoundedResource;
 import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
 import com.anathema_roguelike.stats.characterstats.resources.Resource;
-import com.anathema_roguelike.stats.characterstats.secondarystats.Concealment;
-import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
 import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visibility;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.HasEffect;
 import com.anathema_roguelike.stimuli.PercievedStimulus;
 import com.anathema_roguelike.stimuli.Stimulus;
 import com.google.common.base.Predicate;
@@ -95,7 +97,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		Game.getInstance().getEventBus().register(this);
 		eventBus.register(this);
 		
-		new BasicAttackAbility(this).grant(this);
+		new BasicAttackAbility().grant(this);
 	}
 	
 	public void takeTurn() {
@@ -124,7 +126,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		
 		level++;
 		
-		getStat(CurrentHealth.class).set(this, (int) getStatAmount(Health.class));
+		getStat(CurrentHealth.class).reset();
 		
 	}
 	
@@ -295,13 +297,13 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		stats.getStat(ability).setScore(amount);
 	}
 	
-	public void setResource(Object source, Class<? extends Resource> stat, int amount) {
-		stats.getStat(stat).set(source, amount);
+	public void setResource(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> stat, int amount) {
+		stats.getStat(stat).set(initiator, source, amount);
 	}
 	
-	public void modifyResource(Object source, Class<? extends Resource> stat, int amount) {
+	public void modifyResource(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> stat, int amount) {
 		Resource resource = stats.getStat(stat);
-		resource.modify(source, amount);
+		resource.modify(initiator, source, amount);
 	}
 	
 	public boolean takeStairs(int direction) {
@@ -346,47 +348,28 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		return Game.getInstance().getState().getEnvironment(getDepth());
 	}
 	
-	public boolean canSee(Character character) {	
-		return visibilityOf(character) >= 1;
-	}
-	
-	public double visibilityOf(Character character) {
-		
+	@Override
+	public boolean isVisibleTo(Character character) {
 		if(character == null) {
-			return 0;
+			return false;
 		}
 		
+		if(character.getCurrentVisibility().get(getX(), getY())) {
+			if(character.getPosition().isAdjacentTo(getPosition())) {
+				return true;
+			}
+			
+			return getStat(Visibility.class).getVisibilityLevel().ordinal() >= 3;
+		} else {
+			return false;
+		}
+	}
+	
+	public BufferMask getCurrentVisibility() {
 		if(currentVisibility == null) {
 			computeVisibility();
 		}
 		
-		if(currentVisibility.get(character.getX(), character.getY())) {
-			double concealment = character.getStatAmount(Concealment.class) / 100.0;
-			
-			double light = getEnvironment().getLightLevels().get(character.getPosition());
-			
-			double distance = getPosition().distance(character.getPosition());
-			
-			if(distance < 2) {
-				return 1;
-			}
-			
-			if(this instanceof Player) {
-//				System.out.println("CONCEALMENT: " + concealment + ", LIGHT: " + light + "DISTANCE: " + distance + " = " + (concealment * light * (8 / distance)));
-			}
-			
-			return Math.min(1, light * (8 / distance));
-		} else {
-			return 0;
-		}
-	}
-	
-	@Override
-	public boolean isVisibleTo(Character character) {
-		return character.canSee(this);
-	}
-	
-	public BufferMask getCurrentVisibility() {
 		return currentVisibility;
 	}
 	
@@ -419,5 +402,9 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	public LinkedList<PercievedStimulus> getPercievedStimuli() {
 		return percievedStimuli;
+	}
+
+	public Location getLocation() {
+		return getEnvironment().getLocation(getPosition());
 	}
 }

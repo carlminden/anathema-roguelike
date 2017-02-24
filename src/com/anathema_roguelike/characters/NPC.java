@@ -151,7 +151,7 @@ public abstract class NPC extends Character {
 		visibleCharacters.clear();
 		
 		for(Character character : level.getEntities(Character.class)) {
-			if(canSee(character)) {
+			if(character.isVisibleTo(this)) {
 				addVisibleCharacters(character);
 			}
 		}

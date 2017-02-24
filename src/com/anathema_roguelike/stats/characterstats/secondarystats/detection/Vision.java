@@ -14,10 +14,11 @@
  *     You should have received a copy of the GNU General Public License
  *     along with AnathemaRL.  If not, see <http://www.gnu.org/licenses/>.
  *******************************************************************************/
-package com.anathema_roguelike.stats.characterstats.secondarystats;
+package com.anathema_roguelike.stats.characterstats.secondarystats.detection;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.stats.characterstats.attributes.Perception;
+import com.anathema_roguelike.stats.characterstats.secondarystats.SecondaryStat;
 
 public class Vision extends SecondaryStat {
 

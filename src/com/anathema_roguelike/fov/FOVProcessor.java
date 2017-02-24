@@ -46,7 +46,7 @@ public abstract class FOVProcessor {
         
         for(int x = (int) Math.max(startx - radius,  0); x < Math.min(startx + radius, width); x++) {
         	for(int y = (int) Math.max(starty - radius,  0); y < Math.min(starty + radius, height); y++) {
-            	visit(entity, x, y, light[x][y]);
+            	visit(entity, x, y, light[x][y] / 2);
             }
         }
     }

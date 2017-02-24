@@ -23,8 +23,8 @@ public abstract class SelfTargetedAbility extends ActivatedAbility implements Ha
 	
 	private EventBus eventBus = new EventBus();
 	
-	public SelfTargetedAbility(Object source) {
-		super(source);
+	public SelfTargetedAbility() {
+		super();
 	}
 
 	public Duration getDuration() {

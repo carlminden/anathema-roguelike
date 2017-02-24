@@ -129,11 +129,13 @@ public class Message {
 					int length = Math.min(str.length(), width + 1);
 					
 					if(position + length >= width) {
-						length = str.lastIndexOf(" ", width);
+						length = str.lastIndexOf(" ", width - position);
 						
 						if(length == -1) {
-							message.appendMessage(str.substring(0, width - position), part.getColor());
-							str = str.substring(width - position);
+							if(str.length() > width) {
+								message.appendMessage(str.substring(0, width - position), part.getColor());
+								str = str.substring(width - position);
+							}
 						} else {
 							message.appendMessage(str.substring(0, length), part.getColor());
 							str = str.substring(length + 1);

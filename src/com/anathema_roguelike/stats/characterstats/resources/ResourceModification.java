@@ -27,25 +27,31 @@ public abstract class ResourceModification<T extends Resource> extends Effect<Ch
 	
 	private Calculation calculation;
 	private Class<? extends Resource> resource;
-	private Object source;
+	private Character initiator;
 	
-	public ResourceModification(HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> resource, int amount) {
+	public ResourceModification(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> resource, int amount) {
 		super(source, Duration.instant());
 		
 		this.resource = resource;
 		this.calculation = new FixedCalculation(amount);
+		this.initiator = initiator;
 	}
 	
-	public ResourceModification(HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> resource, Calculation calculation) {
+	public ResourceModification(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> resource, Calculation calculation) {
 		super(source, Duration.instant());
 		this.resource = resource;
 		this.calculation = calculation;
+		this.initiator = initiator;
+	}
+	
+	public Character getInitiator() {
+		return initiator;
 	}
 	
 	@Override
 	public void onApplicationCallback(Character character) {
 		super.onApplicationCallback(character);
 		
-		character.modifyResource(source, resource, calculation.get().intValue());
+		character.modifyResource(getInitiator(), getSource(), resource, calculation.get().intValue());
 	}
 }

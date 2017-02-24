@@ -77,6 +77,13 @@ public class Point implements Comparable<Point> {
 		}
 	}
 	
+	public boolean isAdjacentTo(Point other) {
+		int dx = this.x - other.getX();
+		int dy = this.y - other.getY();
+		
+		return Math.abs(dx) <= 1 && Math.abs(dy) <= 1;
+	}
+	
 	@Override
 	public String toString() {
 		return "x = " + x + ", y = " + y;

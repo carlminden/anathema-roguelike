@@ -50,7 +50,7 @@ public class Orc extends Monster {
 		setClass(new Rogue());
 		
 		applyEffect(Optional.of(new Buff(null, new Modifier<Character, LightEmission>(
-				LightEmission.class, AdditiveCalculation.build(() -> 10.0)))));
+				LightEmission.class, AdditiveCalculation.build(() -> 15.0)))));
 		
 	}
 	

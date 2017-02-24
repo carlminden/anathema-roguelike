@@ -1,4 +1,4 @@
-package com.anathema_roguelike.stats.characterstats.secondarystats;
+package com.anathema_roguelike.stats.characterstats.secondarystats.detection;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.stats.itemstats.VeilDefense;

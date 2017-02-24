@@ -117,6 +117,10 @@ public class DungeonMap implements Renderable, Rectangular {
 				Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_BACKGROUND, getX() + i, getY() + j, ' ', Color.BLACK);
 				Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_FOREGROUND, getX() + i, getY() + j, ' ', Color.BLACK);
 				Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + i, getY() + j, ' ', Color.BLACK);
+				
+				if(visibility.get(i, j)) {
+					//Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + i, getY() + j, 'X', Color.ERROR);
+				}
 			}
 		}
 		
@@ -165,8 +169,8 @@ public class DungeonMap implements Renderable, Rectangular {
 		
 		
 		for(NPC character : state.getCurrentLevel().getEntities(NPC.class)) {
-			if(player.canSee(character)) {
-				if(character.canSee(player)) {
+			if(character.isVisibleTo(player)) {
+				if(player.isVisibleTo(character)) {
 					enemyDetectedVision.or(character.getCurrentVisibility());
 				} else {
 					if(character.getMostInterestingStimulus() == null) {
@@ -188,8 +192,8 @@ public class DungeonMap implements Renderable, Rectangular {
 		renderFoVOverlay(visibility, enemyDetectedVision, Color.DETECTED);
 		
 		for(NPC character : state.getCurrentLevel().getEntities(NPC.class)) {
-			if(player.canSee(character)) {
-				if(!character.canSee(player) && character.getMostInterestingStimulus() != null) {
+			if(character.isVisibleTo(player)) {
+				if(!player.isVisibleTo(character) && character.getMostInterestingStimulus() != null) {
 					
 					//TODO needs work
 					

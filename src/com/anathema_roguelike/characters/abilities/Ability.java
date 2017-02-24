@@ -30,28 +30,23 @@ import com.anathema_roguelike.stats.effects.Duration;
 import com.google.common.eventbus.Subscribe;
 
 public abstract class Ability {
-	private Object source;
 	private Duration cooldown;
 	private Character character;
 	private Collection<AbilityRequirement> requirements = new ArrayList<>();
 	private Collection<AbilityCost> costs = new ArrayList<>();
 	
-	public Ability(Object source) {
+	public Ability() {
 		initialize();
-		
-		this.source = source;
 	}
 	
 	public Ability(Object source, AbilityRequirement condition) {
 		initialize();
 		
 		requirements.add(condition);
-		this.source = source;
 	}
 	
 	public Ability(Object source, Duration cooldown) {
 		this.cooldown = Duration.copy(cooldown);
-		this.source = source;
 	}
 	
 	private void initialize() {
@@ -96,10 +91,6 @@ public abstract class Ability {
 	
 	public void addRequirement(AbilityRequirement requirement) {
 		requirements.add(requirement);
-	}
-	
-	public Object getSource() {
-		return source;
 	}
 	
 	public void setCooldown(Duration cooldown) {

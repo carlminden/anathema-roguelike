@@ -22,8 +22,8 @@ import com.anathema_roguelike.characters.abilities.targetingstrategies.ranges.Me
 
 public class BasicAttackAbility extends AttackAbility<BasicAttack> {
 
-	public BasicAttackAbility(Object source) {
-		super(source, BasicAttack.class, new SingleTargeted(new MeleeRange()));
+	public BasicAttackAbility() {
+		super(BasicAttack.class, new SingleTargeted(new MeleeRange()));
 	}
 
 	@Override

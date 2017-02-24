@@ -52,7 +52,7 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		double bonus = 1;
 		
 		for(Effect<? extends T, ?> effect : effects.values()) {
-			bonus *= effect.getMultiplier(stat); 
+			bonus *= effect.getMultiplier(stat);
 		}
 		
 		return bonus;
@@ -77,7 +77,12 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 	}
 	
 	public void removeBySource(HasEffect<? extends Effect<? extends T, ?>> source) {
-		effects.inverse().remove(source);
+		
+		Effect<? extends T,?> effect = effects.get(source); 
+		if(effect != null) {
+			effects.remove(effect);
+			effect.remove();
+		}
 	}
 	
 	public void decrement() {
@@ -87,6 +92,13 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 	}
 	
 	public void removeExpired() {
-		effects.entrySet().removeIf(entry -> entry.getValue().getDuration().isExpired());
+		effects.entrySet().removeIf(entry -> {
+			if(entry.getValue().getDuration().isExpired()) {
+				entry.getValue().remove();
+				return true;
+			} else {
+				return false;
+			}
+		});
 	}
 }

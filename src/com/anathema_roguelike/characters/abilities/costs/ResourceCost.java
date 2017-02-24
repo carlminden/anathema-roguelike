@@ -40,7 +40,7 @@ public abstract class ResourceCost<T extends Resource> extends AbilityCost imple
 
 	@Override
 	public void pay() {
-		getAbility().getCharacter().applyEffect(Optional.of(new Damage<T>(this, resource, calculation)));
+		getAbility().getCharacter().applyEffect(Optional.of(new Damage<T>(getAbility().getCharacter(), this, resource, calculation)));
 	}
 	
 }

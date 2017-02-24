@@ -2,6 +2,8 @@ package com.anathema_roguelike.stats.characterstats.resources;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.HasEffect;
 
 public abstract class BoundedResource extends Resource {
 	
@@ -20,7 +22,7 @@ public abstract class BoundedResource extends Resource {
 			initialized = true;
 			
 			if(initiallyFull) {
-				set(null, getMaximum());
+				set(null, null, getMaximum());
 			}
 		}
 		
@@ -28,8 +30,12 @@ public abstract class BoundedResource extends Resource {
 	}
 	
 	@Override
-	public void set(Object source, int amount) {
-		super.set(source, Utils.clamp(amount, 0, getMaximum()));
+	public void set(Character initiator, HasEffect<? extends Effect<Character, ?>> source, int amount) {
+		super.set(initiator, source, Utils.clamp(amount, 0, getMaximum()));
+	}
+	
+	public void reset() {
+		set(null, null, getMaximum());
 	}
 	
 	public abstract int getMaximum();

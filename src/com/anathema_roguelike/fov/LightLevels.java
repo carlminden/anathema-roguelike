@@ -114,7 +114,7 @@ public class LightLevels extends FOVProcessor {
 		
 		for(int d : Direction.DIRECTIONS_4) {
 			if(direction == 0 || (direction & d) != 0) {
-				ret = Math.max(ret, computedLightLevels.get(d)[x][y]);
+				ret = Math.min(1, Math.max(ret, computedLightLevels.get(d)[x][y]));
 			}
 		}
 		

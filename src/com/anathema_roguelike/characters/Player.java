@@ -34,6 +34,7 @@ import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.InputHandler;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stats.characterstats.attributes.Perception;
+import com.anathema_roguelike.stats.characterstats.secondarystats.Light;
 import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 import com.anathema_roguelike.stats.effects.Modifier;
 
@@ -125,15 +126,7 @@ public class Player extends Character {
 	protected void renderThis() {
 		Game.getInstance().getMap().renderEntity(DungeonLayer.PLAYER, this);
 		
-		double greatestVisibility = 0;
-		
-		for(NPC character : getEnvironment().getEntities(NPC.class)) {
-			if(canSee(character)) {
-				greatestVisibility = Math.max(greatestVisibility, character.visibilityOf(this));
-			}
-		}
-		
-		SColor color = Color.factory.blend(Color.NO_LIGHT_PLAYER, Color.WHITE, greatestVisibility + .2);
+		SColor color = Color.factory.blend(Color.NO_LIGHT_PLAYER, Color.WHITE, getStatAmount(Light.class) + 0.2);
 		
 		Game.getInstance().getMap().renderChar(DungeonLayer.PLAYER, getX(), getY(), getRepresentation().getChar(), color);
 	}

@@ -26,6 +26,7 @@ public class Color {
 	public static final SColorFactory factory = new SColorFactory();
 
 	public static final SColor RED = SColor.RED;
+	public static final SColor YELLOW = SColor.YELLOW;
 	public static final SColor DARK_GRAY = factory.dim(factory.dimmer(SColor.GRAY));
 	public static final SColor GREEN = SColor.KELLY_GREEN;
 	public static final SColor BROWN = SColor.AMBER_DYE;

@@ -23,8 +23,8 @@ import com.google.common.base.Predicate;
 
 public abstract class OffensiveTargetedAbility extends TargetedAbility {
 
-	public OffensiveTargetedAbility(Object source, TargetingStrategy strategy) {
-		super(source, strategy);
+	public OffensiveTargetedAbility(TargetingStrategy strategy) {
+		super(strategy);
 	}
 	
 	@Override

@@ -79,7 +79,7 @@ public abstract class Range {
 
 			@Override
 			public boolean apply(Character target) {
-				return character.canSee(target);
+				return target.isVisibleTo(character);
 			}
 		};
 		
@@ -91,7 +91,7 @@ public abstract class Range {
 
 			@Override
 			public boolean apply(Character target) {
-				return character.canSee(target);
+				return target.isVisibleTo(character);
 			}
 			
 		}));

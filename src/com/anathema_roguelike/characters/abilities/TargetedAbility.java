@@ -33,8 +33,8 @@ public abstract class TargetedAbility extends ActivatedAbility {
 	
 	public abstract Predicate<Character> getTargetValidator();
 	
-	public TargetedAbility(Object source, TargetingStrategy strategy) {
-		super(source);
+	public TargetedAbility(TargetingStrategy strategy) {
+		super();
 		this.strategy = strategy;
 		
 		this.strategy.addTargetValidator(getTargetValidator());

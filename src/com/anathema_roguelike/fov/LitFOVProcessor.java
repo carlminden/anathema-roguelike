@@ -22,7 +22,7 @@ import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.BufferMask;
-import com.anathema_roguelike.stats.characterstats.secondarystats.Vision;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Vision;
 
 import squidpony.squidgrid.FOV;
 

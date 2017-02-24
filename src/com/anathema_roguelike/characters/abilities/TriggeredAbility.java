@@ -22,8 +22,8 @@ public abstract class TriggeredAbility<T extends Trigger> extends Ability {
 	
 	protected abstract boolean onTrigger(T trigger);
 	
-	public TriggeredAbility(Object source) {
-		super(source);
+	public TriggeredAbility() {
+		super();
 	}
 	
 	@Subscribe

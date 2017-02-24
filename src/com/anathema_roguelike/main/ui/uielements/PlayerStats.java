@@ -33,10 +33,12 @@ import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
 import com.anathema_roguelike.stats.characterstats.attributes.Perception;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
-import com.anathema_roguelike.stats.characterstats.secondarystats.Attenuation;
-import com.anathema_roguelike.stats.characterstats.secondarystats.Concealment;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
-import com.anathema_roguelike.stats.characterstats.secondarystats.Veil;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Attenuation;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Concealment;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Veil;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visibility;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.VisibilityLevel;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
@@ -92,17 +94,23 @@ public class PlayerStats extends UIElement {
 	}
 	
 	public void renderOtherStats() {
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Concealment: " +  + player.getStatAmount(Concealment.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Veil: " +  + player.getStatAmount(Veil.class));
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Attenuation: " +  + player.getStatAmount(Attenuation.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Concealment: " + player.getStatAmount(Concealment.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Veil: " + player.getStatAmount(Veil.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Attenuation: " + player.getStatAmount(Attenuation.class));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Visibility: " + (int)player.getStatAmount(Visibility.class));
+		
+		VisibilityLevel visibility = player.getStat(Visibility.class).getVisibilityLevel();
+		
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Visibility Level: " + visibility.getName(), visibility.getColor());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Light Level: " + player.getEnvironment().getLightLevels().get(player.getPosition()));
 	}
 	
 	public void renderInventory() {
 		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Primary Weapon: " + player.getInventory().getSlot(PrimaryWeapon.class).getEquippedItem());
 		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Secondary Weapon: " + player.getInventory().getSlot(SecondaryWeapon.class).getEquippedItem());
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Head:  " + player.getInventory().getSlot(Head.class).getEquippedItem());
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Chest:  " + player.getInventory().getSlot(Chest.class).getEquippedItem());
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Legs:  " + player.getInventory().getSlot(Legs.class).getEquippedItem());
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Feet:  " + player.getInventory().getSlot(Feet.class).getEquippedItem());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Head: " + player.getInventory().getSlot(Head.class).getEquippedItem());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Chest: " + player.getInventory().getSlot(Chest.class).getEquippedItem());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Legs: " + player.getInventory().getSlot(Legs.class).getEquippedItem());
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Feet: " + player.getInventory().getSlot(Feet.class).getEquippedItem());
 	}
 }

@@ -23,8 +23,8 @@ import com.google.common.base.Predicate;
 
 public abstract class AllyTargetedAbility extends TargetedAbility {
 
-	public AllyTargetedAbility(Object source, TargetingStrategy strategy) {
-		super(source, strategy);
+	public AllyTargetedAbility(TargetingStrategy strategy) {
+		super(strategy);
 	}
 
 	@Override
