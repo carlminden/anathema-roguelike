@@ -132,7 +132,9 @@ public abstract class NPC extends Character {
 	}
 	
 	public Stream<Character> getVisibleEnemies() {
-		return visibleCharacters.stream().filter(c -> !Faction.friendly(this, c));
+		return visibleCharacters.stream().filter(c -> {
+			return !Faction.friendly(this, c);	
+		});
 	}
 	
 	public void addVisibleCharacters(Character character) {

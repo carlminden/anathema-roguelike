@@ -55,10 +55,13 @@ import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
 import com.anathema_roguelike.stats.characterstats.resources.Resource;
 import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visibility;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.VisibilityLevel;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
 import com.anathema_roguelike.stimuli.PercievedStimulus;
+import com.anathema_roguelike.stimuli.Sight;
 import com.anathema_roguelike.stimuli.Stimulus;
+import com.anathema_roguelike.stimuli.StimulusEvent;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.eventbus.EventBus;
@@ -112,6 +115,10 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	public void registerHandler(Object obj) {
 		eventBus.register(obj);
+	}
+	
+	public void generateStimulus(Stimulus stimulus) {
+		Game.getInstance().getEventBus().post(new StimulusEvent(stimulus));
 	}
 	
 	public void unregisterHandler(Object obj) {
@@ -265,6 +272,8 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 					//need to decide how/if to not pay cost when the character cant actually move
 					getEnvironment().getEventBus().post(new MoveEvent(this, p));
 					
+					generateStimulus(new Sight(p, 100, this));
+					
 					getEnvironment().moveEntityTo(this, p);
 				}
 				
@@ -348,21 +357,25 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		return Game.getInstance().getState().getEnvironment(getDepth());
 	}
 	
-	@Override
-	public boolean isVisibleTo(Character character) {
+	public VisibilityLevel getVisibilityOf(Character character) {
 		if(character == null) {
-			return false;
+			return VisibilityLevel.IMPERCEPTIBLE;
 		}
 		
-		if(character.getCurrentVisibility().get(getX(), getY())) {
-			if(character.getPosition().isAdjacentTo(getPosition())) {
-				return true;
+		if(getCurrentVisibility().get(character.getX(), character.getY())) {
+			if(getPosition().isAdjacentTo(character.getPosition())) {
+				return VisibilityLevel.EXPOSED;
 			}
 			
-			return getStat(Visibility.class).getVisibilityLevel().ordinal() >= 3;
+			return character.getStat(Visibility.class).getVisibilityLevel();
 		} else {
-			return false;
+			return VisibilityLevel.IMPERCEPTIBLE;
 		}
+	}
+	
+	@Override
+	public boolean isVisibleTo(Character character) {
+		return character.getVisibilityOf(this).ordinal() >= 3;
 	}
 	
 	public BufferMask getCurrentVisibility() {
@@ -392,12 +405,20 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	}
 	
 	@Subscribe
-	public void percieveStimulus(Stimulus stimulus) {
-		percievedStimuli.add(stimulus.computePercievedStimulus(this));
+	public void percieveStimulus(StimulusEvent e) {
+		Stimulus stimulus = e.getStimulus();
+		
+		if(stimulus.getSource().isPresent() && Faction.friendly(this, stimulus.getSource().get())) {
+			return;
+		}
+		
+		Optional<PercievedStimulus> percieved = e.getPercievedStimulus(this);
+		
+		percieved.ifPresent(p -> percievedStimuli.add(p));
 	}
 	
 	protected void pruneStimuli() {
-		Iterables.removeIf(percievedStimuli, (PercievedStimulus s) -> s.getMagnitude() <= 0);
+		percievedStimuli.removeIf(s -> s.getMagnitude() <= 0 || s.getPosition().equals(getPosition()));
 	}
 	
 	public LinkedList<PercievedStimulus> getPercievedStimuli() {
