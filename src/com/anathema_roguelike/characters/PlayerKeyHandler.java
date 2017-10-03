@@ -16,8 +16,8 @@
  *******************************************************************************/
 package com.anathema_roguelike.characters;
 
-import com.anathema_roguelike.characters.abilities.ActivatedAbility;
 import com.anathema_roguelike.characters.actions.MoveAction;
+import com.anathema_roguelike.characters.perks.ActivatedPerk;
 import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.ui.UIConfig;
@@ -84,7 +84,11 @@ public class PlayerKeyHandler implements KeyHandler {
 	        	player.setActionRemaining(false);
 	        	return;
 	        case 'a':
-	        	ActivatedAbility ability = new SelectionScreen<ActivatedAbility>(0, 0, UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3, "Activate an Ability", player.getAbilities(ActivatedAbility.class), true, 0f, .5f).run();
+	        	ActivatedPerk ability = new SelectionScreen<ActivatedPerk>(
+        			0, 0, UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3,
+        			"Activate an Ability", true, 0f, .5f, player.getPerks(ActivatedPerk.class)
+	        	).run();
+	        	
 	        	if(ability != null) {
 	        		ability.actviate();
 	        		player.setActionRemaining(false);

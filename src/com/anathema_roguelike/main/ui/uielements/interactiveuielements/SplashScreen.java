@@ -17,44 +17,27 @@
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.uielements.Screen;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Menu;
-import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.MenuItem;
-import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.OnSelectListener;
 
 public class SplashScreen extends Screen<String> {
 	
 	public SplashScreen() {
 		super(null, false);
-		final Menu<String> menu = new Menu<String>(1, 11, getWidth() - 1, 30, true, 2, false, 1f);
 		
-		menu.addMenuItem(new MenuItem<String>("New Game", new OnSelectListener<String>() {
-			
-			@Override
-			public void onSelect(String obj) {
-				menu.finish();
-				
-			}
-		}));
-
-		menu.addMenuItem(new MenuItem<String>("Other Option", new OnSelectListener<String>() {
-			
-			@Override
-			public void onSelect(String obj) {
-				
-			}
-		}));
+		final Menu<String> menu = new Menu<String>(1, 11, getWidth() - 1, 30, true, 2, false, 1f, Arrays.asList("New Game", "Exit"));
 		
-		menu.addMenuItem(new MenuItem<String>("Exit", new OnSelectListener<String>() {
-			
-			@Override
-			public void onSelect(String obj) {
-				Game.getInstance().quit();
-			}
-		}));
+		menu.setOnSelectListener("New Game", (String obj) -> {
+			menu.finish();
+		});
+		
+		menu.setOnSelectListener("Exit", (String obj) -> {
+			Game.getInstance().quit();
+		});
 		
         setFocusedUIElement(menu);
 	}
@@ -66,7 +49,7 @@ public class SplashScreen extends Screen<String> {
 		
         renderStringCentered(DisplayLayer.UI_FOREGROUND, 0, "Anathema");
         renderStringCentered(DisplayLayer.UI_FOREGROUND, 1, "A stealth roguelike");
-        renderStringCentered(DisplayLayer.UI_FOREGROUND, 3, "Copyright (C) 2016 Carl Minden");
+        renderStringCentered(DisplayLayer.UI_FOREGROUND, 3, "Copyright (C) 2017 Carl Minden");
         renderStringCentered(DisplayLayer.UI_FOREGROUND, 6, "This program comes with ABSOLUTELY NO WARRANTY, This is free software, and you are welcome to redistribute it under certain conditions.");
         renderStringCentered(DisplayLayer.UI_FOREGROUND, 8, "------------------------------");
 	}

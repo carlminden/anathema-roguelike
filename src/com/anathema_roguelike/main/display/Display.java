@@ -17,6 +17,7 @@
 package com.anathema_roguelike.main.display;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.anathema_roguelike.main.ui.UIConfig;
@@ -30,7 +31,8 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.google.common.collect.ArrayListMultimap;
 
 import squidpony.squidgrid.gui.gdx.SColor;
-import squidpony.squidgrid.gui.gdx.SquidLayers;
+import squidpony.squidgrid.gui.gdx.SparseLayers;
+import squidpony.squidgrid.gui.gdx.SparseTextMap;
 import squidpony.squidgrid.gui.gdx.TextCellFactory;
 
 
@@ -41,8 +43,17 @@ public class Display extends RenderSurface {
 	private SpriteBatch batch;
 	private Pixmap pixmap;
 	private Texture tex;
-	private Stage stage;
-	private SquidLayers display;
+	private Stage gameStage;
+	private Stage uiStage;
+	
+	private SparseLayers gameDisplay;
+	private SparseLayers uiDisplay;
+	
+	private TextCellFactory gameTextCellFactory = new TextCellFactory();
+	private TextCellFactory uiTextCellFactory = new TextCellFactory();
+	
+	private HashMap<DisplayLayer, SparseTextMap> layers = new HashMap<>();
+	
 	private ReentrantLock lock = new ReentrantLock();
 	
 	private ArrayListMultimap<DisplayLayer, Outline> outlines = ArrayListMultimap.create();
@@ -59,44 +70,38 @@ public class Display extends RenderSurface {
     	pixmap.fill();
     	tex = new Texture(pixmap);
     	
-		stage = new Stage(new StretchViewport(getWidth() * cellWidth, (getHeight()) * cellHeight), batch);
+    	gameStage = new Stage(new StretchViewport(getWidth() * cellWidth, (getHeight()) * cellHeight), batch);
+    	uiStage = new Stage(new StretchViewport(getWidth() * cellWidth, (getHeight()) * cellHeight), batch);
 		
-//		TextCellFactory tcf = new TextCellFactory();
-//		tcf.font(DefaultResources.getSmoothFont());
+		gameTextCellFactory.fontDistanceField("Inconsolata-LGC-Custom-distance.fnt", "Inconsolata-LGC-Custom-distance.png");
 		
-//		TextCellFactory tcf = DefaultResources.getStretchableFont().width(cellWidth).height(cellHeight).initBySize();
+		gameDisplay = new SparseLayers(UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, cellWidth, cellHeight, gameTextCellFactory);
+		gameDisplay.font.tweakWidth(cellWidth * 1.1f).tweakHeight(cellHeight * 1.1f).initBySize();
+		gameDisplay.setPosition(0, 0);
 		
+		uiTextCellFactory.fontDistanceField("Inconsolata-LGC-Custom-distance.fnt", "Inconsolata-LGC-Custom-distance.png");
 		
-		
-		//TextCellFactory tcf = DefaultResources.getStretchableFont();
-		
-		//tcf.height(cellHeight).initBySize();
-		
-		TextCellFactory tcf = new TextCellFactory();
-		tcf.fontDistanceField("Inconsolata-LGC-Custom-distance.fnt", "Inconsolata-LGC-Custom-distance.png");
-		
-		display = new SquidLayers(UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, cellWidth, cellHeight, tcf);
-		
-		display.setTextSize(cellWidth, cellHeight + 1);
-		display.setAnimationDuration(0.03f);
-		display.setPosition(0, 0);
+		uiDisplay = new SparseLayers(UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, cellWidth, cellHeight, uiTextCellFactory);
+		uiDisplay.font.tweakWidth(cellWidth).tweakHeight(cellHeight * 1f).initBySize();
+		uiDisplay.setPosition(0, 0);
 		
 		
-		for(int i = 0; i < DisplayLayer.values().length - 3; i++) {
-			display.addExtraLayer();
-		}
+		layers.put(DisplayLayer.DUNGEON_LIGHT, gameDisplay.addLayer());
+		layers.put(DisplayLayer.DUNGEON_BACKGROUND, gameDisplay.addLayer());
+		layers.put(DisplayLayer.DUNGEON_FOREGROUND, gameDisplay.addLayer());
+		layers.put(DisplayLayer.DUNGEON_OVERLAY, gameDisplay.addLayer());
+		layers.put(DisplayLayer.UI_BACKGROUND, uiDisplay.addLayer());
+		layers.put(DisplayLayer.UI_FOREGROUND, uiDisplay.addLayer());
 		
-		Gdx.input.setInputProcessor(new InputMultiplexer(stage, input.getSquidInput()));
 		
-		stage.addActor(display);
-	}
-	
-	public Stage getStage() {
-		return stage;
+		Gdx.input.setInputProcessor(new InputMultiplexer(gameStage, input.getSquidInput()));
+		
+		gameStage.addActor(gameDisplay);
+		uiStage.addActor(uiDisplay);
 	}
 	
 	public void put(DisplayLayer layer, int x, int y, char string, SColor color) {
-		display.getLayer(layer.ordinal()).put(x, y, string, color);
+		layers.get(layer).place(x, y, string, color);
 	}
 	
 	public void quit() {
@@ -104,30 +109,23 @@ public class Display extends RenderSurface {
 	}
 
 	public void draw() {
+		gameStage.getViewport().apply(false);
+		gameStage.draw();
+		
 		batch.begin();
 		
 		for(DisplayLayer layer : DisplayLayer.values()) {
-			display.getLayer(layer.ordinal()).draw(batch, 1f);
-			
 			for(Outline o : new ArrayList<>(outlines.get(layer))) {
 				o.render();
 			}
 		}
 		outlines.clear();
 		batch.end();
-	}
-	
-	public void draw(DisplayLayer layer) {
-		batch.begin();
 		
-		display.getLayer(layer.ordinal()).draw(batch, 1f);
+		uiStage.getViewport().apply(false);
+		uiStage.draw();
 		
-		for(Outline o : new ArrayList<>(outlines.get(layer))) {
-			o.render();
-		}
-		
-		outlines.clear();
-		batch.end();
+		Gdx.graphics.setTitle("FPS: " + Gdx.graphics.getFramesPerSecond());
 	}
 	
 	public void renderOutline(DisplayLayer layer, Outline outline) {

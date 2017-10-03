@@ -33,11 +33,7 @@ public class CurrentHealth extends BoundedResource {
 			
 			Character character = getObject();
 			
-			double temphp = character.getStatAmount(TemporaryHealth.class);
-			
-			getObject().modifyResource(initiator, source, TemporaryHealth.class, amount);
-			
-			int remainder = (int) Math.min(0, amount + temphp);
+			int remainder = (int) Math.min(0, amount);
 			
 			super.modify(initiator, source, remainder);
 			
@@ -56,6 +52,6 @@ public class CurrentHealth extends BoundedResource {
 	
 	@Override
 	public double getAmount() {
-		return super.getAmount() + getObject().getStatAmount(TemporaryHealth.class);
+		return super.getAmount();
 	}
 }

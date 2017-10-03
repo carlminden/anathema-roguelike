@@ -17,7 +17,7 @@
 package com.anathema_roguelike.main.ui.charactercreation;
 
 import com.anathema_roguelike.characters.Player;
-import com.anathema_roguelike.main.ui.charactercreation.abilityscoreselectors.AbilityArray;
+import com.anathema_roguelike.main.ui.charactercreation.attributeselectors.PointBuy;
 
 public class CharacterCreationUI {
 	
@@ -26,7 +26,7 @@ public class CharacterCreationUI {
 		Player player = new Player();
 		
 		ClassSelection.selectClass(player);
-		new AbilityArray().selectScores(player);
+		new PointBuy().selectScores(player);
 		
 		player.levelUp();
 		

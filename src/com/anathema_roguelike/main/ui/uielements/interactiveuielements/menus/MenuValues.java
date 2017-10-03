@@ -53,7 +53,7 @@ public class MenuValues<T> extends TextBox {
 		ArrayList<Message> values = new ArrayList<>();
 		
 		for(int i = 0; i < length; i++) {
-			values.add(calculator.apply((T) menu.getItems().get(i + start).getItem()));
+			values.add(calculator.apply((T) menu.getItem(i + start)));
 		}
 		
 		setMessages(values);

@@ -27,6 +27,6 @@ public abstract class SecondaryStat extends CharacterStat {
 	
 	@Override
 	public double getAmount() {
-		return 0.0;
+		return 0;
 	}
 }

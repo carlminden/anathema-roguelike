@@ -30,7 +30,7 @@ public class MenuDescription<T> extends TextBox {
 		this.menu = menu;
 		
 		Message initialDescription;
-		T initialItem = menu.getSelectedItem();
+		T initialItem = menu.getFocusedItem();
 		
 		if(initialItem != null) {
 			if(initialItem instanceof Class) {
@@ -42,21 +42,21 @@ public class MenuDescription<T> extends TextBox {
 			setMessage(initialDescription);
 		}
 		
-		menu.addOnSelectionChangedListener(new OnSelectionChangedListener() {
+		menu.addOnSelectionChangedListener(new OnFocusChangedListener() {
 
 			@Override
 			public void onChanged() {
-				T selectedItem = menu.getSelectedItem();
+				T focusedItem = menu.getFocusedItem();
 				
-				if(selectedItem == null) {
+				if(focusedItem == null) {
 					return;
 				}
 				
 				Class<?> cls;
-				if(selectedItem instanceof Class<?>) {
-					cls = (Class<?>) selectedItem;
+				if(focusedItem instanceof Class<?>) {
+					cls = (Class<?>) focusedItem;
 				} else {
-					cls = selectedItem.getClass();
+					cls = focusedItem.getClass();
 				}
 				
 				setMessage(new Message(Utils.getDescription(cls)));

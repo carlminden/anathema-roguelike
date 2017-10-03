@@ -19,8 +19,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Optional;
 
-import com.anathema_roguelike.characters.abilities.Ability;
-import com.anathema_roguelike.characters.abilities.AbilitySet;
 import com.anathema_roguelike.characters.actions.Action;
 import com.anathema_roguelike.characters.ai.AIPathFinder;
 import com.anathema_roguelike.characters.ai.Faction;
@@ -31,6 +29,10 @@ import com.anathema_roguelike.characters.events.ResourceChangedEvent;
 import com.anathema_roguelike.characters.events.TurnEvent;
 import com.anathema_roguelike.characters.inventory.Inventory;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
+import com.anathema_roguelike.characters.perks.Perk;
+import com.anathema_roguelike.characters.perks.PerkSet;
+import com.anathema_roguelike.characters.perks.abilities.Ability;
+import com.anathema_roguelike.characters.perks.specializations.AbilitySpecializationSet;
 import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
@@ -63,7 +65,6 @@ import com.anathema_roguelike.stimuli.Sight;
 import com.anathema_roguelike.stimuli.Stimulus;
 import com.anathema_roguelike.stimuli.StimulusEvent;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 
@@ -71,13 +72,14 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	private int faction;
 	
-	private int level = 1;
+	private int level = 0;
 	private CharacterClass charClass;
 	
 	private boolean actionRemaining = false;
 	private long turn = 0;
 	
-	private AbilitySet abilities = new AbilitySet();
+	private PerkSet perks = new PerkSet();
+	private AbilitySpecializationSet abilitySpecializations = new AbilitySpecializationSet();
 	private EventBus eventBus = new EventBus();
 	
 	private Inventory inventory = new Inventory(this, eventBus);
@@ -166,24 +168,32 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		return level;
 	}
 	
-	public <T extends Ability> Iterable<T> getAbilities(Class<T> superclass) {
-		return abilities.get(superclass);
+	public <T extends Perk> Collection<T> getPerks(Class<T> superclass) {
+		return perks.get(superclass);
 	}
 	
-	public <T extends Ability> Iterable<T> getAbilities(Class<T> superclass, Predicate<T> predicate) {
-		return abilities.get(superclass, predicate);
+	public <T extends Perk> Iterable<T> getPerks(Class<T> superclass, Predicate<T> predicate) {
+		return perks.get(superclass, predicate);
 	}
 	
-	public void addAbility(Ability ability) {
-		abilities.add(ability);
+	public void addPerk(Perk perk) {
+		perks.add(perk);
 	}
 	
-	public void removeAbility(Ability ability) {
-		abilities.remove(ability);
+	public void removePerk(Perk perk) {
+		perks.remove(perk);
 	}
 	
-	public boolean hasAbility(Class<? extends Ability> ability) {
-		return !Iterables.isEmpty(getAbilities(ability));
+	public boolean hasPerk(Class<? extends Perk> perk) {
+		return !getPerks(perk).isEmpty();
+	}
+	
+	public int getSpecialization(Class<? extends Ability> ability) {
+		return abilitySpecializations.getSpecializationLevel(ability);
+	}
+	
+	public void specialize(Class<? extends Ability> ability, int amount) {
+		abilitySpecializations.specialize(ability, amount);
 	}
 	
 	protected void setFaction(int faction) {
@@ -195,7 +205,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	}
 
 	public void basicAttack(Point target) {
-		getAbilities(BasicAttackAbility.class).iterator().next().activate(target);
+		getPerks(BasicAttackAbility.class).iterator().next().activate(target);
 	}
 	
 	@Subscribe
@@ -302,8 +312,8 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		return getStat(resource).getMaximum();
 	}
 	
-	public void setAbilityScore(Class<? extends Attribute> ability, int amount) {
-		stats.getStat(ability).setScore(amount);
+	public void setAttributeScore(Class<? extends Attribute> attribute, int amount) {
+		stats.getStat(attribute).setScore(amount);
 	}
 	
 	public void setResource(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> stat, int amount) {

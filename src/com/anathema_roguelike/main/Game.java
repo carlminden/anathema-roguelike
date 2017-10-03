@@ -67,6 +67,12 @@ public class Game extends ApplicationAdapter {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
    		config.width = UIConfig.TERM_WIDTH * UIConfig.CELL_WIDTH;
     	config.height = UIConfig.TERM_HEIGHT * UIConfig.CELL_HEIGHT;
+    	config.title = "Anathema";
+    	config.vSyncEnabled = false;
+        config.foregroundFPS = 0;
+        config.backgroundFPS = 30;
+        config.resizable = false;
+        //config.addIcon(path, fileType);
     	
     	new LwjglApplication(Game.getInstance(), config);
     	
@@ -158,7 +164,7 @@ public class Game extends ApplicationAdapter {
 		
 		Gdx.gl.glClearColor(bgColor.r / 255.0f, bgColor.g / 255.0f, bgColor.b / 255.0f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+        
         ui.render();
 		
         if(input.getSquidInput().hasNext()) {

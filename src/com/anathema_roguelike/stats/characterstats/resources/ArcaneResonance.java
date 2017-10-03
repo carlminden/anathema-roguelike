@@ -6,7 +6,5 @@ public class ArcaneResonance extends Resource {
 
 	public ArcaneResonance(Character character) {
 		super(character);
-		// TODO Auto-generated constructor stub
 	}
-
 }

@@ -16,23 +16,16 @@
  *******************************************************************************/
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus;
 
-
+import java.util.Collection;
 
 public class SelectionMenu<T> extends Menu<T> {
 	
-	public SelectionMenu(int x, int y, int width, int height, boolean centered, int spacing, Iterable<T> choices, boolean cancellable, float background) {
-		super(x, y, width, height, centered, spacing, cancellable, background);
+	public SelectionMenu(int x, int y, int width, int height, boolean centered, int spacing, Collection<T> choices, boolean cancellable, float background) {
+		super(x, y, width, height, centered, spacing, cancellable, background, choices);
 		
-		for(T choice : choices) {
-			addMenuItem(new MenuItem<T>(choice, new OnSelectListener<T>() {
-
-				@Override
-				public void onSelect(T obj) {
-					setResult(obj);
-					
-					finish();
-				}
-			}));
-		}
+		setOnSelectListener((T obj) -> {
+			setResult(obj);
+			finish();
+		});
 	}
 }

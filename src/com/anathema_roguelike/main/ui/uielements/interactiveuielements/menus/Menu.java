@@ -17,220 +17,165 @@
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
-import com.anathema_roguelike.environment.Point;
-import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.Color;
-import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.InteractiveUIElement;
-import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MouseCallback;
+import com.anathema_roguelike.main.utilities.Utils;
 
-import squidpony.squidgrid.gui.gdx.SColor;
 import squidpony.squidgrid.gui.gdx.SquidInput;
 
 //The way I handled the finishItem is horrible
 public class Menu<T> extends InteractiveUIElement<T> {
 	
-	private ArrayList<MenuItem<T>> items;
-	private MenuItem<String> finishItem;
+	private ArrayList<T> items;
+	private ArrayList<MenuItem<T>> typedMenuItems = new ArrayList<>();
+	private ArrayList<MenuItem<?>> menuItems = new ArrayList<>();
 	
-	private ArrayList<OnSelectListener<T>> onSelectListeners = new ArrayList<>();
-	private OnSelectListener<String> onSelectFinishListener;
+	private ArrayList<OnFocusChangedListener> onFocusChangedListeners = new ArrayList<>();
 	
-	private ArrayList<OnSelectionChangedListener> onSelectionChangedListeners = new ArrayList<>();
-	
-	private int selectedItem = 0;
+	private int focused = 0;
 	private boolean centered = false;
-	private int spacing = 1;
+	private int spacing;
 	
-	public Menu(int x, int y, int width, int height, boolean centered, int spacing, boolean cancellable, float background) {
+	public Menu(int x, int y, int width, int height, boolean centered, int spacing, boolean cancellable,
+			float background, Collection<T> items) {
 		super(x, y, width, height, cancellable, background);
 		this.centered = centered;
 		this.spacing = spacing;
-		this.items = new ArrayList<>();
+		this.items = new ArrayList<>(items);
+		
+		initializeMenuItems();
 	}
-
-	public Menu(int x, int y, int width, int height, boolean centered, int spacing, String finishText, boolean cancellable, float background) {
+	
+	public Menu(int x, int y, int width, int height, boolean centered, int spacing, boolean cancellable, float background,
+			Collection<T> items, String finishText) {
+		
 		super(x, y, width, height, cancellable, background);
 		this.centered = centered;
 		this.spacing = spacing;
-		this.items = new ArrayList<>();
-		this.finishItem = new MenuItem<String>(finishText);
+		this.items = new ArrayList<>(items);
+		
+		initializeMenuItems();
+		
+		this.menuItems.add(new MenuItem<String>(this, finishText, (String s) -> finish(), getX(), getY() + (this.items.size() + 1 * this.spacing), getBackground()));
+	}
+	
+	private void initializeMenuItems() {
+		
+		for(int i = 0; i < items.size(); i++) {
+			if(isCentered()) {
+				typedMenuItems.add(new MenuItem<T>(this, items.get(i), getX() + (getWidth() / 2) - (Utils.getName(items.get(i)).length() / 2), getY() + i * spacing, getBackground()));
+			} else {
+				typedMenuItems.add(new MenuItem<T>(this, items.get(i), getX(), getY() + i * spacing, getBackground()));
+			}
+			
+		}
+		
+		menuItems.addAll(typedMenuItems);
+		menuItems.get(0).focus();
+		
 	}
 	
 	@Override
 	public void registerMouseCallbacks() {
-		
-		ArrayList<MenuItem<?>> temp = new ArrayList<>(items);
-		
-		if(finishItem != null) {
-			temp.add(finishItem);
-		}
-		
-		for(MenuItem<?> item : temp) {
-			
-			int index = items.indexOf(item);
-			
-			MouseCallback callback = new MouseCallback() {
-				
-				@Override
-				public void onMouseover() {
-					selectedItem = index;
-				
-					selectionChanged();
-				}
-				
-				@Override
-				public void onClick() {
-					selectedItem = index;
-					
-					selectionChanged();
-					
-					select();
-				}
-			};
-			
-			
-	        int x = getX();
-			
-			if(isCentered()) {
-				x = getWidth() / 2 - item.getText().length() / 2;
-        	}
-			
-			for(int i = 0; i < getWidth(); i++) {
-				Game.getInstance().getInput().registerMouseCallback(callback, new Point(x + i, getY() + getSpacing() * index));
-			}
+		for(MenuItem<?> item : menuItems) {
+			item.registerMouseCallbacks();
 		}
 	}
 	
 	protected void renderContent() {
-		SColor background;
-		SColor foreground;
-		
-		for(int i = 0; i < getSize(); i++) {
-			if(getSelected() == i) {
-				background = Color.WHITE;
-				foreground = Color.BLACK;
-            } else {
-            	background = Color.BLACK;
-				foreground = Color.WHITE;
-            }
-			
-			if(finishItem != null && i == getSize() - 1) {
-        		if(isCentered()) {
-        			renderStringCentered(DisplayLayer.UI_FOREGROUND, DisplayLayer.UI_BACKGROUND, (getSpacing() * getSize()), finishItem.getText(), foreground, background);
-            	} else {
-            		renderString(DisplayLayer.UI_FOREGROUND, DisplayLayer.UI_BACKGROUND, 0, (getSpacing() * getSize()), finishItem.getText(), foreground, background);
-            	}
-        		continue;
-        	}
-        	
-        	if(isCentered()) {
-        		renderStringCentered(DisplayLayer.UI_FOREGROUND, DisplayLayer.UI_BACKGROUND, (getSpacing() * i), items.get(i).getText(), foreground, background);
-        	} else {
-        		renderString(DisplayLayer.UI_FOREGROUND, DisplayLayer.UI_BACKGROUND, 0, (getSpacing() * i), items.get(i).getText(), foreground, background);
-        	}
-        }
+		for(MenuItem<?> item : menuItems) {
+			item.renderContent();
+		}
 	}
 	
-	protected int getSelected() {
-		return selectedItem;
+	protected int getFocused() {
+		return focused;
+	}
+	
+	protected void setFocused(MenuItem<?> menuItem) {
+		setFocus(menuItems.indexOf(menuItem));
+	}
+	
+	protected void setFocus(int index) {
+		
+		menuItems.get(focused).unfocus();
+		
+		if(focused != index) {
+			focused = index;
+			
+			if(focused < 0) {
+				focused = getSize() - 1;
+			}
+			
+			if(focused >= getSize()) {
+				focused = 0;
+			}
+			
+			for(OnFocusChangedListener listener : onFocusChangedListeners) {
+				listener.onChanged();
+			}
+		}
+		
+		menuItems.get(focused).focus();
 	}
 	
 	protected int getSize() {
-		if(finishItem != null) {
-			return items.size() + 1;
-		} else {
-			return items.size();
-		}
+		return menuItems.size();
 	}
 	
-	private void menuNext() {
-		selectedItem++;
-		
-		if(selectedItem >= getSize()) {
-			selectedItem = 0;
-		}
-		selectionChanged();
+	protected void menuNext() {
+		setFocus(focused + 1);
 	}
 	
-	private void menuPrev() {
-		selectedItem--;
-		if(selectedItem < 0) {
-			selectedItem = getSize() - 1;
-		}
-		
-		selectionChanged();
-	}
-	
-	private void selectionChanged() {
-		for(OnSelectionChangedListener listener : onSelectionChangedListeners) {
-			listener.onChanged();
-		}
+	protected void menuPrev() {
+		setFocus(focused - 1);
 	}
 	
 	private void select() {
-		if(isFinishSelected()) {
-			if(onSelectFinishListener != null) {
-				onSelectFinishListener.onSelect(finishItem.getItem());
-				finishItem.select();
-			}
-			return;
-		}
-		
-		for(OnSelectListener<T> listener : onSelectListeners) {
-			listener.onSelect(getSelectedItem());
-		}
-		
-		items.get(selectedItem).select();
+		menuItems.get(focused).select();
 	}
 	
-	private boolean isFinishSelected() {
-		return selectedItem == getSize() - 1 && finishItem != null;
-	}
-	
-	public void setMenuItems(ArrayList<MenuItem<T>> items) {
-		this.items = items;
-	}
-	
-	public ArrayList<MenuItem<T>> getItems() {
+	public ArrayList<T> getItems() {
 		return items;
 	}
 	
-	public void addMenuItem(MenuItem<T> item) {
-		items.add(item);
+	public T getItem(int i) {
+		return items.get(i);
 	}
 	
-	public void addOnSelectListener(OnSelectListener<T> listener) {
-		onSelectListeners.add(listener);
+	public ArrayList<MenuItem<?>> getMenuItems() {
+		return menuItems;
 	}
 	
-	protected ArrayList<OnSelectListener<T>> getOnSelectListeners() {
-		return onSelectListeners;
+	public void addOnSelectionChangedListener(OnFocusChangedListener listener) {
+		onFocusChangedListeners.add(listener);
 	}
 	
-	public void addOnSelectionChangedListener(OnSelectionChangedListener listener) {
-		onSelectionChangedListeners.add(listener);
+	protected ArrayList<OnFocusChangedListener> getOnSelectionChangedListeners() {
+		return onFocusChangedListeners;
 	}
 	
-	protected ArrayList<OnSelectionChangedListener> getOnSelectionChangedListeners() {
-		return onSelectionChangedListeners;
-	}
-	
-	public void setOnSelectFinishListener(OnSelectListener<String> onSelectFinishListener) {
-		this.onSelectFinishListener = onSelectFinishListener;
-	}
-	
-	public T getSelectedItem() {
-		if(getSelected() == getSize() || (getSelected() == getSize() - 1 && finishItem != null)) {
-			return null;
-		} else {
-			return items.get(getSelected()).getItem();
+	public void setOnSelectListener(OnSelectListener<T> listener) {
+		for(MenuItem<T> item : typedMenuItems) {
+			item.setOnSelectListener(listener);
 		}
 	}
 	
-	public MenuItem<String> getFinishItem() {
-		return finishItem;
+	public void setOnSelectListener(T item, OnSelectListener<T> listener) {
+		typedMenuItems.get(items.indexOf(item)).setOnSelectListener(listener);
+	}
+	
+	public T getFocusedItem() {
+		if(getFocused() >= items.size()) {
+			return null;
+		} else {
+			return items.get(getFocused());
+		}
+	}
+	
+	public MenuItem<?> getFocusedMenuItem() {
+		return menuItems.get(getFocused());
 	}
 	
 	@Override
@@ -249,13 +194,14 @@ public class Menu<T> extends InteractiveUIElement<T> {
         	menuPrev();
             return;
         default:
+        	getFocusedMenuItem().processKeyEvent(key, alt, ctrl, shift);
         	return;
 		}
 	}
 	
 	@Override
 	public boolean processScrollEvent(int amount) {
-		return false;
+		return getFocusedMenuItem().processScrollEvent(amount);
 	}
 
 	protected boolean isCentered() {

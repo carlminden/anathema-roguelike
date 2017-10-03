@@ -18,8 +18,8 @@ package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.characters.abilities.Ability;
-import com.anathema_roguelike.characters.abilities.targetingstrategies.TargetingStrategy;
+import com.anathema_roguelike.characters.perks.Perk;
+import com.anathema_roguelike.characters.perks.targetingstrategies.TargetingStrategy;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.animations.Blink;
@@ -40,22 +40,22 @@ public class GetTargetInterface extends InteractiveUIElement<Point> {
 	private CircularArrayList<Point> potentialTargets;
 	private int index = 0;
 	private TargetingStrategy strategy;
-	private Ability ability;
+	private Perk perk;
 	
 	//TODO: the whole animation system needs to be rebuilt
 	private Blink animation = new Blink(Optional.of(new VisualRepresentation('X', Color.RED)), DungeonLayer.FOREGROUND);
 	
-	public GetTargetInterface(Ability ability, TargetingStrategy strategy) {
+	public GetTargetInterface(Perk perk, TargetingStrategy strategy) {
 		super(0, UIConfig.MAP_START_Y, UIConfig.DUNGEON_MAP_WIDTH, UIConfig.DUNGEON_MAP_HEIGHT, true, 0f);
 		
-		this.ability = ability;
+		this.perk = perk;
 		this.strategy = strategy;
 		
-		potentialTargets = new CircularArrayList<Point>(strategy.getValidTargetPoints(ability.getCharacter()));
+		potentialTargets = new CircularArrayList<Point>(strategy.getValidTargetPoints(perk.getCharacter()));
 		
 		mapBorder = new Border(Game.getInstance().getUserInterface().getMapPlaceholder(), getTitleString());
 		
-		String instructions = "Select a target within " + Utils.getName(strategy.getRange()) + " for " + Utils.getName(ability);
+		String instructions = "Select a target within " + Utils.getName(strategy.getRange()) + " for " + Utils.getName(perk);
 		
 		Game.getInstance().getUserInterface().addMessage(new Message(instructions, Color.INSTRUCTIONS));
 	}
