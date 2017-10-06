@@ -17,8 +17,8 @@
 package com.anathema_roguelike.stats.characterstats.resources;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.Player;
 import com.anathema_roguelike.characters.events.ResourceChangedEvent;
+import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;

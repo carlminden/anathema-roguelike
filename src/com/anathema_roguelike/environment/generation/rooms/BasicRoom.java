@@ -16,7 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.generation.rooms;
 
-import com.anathema_roguelike.characters.monsters.Orc;
+import com.anathema_roguelike.characters.foes.corruptions.Thrall;
+import com.anathema_roguelike.characters.foes.roles.Brawler;
+import com.anathema_roguelike.characters.foes.species.generic.Orc;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.environment.generation.DungeonGenerator;
@@ -34,7 +36,7 @@ public class BasicRoom extends Room {
 			int x = Game.getInstance().getRandom().nextInt(getWidth() - 2) + getX() + 1;
 			int y = Game.getInstance().getRandom().nextInt(getHeight() - 2) + getY() + 1;
 			
-			Orc orc = new Orc();
+			Orc orc = new Orc(new Brawler(), new Thrall());
 			
 			level.addEntity(orc, new Point(x, y));
 		}

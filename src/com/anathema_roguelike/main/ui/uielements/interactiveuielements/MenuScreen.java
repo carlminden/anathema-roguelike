@@ -31,17 +31,17 @@ public abstract class MenuScreen<T, M extends Menu<T>> extends Screen<T> {
 	private MenuDescription<T> description;
 	private TextBox instructions;
 	
-	private Collection<T> choices;
+	private Collection<? extends T> choices;
 	private Message instructionsMessage;
 	private boolean cancellable;
 	private float contentBackground;
 	
-	public MenuScreen(String title, Collection<T> choices, boolean cancellable) {
+	public MenuScreen(String title, Collection<? extends T> choices, boolean cancellable) {
 		super(title, cancellable);
 		init(choices, null, cancellable, 1f);
 	}
 	
-	public MenuScreen(String title, Collection<T> choices, Message instructionsMessage, boolean cancellable) {
+	public MenuScreen(String title, Collection<? extends T> choices, Message instructionsMessage, boolean cancellable) {
 		super(title, cancellable);
 		init(choices, instructionsMessage, cancellable, 1f);
 	}
@@ -54,7 +54,7 @@ public abstract class MenuScreen<T, M extends Menu<T>> extends Screen<T> {
 	}
 	
 	public MenuScreen(int x, int y, int width, int height, String title, boolean cancellable, float background,
-			float contentBackground, Collection<T> choices) {
+			float contentBackground, Collection<? extends T> choices) {
 		
 		super(x, y, width, height, title, cancellable, background);
 		init(choices, null, cancellable, contentBackground);
@@ -78,14 +78,14 @@ public abstract class MenuScreen<T, M extends Menu<T>> extends Screen<T> {
 		
 		return super.run();
 	}
-	private void init(Collection<T> choices, Message instructionsMessage, boolean cancellable, float contentBackground) {
+	private void init(Collection<? extends T> choices, Message instructionsMessage, boolean cancellable, float contentBackground) {
 		this.choices = choices;
 		this.instructionsMessage = instructionsMessage;
 		this.cancellable = cancellable;
 		this.contentBackground = contentBackground;
 	}
 	
-	public Collection<T> getChoices() {
+	public Collection<? extends T> getChoices() {
 		return choices;
 	}
 	
@@ -97,5 +97,5 @@ public abstract class MenuScreen<T, M extends Menu<T>> extends Screen<T> {
 		return menu;
 	}
 	
-	protected abstract M createMenu(int x, int y, int width, int height, Collection<T> choices, boolean cancellable, float background);
+	protected abstract M createMenu(int x, int y, int width, int height, Collection<? extends T> choices, boolean cancellable, float background);
 }

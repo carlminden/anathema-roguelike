@@ -21,7 +21,7 @@ import java.util.HashSet;
 
 import com.anathema_roguelike.characters.Character;
 
-public abstract class PerkGroup extends Perk {
+public class PerkGroup extends Perk {
 	
 	private HashSet<Perk> perks = new HashSet<>();
 	
@@ -43,5 +43,9 @@ public abstract class PerkGroup extends Perk {
 			perk.remove(character);
 		}
 		super.remove(character);
+	}
+	
+	public HashSet<Perk> getPerks() {
+		return perks;
 	}
 }

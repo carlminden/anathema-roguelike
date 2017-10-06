@@ -17,12 +17,12 @@
 package com.anathema_roguelike.fov;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.Player;
+import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.BufferMask;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Vision;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Vision;
 
 import squidpony.squidgrid.FOV;
 

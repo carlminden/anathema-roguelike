@@ -17,13 +17,15 @@
 package com.anathema_roguelike.main.ui.uielements;
 
 
-import com.anathema_roguelike.characters.Player;
+import java.util.stream.Collectors;
+
 import com.anathema_roguelike.characters.inventory.Chest;
 import com.anathema_roguelike.characters.inventory.Feet;
 import com.anathema_roguelike.characters.inventory.Head;
 import com.anathema_roguelike.characters.inventory.Legs;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.characters.inventory.SecondaryWeapon;
+import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.utilities.Utils;
@@ -34,11 +36,11 @@ import com.anathema_roguelike.stats.characterstats.attributes.Perception;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Attenuation;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Concealment;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Veil;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visibility;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.VisibilityLevel;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Attenuation;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Concealment;
+import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Veil;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
@@ -71,7 +73,7 @@ public class PlayerStats extends UIElement {
 	
 	public void renderChar() {
 		renderString(DisplayLayer.UI_FOREGROUND, 0, renderPos, "" + player);
-		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Level " + player.getLevel() + " " + Utils.getName(player.getCharClass()));
+		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Level " + player.getLevel() + " " + player.getClasses().stream().map(c -> Utils.getName(c)).collect(Collectors.joining(",")));
 	}
 	
 	public void renderResources() {

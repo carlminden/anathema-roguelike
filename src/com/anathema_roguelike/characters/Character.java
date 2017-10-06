@@ -20,19 +20,19 @@ import java.util.LinkedList;
 import java.util.Optional;
 
 import com.anathema_roguelike.characters.actions.Action;
-import com.anathema_roguelike.characters.ai.AIPathFinder;
-import com.anathema_roguelike.characters.ai.Faction;
 import com.anathema_roguelike.characters.attacks.BasicAttackAbility;
-import com.anathema_roguelike.characters.classes.CharacterClass;
 import com.anathema_roguelike.characters.events.MoveEvent;
 import com.anathema_roguelike.characters.events.ResourceChangedEvent;
 import com.anathema_roguelike.characters.events.TurnEvent;
+import com.anathema_roguelike.characters.foes.ai.AIPathFinder;
+import com.anathema_roguelike.characters.foes.ai.Faction;
 import com.anathema_roguelike.characters.inventory.Inventory;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.characters.perks.Perk;
 import com.anathema_roguelike.characters.perks.PerkSet;
-import com.anathema_roguelike.characters.perks.abilities.Ability;
-import com.anathema_roguelike.characters.perks.specializations.AbilitySpecializationSet;
+import com.anathema_roguelike.characters.player.Player;
+import com.anathema_roguelike.characters.player.perks.abilities.Ability;
+import com.anathema_roguelike.characters.player.perks.specializations.AbilitySpecializationSet;
 import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
@@ -53,7 +53,6 @@ import com.anathema_roguelike.stats.characterstats.CharacterStat;
 import com.anathema_roguelike.stats.characterstats.CharacterStatSet;
 import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
 import com.anathema_roguelike.stats.characterstats.resources.BoundedResource;
-import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
 import com.anathema_roguelike.stats.characterstats.resources.Resource;
 import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visibility;
@@ -73,7 +72,6 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	private int faction;
 	
 	private int level = 0;
-	private CharacterClass charClass;
 	
 	private boolean actionRemaining = false;
 	private long turn = 0;
@@ -134,9 +132,6 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	public void levelUp() {
 		
 		level++;
-		
-		getStat(CurrentHealth.class).reset();
-		
 	}
 	
 	@Override
@@ -160,10 +155,6 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		return faction;
 	}
 	
-	public CharacterClass getCharClass() {
-		return charClass;
-	}
-	
 	public int getLevel() {
 		return level;
 	}
@@ -172,7 +163,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		return perks.get(superclass);
 	}
 	
-	public <T extends Perk> Iterable<T> getPerks(Class<T> superclass, Predicate<T> predicate) {
+	public <T extends Perk> Collection<T> getPerks(Class<T> superclass, Predicate<T> predicate) {
 		return perks.get(superclass, predicate);
 	}
 	
@@ -198,10 +189,6 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	protected void setFaction(int faction) {
 		this.faction = faction;
-	}
-
-	public void setClass(CharacterClass charClass) {
-		this.charClass = charClass;
 	}
 
 	public void basicAttack(Point target) {

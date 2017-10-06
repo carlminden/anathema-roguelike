@@ -105,6 +105,10 @@ public abstract class Perk {
 		return character;
 	}
 	
+	protected void setCharacter(Character character) {
+		this.character = character;
+	}
+	
 	public boolean requirementsMet() {
 		return getBooleanCondition().isTrue();
 	}

@@ -60,7 +60,7 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 		
 		for(Modifier<T, ?> modifier : getModifiers()) {
 			if(modifier.getAffectedStat().equals(stat)) {
-				ret = ret + modifier.getAdditiveAmount(getTarget());
+				ret = ret + modifier.getAdditiveAmount();
 			}
 		}
 		
@@ -73,7 +73,7 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 		
 		for(Modifier<T, ?> modifier : getModifiers()) {
 			if(modifier.getAffectedStat().equals(stat)) {
-				ret *= modifier.getMultiplier(getTarget());
+				ret *= modifier.getMultiplier();
 			}
 		}
 		
@@ -91,7 +91,7 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 		builder.append("Effect: ");
 		builder.append("Duration: " + duration.getRemaining());
 		modifiers.forEach(m -> builder.append(" Modifier: " + m.getAffectedStat().getSimpleName()
-				+ " +" + m.getAdditiveAmount(getTarget()) + " *" + m.getMultiplier(getTarget())));
+				+ " +" + m.getAdditiveAmount() + " *" + m.getMultiplier()));
 		
 		return builder.toString();
 	}

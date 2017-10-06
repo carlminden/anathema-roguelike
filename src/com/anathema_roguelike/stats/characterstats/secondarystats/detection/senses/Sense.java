@@ -1,0 +1,11 @@
+package com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses;
+
+import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.stats.characterstats.secondarystats.SecondaryStat;
+
+public abstract class Sense extends SecondaryStat {
+
+	public Sense(Character character) {
+		super(character);
+	}
+}

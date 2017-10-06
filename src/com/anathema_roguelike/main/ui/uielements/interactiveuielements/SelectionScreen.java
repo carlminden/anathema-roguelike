@@ -23,11 +23,11 @@ import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Sel
 
 public class SelectionScreen<T> extends MenuScreen<T, SelectionMenu<T>> {
 	
-	public SelectionScreen(String title, Collection<T> choices, Message instructionsMessage, boolean cancellable) {
+	public SelectionScreen(String title, Collection<? extends T> choices, Message instructionsMessage, boolean cancellable) {
 		super(title, choices, instructionsMessage, cancellable);
 	}
 	
-	public SelectionScreen(String title, Collection<T> choices, boolean cancellable) {
+	public SelectionScreen(String title, Collection<? extends T> choices, boolean cancellable) {
 		super(title, choices, false);
 	}
 	
@@ -53,7 +53,7 @@ public class SelectionScreen<T> extends MenuScreen<T, SelectionMenu<T>> {
 		return super.run();
 	} 
 	@Override
-	protected SelectionMenu<T> createMenu(int x, int y, int width, int height, Collection<T> choices, boolean cancellable, float background) {
+	protected SelectionMenu<T> createMenu(int x, int y, int width, int height, Collection<? extends T> choices, boolean cancellable, float background) {
 		return new SelectionMenu<T>(x, y, width, height, false, 1, choices, cancellable, background);
 	}
 }

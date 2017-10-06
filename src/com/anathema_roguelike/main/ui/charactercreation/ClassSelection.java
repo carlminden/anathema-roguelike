@@ -18,8 +18,9 @@ package com.anathema_roguelike.main.ui.charactercreation;
 
 import java.util.Collection;
 
-import com.anathema_roguelike.characters.Player;
-import com.anathema_roguelike.characters.classes.CharacterClass;
+import com.anathema_roguelike.characters.perks.Perk;
+import com.anathema_roguelike.characters.player.Player;
+import com.anathema_roguelike.characters.player.classes.CharacterClass;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
 import com.anathema_roguelike.main.utilities.Utils;
 
@@ -30,18 +31,8 @@ public class ClassSelection {
 		
 		SelectionScreen<Class<? extends CharacterClass>> classSelectionScreen = new SelectionScreen<Class<? extends CharacterClass>>("Select your Class", classes, false);
 		
-		CharacterClass charClass = null;
+		player.grantClassLevel(classSelectionScreen.run());
 		
-		try {
-			charClass = classSelectionScreen.run().newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		charClass.chooseVariableProperties();
-		
-		charClass.apply(player);
-		
+		System.out.println(player.getPerks(Perk.class));
 	}
 }

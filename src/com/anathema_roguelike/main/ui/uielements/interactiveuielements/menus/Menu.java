@@ -27,7 +27,7 @@ import squidpony.squidgrid.gui.gdx.SquidInput;
 //The way I handled the finishItem is horrible
 public class Menu<T> extends InteractiveUIElement<T> {
 	
-	private ArrayList<T> items;
+	private ArrayList<? extends T> items;
 	private ArrayList<MenuItem<T>> typedMenuItems = new ArrayList<>();
 	private ArrayList<MenuItem<?>> menuItems = new ArrayList<>();
 	
@@ -38,7 +38,7 @@ public class Menu<T> extends InteractiveUIElement<T> {
 	private int spacing;
 	
 	public Menu(int x, int y, int width, int height, boolean centered, int spacing, boolean cancellable,
-			float background, Collection<T> items) {
+			float background, Collection<? extends T> items) {
 		super(x, y, width, height, cancellable, background);
 		this.centered = centered;
 		this.spacing = spacing;
@@ -48,7 +48,7 @@ public class Menu<T> extends InteractiveUIElement<T> {
 	}
 	
 	public Menu(int x, int y, int width, int height, boolean centered, int spacing, boolean cancellable, float background,
-			Collection<T> items, String finishText) {
+			Collection<? extends T> items, String finishText) {
 		
 		super(x, y, width, height, cancellable, background);
 		this.centered = centered;
@@ -136,7 +136,7 @@ public class Menu<T> extends InteractiveUIElement<T> {
 		menuItems.get(focused).select();
 	}
 	
-	public ArrayList<T> getItems() {
+	public ArrayList<? extends T> getItems() {
 		return items;
 	}
 	

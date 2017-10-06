@@ -21,7 +21,7 @@ import com.anathema_roguelike.stats.characterstats.CharacterStat;
 
 public abstract class Attribute extends CharacterStat {
 	
-	protected int base;
+	protected int base = 3;
 	
 	public Attribute(Character character, int base) {
 		super(character);

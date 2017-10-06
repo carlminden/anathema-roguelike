@@ -18,8 +18,8 @@ package com.anathema_roguelike.main.display;
 
 import java.util.HashMap;
 
-import com.anathema_roguelike.characters.NPC;
-import com.anathema_roguelike.characters.Player;
+import com.anathema_roguelike.characters.foes.Foe;
+import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.fov.LightLevels;
 import com.anathema_roguelike.fov.TotalLightShader;
@@ -168,7 +168,7 @@ public class DungeonMap implements Renderable, Rectangular {
 		BufferMask enemyDetectedVision = new BufferMask(dungeonWidth, dungeonHeight);
 		
 		
-		for(NPC character : state.getCurrentLevel().getEntities(NPC.class)) {
+		for(Foe character : state.getCurrentLevel().getEntities(Foe.class)) {
 			if(character.isVisibleTo(player)) {
 				if(player.isVisibleTo(character)) {
 					enemyDetectedVision.or(character.getCurrentVisibility());
@@ -191,7 +191,7 @@ public class DungeonMap implements Renderable, Rectangular {
 		renderFoVOverlay(visibility, enemyAlertedVision, Color.ALERTED);
 		renderFoVOverlay(visibility, enemyDetectedVision, Color.DETECTED);
 		
-		for(NPC character : state.getCurrentLevel().getEntities(NPC.class)) {
+		for(Foe character : state.getCurrentLevel().getEntities(Foe.class)) {
 			if(character.isVisibleTo(player)) {
 				if(!player.isVisibleTo(character) && character.getMostInterestingStimulus() != null) {
 					

@@ -21,26 +21,26 @@ import com.anathema_roguelike.stats.Stat;
 public class Modifier<T, S extends Stat<?>> {
 	
 	private Class<? extends S> affectedStat;
-	private AdditiveCalculation additiveModifier;
-	private MultiplicativeCalculation multiplicativeModifier;
+	private Calculation additiveModifier;
+	private Calculation multiplicativeModifier;
 	
-	public Modifier(Class<? extends S> affectedStat, AdditiveCalculation additiveModifier) {
+	public Modifier(Class<? extends S> affectedStat, Calculation calculation) {
 
 		this.affectedStat = affectedStat;
-		this.additiveModifier = additiveModifier;
-	}
-	
-	public Modifier(Class<? extends S> affectedStat, MultiplicativeCalculation multiplicativeModifier) {
-
-		this.affectedStat = affectedStat;
-		this.multiplicativeModifier = multiplicativeModifier;
+		
+		if(calculation instanceof AdditiveCalculation) {
+			this.additiveModifier = calculation;
+		} else {
+			this.multiplicativeModifier = calculation;
+		}
+		
 	}
 	
 	public Class<? extends S> getAffectedStat() {
 		return affectedStat;
 	}
 
-	public double getAdditiveAmount(T arg) {
+	public double getAdditiveAmount() {
 		if(additiveModifier != null) {
 			return additiveModifier.get();
 		} else {
@@ -48,11 +48,11 @@ public class Modifier<T, S extends Stat<?>> {
 		}
 	}
 	
-	protected MultiplicativeCalculation getMultiplicativeModifier() {
+	protected Calculation getMultiplicativeModifier() {
 		return multiplicativeModifier;
 	}
 	
-	public double getMultiplier(T arg) {
+	public double getMultiplier() {
 		if(multiplicativeModifier != null) {
 			return multiplicativeModifier.get();
 		} else {
@@ -60,7 +60,7 @@ public class Modifier<T, S extends Stat<?>> {
 		}
 	}
 	
-	protected AdditiveCalculation getAdditiveModifier() {
+	protected Calculation getAdditiveModifier() {
 		return additiveModifier;
 	}
 }

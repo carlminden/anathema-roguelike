@@ -20,7 +20,7 @@ import java.util.Collection;
 
 import javax.annotation.Nullable;
 
-import com.anathema_roguelike.characters.Player;
+import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MenuScreen;
@@ -69,7 +69,7 @@ public class PointBuyScreen extends MenuScreen<Class<? extends Attribute>, Point
 
 	@Override
 	protected PointBuyMenu createMenu(int x, int y, int width, int height,
-			Collection<Class<? extends Attribute>> choices, boolean cancellable, float background) {
+			Collection<? extends Class<? extends Attribute>> choices, boolean cancellable, float background) {
 		menu = new PointBuyMenu(x, y, width, height, cancellable, 1, player);
 		
 		TextBox currentValues = new MenuValues<Class<? extends Attribute>>(menu, 18, 0, attributes.size(), new Function<Class<? extends Attribute>, Message>() {

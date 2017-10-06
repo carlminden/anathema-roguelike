@@ -17,7 +17,7 @@
 package com.anathema_roguelike.characters.perks;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.ai.Faction;
+import com.anathema_roguelike.characters.foes.ai.Faction;
 import com.anathema_roguelike.characters.perks.targetingstrategies.TargetingStrategy;
 import com.google.common.base.Predicate;
 

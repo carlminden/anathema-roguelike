@@ -18,7 +18,7 @@ package com.anathema_roguelike.main.ui.charactercreation.attributeselectors;
 
 import java.util.Collection;
 
-import com.anathema_roguelike.characters.Player;
+import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Menu;
 import com.anathema_roguelike.main.utilities.Utils;
@@ -39,10 +39,6 @@ public class PointBuyMenu extends Menu<Class<? extends Attribute>> {
 		super(x, y, width, height, centered, spacing, false, 1.0f, attributes, "Finish");
 		
 		this.player = player;
-		
-		for(Class<? extends Attribute> abilityScore : attributes) {
-			player.setAttributeScore(abilityScore, INITIAL_ATTRIBUTE_VALUE);
-		}
 		
 		setOnSelectListener((Class<? extends Attribute> a) -> { });
 	}
