@@ -19,11 +19,36 @@ package com.anathema_roguelike.characters.player.classes;
 import com.anathema_roguelike.characters.perks.PerkGroup;
 import com.anathema_roguelike.characters.player.perks.abilities.spells.SpellOrSpecialization;
 import com.anathema_roguelike.characters.player.perks.masteries.MasteryLevel;
+import com.anathema_roguelike.characters.player.perks.skills.Attunement;
+import com.anathema_roguelike.characters.player.perks.skills.Discipline;
 import com.anathema_roguelike.stats.characterstats.masteries.BluntWeaponMastery;
+import com.anathema_roguelike.stats.characterstats.masteries.ShortBladeMastery;
+import com.anathema_roguelike.stats.characterstats.masteries.SpellMastery;
 
 public class Inquisitor extends CharacterClass {
 
 	public Inquisitor() {
-		super(new PerkGroup(new SpellOrSpecialization(1, Inquisitor.class), new MasteryLevel<>(BluntWeaponMastery.class)));
+		super(
+			new PerkGroup/*1*/(new SpellOrSpecialization(1, Inquisitor.class), new MasteryLevel<>(BluntWeaponMastery.class)),
+			new PerkGroup/*2*/(new SpellOrSpecialization(1, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*3*/(new SpellOrSpecialization(1, Inquisitor.class), new MasteryLevel<>(ShortBladeMastery.class)),
+			new PerkGroup/*4*/(new SpellOrSpecialization(1, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*5*/(new SpellOrSpecialization(1, Inquisitor.class), new MasteryLevel<>(BluntWeaponMastery.class), new MasteryLevel<>(ShortBladeMastery.class)),
+			new PerkGroup/*6*/(new SpellOrSpecialization(1, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*7*/(new SpellOrSpecialization(2, Inquisitor.class), new MasteryLevel<>(ShortBladeMastery.class)),
+			new PerkGroup/*8*/(new SpellOrSpecialization(2, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*9*/(new SpellOrSpecialization(2, Inquisitor.class), new MasteryLevel<>(BluntWeaponMastery.class)),
+			new PerkGroup/*10*/(new SpellOrSpecialization(2, Inquisitor.class), new MasteryLevel<>(SpellMastery.class), new Discipline()),
+			new PerkGroup/*11*/(new SpellOrSpecialization(2, Inquisitor.class), new MasteryLevel<>(ShortBladeMastery.class)),
+			new PerkGroup/*12*/(new SpellOrSpecialization(2, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*13*/(new SpellOrSpecialization(3, Inquisitor.class), new Attunement()),
+			new PerkGroup/*14*/(new SpellOrSpecialization(3, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*15*/(new SpellOrSpecialization(3, Inquisitor.class), new MasteryLevel<>(BluntWeaponMastery.class), new MasteryLevel<>(ShortBladeMastery.class)),
+			new PerkGroup/*16*/(new SpellOrSpecialization(3, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*17*/(new SpellOrSpecialization(3, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*18*/(new SpellOrSpecialization(4, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*19*/(new SpellOrSpecialization(4, Inquisitor.class), new MasteryLevel<>(SpellMastery.class)),
+			new PerkGroup/*20*/(new SpellOrSpecialization(4, Inquisitor.class), new MasteryLevel<>(BluntWeaponMastery.class), new MasteryLevel<>(SpellMastery.class))
+		);
 	}
 }

@@ -19,7 +19,6 @@ package com.anathema_roguelike.characters.foes.species.generic;
 import java.util.Optional;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.foes.Foe;
 import com.anathema_roguelike.characters.foes.corruptions.Corruption;
 import com.anathema_roguelike.characters.foes.roles.Role;
 import com.anathema_roguelike.characters.foes.traits.Deficient;
@@ -35,7 +34,7 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.detection.sens
 import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 import com.anathema_roguelike.stats.effects.Modifier;
 
-public class Orc extends Foe {
+public class Orc extends GenericSpecies {
 
 	public Orc(Role role, Corruption corruption) {
 		super(Optional.of(new VisualRepresentation('o', Color.GREEN)), role, corruption,

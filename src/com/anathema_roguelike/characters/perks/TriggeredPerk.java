@@ -16,6 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks;
 
+import com.anathema_roguelike.characters.perks.triggers.Trigger;
 import com.google.common.eventbus.Subscribe;
 
 public abstract class TriggeredPerk<T extends Trigger> extends PassivePerk {

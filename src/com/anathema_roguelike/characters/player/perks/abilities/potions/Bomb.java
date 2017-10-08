@@ -20,7 +20,7 @@ import com.anathema_roguelike.characters.perks.TargetedPerk;
 
 public abstract class Bomb extends Potion<TargetedPerk> {
 
-	Bomb(Brew brew, TargetedPerk potion) {
+	public Bomb(Brew brew, TargetedPerk potion) {
 		super(brew, potion);
 	}
 }

@@ -17,18 +17,46 @@
 package com.anathema_roguelike.characters.player.classes;
 
 import com.anathema_roguelike.characters.perks.PerkGroup;
+import com.anathema_roguelike.characters.player.perks.abilities.potions.AmplificationElixir;
+import com.anathema_roguelike.characters.player.perks.abilities.potions.DisplacementBulwarkElixir;
+import com.anathema_roguelike.characters.player.perks.abilities.potions.FireBomb;
 import com.anathema_roguelike.characters.player.perks.abilities.potions.FleetFootedElixir;
+import com.anathema_roguelike.characters.player.perks.abilities.potions.FreezeBomb;
+import com.anathema_roguelike.characters.player.perks.abilities.potions.KnockoutGasBomb;
+import com.anathema_roguelike.characters.player.perks.abilities.potions.Potion;
+import com.anathema_roguelike.characters.player.perks.abilities.potions.RadiantBomb;
 import com.anathema_roguelike.characters.player.perks.abilities.potions.TarBomb;
 import com.anathema_roguelike.characters.player.perks.masteries.MasteryLevel;
+import com.anathema_roguelike.characters.player.perks.skills.GrandmasterBrewer;
+import com.anathema_roguelike.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.BrewingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpearMastery;
+import com.anathema_roguelike.stats.characterstats.masteries.ThrowingWeaponMastery;
 
 public class Alchemist extends CharacterClass {
 
 	public Alchemist() {
 		super(
-			new PerkGroup(new TarBomb(), new MasteryLevel<>(SpearMastery.class)),
-			new PerkGroup(new MasteryLevel<>(BrewingMastery.class), new FleetFootedElixir())
+			new PerkGroup/*1*/(new TarBomb(), new MasteryLevel<>(SpearMastery.class)),
+			new PerkGroup/*2*/(new MasteryLevel<>(BrewingMastery.class), new FleetFootedElixir()),
+			new PerkGroup/*3*/(new MasteryLevel<>(ThrowingWeaponMastery.class), new MasteryLevel<>(SpearMastery.class)),
+			new PerkGroup/*4*/(new MasteryLevel<>(BrewingMastery.class), new KnockoutGasBomb()),
+			new PerkGroup/*5*/(new AbilitySpecialization(Potion.class), new MasteryLevel<>(SpearMastery.class), new RadiantBomb()),
+			new PerkGroup/*6*/(new MasteryLevel<>(BrewingMastery.class), new MasteryLevel<>(ThrowingWeaponMastery.class)),
+			new PerkGroup/*7*/(new AbilitySpecialization(Potion.class), new AmplificationElixir()),
+			new PerkGroup/*8*/(new MasteryLevel<>(BrewingMastery.class), new MasteryLevel<>(SpearMastery.class)),
+			new PerkGroup/*9*/(new AbilitySpecialization(Potion.class), new FireBomb()),
+			new PerkGroup/*10*/(new MasteryLevel<>(BrewingMastery.class), new GrandmasterBrewer()),
+			new PerkGroup/*11*/(new AbilitySpecialization(Potion.class), new MasteryLevel<>(SpearMastery.class)),
+			new PerkGroup/*12*/(new MasteryLevel<>(BrewingMastery.class), new MasteryLevel<>(ThrowingWeaponMastery.class)),
+			new PerkGroup/*13*/(new AbilitySpecialization(Potion.class), new FreezeBomb()),
+			new PerkGroup/*14*/(new MasteryLevel<>(BrewingMastery.class), new MasteryLevel<>(SpearMastery.class)),
+			new PerkGroup/*15*/(new AbilitySpecialization(Potion.class), new MasteryLevel<>(ThrowingWeaponMastery.class)),
+			new PerkGroup/*16*/(new AbilitySpecialization(Potion.class), new MasteryLevel<>(BrewingMastery.class)),
+			new PerkGroup/*17*/(new AbilitySpecialization(Potion.class), new MasteryLevel<>(SpearMastery.class)),
+			new PerkGroup/*18*/(new AbilitySpecialization(Potion.class), new MasteryLevel<>(BrewingMastery.class)),
+			new PerkGroup/*19*/(new AbilitySpecialization(Potion.class), new MasteryLevel<>(ThrowingWeaponMastery.class)),
+			new PerkGroup/*20*/(new MasteryLevel<>(BrewingMastery.class), new MasteryLevel<>(SpearMastery.class), new DisplacementBulwarkElixir())
 		);
 	}
 }
