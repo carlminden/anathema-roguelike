@@ -17,7 +17,10 @@
 package com.anathema_roguelike.characters.perks.targetingstrategies.shapes;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
+import com.anathema_roguelike.environment.Environment;
+import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.environment.Point;
 
 public abstract class Shape {
@@ -38,5 +41,9 @@ public abstract class Shape {
 	
 	private void setPoints(Collection<Point> points) {
 		this.points = points;
+	}
+	
+	public Collection<Location> getLocations(Environment environment) {
+		return getPoints().stream().map(p -> environment.getLocation(p)).collect(Collectors.toList());
 	}
 }

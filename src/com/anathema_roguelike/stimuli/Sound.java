@@ -19,17 +19,17 @@ package com.anathema_roguelike.stimuli;
 import java.util.Optional;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.environment.Location;
 
 public class Sound extends Stimulus {
 
-	public Sound(Point origin, int magnitude) {
-		super(origin, magnitude);
+	public Sound(int magnitude) {
+		super(magnitude);
 	}
 
 	@Override
-	public Optional<PercievedStimulus> computePercievedStimulus(Character character) {
-		return null;
+	public Optional<PercievedStimulus> computePercievedStimulus(Location location, Character character) {
+		return Optional.of(new PercievedStimulus(location, this));
 	}
 
 }

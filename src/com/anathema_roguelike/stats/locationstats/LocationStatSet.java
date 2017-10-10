@@ -14,14 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes;
+package com.anathema_roguelike.stats.locationstats;
 
-import java.util.Collection;
+import com.anathema_roguelike.environment.Location;
+import com.anathema_roguelike.stats.StatSet;
+import com.google.common.eventbus.EventBus;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
-import com.google.common.base.Predicate;
+public class LocationStatSet extends StatSet<Location, LocationStat> {
 
-public abstract class TargetMode {
-	public abstract Collection<Character> getTargets(Shape shape, Character character, Predicate<Character> targetValidator);
+	public LocationStatSet(Location object, EventBus eventBus) {
+		super(object, Location.class, LocationStat.class);
+	}
 }

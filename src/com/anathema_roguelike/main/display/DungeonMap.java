@@ -75,7 +75,7 @@ public class DungeonMap implements Renderable, Rectangular {
 		state.render();
 		
 		Player player = Game.getInstance().getState().getPlayer();
-		LightLevels lightLevels = state.getCurrentLevel().getLightLevels();
+		LightLevels lightLevels = state.getCurrentEnvironment().getLightLevels();
 		
 		
 		BufferMask visibility = player.getCurrentVisibility();
@@ -88,17 +88,17 @@ public class DungeonMap implements Renderable, Rectangular {
 		
 		DisplayBuffer fogOfWarLight = generateLayer(lightLevels, visibility, visibleLight,
 				dungeonLayers.get(DungeonLayer.LIT_FOG_OF_WAR_LIGHT),
-				Game.getInstance().getState().getCurrentLevel().getFogOfWarLight(),
+				Game.getInstance().getState().getCurrentEnvironment().getFogOfWarLight(),
 				dungeonLayers.get(DungeonLayer.FOG_OF_WAR_LIGHT));
 		
 		DisplayBuffer fogOfWarBackground = generateLayer(lightLevels, visibility, visibleBackground,
 				dungeonLayers.get(DungeonLayer.LIT_FOG_OF_WAR_BACKGROUND),
-				Game.getInstance().getState().getCurrentLevel().getFogOfWarBackground(),
+				Game.getInstance().getState().getCurrentEnvironment().getFogOfWarBackground(),
 				dungeonLayers.get(DungeonLayer.FOG_OF_WAR_BACKGROUND));
 		
 		DisplayBuffer fogOfWarForeground = generateLayer(lightLevels, visibility, visibleForeground,
 				dungeonLayers.get(DungeonLayer.LIT_FOG_OF_WAR_FOREGROUND),
-				Game.getInstance().getState().getCurrentLevel().getFogOfWarForeground(),
+				Game.getInstance().getState().getCurrentEnvironment().getFogOfWarForeground(),
 				dungeonLayers.get(DungeonLayer.FOG_OF_WAR_FOREGROUND));
 		
 		visibleForeground.compose(dungeonLayers.get(DungeonLayer.NPCS));
@@ -168,7 +168,7 @@ public class DungeonMap implements Renderable, Rectangular {
 		BufferMask enemyDetectedVision = new BufferMask(dungeonWidth, dungeonHeight);
 		
 		
-		for(Foe character : state.getCurrentLevel().getEntities(Foe.class)) {
+		for(Foe character : state.getCurrentEnvironment().getEntities(Foe.class)) {
 			if(character.isVisibleTo(player)) {
 				if(player.isVisibleTo(character)) {
 					enemyDetectedVision.or(character.getCurrentVisibility());
@@ -191,7 +191,7 @@ public class DungeonMap implements Renderable, Rectangular {
 		renderFoVOverlay(visibility, enemyAlertedVision, Color.ALERTED);
 		renderFoVOverlay(visibility, enemyDetectedVision, Color.DETECTED);
 		
-		for(Foe character : state.getCurrentLevel().getEntities(Foe.class)) {
+		for(Foe character : state.getCurrentEnvironment().getEntities(Foe.class)) {
 			if(character.isVisibleTo(player)) {
 				if(!player.isVisibleTo(character) && character.getMostInterestingStimulus() != null) {
 					

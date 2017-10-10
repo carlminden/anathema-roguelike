@@ -34,7 +34,7 @@ import com.anathema_roguelike.stats.characterstats.masteries.LongBladeMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.ShortBladeMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpellMastery;
 
-public class Assassin extends CharacterClass {
+public class Assassin extends PlayerClass {
 
 	public Assassin() {
 		super(

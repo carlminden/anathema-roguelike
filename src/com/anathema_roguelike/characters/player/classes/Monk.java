@@ -37,7 +37,7 @@ import com.anathema_roguelike.characters.player.perks.specializations.AbilitySpe
 import com.anathema_roguelike.stats.characterstats.masteries.BrewingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.UnarmedMastery;
 
-public class Monk extends CharacterClass {
+public class Monk extends PlayerClass {
 
 	public Monk() {
 		super(

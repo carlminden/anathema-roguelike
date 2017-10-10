@@ -18,31 +18,28 @@ package com.anathema_roguelike.characters.perks;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.attacks.Attack;
+import com.anathema_roguelike.characters.perks.targetingstrategies.TargetConsumer;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.characters.perks.targetingstrategies.TargetingStrategy;
+import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
 
-public abstract class AttackPerk<T extends Attack> extends OffensiveTargetedPerk {
+public abstract class AttackPerk<T extends Targetable> extends OffensiveTargetedPerk<T> {
 	
-	private Class<T> type;
+	protected abstract Attack getAttack();
 	
-	protected abstract T getAttack();
-	
-	public AttackPerk(Class<T> type, TargetingStrategy strategy) {
-		super(strategy);
+	public AttackPerk(Range<Character> range, TargetingStrategy<T, Character> strategy, TargetConsumer<?> ...targetConsumers) {
+		super(range, strategy, targetConsumers);
 		
-		this.type = type;
-	}
-	
-	public Class<T> getType() {
-		return type;
-	}
-	
-	@Override
-	protected boolean onActivate(Character target) {
-		if(getAttack().getEffect().isPresent()) {
-			target.applyEffect(getAttack().getEffect());
-			return true;
-		} else {
-			throw new RuntimeException("Missing Effect");
-		}
+		addTargetConsumer(new TargetConsumer<Character>(Character.class) {
+
+			@Override
+			public void consume(Character target) {
+				if(getAttack().getEffect().isPresent()) {
+					target.applyEffect(getAttack().getEffect());
+				} else {
+					throw new RuntimeException("Missing Effect");
+				}
+			}
+		});
 	}
 }

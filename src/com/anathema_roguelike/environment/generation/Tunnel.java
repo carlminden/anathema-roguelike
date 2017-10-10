@@ -53,7 +53,7 @@ public class Tunnel extends DungeonFeature {
 			int x = point.getX();
 			int y = point.getY();
 			
-			map[x][y].setTerrain(new Stone(generator.getLevel(), new Point(x, y)));
+			map[x][y].setTerrain(new Stone());
 		}
 	}	
 }

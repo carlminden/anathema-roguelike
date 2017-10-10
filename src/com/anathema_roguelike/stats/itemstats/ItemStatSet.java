@@ -16,12 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.itemstats;
 
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.stats.StatSet;
 
-public class ItemStatSet extends StatSet<EquippableItem, ItemStat>{
+public class ItemStatSet extends StatSet<Item, ItemStat>{
 
-	public ItemStatSet(EquippableItem object) {
-		super(object, EquippableItem.class, ItemStat.class);
+	public ItemStatSet(Item object) {
+		super(object, Item.class, ItemStat.class);
 	}
 }

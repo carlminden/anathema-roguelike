@@ -16,9 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.features;
 
-import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Orientation;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.fov.ObstructionChangedEvent;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
@@ -36,14 +34,14 @@ public class Doorway extends Feature {
 		}
 	}
 	
-	public Doorway(Environment level, Point point, int direction, boolean open) {
-		super(level, point, getInitialRepresentation(direction), true, open, open ? 0.0 : 1.0, open ? 0.0 : 1.0);
+	public Doorway(int direction, boolean open) {
+		super(getInitialRepresentation(direction), true, open, open ? 0.0 : 1.0, open ? 0.0 : 1.0);
 		this.direction = direction;
 		this.open = open;
 	}
 	
-	public Doorway(Environment level, Point point, int direction) {
-		super(level, point, getInitialRepresentation(direction), true, false, 1.0, 1.0);
+	public Doorway(int direction) {
+		super(getInitialRepresentation(direction), true, false, 1.0, 1.0);
 		this.direction = direction;
 		this.open = false;
 	}
@@ -67,7 +65,7 @@ public class Doorway extends Feature {
 	public boolean open() {
 		if(!open) {
 			open = true;
-			getLevel().getEventBus().post(new ObstructionChangedEvent(getPosition()));
+			getLocation().getEnvironment().getEventBus().post(new ObstructionChangedEvent(getPosition()));
 			return true;
 		} else {
 			return false;

@@ -110,9 +110,7 @@ public abstract class Foe extends Character {
 
 	@Override
 	public void onDeath() {
-		Environment level = Game.getInstance().getState().getEnvironment(getDepth());
-		
-		level.removeEntity(this);
+		getEnvironment().removeEntity(this);
 		
 		Game.getInstance().getEventBus().unregister(this);
 		unregisterHandler(this);

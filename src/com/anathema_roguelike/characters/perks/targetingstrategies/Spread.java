@@ -16,33 +16,26 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
+import java.util.function.BiFunction;
+
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
-import com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes.TargetsMode;
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.stats.effects.Calculation;
-import com.google.common.base.Predicate;
 
-public class Spread extends AreaOfEffect {
+public class Spread<T extends Targetable> extends AreaOfEffect<T> {
 	
 	private Calculation radius;
 	
-	public Spread(Range range, Calculation radius, Predicate<Character> targetValidator) {
-		super(range, new TargetsMode(), targetValidator);
+	@SafeVarargs
+	public Spread(Class<T> targetType, Calculation radius, BiFunction<T, Location, Boolean> ...constraints) {
+		super(targetType, constraints);
 		
 		this.radius = radius;
 	}
-	
-	public Spread(Range range, Calculation radius) {
-		super(range, new TargetsMode());
-		
-		this.radius = radius;
-	}
-	
+
 	@Override
-	protected Shape getShape(Point origin) {
+	protected Shape getShape(Location origin) {
 		return new Circle(origin, radius);
 	}
 }

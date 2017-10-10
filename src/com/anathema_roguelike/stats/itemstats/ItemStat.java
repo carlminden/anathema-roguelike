@@ -16,14 +16,14 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.itemstats;
 
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.stats.Stat;
 
-public abstract class ItemStat extends Stat<EquippableItem> {
+public abstract class ItemStat extends Stat<Item> {
 	
 	protected double base;
 	
-	public ItemStat(EquippableItem item) {
+	public ItemStat(Item item) {
 		super(item);
 	}
 	

@@ -18,17 +18,15 @@ package com.anathema_roguelike.main;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.environment.Environment;
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
+import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
-public abstract class Entity implements Renderable {
+public abstract class Entity implements Renderable, Targetable {
 	
-	private int depth;
-	private Point position;
+	private Location location;
 	
 	private Optional<VisualRepresentation> representation;
 	
@@ -40,35 +38,15 @@ public abstract class Entity implements Renderable {
 		this.representation = Optional.of(new VisualRepresentation(representation)); 
 	}
 	
-	public abstract boolean isVisibleTo(Character character);
 	protected abstract void renderThis();
 	
-	public int getDepth() {
-		return depth;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 	
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
-	
-	public Point getPosition() {
-		return position;
-	}
-	
-	public void setPosition(Point p) {
-		position = new Point(p);
-	}
-	
-	public Environment getEnvironment() {
-		return Game.getInstance().getState().getEnvironment(depth);
-	}
-	
-	public int getX() {
-		return getPosition().getX();
-	}
-	
-	public int getY() {
-		return getPosition().getY();
+	@Override
+	public final Location getLocation() {
+		return location;
 	}
 	
 	public VisualRepresentation getRepresentation() {

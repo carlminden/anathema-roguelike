@@ -6,16 +6,16 @@ import java.util.Collection;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.perks.Perk;
 import com.anathema_roguelike.characters.perks.PerkChoice;
-import com.anathema_roguelike.characters.player.classes.CharacterClass;
+import com.anathema_roguelike.characters.player.classes.PlayerClass;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.google.common.collect.Collections2;
 
 public class SpellOrSpecialization extends PerkChoice {
 	
 	private int spellLevel;
-	private Class<? extends CharacterClass> casterClass;
+	private Class<? extends PlayerClass> casterClass;
 
-	public SpellOrSpecialization(int spellLevel, Class<? extends CharacterClass> casterClass) {
+	public SpellOrSpecialization(int spellLevel, Class<? extends PlayerClass> casterClass) {
 		super("Level " + spellLevel + " " + Utils.getName(casterClass) + " Spell");
 		
 		this.spellLevel = spellLevel;

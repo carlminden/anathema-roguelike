@@ -18,7 +18,7 @@ package com.anathema_roguelike.items.armor;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.Modifier;
 import com.anathema_roguelike.stats.effects.MultiplicativeCalculation;
@@ -39,13 +39,13 @@ public class ArmorMaterial extends ArmorProperty {
 	}
 
 	@Override
-	public Optional<Effect<EquippableItem, ItemStat>> getEffect() {
+	public Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return Optional.of(new Effect<EquippableItem, ItemStat>(this,
-				new Modifier<EquippableItem, ConcealmentDefense>(ConcealmentDefense.class, MultiplicativeCalculation.build(() -> getConcealment())),
-				new Modifier<EquippableItem, AttenuationDefense>(AttenuationDefense.class, MultiplicativeCalculation.build(() -> getAttenuation())),
-				new Modifier<EquippableItem, VeilDefense>(VeilDefense.class, MultiplicativeCalculation.build(() -> getVeil())),
-				new Modifier<EquippableItem, Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
+		return Optional.of(new Effect<Item, ItemStat>(this,
+				new Modifier<Item, ConcealmentDefense>(ConcealmentDefense.class, MultiplicativeCalculation.build(() -> getConcealment())),
+				new Modifier<Item, AttenuationDefense>(AttenuationDefense.class, MultiplicativeCalculation.build(() -> getAttenuation())),
+				new Modifier<Item, VeilDefense>(VeilDefense.class, MultiplicativeCalculation.build(() -> getVeil())),
+				new Modifier<Item, Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
 		) {});
 	}
 }

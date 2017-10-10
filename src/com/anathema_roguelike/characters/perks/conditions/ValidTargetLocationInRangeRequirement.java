@@ -16,16 +16,17 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.conditions;
 
-import com.anathema_roguelike.characters.perks.Perk;
+import com.anathema_roguelike.characters.perks.TargetedPerk;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
 import com.anathema_roguelike.main.utilities.BooleanCondition;
 import com.anathema_roguelike.main.utilities.Utils;
 
-public class MultipleEnemiesRequirement extends PerkRequirement {
+public class ValidTargetLocationInRangeRequirement<TargetType extends Targetable, OriginType extends Targetable> extends PerkRequirement {
 	
-	private Range range;
+	Range<OriginType> range;
 	
-	public MultipleEnemiesRequirement(Perk perk, Range range) {
+	public ValidTargetLocationInRangeRequirement(TargetedPerk<TargetType, OriginType> perk, Range<OriginType> range) {
 		super(perk);
 		
 		this.range = range;
@@ -34,21 +35,17 @@ public class MultipleEnemiesRequirement extends PerkRequirement {
 	@Override
 	public BooleanCondition getCondition() {
 		return new BooleanCondition() {
-
+			
 			@Override
 			public boolean isTrue() {
-				if(range.getVisibleEnemies(getPerk().getCharacter()).size() > 1) {
-					return true;
-				} else {
-					return false;
-				}
+				return range.getTargets(getPerk().getCharacter()).size() > 0;
 			}
 		};
 	}
 	
 	@Override
 	public String getRequirementUnmetMessage() {
-		return Utils.getName(getPerk()) + " requires multiple enemies in " + Utils.getName(range);
+		return "There are no valid targets in " + Utils.getName(range);
 	}
 
 }

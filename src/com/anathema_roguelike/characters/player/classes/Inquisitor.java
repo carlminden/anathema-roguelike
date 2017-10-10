@@ -25,7 +25,7 @@ import com.anathema_roguelike.stats.characterstats.masteries.BluntWeaponMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.ShortBladeMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpellMastery;
 
-public class Inquisitor extends CharacterClass {
+public class Inquisitor extends PlayerClass {
 
 	public Inquisitor() {
 		super(

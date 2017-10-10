@@ -17,91 +17,37 @@
 package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
 import java.util.Collection;
+import java.util.function.BiFunction;
 
 import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.characters.perks.targetingstrategies.TargetFilter;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
-import com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes.TargetMode;
-import com.anathema_roguelike.environment.Point;
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.common.collect.Iterables;
+import com.anathema_roguelike.main.ui.uielements.interactiveuielements.GetTargetInterface;
+import com.anathema_roguelike.main.utilities.Utils;
 
-public abstract class Range {
-	
-	private TargetMode targetMode;
-	
-	public Range(TargetMode targetMode) {
-		this.targetMode = targetMode;
+public abstract class Range<T extends Targetable> extends TargetFilter<T, Character> {
+
+	@SafeVarargs
+	public Range(Class<T> targetType, BiFunction<T, Character, Boolean> ...constraints) {
+		super(targetType, constraints);
 	}
 	
 	protected abstract Shape getShape(Character character);
 	
-	protected Collection<Character> getTargetsInRange(Character character, Predicate<Character> targetValidator) {
+	public Collection<T> getTargets(Character character) {
+		return getTargetsInShape(getShape(character), character.getEnvironment(), character);
+	}
+	
+	public T getTarget(Character character) {
+		Collection<T> validTargets = getTargetsInShape(getShape(character), character.getEnvironment(), character);
 		
-		return targetMode.getTargets(getShape(character), character, targetValidator);
-	}
-	
-	public Collection<Point> getPointsInRange(Character character) {
-		return getShape(character).getPoints();
-	}
-	
-	public boolean isInRange(Character character, Point point) {
-		return getShape(character).validPoint(point);
-	}
-	
-	public boolean isInRange(Character character, Character target) {
-		return isInRange(character, target.getPosition());
-	}
-
-	public Collection<Character> getEnemies(final Character character) {
-		return getTargets(character, new Predicate<Character>() {
-
-			@Override
-			public boolean apply(Character target) {
-				return target.getFaction() != character.getFaction();
-			}
-		});
-	}
-	
-	public Collection<Character> getVisibleEnemies(final Character character) {
-		return getVisibleTargets(character, new Predicate<Character>() {
-
-			@Override
-			public boolean apply(Character target) {
-				return target.getFaction() != character.getFaction();
-			}
-		});
-	}
-	
-	public Collection<Character> getTargets(final Character character, Predicate<Character> predicate) {
-		
-		Predicate<Character> visible = new Predicate<Character>() {
-
-			@Override
-			public boolean apply(Character target) {
-				return target.isVisibleTo(character);
-			}
-		};
-		
-		return getTargetsInRange(character, Predicates.and(visible, predicate));
-	}
-	
-	public Collection<Character> getVisibleTargets(final Character character, Predicate<Character> predicate) {
-		return getTargets(character, Predicates.and(predicate, new Predicate<Character>() {
-
-			@Override
-			public boolean apply(Character target) {
-				return target.isVisibleTo(character);
-			}
+		if(validTargets.size() == 1) {
+			return validTargets.iterator().next();
+		} else {
+			String instructions = "Select a " + Utils.getName(getTargetType()) + " within " + Utils.getName(this);
 			
-		}));
-	}
-	
-	public Collection<Character> getVisibleTargets(final Character character) {
-		return getVisibleTargets(character, Predicates.<Character>alwaysTrue());
-	}
-	
-	public boolean isCharacterInRange(Character character, Character target) {
-		return Iterables.contains(getTargets(character, Predicates.<Character>alwaysTrue()), target);
+			return new GetTargetInterface<>(validTargets, instructions).run();
+		}
 	}
 }

@@ -143,12 +143,12 @@ public abstract class Room extends DungeonFeature implements Rectangular, Compar
 			for(int j = 1; j < width - 1; j++) {
 				int x = getX() + j;
 				int y = getY() + i;
-				map[x][y].setTerrain(new Stone(level, new Point(x, y)));
+				map[x][y].setTerrain(new Stone());
 			}
 		}
 		
 		for(Door door : doors) {
-			map[door.getX()][door.getY()].addFeature(new Doorway(level, door.getPosition(), door.getDirection()));
+			map[door.getX()][door.getY()].addFeature(new Doorway(door.getDirection()));
 		}
 	}
 	

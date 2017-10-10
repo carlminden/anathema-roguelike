@@ -16,8 +16,20 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
-public class LongRange extends CircularRange {
-	public LongRange() {
-		super(10);
+import java.util.function.BiFunction;
+
+import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
+
+public class LongRange<T extends Targetable> extends CircularRange<T> {
+	
+	@SafeVarargs
+	public LongRange(Class<T> targetType, BiFunction<T, Character, Boolean> ...constraints) {
+		super(targetType, constraints);
+	}
+
+	@Override
+	protected double getRadius(Character character) {
+		return 10.0;
 	}
 }

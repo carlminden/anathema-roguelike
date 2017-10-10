@@ -23,6 +23,7 @@ import com.anathema_roguelike.characters.actions.MoveAction;
 import com.anathema_roguelike.characters.actions.TurnAction;
 import com.anathema_roguelike.characters.foes.Foe;
 import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 
@@ -38,29 +39,29 @@ public class AI {
 	
 	public void performAction() {
 		Character enemy = null;
-		Point target = null;
+		Location target = null;
 		
 		if(npc.getVisibleEnemies().count() > 0) {
 			enemy = npc.getVisibleEnemies().findFirst().get();
-			target = enemy.getPosition();
+			target = enemy.getLocation();
 		} else if(npc.getMostInterestingStimulus() != null) {
-			target = npc.getMostInterestingStimulus().getPosition();
+			target = npc.getMostInterestingStimulus().getLocation();
 		}
 		
 		if(target != null) {
-			Path path = pathfinder.getPath(npc.getPosition(), target);
+			Path path = pathfinder.getPath(npc, target);
 			
 			if(path != null && !npc.getPosition().equals(target)) {
 				
-				if(npc.getFacing() != Direction.angleOf(npc.getPosition(), target)) {
-					npc.takeAction(new TurnAction(Direction.angleOf(npc.getPosition(), target)));
+				if(npc.getFacing() != Direction.angleOf(npc, target)) {
+					npc.takeAction(new TurnAction(Direction.angleOf(npc, target)));
 				} else {
 					npc.takeAction(new MoveAction(Direction.of(npc.getPosition(), path.get(1))));
 				}
 			} else {
 				randomStep();
 				
-				if(npc.getPosition().equals(target) && target == npc.getMostInterestingStimulus().getPosition()) {
+				if(npc.getPosition().equals(target) && target == npc.getMostInterestingStimulus().getLocation()) {
 					npc.getPercievedStimuli().remove(npc.getMostInterestingStimulus());
 				}
 			}

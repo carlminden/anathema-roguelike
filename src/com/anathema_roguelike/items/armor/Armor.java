@@ -18,10 +18,10 @@ package com.anathema_roguelike.items.armor;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
-public abstract class Armor extends EquippableItem {
+public abstract class Armor extends Item {
 	
 	private ArmorType type;
 	private ArmorMaterial material;

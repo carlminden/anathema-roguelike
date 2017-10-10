@@ -44,7 +44,7 @@ public class State implements Renderable {
 	
 	public void computeNextState() {
 		
-		Environment level = getCurrentLevel();
+		Environment level = getCurrentEnvironment();
 		
 		for(Character character : new ArrayList<>(level.getEntities(Character.class))) {
 			if(character.isAlive() || character instanceof Player) {
@@ -57,16 +57,15 @@ public class State implements Renderable {
 	}
 	
 	public void render() {
-		
-		dungeonLevels.get(player.getDepth()).render();
+		getCurrentEnvironment().render();
 	}
 	
 	public Player getPlayer() {
 		return player;
 	}
 	
-	public Environment getCurrentLevel() {
-		return getEnvironment(player.getDepth());
+	public Environment getCurrentEnvironment() {
+		return player.getEnvironment();
 	}
 
 	public Environment getEnvironment(int z) {

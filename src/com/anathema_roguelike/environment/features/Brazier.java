@@ -18,9 +18,7 @@ package com.anathema_roguelike.environment.features;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 import com.anathema_roguelike.stats.effects.Effect;
@@ -30,8 +28,8 @@ import com.anathema_roguelike.stats.locationstats.LocationStat;
 
 public class Brazier extends Feature {
 
-	public Brazier(Environment level, Point point) {
-		super(level, point, new VisualRepresentation('\u0436'), true, false, 1.0, 1.0);
+	public Brazier() {
+		super(new VisualRepresentation('\u0436'), true, false, 1.0, 1.0);
 	}
 	
 	@Override

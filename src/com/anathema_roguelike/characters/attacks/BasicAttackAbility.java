@@ -16,14 +16,15 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.attacks;
 
+import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.perks.AttackPerk;
 import com.anathema_roguelike.characters.perks.targetingstrategies.SingleTargeted;
 import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.MeleeRange;
 
-public class BasicAttackAbility extends AttackPerk<BasicAttack> {
+public class BasicAttackAbility extends AttackPerk<Character> {
 
 	public BasicAttackAbility() {
-		super(BasicAttack.class, new SingleTargeted(new MeleeRange()));
+		super(new MeleeRange<Character>(Character.class), new SingleTargeted<Character>(Character.class));
 	}
 
 	@Override

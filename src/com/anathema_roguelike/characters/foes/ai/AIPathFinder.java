@@ -18,8 +18,9 @@ package com.anathema_roguelike.characters.foes.ai;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.environment.Environment;
+import com.anathema_roguelike.environment.HasLocation;
+import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.environment.Point;
-import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 import com.anathema_roguelike.main.utilities.pathfinding.PathFinder;
 import com.google.common.base.Predicate;
@@ -34,9 +35,13 @@ public class AIPathFinder extends PathFinder {
 		this.character = character;
 	}
 	
+	public Path getPath(HasLocation src, HasLocation dst) {
+		return getPath(src.getPosition(), dst.getPosition());
+	}
+	
 	@Override
 	public Path getPath(Point src, Point dst) {
-		this.level = Game.getInstance().getState().getEnvironment(character.getDepth());
+		this.level = character.getEnvironment();
 		return super.getPath(src, dst);
 	}
 	
@@ -45,12 +50,16 @@ public class AIPathFinder extends PathFinder {
 	protected boolean isPassable(Point p, int direction) {
 		return level.isPassable(p);
 	}
+	
 
 	@Override
 	protected int getExtraCost(Point p, int direction, int previousDirection) {
+		
+		Location location = character.getEnvironment().getLocation(p);
+		
 		int ret = 0;
 		
-		if(Iterables.any(level.getEntitiesAt(p, Character.class), new Predicate<Character>() {
+		if(Iterables.any(location.getEntities(Character.class), new Predicate<Character>() {
 
 			@Override
 			public boolean apply(Character other) {

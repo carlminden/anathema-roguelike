@@ -14,27 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package com.anathema_roguelike.characters.perks;
+package com.anathema_roguelike.characters.player.classes;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.foes.ai.Faction;
-import com.anathema_roguelike.characters.perks.targetingstrategies.TargetingStrategy;
-import com.google.common.base.Predicate;
 
-public abstract class AllyTargetedPerk extends TargetedPerk {
+import java.util.ArrayList;
+import java.util.Arrays;
 
-	public AllyTargetedPerk(TargetingStrategy strategy) {
-		super(strategy);
+import com.anathema_roguelike.characters.perks.PerkGroup;
+
+public abstract class PlayerClass {
+	
+	private ArrayList<PerkGroup> levels = new ArrayList<>();
+	
+	public PlayerClass(PerkGroup firstLevel, PerkGroup ... levels) {
+		this.levels.add(firstLevel);
+		this.levels.addAll(Arrays.asList(levels));
 	}
-
-	@Override
-	public Predicate<Character> getTargetValidator() {
-		return new Predicate<Character>() {
-
-			@Override
-			public boolean apply(Character target) {
-				return Faction.friendly(getCharacter(), target);
-			}
-		};
+	
+	public PerkGroup getLevel(int level) {
+		return levels.get(level - 1);
 	}
+	
 }

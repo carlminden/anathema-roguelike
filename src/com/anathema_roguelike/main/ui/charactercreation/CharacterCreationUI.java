@@ -25,7 +25,7 @@ public class CharacterCreationUI {
 		
 		Player player = new Player();
 		
-		ClassSelection.selectClass(player);
+		player.levelUp();
 		new PointBuy().selectScores(player);
 		
 		return player;

@@ -122,6 +122,8 @@ public abstract class PathFinder {
 			return 14;
 		}*/
 		//I don't think this makes sense because diagonals are no more expensive than non-diagonals
+		//although I could make moving on diagonals slower to compensate for their otherwise extra efficiency,
+		//if I did so, it would make sense to have this
 		return 10;
 	}
 }

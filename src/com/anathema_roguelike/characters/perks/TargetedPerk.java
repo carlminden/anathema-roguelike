@@ -16,62 +16,62 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.perks.conditions.ValidTargetPointInRangeRequirement;
+import com.anathema_roguelike.characters.perks.conditions.ValidTargetLocationInRangeRequirement;
+import com.anathema_roguelike.characters.perks.targetingstrategies.TargetConsumer;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.characters.perks.targetingstrategies.TargetingStrategy;
-import com.anathema_roguelike.environment.Point;
-import com.anathema_roguelike.main.ui.uielements.interactiveuielements.GetTargetInterface;
-import com.google.common.base.Predicate;
+import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
 
-public abstract class TargetedPerk extends ActivatedPerk {
+public class TargetedPerk<TargetType extends Targetable, OriginType extends Targetable> extends ActivatedPerk {
 
-	private TargetingStrategy strategy;
+	private Collection<TargetConsumer<?>> targetConsumers;
+	private TargetingStrategy<TargetType, OriginType> strategy;
+	private Range<OriginType> range;
 	
-	protected abstract boolean onActivate(Character target);
-	
-	public abstract Predicate<Character> getTargetValidator();
-	
-	public TargetedPerk(TargetingStrategy strategy) {
-		super();
+	public TargetedPerk(Range<OriginType> range, TargetingStrategy<TargetType, OriginType> strategy, TargetConsumer<?> ...targetConsumers) {
 		this.strategy = strategy;
+		this.range = range;
+		this.targetConsumers = new ArrayList<TargetConsumer<?>>(Arrays.asList(targetConsumers));
 		
-		this.strategy.addTargetValidator(getTargetValidator());
-		
-		addRequirement(new ValidTargetPointInRangeRequirement(this, strategy));
-	}
-	
-	public boolean activate(Point targetedPoint) {
-		
-		for(Character target : strategy.getTargets(getCharacter(), targetedPoint)) {
-			onActivate(target);
-		}
-		
-		return true;
+		addRequirement(new ValidTargetLocationInRangeRequirement<>(this, range));
 	}
 	
 	@Override
 	protected boolean onActivate() {
-		
-		Collection<Point> validTargets = strategy.getValidTargetPoints(getCharacter());
-		Point targetedPoint;
-		
-		if(validTargets.size() == 1) {
-			targetedPoint = validTargets.iterator().next();
-		} else {
-			targetedPoint = new GetTargetInterface(this, strategy).run();
-		}
-		
-		if(targetedPoint != null) {
-			return activate(targetedPoint);
-		} else {
-			return false;
-		}
+		return applyToTarget(range.getTarget(getCharacter()));
 	}
 	
-	public TargetingStrategy getTargetingStrategy() {
-		return strategy;
+	public boolean applyToTarget(OriginType origin) {
+		boolean activated = false;
+		
+		for(TargetType target : strategy.getTargets(origin)) {
+			activated = activated || applyTo(target);
+		}
+		
+		return activated;
 	}
 	
+	@SuppressWarnings("unchecked")
+	private boolean applyTo(TargetType target) {
+		
+		boolean ret = false;
+		
+		for(TargetConsumer<?> tc : targetConsumers) {
+			if(tc.getTargetType().isAssignableFrom(target.getClass())) {
+				tc.getClass().cast(tc).consume(tc.getTargetType().cast(target));
+				
+				ret = true;
+			}
+		}
+		
+		return ret;
+	}
+	
+	protected void addTargetConsumer(TargetConsumer<?> targetConsumer) {
+		targetConsumers.add(targetConsumer);
+	}
 }

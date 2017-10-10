@@ -36,7 +36,7 @@ import com.anathema_roguelike.stats.characterstats.masteries.LongBladeMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.ThrowingWeaponMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.UnarmedMastery;
 
-public class Ninja extends CharacterClass {
+public class Ninja extends PlayerClass {
 
 	public Ninja() {
 		super(

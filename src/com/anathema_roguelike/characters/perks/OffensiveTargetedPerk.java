@@ -17,25 +17,18 @@
 package com.anathema_roguelike.characters.perks;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.foes.ai.Faction;
+import com.anathema_roguelike.characters.perks.targetingstrategies.EnemyTargetValidator;
+import com.anathema_roguelike.characters.perks.targetingstrategies.TargetConsumer;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.characters.perks.targetingstrategies.TargetingStrategy;
-import com.google.common.base.Predicate;
+import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
 
-public abstract class OffensiveTargetedPerk extends TargetedPerk {
+public abstract class OffensiveTargetedPerk<T extends Targetable> extends TargetedPerk<T, Character> {
 
-	public OffensiveTargetedPerk(TargetingStrategy strategy) {
-		super(strategy);
+	@SafeVarargs
+	public OffensiveTargetedPerk(Range<Character> range, TargetingStrategy<T, Character> strategy, TargetConsumer<?> ...targetConsumers) {
+		super(range, strategy, targetConsumers);
+		
+		range.addConstraint(new EnemyTargetValidator());
 	}
-	
-	@Override
-	public Predicate<Character> getTargetValidator() {
-		return new Predicate<Character>() {
-
-			@Override
-			public boolean apply(Character target) {
-				return !Faction.friendly(getCharacter(), target);
-			}
-		};
-	}
-
 }

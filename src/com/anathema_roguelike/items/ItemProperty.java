@@ -22,7 +22,7 @@ import com.anathema_roguelike.stats.effects.HasEffect;
 import com.anathema_roguelike.stats.itemstats.ItemStat;
 import com.univocity.parsers.annotations.Parsed;
 
-public abstract class ItemProperty<T extends Item> implements HasEffect<Effect<EquippableItem, ItemStat>>, HasWeightedProbability {
+public abstract class ItemProperty<T extends Item> implements HasEffect<Effect<Item, ItemStat>>, HasWeightedProbability {
 	
 	@Parsed(field = "Name")
 	private String name;

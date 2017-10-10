@@ -16,11 +16,11 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.itemstats;
 
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 
 public class Weight extends ItemStat {
 
-	public Weight(EquippableItem item) {
+	public Weight(Item item) {
 		super(item);
 	}
 }

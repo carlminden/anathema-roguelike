@@ -34,7 +34,7 @@ import com.anathema_roguelike.stats.characterstats.masteries.BowMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.CrossbowMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpellMastery;
 
-public class Ranger extends CharacterClass {
+public class Ranger extends PlayerClass {
 
 	public Ranger() {
 		super(

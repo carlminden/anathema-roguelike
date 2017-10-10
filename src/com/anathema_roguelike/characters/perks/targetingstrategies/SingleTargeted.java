@@ -16,49 +16,20 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.function.BiFunction;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
-import com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes.PointsMode;
-import com.anathema_roguelike.environment.Point;
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
+public class SingleTargeted<T extends Targetable> extends TargetingStrategy<T, T> {
 
-public class SingleTargeted extends TargetingStrategy {
-
-	public SingleTargeted(Range range, Predicate<Character> targetValidator) {
-		super(range, new PointsMode(), targetValidator);
-	}
-	
-	public SingleTargeted(Range range) {
-		super(range, new PointsMode());
+	@SafeVarargs
+	public SingleTargeted(Class<T> targetType, BiFunction<T, T, Boolean> ...constraints) {
+		super(targetType, constraints);
 	}
 
 	@Override
-	public Collection<Character> getTargets(Character character, Point targetedPoint) {
-		HashSet<Character> ret = new HashSet<>();
-		Collection<Character> targets = character.getEnvironment().getEntitiesAt(targetedPoint, Character.class);
-		
-		if(!targets.isEmpty()) {
-			ret.add(targets.iterator().next());
-		}
-		
-		return ret;
+	public Collection<T> getTargets(T target) {
+		return new ArrayList<T>(Arrays.asList(target));
 	}
-
-	@Override
-	public Collection<Point> getValidTargetPoints(Character character) {
-		return Collections2.transform(getRange().getTargets(character, getTargetValidator()), new Function<Character, Point>() {
-
-			@Override
-			public Point apply(Character target) {
-				return target.getPosition();
-			}
-			
-		});
-	}
-
 }

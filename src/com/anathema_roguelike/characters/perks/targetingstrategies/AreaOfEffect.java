@@ -17,33 +17,22 @@
 package com.anathema_roguelike.characters.perks.targetingstrategies;
 
 import java.util.Collection;
+import java.util.function.BiFunction;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
-import com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes.TargetMode;
-import com.anathema_roguelike.environment.Point;
-import com.google.common.base.Predicate;
+import com.anathema_roguelike.environment.Location;
 
-public abstract class AreaOfEffect extends TargetingStrategy {
+public abstract class AreaOfEffect<T extends Targetable> extends TargetingStrategy<T, Location> {
 	
-	public AreaOfEffect(Range range, TargetMode targetMode, Predicate<Character> targetValidator) {
-		super(range, targetMode, targetValidator);
+	@SafeVarargs
+	public AreaOfEffect(Class<T> targetType, BiFunction<T, Location, Boolean> ...constraints) {
+		super(targetType, constraints);
 	}
 	
-	public AreaOfEffect(Range range, TargetMode targetMode) {
-		super(range, targetMode);
-	}
-	
-	protected abstract Shape getShape(Point origin);
+	protected abstract Shape getShape(Location origin);
 	
 	@Override
-	public Collection<Character> getTargets(Character character, Point targetedPoint) {
-		return getTargetMode().getTargets(getShape(targetedPoint), character, getTargetValidator());
-	}
-	
-	@Override
-	public Collection<Point> getValidTargetPoints(Character character) {
-		return getRange().getPointsInRange(character);
+	public Collection<T> getTargets(Location location) {
+		return getTargetsInShape(getShape(location), location.getEnvironment(), location);
 	}
 }

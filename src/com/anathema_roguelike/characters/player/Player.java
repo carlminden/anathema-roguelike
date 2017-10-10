@@ -24,9 +24,9 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.foes.ai.Faction;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.characters.inventory.SecondaryWeapon;
-import com.anathema_roguelike.characters.player.classes.CharacterClass;
 import com.anathema_roguelike.characters.player.classes.ClassSet;
-import com.anathema_roguelike.items.EquippableItemFactory;
+import com.anathema_roguelike.characters.player.classes.PlayerClass;
+import com.anathema_roguelike.items.AnyItemFactory;
 import com.anathema_roguelike.items.armor.ArmorType;
 import com.anathema_roguelike.items.weapons.types.WeaponType;
 import com.anathema_roguelike.main.Game;
@@ -34,6 +34,8 @@ import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.InputHandler;
 import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
+import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Light;
 
 import squidpony.squidgrid.gui.gdx.SColor;
@@ -50,7 +52,7 @@ public class Player extends Character {
 		
 		setFaction(Faction.PLAYER);
 		
-		EquippableItemFactory f = new EquippableItemFactory();
+		AnyItemFactory f = new AnyItemFactory();
 		
 		getInventory().equip(f.generate(ArmorType.class));
 		getInventory().equip(f.generate(ArmorType.class));
@@ -87,16 +89,27 @@ public class Player extends Character {
 		System.out.println("YOU WERE KILLED");
 	}
 	
-	public int getClassLevels(Class<? extends CharacterClass> characterClass) {
+	public int getClassLevels(Class<? extends PlayerClass> characterClass) {
 		return classSet.getClassLevels(characterClass);
 	}
 	
-	public void grantClassLevel(Class<? extends CharacterClass> characterClass) {
+	public void grantClassLevel(Class<? extends PlayerClass> characterClass) {
 		classSet.grantClassLevel(characterClass);
 	}
 	
-	public Collection<Class<? extends CharacterClass>> getClasses() {
+	public Collection<Class<? extends PlayerClass>> getClasses() {
 		return classSet.getClasses();
+	}
+	
+	@Override
+	public void levelUp() {
+		Collection<Class<? extends PlayerClass>> classes = Utils.getSubclasses(PlayerClass.class);
+		
+		SelectionScreen<Class<? extends PlayerClass>> classSelectionScreen = new SelectionScreen<Class<? extends PlayerClass>>("Select your Class", classes, false);
+		
+		grantClassLevel(classSelectionScreen.run());
+		
+		super.levelUp();
 	}
 	
 	@Override

@@ -16,14 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.features;
 
-import com.anathema_roguelike.environment.Environment;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public class OpenDoorway extends Doorway {
 
-	public OpenDoorway(Environment level, Point point, int direction) {
-		super(level, point, direction, true);
+	public OpenDoorway(int direction) {
+		super(direction, true);
 	}
 	
 	@Override

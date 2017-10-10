@@ -19,20 +19,28 @@ package com.anathema_roguelike.stimuli;
 import java.util.Optional;
 
 import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.environment.HasLocation;
+import com.anathema_roguelike.environment.Location;
 
-public class StimulusEvent {
+public class StimulusEvent implements HasLocation {
 	
 	private Stimulus stimulus;
+	private Location location;
 	
-	public StimulusEvent(Stimulus stimulus) {
+	public StimulusEvent(Location location, Stimulus stimulus) {
 		this.stimulus = stimulus;
+		this.location = location;
 	}
 	
 	public Optional<PercievedStimulus> getPercievedStimulus(Character character) {
-		return stimulus.computePercievedStimulus(character);
+		return stimulus.computePercievedStimulus(location, character);
 	}
 	
 	public Stimulus getStimulus() {
 		return stimulus;
+	}
+	
+	public Location getLocation() {
+		return location;
 	}
 }

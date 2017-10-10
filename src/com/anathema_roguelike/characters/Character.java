@@ -117,10 +117,6 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		eventBus.register(obj);
 	}
 	
-	public void generateStimulus(Stimulus stimulus) {
-		Game.getInstance().getEventBus().post(new StimulusEvent(stimulus));
-	}
-	
 	public void unregisterHandler(Object obj) {
 		eventBus.unregister(obj);
 	}
@@ -191,8 +187,8 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		this.faction = faction;
 	}
 
-	public void basicAttack(Point target) {
-		getPerks(BasicAttackAbility.class).iterator().next().activate(target);
+	public void basicAttack(Character target) {
+		getPerks(BasicAttackAbility.class).iterator().next().applyToTarget(target);
 	}
 	
 	@Subscribe
@@ -222,13 +218,15 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	}
 	
 	public boolean moveCharacterTo(Point point, boolean teleport) {
+		return moveCharacterTo(getEnvironment().getLocation(point), teleport);
+	}
+	
+	public boolean moveCharacterTo(Location location, boolean teleport) {
 		
-		Environment level = Game.getInstance().getState().getEnvironment(getDepth());
-		
-		if(!level.isPassable(point)) {
+		if(!location.isPassable()) {
 			return false;
-		} else if(level.getLocation(point).getTerrain() instanceof Doorway && this instanceof Player) {
-			Doorway door = (Doorway)level.getLocation(point).getTerrain();
+		} else if(location.getTerrain() instanceof Doorway && this instanceof Player) {
+			Doorway door = (Doorway)location.getTerrain();
 			door.open();
 			
 			return true;
@@ -236,40 +234,40 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 			
 			if(teleport) { 
 				
-				Collection<Character> characters = level.getEntitiesAt(point, Character.class);
+				Collection<Character> characters = location.getEntities(Character.class);
 				
 				if(characters.size() > 0) {
 					return false;
 				} else {
-					getEnvironment().moveEntityTo(this, point);
+					getEnvironment().moveEntityTo(this, location);
 					
 					return true;
 				}
 			} else {
 				
 				AIPathFinder pathfinder = new AIPathFinder(this);
-				Path path = pathfinder.getPath(getPosition(), point);
+				Path path = pathfinder.getPath(getPosition(), location.getPosition());
 				
 				//shouldnt try to move into the space they are already in
 				path.remove(0);
 				
 				for(Point p : path) {
-					Collection<Character> characters = level.getEntitiesAt(p, Character.class);
+					Collection<Character> characters = location.getEntities(Character.class);
 					
 					if(characters.size() > 0) {
-						Character character = level.getEntitiesAt(p, Character.class).iterator().next();
+						Character character = location.getEntities(Character.class).iterator().next();
 						
 						if(!Faction.friendly(character, this)) {
-							basicAttack(character.getPosition());
+							basicAttack(character);
 						}
 						
 						return false;
 					}
 					
 					//need to decide how/if to not pay cost when the character cant actually move
-					getEnvironment().getEventBus().post(new MoveEvent(this, p));
+					getEnvironment().getEventBus().post(new MoveEvent(this, location));
 					
-					generateStimulus(new Sight(p, 100, this));
+					getEnvironment().getLocation(p).generateStimulus(new Sight((int) getStatAmount(Visibility.class), this));
 					
 					getEnvironment().moveEntityTo(this, p);
 				}
@@ -313,13 +311,12 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	}
 	
 	public boolean takeStairs(int direction) {
-		Environment level = Game.getInstance().getState().getEnvironment(getDepth());
 		
 		int zOffset = 0;
 		int newStairDirection = 0;
 		
-		if(level.getLocation(getPosition()).getTerrain() instanceof Stairs) {
-			Stairs stairs = (Stairs) level.getLocation(getPosition()).getTerrain();
+		if(getEnvironment().getLocation(getPosition()).getTerrain() instanceof Stairs) {
+			Stairs stairs = (Stairs) getEnvironment().getLocation(getPosition()).getTerrain();
 			if(stairs.takeStairs(direction)) {
 				if(direction == Direction.UP) {
 					zOffset = -1;
@@ -329,18 +326,18 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 					newStairDirection = Direction.UP;
 				}
 				
-				if((getDepth() + zOffset) < 0 || (getDepth() + zOffset) >= Config.DUNGEON_DEPTH) {
+				int newDepth = getEnvironment().getDepth() + zOffset;
+				
+				if(newDepth < 0 || newDepth >= Config.DUNGEON_DEPTH) {
 					Game.getInstance().getUserInterface().addMessage(new Message("No!", Color.ERROR));
 					return false;
 				}
 				
-				Environment newLevel = Game.getInstance().getState().getEnvironment(getDepth() + zOffset);
-				Point stairsPosition = newLevel.getStairs(newStairDirection).getPosition();
+				Environment newEnvironment = Game.getInstance().getState().getEnvironment(newDepth);
+				Location stairsLocation = newEnvironment.getStairs(newStairDirection).getLocation();
 				
-				setDepth(getDepth() + zOffset);
-				
-				level.removeEntity(this);
-				newLevel.addEntity(this, stairsPosition);
+				getEnvironment().removeEntity(this);
+				newEnvironment.addEntity(this, stairsLocation);
 				
 				
 				return true;
@@ -348,10 +345,6 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		}
 		
 		return false;
-	}
-	
-	public Environment getEnvironment() {
-		return Game.getInstance().getState().getEnvironment(getDepth());
 	}
 	
 	public VisibilityLevel getVisibilityOf(Character character) {
@@ -381,6 +374,14 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		}
 		
 		return currentVisibility;
+	}
+	
+	public boolean hasLineOfSightTo(Location location) {
+		return getCurrentVisibility().get(location.getX(), location.getY());
+	}
+	
+	public boolean hasLineOfEffectTo(Location location) {
+		return getLocation().getEnvironment().lineOfEffectBetween(getLocation(), location);
 	}
 	
 	public void computeVisibility() {
@@ -415,14 +416,10 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	}
 	
 	protected void pruneStimuli() {
-		percievedStimuli.removeIf(s -> s.getMagnitude() <= 0 || s.getPosition().equals(getPosition()));
+		percievedStimuli.removeIf(s -> s.getMagnitude() <= 0 || s.getLocation().equals(getLocation()));
 	}
 	
 	public LinkedList<PercievedStimulus> getPercievedStimuli() {
 		return percievedStimuli;
-	}
-
-	public Location getLocation() {
-		return getEnvironment().getLocation(getPosition());
 	}
 }

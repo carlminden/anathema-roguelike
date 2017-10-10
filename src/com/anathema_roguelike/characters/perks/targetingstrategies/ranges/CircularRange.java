@@ -16,22 +16,26 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
+import java.util.function.BiFunction;
+
 import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
-import com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes.TargetsMode;
 
-public class CircularRange extends Range {
+public abstract class CircularRange<T extends Targetable> extends Range<T> {
 	
-	private double radius;
 	
-	public CircularRange(int radius) {
-		super(new TargetsMode());
-		this.radius = radius;
+	
+	@SafeVarargs
+	public CircularRange(Class<T> targetType, BiFunction<T, Character, Boolean> ...constraints) {
+		super(targetType, constraints);
 	}
-	
+
 	@Override
-	protected Shape getShape(final Character character) {
-		return new Circle(character.getPosition(), () -> (radius));
+	protected Shape getShape(Character character) {
+		return new Circle(character, () -> (getRadius(character)));
 	}
+	
+	protected abstract double getRadius(Character character);
 }

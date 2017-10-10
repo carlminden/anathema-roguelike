@@ -151,7 +151,7 @@ public class Cave extends Room {
 			int x = floor.getX() + getX();
 			int y = floor.getY() + getY();
 			
-			map[x][y].setTerrain(new Stone(level, new Point(x, y)));
+			map[x][y].setTerrain(new Stone());
 		}
 		
 		for(Door door : getDoors()) {
@@ -159,7 +159,7 @@ public class Cave extends Room {
 			Point current = door.getPosition();
 			
 			while(DungeonGenerator.validPoint(current) && map[current.getX()][current.getY()].getTerrain() instanceof StoneWall) {
-				map[current.getX()][current.getY()].setTerrain(new Stone(level, current));
+				map[current.getX()][current.getY()].setTerrain(new Stone());
 				
 				current = Direction.offset(current, door.getDirection(), 1);
 			}
@@ -167,7 +167,7 @@ public class Cave extends Room {
 			current = Direction.offset(door.getPosition(), door.getDirection(), -1);
 			
 			while(DungeonGenerator.validPoint(current) && map[current.getX()][current.getY()].getTerrain() instanceof StoneWall) {
-				map[current.getX()][current.getY()].setTerrain(new Stone(level, current));
+				map[current.getX()][current.getY()].setTerrain(new Stone());
 				
 				current = Direction.offset(current, door.getDirection(), -1);
 			}

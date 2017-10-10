@@ -23,15 +23,23 @@ import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.stats.HasStats;
+import com.anathema_roguelike.stats.StatSet;
+import com.anathema_roguelike.stats.characterstats.CharacterStat;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.HasEffect;
+import com.anathema_roguelike.stats.itemstats.ItemStat;
+import com.anathema_roguelike.stats.itemstats.ItemStatSet;
 
-public abstract class Item extends Entity {
+public abstract class Item extends Entity implements HasStats<Item, ItemStat>, HasEffect<Effect<Character, CharacterStat>> {
 	
-	public Item(char representation) {
+	private ItemStatSet stats;
+	private Optional<Character> wearer;
+	
+	public Item(Optional<VisualRepresentation> representation) {
 		super(representation);
-	}
-
-	public Item(Optional<VisualRepresentation> visualRepresentation) {
-		super(visualRepresentation);
+		
+		this.stats = new ItemStatSet(this);
 	}
 	
 	@Override
@@ -39,8 +47,22 @@ public abstract class Item extends Entity {
 		Game.getInstance().getMap().renderEntity(DungeonLayer.NORMAL, this);
 	}
 	
+	public void equippedTo(Character character) {
+		this.wearer = Optional.of(character);
+		character.applyEffect(getEffect());
+	}
+	
+	public void removedFrom(Character character) {
+		this.wearer = null;
+		character.removeEffectBySource(this);
+	}
+	
+	public Optional<Character> getWearer() {
+		return wearer;
+	}
+	
 	@Override
-	public boolean isVisibleTo(Character character) {
-		return true;
+	public StatSet<Item, ItemStat> getStatSet() {
+		return stats;
 	}
 }

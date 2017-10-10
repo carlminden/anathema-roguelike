@@ -145,7 +145,7 @@ public class Utils {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <T> Collection<T> filterBySubclass(Collection<? super T> unfiltered, Class<?> type) {
+	public static <T> Collection<T> filterBySubclass(Collection<?> unfiltered, Class<T> type) {
 		return (Collection<T>) Collections2.filter(unfiltered, item -> {
 			if(item != null) {
 				return (type.isAssignableFrom(item.getClass()));

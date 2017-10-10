@@ -31,7 +31,7 @@ import com.anathema_roguelike.stats.characterstats.masteries.BluntWeaponMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.ShapeshiftingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpellMastery;
 
-public class Druid extends CharacterClass {
+public class Druid extends PlayerClass {
 
 	public Druid() {
 		super(

@@ -17,23 +17,25 @@
 package com.anathema_roguelike.characters.events;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.environment.HasLocation;
+import com.anathema_roguelike.environment.Location;
 
-public class MoveEvent {
+public class MoveEvent implements HasLocation {
 	
 	private Character character;
-	private Point point;
+	private Location location;
 	
-	public MoveEvent(Character character, Point point) {
+	public MoveEvent(Character character, Location location) {
 		this.character = character;
-		this.point = point;
+		this.location = location;
 	}
 
 	public Character getCharacter() {
 		return character;
 	}
 
-	public Point getPoint() {
-		return point;
+	@Override
+	public Location getLocation() {
+		return location;
 	}
 }

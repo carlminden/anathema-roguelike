@@ -18,7 +18,7 @@ package com.anathema_roguelike.items.weapons;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.Modifier;
 import com.anathema_roguelike.stats.effects.MultiplicativeCalculation;
@@ -46,12 +46,12 @@ public class WoodWeaponMaterial extends WeaponMaterial {
 	}
 	
 	@Override
-	public Optional<Effect<EquippableItem, ItemStat>> getEffect() {
+	public Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return Optional.of(new Effect<EquippableItem, ItemStat>(this,
-				new Modifier<EquippableItem, BaseWeaponDamage>(BaseWeaponDamage.class, MultiplicativeCalculation.build(() -> getDamage())),
-				new Modifier<EquippableItem, WeaponRange>(WeaponRange.class, MultiplicativeCalculation.build(() -> getRange())),
-				new Modifier<EquippableItem, Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
+		return Optional.of(new Effect<Item, ItemStat>(this,
+				new Modifier<Item, BaseWeaponDamage>(BaseWeaponDamage.class, MultiplicativeCalculation.build(() -> getDamage())),
+				new Modifier<Item, WeaponRange>(WeaponRange.class, MultiplicativeCalculation.build(() -> getRange())),
+				new Modifier<Item, Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
 		) {});
 	}
 }

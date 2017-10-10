@@ -11,34 +11,32 @@ import com.google.common.collect.Collections2;
 
 public class ClassSet {
 	
-	private static AutoClassToInstanceMap<CharacterClass> classes = new AutoClassToInstanceMap<>(CharacterClass.class);
+	private static AutoClassToInstanceMap<PlayerClass> classes = new AutoClassToInstanceMap<>(PlayerClass.class);
 	
 	private Character character;
-	private HashMap<Class<? extends CharacterClass>, Integer> classLevels = new HashMap<>();
+	private HashMap<Class<? extends PlayerClass>, Integer> classLevels = new HashMap<>();
 	
 	public ClassSet(Character character) {
 		
 		this.character = character;
 		
-		Utils.getSubclasses(CharacterClass.class).forEach(c -> {
+		Utils.getSubclasses(PlayerClass.class).forEach(c -> {
 			classLevels.put(c, 0);
 		});
 	}
 	
-	public int getClassLevels(Class<? extends CharacterClass> characterClass) {
-		return classLevels.get(characterClass);
+	public int getClassLevels(Class<? extends PlayerClass> playerClass) {
+		return classLevels.get(playerClass);
 	}
 	
-	public void grantClassLevel(Class<? extends CharacterClass> characterClass) {
-		int newLevel = getClassLevels(characterClass) + 1;
+	public void grantClassLevel(Class<? extends PlayerClass> playerClass) {
+		int newLevel = getClassLevels(playerClass) + 1;
 		
-		classes.get(characterClass).getLevel(newLevel).grant(character);
-		classLevels.put(characterClass, newLevel);
-		
-		character.levelUp();
+		classes.get(playerClass).getLevel(newLevel).grant(character);
+		classLevels.put(playerClass, newLevel);
 	}
 	
-	public Collection<Class<? extends CharacterClass>> getClasses() {
+	public Collection<Class<? extends PlayerClass>> getClasses() {
 		return Collections2.filter(classLevels.entrySet(), (e) -> e.getValue() > 0).stream().map(e -> e.getKey()).collect(Collectors.toList());
 	}
 }

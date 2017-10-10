@@ -19,12 +19,11 @@ package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.SinglePoint;
-import com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes.PointsMode;
 
-public class SelfOnly extends Range {
+public class SelfOnly extends Range<Character> {
 
 	public SelfOnly() {
-		super(new PointsMode());
+		super(Character.class, (a, b) -> a.equals(b));
 	}
 
 	@Override

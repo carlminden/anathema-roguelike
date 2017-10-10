@@ -35,7 +35,7 @@ import com.anathema_roguelike.stats.characterstats.masteries.DualWieldMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.LongBladeMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.ShortBladeMastery;
 
-public class Rogue extends CharacterClass {
+public class Rogue extends PlayerClass {
 
 	public Rogue() {
 		super(

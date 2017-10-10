@@ -33,7 +33,7 @@ import com.anathema_roguelike.stats.characterstats.masteries.BrewingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpearMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.ThrowingWeaponMastery;
 
-public class Alchemist extends CharacterClass {
+public class Alchemist extends PlayerClass {
 
 	public Alchemist() {
 		super(

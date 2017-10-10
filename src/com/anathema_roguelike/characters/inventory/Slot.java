@@ -19,9 +19,9 @@ package com.anathema_roguelike.characters.inventory;
 import java.util.Collection;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 
-public abstract class Slot<T extends EquippableItem> {
+public abstract class Slot<T extends Item> {
 	
 	private Class<T> itemType;
 	private Character character;
@@ -31,7 +31,7 @@ public abstract class Slot<T extends EquippableItem> {
 		this.character = character;
 	}
 	
-	public boolean validItem(EquippableItem item) {
+	public boolean validItem(Item item) {
 		return itemType.isAssignableFrom(item.getClass());
 	}
 	

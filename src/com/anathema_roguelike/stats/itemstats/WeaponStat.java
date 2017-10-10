@@ -16,11 +16,11 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.itemstats;
 
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 
 public abstract class WeaponStat extends ItemStat {
 
-	public WeaponStat(EquippableItem item) {
+	public WeaponStat(Item item) {
 		super(item);
 	}
 

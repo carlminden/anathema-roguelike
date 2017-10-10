@@ -18,7 +18,7 @@ package com.anathema_roguelike.items.weapons.types;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.items.ItemType;
 import com.anathema_roguelike.items.weapons.Weapon;
 import com.anathema_roguelike.items.weapons.WeaponMaterial;
@@ -64,13 +64,13 @@ public abstract class WeaponType extends WeaponProperty implements ItemType<Weap
 	public abstract double getRange();
 	
 	@Override
-	public Optional<Effect<EquippableItem, ItemStat>> getEffect() {
+	public Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return Optional.of(new Effect<EquippableItem, ItemStat>(this,
-				new Modifier<EquippableItem, WeaponSpeed>(WeaponSpeed.class, AdditiveCalculation.build(() -> getAttackSpeed())),
-				new Modifier<EquippableItem, BaseWeaponDamage>(BaseWeaponDamage.class, AdditiveCalculation.build(() -> getDamage())),
-				new Modifier<EquippableItem, WeaponRange>(WeaponRange.class, AdditiveCalculation.build(() -> getRange())),
-				new Modifier<EquippableItem, Weight>(Weight.class, AdditiveCalculation.build(() -> getWeight()))
+		return Optional.of(new Effect<Item, ItemStat>(this,
+				new Modifier<Item, WeaponSpeed>(WeaponSpeed.class, AdditiveCalculation.build(() -> getAttackSpeed())),
+				new Modifier<Item, BaseWeaponDamage>(BaseWeaponDamage.class, AdditiveCalculation.build(() -> getDamage())),
+				new Modifier<Item, WeaponRange>(WeaponRange.class, AdditiveCalculation.build(() -> getRange())),
+				new Modifier<Item, Weight>(Weight.class, AdditiveCalculation.build(() -> getWeight()))
 		) {});
 	}
 }

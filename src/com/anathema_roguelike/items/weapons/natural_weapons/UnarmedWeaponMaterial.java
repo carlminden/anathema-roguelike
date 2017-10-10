@@ -19,7 +19,7 @@ package com.anathema_roguelike.items.weapons.natural_weapons;
 import java.util.Optional;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.Modifier;
@@ -33,8 +33,8 @@ public class UnarmedWeaponMaterial extends NaturalWeaponMaterial {
 	}
 	
 	@Override
-	public Optional<Effect<EquippableItem, ItemStat>> getEffect() {
-		Optional<Effect<EquippableItem, ItemStat>> effect = super.getEffect();
+	public Optional<Effect<Item, ItemStat>> getEffect() {
+		Optional<Effect<Item, ItemStat>> effect = super.getEffect();
 		effect.ifPresent(e -> e.addModifier(new Modifier<>(BaseWeaponDamage.class, AdditiveCalculation.build(
 				() -> {
 					Optional<Character> wearer = e.getTarget().getWearer();

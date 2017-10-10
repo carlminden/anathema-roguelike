@@ -18,28 +18,57 @@ package com.anathema_roguelike.environment;
 
 import java.util.Collection;
 
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.environment.features.Feature;
 import com.anathema_roguelike.environment.terrain.Terrain;
+import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.stats.HasStats;
 import com.anathema_roguelike.stats.StatSet;
-import com.anathema_roguelike.stats.locationstats.EnvironmentStatSet;
 import com.anathema_roguelike.stats.locationstats.LocationStat;
+import com.anathema_roguelike.stats.locationstats.LocationStatSet;
+import com.anathema_roguelike.stimuli.Stimulus;
+import com.anathema_roguelike.stimuli.StimulusEvent;
 import com.google.common.collect.TreeMultiset;
 import com.google.common.eventbus.EventBus;
 
-public class Location implements HasStats<Location, LocationStat> {
+public class Location implements HasStats<Location, LocationStat>, Targetable {
 	
-	private EnvironmentStatSet stats;
+	private Environment environment;
+	private LocationStatSet stats;
 	private Terrain terrain;
+	
+	Point position;
 	
 	private TreeMultiset<Feature> features = TreeMultiset.create(
 			(o1, o2) -> o2.getRenderPriority().compareTo(o1.getRenderPriority()
 	));
 	
-	public Location(EventBus eventBus, Terrain terrain) {
-		stats = new EnvironmentStatSet(this, eventBus);
+	public Location(Environment environment, Point position, EventBus eventBus, Terrain terrain, Feature ...features) {
+		this.environment = environment;
+		this.position = position;
+		
+		stats = new LocationStatSet(this, eventBus);
 		
 		setTerrain(terrain);
+		
+		for(Feature feature : features) {
+			addFeature(feature);
+		}
+	}
+	
+	@Override
+	public Location getLocation() {
+		return this;
+	}
+	
+	@Override
+	public Point getPosition() {
+		return position;
+	}
+	
+	@Override
+	public Environment getEnvironment() {
+		return environment;
 	}
 	
 	public LocationProperty getTerrain() {
@@ -48,6 +77,7 @@ public class Location implements HasStats<Location, LocationStat> {
 	
 	public void setTerrain(Terrain terrain) {
 		this.terrain = terrain;
+		terrain.setLocation(this);
 	}
 	
 	public Collection<Feature> getFeatures() {
@@ -56,18 +86,35 @@ public class Location implements HasStats<Location, LocationStat> {
 	
 	public void addFeature(Feature feature){
 		features.add(feature);
+		feature.setLocation(this);
+	}
+	
+	public Collection<Entity> getEntities() {
+		return getEnvironment().getEntitiesAt(this);
+	}
+	
+	public <T extends Entity> Collection<T> getEntities(Class<T> cls) {
+		return getEnvironment().getEntitiesAt(this, cls);
+	}
+	
+	public void addEntity(Entity entity) {
+		getEnvironment().addEntity(entity, this);
 	}
 
 	public boolean isPassable() {
 		return terrain.isPassable();
 	}
 
-	public void render(int x, int y) {
-		terrain.render(x, y);
+	public void render() {
+		terrain.render();
 		
 		for(Feature feature : features) {
-			feature.render(x, y);
+			feature.render();
 		}
+	}
+	
+	public void generateStimulus(Stimulus stimulus) {
+		getEnvironment().getEventBus().post(new StimulusEvent(this, stimulus));
 	}
 
 	@Override

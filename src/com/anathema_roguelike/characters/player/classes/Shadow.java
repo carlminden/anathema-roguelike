@@ -31,7 +31,7 @@ import com.anathema_roguelike.stats.characterstats.masteries.ShortBladeMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpearMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpellMastery;
 
-public class Shadow extends CharacterClass {
+public class Shadow extends PlayerClass {
 
 	public Shadow() {
 		super(

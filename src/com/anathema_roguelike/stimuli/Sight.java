@@ -19,19 +19,19 @@ package com.anathema_roguelike.stimuli;
 import java.util.Optional;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.environment.Location;
 
 public class Sight extends Stimulus {
 
-	public Sight(Point origin, int magnitude, Character character) {
-		super(origin, magnitude, character);
+	public Sight(int magnitude, Character character) {
+		super(magnitude, character);
 	}
 
 	@Override
-	public Optional<PercievedStimulus> computePercievedStimulus(Character character) {
+	public Optional<PercievedStimulus> computePercievedStimulus(Location location, Character character) {
 		
 		if(character.getVisibilityOf(getSource().get()).ordinal() >= 3) {
-			return Optional.of(new PercievedStimulus(getOrigin(), getMagnitude()));
+			return Optional.of(new PercievedStimulus(location, this));
 		} else {
 			return Optional.empty();
 		}

@@ -81,7 +81,7 @@ public class Direction {
 		return ret;
 	}
 	
-	public static double angleOf(Point src, Point dst) {
+	public static double angleOf(HasLocation src, HasLocation dst) {
 		int dx = dst.getX() - src.getX();
 		int dy = dst.getY() - src.getY();
 		

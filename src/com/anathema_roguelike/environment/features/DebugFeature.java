@@ -17,15 +17,13 @@
 package com.anathema_roguelike.environment.features;
 
 
-import com.anathema_roguelike.environment.Environment;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
 public class DebugFeature extends Feature {
 
-	public DebugFeature(Environment level, Point point, SColor color) {
-		super(level, point, new VisualRepresentation('X', color), true, true, 0.0, 0.0, Priority.DEBUG);
+	public DebugFeature(SColor color) {
+		super(new VisualRepresentation('X', color), true, true, 0.0, 0.0, Priority.DEBUG);
 	}
 }

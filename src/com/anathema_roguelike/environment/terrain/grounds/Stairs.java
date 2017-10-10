@@ -17,15 +17,13 @@
 package com.anathema_roguelike.environment.terrain.grounds;
 
 import com.anathema_roguelike.environment.Direction;
-import com.anathema_roguelike.environment.Environment;
-import com.anathema_roguelike.environment.Point;
 
 public class Stairs extends Ground {
 	
 	private int direction;
 
-	public Stairs(Environment environment, Point point, int direction) {
-		super(environment, point, (direction == Direction.UP) ? '<' : '>', 0, 0);
+	public Stairs(int direction) {
+		super((direction == Direction.UP) ? '<' : '>', 0, 0);
 		
 		this.direction = direction;
 	}

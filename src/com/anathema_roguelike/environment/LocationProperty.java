@@ -16,6 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment;
 
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.VisualRepresentation;
@@ -23,12 +24,11 @@ import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
 import com.anathema_roguelike.stats.locationstats.LocationStat;
 
-public abstract class LocationProperty implements HasEffect<Effect<Location, LocationStat>> {
+public abstract class LocationProperty implements HasEffect<Effect<Location, LocationStat>>, Targetable {
 	
 	private VisualRepresentation visualRepresentation;
 	private VisualRepresentation fogOfWarRepresentation;
-	private Environment environment;
-	private Point position;
+	private Location location;
 	
 	private boolean passable;
 	private double opacity;
@@ -38,9 +38,7 @@ public abstract class LocationProperty implements HasEffect<Effect<Location, Loc
 	DungeonLayer layer;
 	DungeonLayer fogOfWarLayer;
 	
-	public LocationProperty(Environment level, Point position, VisualRepresentation representation, VisualRepresentation fogOfWarRepresentation, boolean foreground, boolean passable, double opacity, double damping) {
-		this.environment = level;
-		this.position = position;
+	public LocationProperty(VisualRepresentation representation, VisualRepresentation fogOfWarRepresentation, boolean foreground, boolean passable, double opacity, double damping) {
 		this.passable = passable;
 		this.visualRepresentation = representation;
 		this.fogOfWarRepresentation = fogOfWarRepresentation;
@@ -54,14 +52,16 @@ public abstract class LocationProperty implements HasEffect<Effect<Location, Loc
 			layer = DungeonLayer.BACKGROUND;
 			fogOfWarLayer = DungeonLayer.FOG_OF_WAR_BACKGROUND;
 		}
+		
 	}
 	
-	public Environment getLevel() {
-		return environment;
+	@Override
+	public Location getLocation() {
+		return location;
 	}
 	
-	public Point getPosition() {
-		return position;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 	
 	public boolean isPassable() {
@@ -84,14 +84,14 @@ public abstract class LocationProperty implements HasEffect<Effect<Location, Loc
 		this.brightness = brightness;
 	}
 	
-	protected void renderToFogOfWar(int x, int y) {
-		Game.getInstance().getMap().renderVisualRepresentation(fogOfWarLayer, x, y, getFogOfWarRepresentation());
+	protected void renderToFogOfWar() {
+		Game.getInstance().getMap().renderVisualRepresentation(fogOfWarLayer, location.getX(), getY(), getFogOfWarRepresentation());
 	}
 	
-	protected void render(int x, int y) {
-		Game.getInstance().getMap().renderVisualRepresentation(layer, x, y, getRepresentation());
+	protected void render() {
+		Game.getInstance().getMap().renderVisualRepresentation(layer, getX(), getY(), getRepresentation());
 		
-		renderToFogOfWar(x, y);
+		renderToFogOfWar();
 	}
 
 	public VisualRepresentation getRepresentation() {

@@ -16,39 +16,25 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.function.BiFunction;
 
 import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Square;
-import com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes.PointsMode;
-import com.anathema_roguelike.environment.Direction;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.stats.effects.FixedCalculation;
 
-public class MeleeRange extends Range {
+public class MeleeRange<T extends Targetable> extends Range<T> {
 
-	public MeleeRange() {
-		super(new PointsMode());
-	}
 
-	@Override
-	public Collection<Point> getPointsInRange(Character character) {
-		HashSet<Point> ret = new HashSet<>();
-		
-		for(int direction : Direction.DIRECTIONS_8) {
-			Point position = Direction.offset(character.getPosition(), direction);
-			
-			ret.add(position);
-		}
-		
-		return ret;
+	@SafeVarargs
+	public MeleeRange(Class<T> targetType, BiFunction<T, Character, Boolean> ...constraints) {
+		super(targetType, constraints);
 	}
 
 	@Override
 	protected Shape getShape(Character character) {
-		return new Square(character.getPosition(), new FixedCalculation(1));
+		return new Square(character, new FixedCalculation(1));
 	}
 
 }

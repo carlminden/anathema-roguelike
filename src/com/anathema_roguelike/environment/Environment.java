@@ -30,6 +30,7 @@ import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.DisplayBuffer;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.utilities.datastructures.CollectionUtils;
+import com.anathema_roguelike.main.utilities.pathfinding.Path;
 import com.anathema_roguelike.stats.locationstats.Opacity;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
@@ -82,7 +83,7 @@ public class Environment implements Renderable {
 			for(int j = 0; j < height; j++) {
 				Location location = getLocation(i, j);
 				
-				location.render(i, j);
+				location.render();
 			}
 		}
 		
@@ -95,12 +96,12 @@ public class Environment implements Renderable {
 		return CollectionUtils.filterByClass(entities, cls);
 	}
 	
-	public <T extends Entity> Collection<T> getEntitiesAt(final Point point, final Class<T> cls) {
-		return CollectionUtils.filterByClass(entities, cls).stream().filter(e -> e.getPosition().equals(point)).collect(Collectors.toList());
+	public <T extends Entity> Collection<T> getEntitiesAt(Location location, final Class<T> cls) {
+		return CollectionUtils.filterByClass(entities, cls).stream().filter(e -> e.getLocation().equals(location)).collect(Collectors.toList());
 	}
 	
-	public Collection<Entity> getEntitiesAt(final Point point) {
-		return entities.stream().filter(e -> e.getPosition().equals(point)).collect(Collectors.toList());
+	public Collection<Entity> getEntitiesAt(Location location) {
+		return entities.stream().filter(e -> e.getLocation().equals(location)).collect(Collectors.toList());
 	}
 	
 	public void removeEntity(Entity entity) {
@@ -111,10 +112,13 @@ public class Environment implements Renderable {
 	}
 	
 	public void addEntity(Entity entity, Point position) {
+		addEntity(entity, getLocation(position));
+	}
+	
+	public void addEntity(Entity entity, Location location) {
 		entities.add(entity);
 		
-		entity.setDepth(depth);
-		entity.setPosition(position);
+		entity.setLocation(location);
 		
 		eventBus.register(entity);
 	}
@@ -122,15 +126,19 @@ public class Environment implements Renderable {
 	public void moveEntityBy(Entity entity, int xOffset, int yOffset) {
 		Point currentPosition = entity.getPosition();
 		
-		moveEntityTo(entity, new Point(xOffset + currentPosition.getX(), yOffset + currentPosition.getY()));
+		moveEntityTo(entity, getLocation(xOffset + currentPosition.getX(), yOffset + currentPosition.getY()));
 	}
 	
 	public void moveEntityTo(Entity entity, int x, int y) {
-		moveEntityTo(entity, new Point(x, y));
+		moveEntityTo(entity, getLocation(x, y));
+	}
+	
+	public void moveEntityTo(Entity entity, Point p) {
+		moveEntityTo(entity, p.getX(), p.getY());
 	}
 
-	public void moveEntityTo(Entity entity, Point position) {
-		entity.setPosition(position);
+	public void moveEntityTo(Entity entity, Location location) {
+		entity.setLocation(location);
 	}
 	
 	public Location[][] getMap() {
@@ -160,16 +168,14 @@ public class Environment implements Renderable {
 		return null;
 	}
 	
-	public void setUpStairs(Stairs upStairs) {
+	public void setUpStairs(Stairs upStairs, Point position) {
 		this.upStairs = upStairs;
-		Point position = upStairs.getPosition();
 		
 		map[position.getX()][position.getY()].setTerrain(upStairs);
 	}
 
-	public void setDownStairs(Stairs downStairs) {
+	public void setDownStairs(Stairs downStairs, Point position) {
 		this.downStairs = downStairs;
-		Point position = downStairs.getPosition();
 		
 		map[position.getX()][position.getY()].setTerrain(downStairs);
 	}
@@ -222,5 +228,11 @@ public class Environment implements Renderable {
 		Location location = getLocation(point.getX(), point.getY());
 		
 		fovResistance[point.getX()][point.getY()] = location.getStatAmount(Opacity.class);
+	}
+
+	public boolean lineOfEffectBetween(Location a, Location b) {
+		Path path = Path.straightLine(a.getPosition(), b.getPosition());
+		
+		return path.stream().allMatch(p -> getLocation(p).isPassable());
 	}
 }

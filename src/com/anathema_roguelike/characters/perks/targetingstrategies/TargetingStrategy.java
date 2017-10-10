@@ -16,53 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies;
 
-import java.util.Collection;
+import java.util.function.BiFunction;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
-import com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes.TargetMode;
-import com.anathema_roguelike.environment.Point;
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-
-public abstract class TargetingStrategy {
+public abstract class TargetingStrategy<TargetType extends Targetable, OriginType extends Targetable> extends TargetFilter<TargetType, OriginType> {
 	
-	private Range range;
-	Predicate<Character> targetValidator;
-	private TargetMode targetMode;
-	
-	public TargetingStrategy(Range range, TargetMode targetMode, Predicate<Character> targetValidator) {
-		this.range = range;
-		this.targetMode = targetMode;
-		this.targetValidator = targetValidator;
-	}
-	
-	public TargetingStrategy(Range range, TargetMode targetMode) {
-		this.range = range;
-		this.targetMode = targetMode;
-		this.targetValidator = Predicates.alwaysTrue();
-	}
-	
-	public abstract Collection<Character> getTargets(Character character, Point targetedPoint);
-	public abstract Collection<Point> getValidTargetPoints(Character character);
-	
-	public Range getRange() {
-		return range;
-	}
-	
-	public TargetMode getTargetMode() {
-		return targetMode;
-	}
-	
-	public Predicate<Character> getTargetValidator() {
-		return targetValidator;
-	}
-	
-	public void addTargetValidator(Predicate<Character> validator) {
-		targetValidator = Predicates.and(targetValidator, validator);
-	}
-	
-	public Collection<Character> getValidTargets(Character character) {
-		return range.getVisibleTargets(character, targetValidator);
+	@SafeVarargs
+	public TargetingStrategy(Class<TargetType> targetType, BiFunction<TargetType, OriginType, Boolean> ...constraints) {
+		super(targetType, constraints);
 	}
 }

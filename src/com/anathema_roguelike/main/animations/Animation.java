@@ -18,7 +18,6 @@ package com.anathema_roguelike.main.animations;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.VisualRepresentation;
@@ -42,11 +41,6 @@ public abstract class Animation extends Entity {
 	
 	protected abstract void animate();
 
-	@Override
-	public boolean isVisibleTo(Character character) {
-		return true;
-	}
-	
 	@Override
 	protected final void renderThis() {
 		if(startTime == null) {

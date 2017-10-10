@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.items.armor.Armor;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
@@ -48,12 +48,12 @@ public class Inventory {
 		
 	}
 	
-	public <T extends Slot<? extends EquippableItem>> T  getSlot(Class<T> slot) {
+	public <T extends Slot<? extends Item>> T  getSlot(Class<T> slot) {
 		return slots.get(slot);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T extends EquippableItem> Collection<T> getItems(final Class<T> type) {
+	public <T extends Item> Collection<T> getItems(final Class<T> type) {
 		Collection<Item> items = new HashSet<>(backpack);
 		
 		slots.getValues().forEach(s -> items.addAll(s.getEquippedItems()));
@@ -62,7 +62,7 @@ public class Inventory {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T extends EquippableItem> Collection<T> getEquippedItems(final Class<T> type) {
+	public <T extends Item> Collection<T> getEquippedItems(final Class<T> type) {
 		Collection<Item> items = new HashSet<>();
 		
 		slots.getValues().forEach(s -> items.addAll(s.getEquippedItems()));
@@ -70,8 +70,8 @@ public class Inventory {
 		return Utils.filterBySubclass(items, type);
 	}
 	
-	public Collection<EquippableItem> getEquippedItems() {
-		return getEquippedItems(EquippableItem.class);
+	public Collection<Item> getEquippedItems() {
+		return getEquippedItems(Item.class);
 	}
 	
 	public <T extends Item> Collection<T> getUnequippedItems(Class<T> type) {
@@ -82,12 +82,12 @@ public class Inventory {
 		return backpack;
 	}
 
-	public <T extends EquippableItem> void equip(Class<? extends Slot<T>> slot, T item) {
+	public <T extends Item> void equip(Class<? extends Slot<T>> slot, T item) {
 		getSlot(slot).equip(item);
 		item.equippedTo(character);
 	}
 	
-	public <T extends EquippableItem> void equip(T item) {
+	public <T extends Item> void equip(T item) {
 		Collection<Slot<T>> validSlots = getValidSlots(item);
 		
 		Slot<T> slot = new SelectionScreen<Slot<T>>("Equip to which Slot?", validSlots, true).run();
@@ -99,7 +99,7 @@ public class Inventory {
 		item.equippedTo(character);
 	}
 	
-	public <T extends EquippableItem> void remove(T item) {
+	public <T extends Item> void remove(T item) {
 		
 		for(Slot<T> s : getValidSlots(item)) {
 			s.remove(item);
@@ -111,7 +111,7 @@ public class Inventory {
 //		});
 	}
 	
-	public <T extends EquippableItem> Collection<Slot<T>> getValidSlots(T item) {
+	public <T extends Item> Collection<Slot<T>> getValidSlots(T item) {
 		return slots.getValues().stream().filter(s -> s.validItem(item))
 				.collect(Collectors.toCollection(() -> new ArrayList<Slot<T>>()));
 	}

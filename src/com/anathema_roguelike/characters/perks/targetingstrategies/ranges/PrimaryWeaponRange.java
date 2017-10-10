@@ -16,19 +16,21 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
+import java.util.function.BiFunction;
+
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
+import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Square;
-import com.anathema_roguelike.characters.perks.targetingstrategies.targetmodes.PointsMode;
 import com.anathema_roguelike.stats.effects.FixedCalculation;
 import com.anathema_roguelike.stats.itemstats.WeaponRange;
 
-public class PrimaryWeaponRange extends Range {
+public class PrimaryWeaponRange<T extends Targetable> extends Range<T> {
 
-	public PrimaryWeaponRange() {
-		super(new PointsMode());
+	public PrimaryWeaponRange(Class<T> targetType, BiFunction<T, Character, Boolean> ...constraints) {
+		super(targetType, constraints);
 	}
 
 	@Override
@@ -36,9 +38,9 @@ public class PrimaryWeaponRange extends Range {
 		double range = character.getInventory().getSlot(PrimaryWeapon.class).getEquippedItem().getStatAmount(WeaponRange.class);
 		
 		if(range == 1) {
-			return new Square(character.getPosition(), new FixedCalculation(1));
+			return new Square(character, new FixedCalculation(1));
 		} else {
-			return new Circle(character.getPosition(), new FixedCalculation(range));
+			return new Circle(character, new FixedCalculation(range));
 		}
 	}
 }

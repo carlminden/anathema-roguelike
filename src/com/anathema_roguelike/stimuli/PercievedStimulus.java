@@ -16,27 +16,28 @@
  ******************************************************************************/
 package com.anathema_roguelike.stimuli;
 
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.environment.HasLocation;
+import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.main.Game;
 
-public class PercievedStimulus {
+public class PercievedStimulus implements HasLocation {
 	
-	private int magnitude;
 	private long created;
-	private Point position;
+	private Location location;
+	private Stimulus stimulus;
 	
-	public PercievedStimulus(Point location, int magnitude) {
-		this.position = location;
-		this.magnitude = magnitude;
-		
+	public PercievedStimulus(Location location, Stimulus stimulus) {
+		this.stimulus = stimulus;
+		this.location = location;
 		this.created = Game.getInstance().getElapsedTime();
 	}
 	
 	public int getMagnitude() {
-		return  magnitude - (int)((Game.getInstance().getElapsedTime() - created) / 100);
+		return  stimulus.getMagnitude() - (int)((Game.getInstance().getElapsedTime() - created) / 100);
 	}
 	
-	public Point getPosition() {
-		return position;
+	@Override
+	public Location getLocation() {
+		return location;
 	}
 }

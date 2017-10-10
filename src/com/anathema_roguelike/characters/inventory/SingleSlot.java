@@ -20,9 +20,9 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 
-public abstract class SingleSlot<T extends EquippableItem> extends Slot<T> {
+public abstract class SingleSlot<T extends Item> extends Slot<T> {
 	
 	private T item;
 	private T defaultItem;

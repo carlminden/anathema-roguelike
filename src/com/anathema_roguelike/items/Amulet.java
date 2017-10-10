@@ -21,7 +21,7 @@ import java.util.Optional;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
-public class Amulet extends EquippableItem implements ItemType<Amulet> {
+public class Amulet extends Item implements ItemType<Amulet> {
 	
 	private String name;
 	

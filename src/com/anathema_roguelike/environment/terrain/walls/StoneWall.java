@@ -16,14 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.terrain.walls;
 
-import com.anathema_roguelike.environment.Environment;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public class StoneWall extends Wall {
 	
-	public StoneWall(Environment environment, Point point) {
-		super(environment, point, new VisualRepresentation('\u2588', Color.DARK_GRAY), 1.0, 0.7);
+	public StoneWall() {
+		super(new VisualRepresentation('\u2588', Color.DARK_GRAY), 1.0, 0.7);
 	}
 }

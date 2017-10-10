@@ -101,6 +101,9 @@ public class PlayerKeyHandler implements KeyHandler {
 	        case ' ':
 	        	player.takeStairs(Direction.DOWN);
 	        	return;
+	        case 'L':
+	        	player.levelUp();
+	        	return;
 	        default:
 	        	return;
         }

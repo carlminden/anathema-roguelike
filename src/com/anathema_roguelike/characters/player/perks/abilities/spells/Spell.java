@@ -20,7 +20,7 @@ import java.util.Collection;
 
 import com.anathema_roguelike.characters.perks.ActivatedPerk;
 import com.anathema_roguelike.characters.perks.PassthroughPerk;
-import com.anathema_roguelike.characters.player.classes.CharacterClass;
+import com.anathema_roguelike.characters.player.classes.PlayerClass;
 import com.anathema_roguelike.characters.player.perks.abilities.Ability;
 import com.anathema_roguelike.main.utilities.AutoClassToInstanceMap;
 import com.google.common.collect.Collections2;
@@ -29,14 +29,14 @@ public abstract class Spell<T extends ActivatedPerk> extends PassthroughPerk<T> 
 	
 	private static AutoClassToInstanceMap<Spell> spells = new AutoClassToInstanceMap<>(Spell.class);
 	
-	public static Collection<Spell> findSpells(int spellLevel, Class<? extends CharacterClass> casterClass) {
+	public static Collection<Spell> findSpells(int spellLevel, Class<? extends PlayerClass> casterClass) {
 		return Collections2.filter(spells.getValues(), (s) -> s.getSpellLevel() == spellLevel && s.getCasterClass() == casterClass);
 	}
 	
 	private int spellLevel;
-	private Class<? extends CharacterClass> casterClass;
+	private Class<? extends PlayerClass> casterClass;
 	
-	public Spell(T spell, int spellLevel, Class<? extends CharacterClass> casterClass) {
+	public Spell(int spellLevel, Class<? extends PlayerClass> casterClass, T spell) {
 		super(spell);
 		
 		this.spellLevel = spellLevel;
@@ -47,7 +47,7 @@ public abstract class Spell<T extends ActivatedPerk> extends PassthroughPerk<T> 
 		return spellLevel;
 	}
 	
-	public Class<? extends CharacterClass> getCasterClass() {
+	public Class<? extends PlayerClass> getCasterClass() {
 		return casterClass;
 	}
 }

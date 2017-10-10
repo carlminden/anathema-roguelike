@@ -19,6 +19,7 @@ package com.anathema_roguelike.characters.perks.targetingstrategies.shapes;
 import java.util.Collection;
 import java.util.HashSet;
 
+import com.anathema_roguelike.environment.HasLocation;
 import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.stats.effects.Calculation;
 
@@ -27,9 +28,9 @@ public class Circle extends Shape {
 	private Point center;
 	private Calculation radiusCalculation;
 	
-	public Circle(Point center, Calculation radius) {
+	public Circle(HasLocation center, Calculation radius) {
 		
-		this.center = center;
+		this.center = center.getPosition();
 		this.radiusCalculation = radius;
 	}
 	

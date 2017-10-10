@@ -59,7 +59,7 @@ public abstract class DungeonGenerator {
 		
 		for(int i = 0; i < map.length; i++) {
 			for(int j = 0; j < map[i].length; j++) {
-				map[i][j] = new Location(level.getEventBus(), new StoneWall(level, new Point(i, j)));
+				map[i][j] = new Location(level, new Point(i, j), level.getEventBus(), new StoneWall());
 			}
 		}
 		
@@ -106,8 +106,8 @@ public abstract class DungeonGenerator {
 		Room upstairsRoom = rooms.get(rand.nextInt(rooms.size()));
 		Room downstairsRoom = rooms.get(rand.nextInt(rooms.size()));
 		
-		getLevel().setUpStairs(new Stairs(level, upstairsRoom.getRandomPointInRoom(), Direction.UP));
-		getLevel().setDownStairs(new Stairs(level, downstairsRoom.getRandomPointInRoom(), Direction.DOWN));
+		getLevel().setUpStairs(new Stairs(Direction.UP), upstairsRoom.getRandomPointInRoom());
+		getLevel().setDownStairs(new Stairs(Direction.DOWN), downstairsRoom.getRandomPointInRoom());
 		
 		//TODO maybe not all rooms should get encounters, or maybe that should just be up to the room
 		for(Room room : rooms) {

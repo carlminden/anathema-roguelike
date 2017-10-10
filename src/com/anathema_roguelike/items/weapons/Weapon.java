@@ -21,7 +21,7 @@ import java.util.Random;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
-import com.anathema_roguelike.items.EquippableItem;
+import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.items.weapons.types.WeaponType;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Accuracy;
@@ -30,7 +30,7 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.WeaponDamageMu
 import com.anathema_roguelike.stats.itemstats.BaseWeaponDamage;
 import com.anathema_roguelike.stats.itemstats.Weight;
 
-public class Weapon extends EquippableItem {
+public class Weapon extends Item {
 	
 	private WeaponType type;
 	private WeaponMaterial material;
