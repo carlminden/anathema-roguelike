@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public abstract class Shape {
 	
@@ -43,7 +43,7 @@ public abstract class Shape {
 		this.points = points;
 	}
 	
-	public Collection<Location> getLocations(Environment environment) {
-		return getPoints().stream().map(p -> environment.getLocation(p)).collect(Collectors.toList());
+	public Collection<Location> getLocations(Environment env) {
+		return getPoints().stream().filter(p -> env.isInBounds(p)).map(p -> env.getLocation(p)).collect(Collectors.toList());
 	}
 }

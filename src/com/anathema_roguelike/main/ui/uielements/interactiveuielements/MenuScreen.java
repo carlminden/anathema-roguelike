@@ -23,6 +23,8 @@ import com.anathema_roguelike.main.ui.uielements.Screen;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Menu;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.MenuDescription;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.google.common.collect.Iterables;
 
 public abstract class MenuScreen<T, M extends Menu<T>> extends Screen<T> {
@@ -46,17 +48,17 @@ public abstract class MenuScreen<T, M extends Menu<T>> extends Screen<T> {
 		init(choices, instructionsMessage, cancellable, 1f);
 	}
 
-	public MenuScreen(int x, int y, int width, int height, String title, Message instructionsMessage,
+	public MenuScreen(Point position, int width, int height, String title, Message instructionsMessage,
 			boolean cancellable, float background, float contentBackground, Collection<T> choices) {
 		
-		super(x, y, width, height, title, cancellable, background);
+		super(position, width, height, title, cancellable, background);
 		init(choices, instructionsMessage, cancellable, contentBackground);
 	}
 	
-	public MenuScreen(int x, int y, int width, int height, String title, boolean cancellable, float background,
+	public MenuScreen(Point position, int width, int height, String title, boolean cancellable, float background,
 			float contentBackground, Collection<? extends T> choices) {
 		
-		super(x, y, width, height, title, cancellable, background);
+		super(position, width, height, title, cancellable, background);
 		init(choices, null, cancellable, contentBackground);
 	}
 	
@@ -65,11 +67,11 @@ public abstract class MenuScreen<T, M extends Menu<T>> extends Screen<T> {
 		int x = getX() + (int)(getWidth() * .05);
 		int y = getY() + (int)(getHeight() * .2);
 		
-		menu = createMenu(x, y, (int)(getWidth() * .3), getHeight()/2, choices, cancellable, contentBackground);
+		menu = createMenu(new Point(x, y), (int)(getWidth() * .3), getHeight()/2, choices, cancellable, contentBackground);
 		description = new MenuDescription<T>(menu, choices.isEmpty() ? null : Utils.getSuperclass(Iterables.get(choices, 0)));
 		
 		if(instructionsMessage != null) {
-			instructions = new TextBox(x, y - 2, menu.getWidth() + description.getWidth(), 1, instructionsMessage, contentBackground);
+			instructions = new TextBox(Direction.offset(getPosition(), Direction.DOWN, 2), menu.getWidth() + description.getWidth(), 1, instructionsMessage, contentBackground);
 			addUIElement(instructions);
 		}
 		
@@ -97,5 +99,5 @@ public abstract class MenuScreen<T, M extends Menu<T>> extends Screen<T> {
 		return menu;
 	}
 	
-	protected abstract M createMenu(int x, int y, int width, int height, Collection<? extends T> choices, boolean cancellable, float background);
+	protected abstract M createMenu(Point position, int width, int height, Collection<? extends T> choices, boolean cancellable, float background);
 }

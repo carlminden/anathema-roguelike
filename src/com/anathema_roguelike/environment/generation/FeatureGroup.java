@@ -18,7 +18,7 @@ package com.anathema_roguelike.environment.generation;
 
 import java.util.ArrayList;
 
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class FeatureGroup<T extends DungeonFeature> extends ArrayList<T> {
 	

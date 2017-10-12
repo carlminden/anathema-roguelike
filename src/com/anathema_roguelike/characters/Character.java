@@ -33,10 +33,9 @@ import com.anathema_roguelike.characters.perks.PerkSet;
 import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.characters.player.perks.abilities.Ability;
 import com.anathema_roguelike.characters.player.perks.specializations.AbilitySpecializationSet;
-import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Environment;
+import com.anathema_roguelike.environment.HasLocation;
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.environment.features.Doorway;
 import com.anathema_roguelike.environment.terrain.grounds.Stairs;
 import com.anathema_roguelike.main.Config;
@@ -47,6 +46,8 @@ import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.HasStats;
 import com.anathema_roguelike.stats.StatSet;
 import com.anathema_roguelike.stats.characterstats.CharacterStat;
@@ -376,11 +377,11 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		return currentVisibility;
 	}
 	
-	public boolean hasLineOfSightTo(Location location) {
+	public boolean hasLineOfSightTo(HasLocation location) {
 		return getCurrentVisibility().get(location.getX(), location.getY());
 	}
 	
-	public boolean hasLineOfEffectTo(Location location) {
+	public boolean hasLineOfEffectTo(HasLocation location) {
 		return getLocation().getEnvironment().lineOfEffectBetween(getLocation(), location);
 	}
 	

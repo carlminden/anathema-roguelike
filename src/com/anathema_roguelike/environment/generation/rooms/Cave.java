@@ -22,14 +22,14 @@ import java.util.Random;
 import com.anathema_roguelike.characters.foes.corruptions.Thrall;
 import com.anathema_roguelike.characters.foes.roles.Brawler;
 import com.anathema_roguelike.characters.foes.species.generic.Orc;
-import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.environment.generation.DungeonGenerator;
 import com.anathema_roguelike.environment.terrain.grounds.Stone;
 import com.anathema_roguelike.environment.terrain.walls.StoneWall;
 import com.anathema_roguelike.main.Game;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class Cave extends Room {
 	

@@ -25,6 +25,7 @@ public class Config {
 	public static final int DUNGEON_WIDTH = 108;
 	public static final int DUNGEON_HEIGHT = 57;
 	public static final int DUNGEON_DEPTH = 1;
+	public static final boolean DEBUG = true;
 	
 	private static Properties configFile;
 	

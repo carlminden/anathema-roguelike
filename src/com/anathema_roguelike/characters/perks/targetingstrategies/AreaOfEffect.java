@@ -17,15 +17,15 @@
 package com.anathema_roguelike.characters.perks.targetingstrategies;
 
 import java.util.Collection;
-import java.util.function.BiFunction;
 
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.environment.Location;
 
 public abstract class AreaOfEffect<T extends Targetable> extends TargetingStrategy<T, Location> {
 	
 	@SafeVarargs
-	public AreaOfEffect(Class<T> targetType, BiFunction<T, Location, Boolean> ...constraints) {
+	public AreaOfEffect(Class<T> targetType, TargetConstraint<T, Location> ...constraints) {
 		super(targetType, constraints);
 	}
 	

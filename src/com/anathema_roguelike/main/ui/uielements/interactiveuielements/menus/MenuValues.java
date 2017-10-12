@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.TextBox;
+import com.anathema_roguelike.main.utilities.position.Direction;
 import com.google.common.base.Function;
 
 public class MenuValues<T> extends TextBox {
@@ -31,7 +32,7 @@ public class MenuValues<T> extends TextBox {
 	private int length;
 
 	public MenuValues(Menu<T> menu, int xOffset, int start, int length, Function<T, Message> calculator, float background) {
-		super(menu.getX() + xOffset, menu.getY(), 5, menu.getHeight(), null, background);
+		super(Direction.offset(menu.getPosition(), Direction.RIGHT, xOffset), 5, menu.getHeight(), null, background);
 		
 		this.menu = menu;
 		this.calculator = calculator;

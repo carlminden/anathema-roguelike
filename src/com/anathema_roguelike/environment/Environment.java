@@ -31,6 +31,8 @@ import com.anathema_roguelike.main.display.DisplayBuffer;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.utilities.datastructures.CollectionUtils;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.locationstats.Opacity;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
@@ -192,6 +194,10 @@ public class Environment implements Renderable {
 		return isPassable(point.getX(), point.getY());
 	}
 	
+	public boolean isInBounds(Point point) {
+		return point.getX() >= 0 && point.getY() >= 0 && point.getX() < width && point.getY() < height;
+	}
+	
 	public double[][] getFOVResistances() {
 		return fovResistance;
 	}
@@ -230,7 +236,7 @@ public class Environment implements Renderable {
 		fovResistance[point.getX()][point.getY()] = location.getStatAmount(Opacity.class);
 	}
 
-	public boolean lineOfEffectBetween(Location a, Location b) {
+	public boolean lineOfEffectBetween(HasLocation a, HasLocation b) {
 		Path path = Path.straightLine(a.getPosition(), b.getPosition());
 		
 		return path.stream().allMatch(p -> getLocation(p).isPassable());

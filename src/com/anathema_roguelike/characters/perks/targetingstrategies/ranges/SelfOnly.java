@@ -30,5 +30,4 @@ public class SelfOnly extends Range<Character> {
 	protected Shape getShape(Character character) {
 		return new SinglePoint(character.getPosition());
 	}
-
 }

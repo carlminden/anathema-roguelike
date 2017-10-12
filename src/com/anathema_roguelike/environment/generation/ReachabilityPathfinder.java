@@ -17,8 +17,8 @@
 package com.anathema_roguelike.environment.generation;
 
 import com.anathema_roguelike.environment.LocationProperty;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.utilities.pathfinding.PathFinder;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class ReachabilityPathfinder extends PathFinder {
 	

@@ -14,23 +14,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package com.anathema_roguelike.main.ui.uielements;
+package com.anathema_roguelike.main.utilities.position;
 
-import com.anathema_roguelike.main.utilities.position.Point;
-
-public class Placeholder extends UIElement {
-
-	public Placeholder(Point position, int width, int height) {
-		super(position, width, height, 0f);
-	}
-
-	public Placeholder(Point position, int width, int height, String borderTitle) {
-		super(position, width, height, borderTitle, 0f);
-	}
-
-	@Override
-	protected void renderContent() {
-		
-	}
+public class Orientation {
+	public final static int HORIZONTAL = Direction.LEFT | Direction.RIGHT;
+	public final static int VERTICAL = Direction.UP | Direction.DOWN;
 	
+	public final static int[] ORIENTATIONS = { VERTICAL, HORIZONTAL };
+	
+	public static int getOrientation(int direction) {
+		if(direction == Direction.UP || direction == Direction.DOWN) {
+			return VERTICAL;
+		} else if(direction == Direction.LEFT || direction == Direction.RIGHT) {
+			return HORIZONTAL;
+		} else {
+			return 0;
+		}
+	}
 }

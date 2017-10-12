@@ -25,15 +25,15 @@ import org.jgrapht.alg.ConnectivityInspector;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.ListenableUndirectedGraph;
 
-import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.environment.generation.rooms.Door;
 import com.anathema_roguelike.environment.generation.rooms.Room;
 import com.anathema_roguelike.environment.terrain.grounds.Stairs;
 import com.anathema_roguelike.environment.terrain.walls.StoneWall;
 import com.anathema_roguelike.main.Config;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public abstract class DungeonGenerator {
 	protected static final Random rand = new Random();

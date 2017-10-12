@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.terrain.grounds;
 
-import com.anathema_roguelike.environment.Direction;
+import com.anathema_roguelike.main.utilities.position.Direction;
 
 public class Stairs extends Ground {
 	

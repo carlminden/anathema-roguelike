@@ -1,9 +1,8 @@
 package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
-import java.util.function.BiFunction;
-
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 import com.anathema_roguelike.stats.characterstats.masteries.ThrowingWeaponMastery;
@@ -14,7 +13,7 @@ public class ThrowingRange<T extends Targetable> extends CircularRange<T> {
 	private Item item;
 	
 	@SafeVarargs
-	public ThrowingRange(Class<T> targetType, Item item, BiFunction<T, Character, Boolean> ...constraints) {
+	public ThrowingRange(Class<T> targetType, Item item, TargetConstraint<T, Character> ...constraints) {
 		super(targetType, constraints);
 		
 		this.item = item;

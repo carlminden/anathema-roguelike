@@ -16,11 +16,10 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
-import java.util.function.BiFunction;
-
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Square;
@@ -29,7 +28,8 @@ import com.anathema_roguelike.stats.itemstats.WeaponRange;
 
 public class PrimaryWeaponRange<T extends Targetable> extends Range<T> {
 
-	public PrimaryWeaponRange(Class<T> targetType, BiFunction<T, Character, Boolean> ...constraints) {
+	@SafeVarargs
+	public PrimaryWeaponRange(Class<T> targetType, TargetConstraint<T, Character> ...constraints) {
 		super(targetType, constraints);
 	}
 

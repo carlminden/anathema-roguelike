@@ -20,17 +20,18 @@ import java.util.ArrayList;
 
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.InteractiveUIElement;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class Screen<T> extends InteractiveUIElement<T> {
 	
 	private InteractiveUIElement<T> focusedUIElement;
 	
-	public Screen(int x, int y, int width, int height, String title, boolean cancellable, float background) {
-		super(x, y, width, height, title, cancellable, background);
+	public Screen(Point position, int width, int height, String title, boolean cancellable, float background) {
+		super(position, width, height, title, cancellable, background);
 	}
 	
 	public Screen(String title, boolean cancellable) {
-		super(0, 0, UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, title, cancellable, 1f);
+		super(new Point(0, 0), UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, title, cancellable, 1f);
 	}
 	
 	public void setFocusedUIElement(InteractiveUIElement<T> focusedUIElement) {

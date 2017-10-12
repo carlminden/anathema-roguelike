@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.fov;
 
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class ObstructionChangedEvent {
 	private Point position;

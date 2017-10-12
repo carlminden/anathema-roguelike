@@ -21,6 +21,7 @@ import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.InputHandler;
 import com.anathema_roguelike.main.ui.uielements.UIElement;
 import com.anathema_roguelike.main.utilities.datastructures.CollectionUtils;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.badlogic.gdx.InputAdapter;
 
 import squidpony.squidgrid.gui.gdx.SquidInput;
@@ -32,14 +33,14 @@ public abstract class InteractiveUIElement<T> extends UIElement {
 	private boolean cancellable;
 	private boolean finished = false;
 	
-	public InteractiveUIElement(int x, int y, int width, int height, String title, boolean cancellable, float background) {
-		super(x, y, width, height, title, background);
+	public InteractiveUIElement(Point position, int width, int height, String title, boolean cancellable, float background) {
+		super(position, width, height, title, background);
 		
 		this.cancellable = cancellable;
 	}
 	
-	public InteractiveUIElement(int x, int y, int width, int height, boolean cancellable, float background) {
-		super(x, y, width, height, background);
+	public InteractiveUIElement(Point position, int width, int height, boolean cancellable, float background) {
+		super(position, width, height, background);
 		
 		this.cancellable = cancellable;
 	}

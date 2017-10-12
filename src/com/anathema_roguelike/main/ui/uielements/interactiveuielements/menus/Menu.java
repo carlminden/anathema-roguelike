@@ -21,6 +21,8 @@ import java.util.Collection;
 
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.InteractiveUIElement;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SquidInput;
 
@@ -37,9 +39,9 @@ public class Menu<T> extends InteractiveUIElement<T> {
 	private boolean centered = false;
 	private int spacing;
 	
-	public Menu(int x, int y, int width, int height, boolean centered, int spacing, boolean cancellable,
+	public Menu(Point position, int width, int height, boolean centered, int spacing, boolean cancellable,
 			float background, Collection<? extends T> items) {
-		super(x, y, width, height, cancellable, background);
+		super(position, width, height, cancellable, background);
 		this.centered = centered;
 		this.spacing = spacing;
 		this.items = new ArrayList<>(items);
@@ -47,26 +49,26 @@ public class Menu<T> extends InteractiveUIElement<T> {
 		initializeMenuItems();
 	}
 	
-	public Menu(int x, int y, int width, int height, boolean centered, int spacing, boolean cancellable, float background,
+	public Menu(Point position, int width, int height, boolean centered, int spacing, boolean cancellable, float background,
 			Collection<? extends T> items, String finishText) {
 		
-		super(x, y, width, height, cancellable, background);
+		super(position, width, height, cancellable, background);
 		this.centered = centered;
 		this.spacing = spacing;
 		this.items = new ArrayList<>(items);
 		
 		initializeMenuItems();
 		
-		this.menuItems.add(new MenuItem<String>(this, finishText, (String s) -> finish(), getX(), getY() + (this.items.size() + 1 * this.spacing), getBackground()));
+		this.menuItems.add(new MenuItem<String>(this, finishText, (String s) -> finish(), Direction.offset(getPosition(), Direction.DOWN, this.items.size() + 1 * this.spacing), getBackground()));
 	}
 	
 	private void initializeMenuItems() {
 		
 		for(int i = 0; i < items.size(); i++) {
 			if(isCentered()) {
-				typedMenuItems.add(new MenuItem<T>(this, items.get(i), getX() + (getWidth() / 2) - (Utils.getName(items.get(i)).length() / 2), getY() + i * spacing, getBackground()));
+				typedMenuItems.add(new MenuItem<T>(this, items.get(i), new Point(getX() + (getWidth() / 2) - (Utils.getName(items.get(i)).length() / 2), getY() + i * spacing), getBackground()));
 			} else {
-				typedMenuItems.add(new MenuItem<T>(this, items.get(i), getX(), getY() + i * spacing, getBackground()));
+				typedMenuItems.add(new MenuItem<T>(this, items.get(i), Direction.offset(getPosition(), Direction.DOWN, i * spacing), getBackground()));
 			}
 			
 		}

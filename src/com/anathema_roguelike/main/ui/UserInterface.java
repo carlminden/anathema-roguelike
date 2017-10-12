@@ -18,13 +18,14 @@ package com.anathema_roguelike.main.ui;
 
 import com.anathema_roguelike.main.State;
 import com.anathema_roguelike.main.display.Color;
-import com.anathema_roguelike.main.display.DungeonMap;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.display.DungeonMap;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.messages.MessageBox;
 import com.anathema_roguelike.main.ui.uielements.Placeholder;
 import com.anathema_roguelike.main.ui.uielements.PlayerStats;
 import com.anathema_roguelike.main.ui.uielements.UIElement;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class UserInterface extends UIElement {
 	
@@ -34,17 +35,17 @@ public class UserInterface extends UIElement {
 	private PlayerStats statsUI;
 	
 	public UserInterface() {
-		super(0, 0, UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, 0f);
+		super(new Point(0, 0), UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, 0f);
 	}
 	
 	public void init(State state) {
-		mapPlaceholder = new Placeholder(0, UIConfig.MAP_START_Y, UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3, "Dungeon Map");
+		mapPlaceholder = new Placeholder(new Point(0, UIConfig.MAP_START_Y), UIConfig.DUNGEON_MAP_WIDTH + 1, UIConfig.DUNGEON_MAP_HEIGHT + 3, "Dungeon Map");
 		
 		map = new DungeonMap(mapPlaceholder.getX(), mapPlaceholder.getY(), state);
 		
-		messageBox = new MessageBox(mapPlaceholder.getOuterWidth(), 0, 50, 20, "Messages");
+		messageBox = new MessageBox(new Point(mapPlaceholder.getOuterWidth(), 0), 50, 20, "Messages");
 		
-		statsUI = new PlayerStats(mapPlaceholder.getOuterWidth(), messageBox.getOuterHeight(),
+		statsUI = new PlayerStats(new Point(mapPlaceholder.getOuterWidth(), messageBox.getOuterHeight()),
 				messageBox.getOuterWidth(), mapPlaceholder.getOuterHeight() - messageBox.getOuterHeight(), state.getPlayer());
 		
 		addUIElement(mapPlaceholder);

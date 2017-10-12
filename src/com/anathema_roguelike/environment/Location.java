@@ -22,6 +22,7 @@ import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.environment.features.Feature;
 import com.anathema_roguelike.environment.terrain.Terrain;
 import com.anathema_roguelike.main.Entity;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.HasStats;
 import com.anathema_roguelike.stats.StatSet;
 import com.anathema_roguelike.stats.locationstats.LocationStat;
@@ -54,6 +55,11 @@ public class Location implements HasStats<Location, LocationStat>, Targetable {
 		for(Feature feature : features) {
 			addFeature(feature);
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return getX() + ", " + getY();
 	}
 	
 	@Override

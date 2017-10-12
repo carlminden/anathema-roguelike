@@ -18,7 +18,7 @@ package com.anathema_roguelike.main.utilities.pathfinding;
 
 import java.util.ArrayList;
 
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 //Took a bresenham line implementation from http://www.sanfoundry.com/java-program-bresenham-line-algorithm/ because I am lazy
 

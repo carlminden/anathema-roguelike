@@ -16,10 +16,10 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.features;
 
-import com.anathema_roguelike.environment.Orientation;
 import com.anathema_roguelike.fov.ObstructionChangedEvent;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.main.utilities.position.Orientation;
 
 public class Doorway extends Feature {
 	

@@ -18,10 +18,12 @@ package com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus;
 
 import java.util.Collection;
 
+import com.anathema_roguelike.main.utilities.position.Point;
+
 public class SelectionMenu<T> extends Menu<T> {
 	
-	public SelectionMenu(int x, int y, int width, int height, boolean centered, int spacing, Collection<? extends T> choices, boolean cancellable, float background) {
-		super(x, y, width, height, centered, spacing, cancellable, background, choices);
+	public SelectionMenu(Point position, int width, int height, boolean centered, int spacing, Collection<? extends T> choices, boolean cancellable, float background) {
+		super(position, width, height, centered, spacing, cancellable, background, choices);
 		
 		setOnSelectListener((T obj) -> {
 			setResult(obj);

@@ -29,6 +29,7 @@ import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.characterstats.attributes.Agility;
 import com.anathema_roguelike.stats.characterstats.attributes.Constitution;
 import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
@@ -50,8 +51,8 @@ public class PlayerStats extends UIElement {
 	
 	private int renderPos;
 	
-	public PlayerStats(int x, int y, int width, int height, Player player) {
-		super(x, y, width, height, "Character", 1f);
+	public PlayerStats(Point position, int width, int height, Player player) {
+		super(position, width, height, "Character", 1f);
 		
 		this.player = player;
 	}

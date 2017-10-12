@@ -27,6 +27,7 @@ import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MenuScree
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.TextBox;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.MenuValues;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
 import com.google.common.base.Function;
 
@@ -68,9 +69,9 @@ public class PointBuyScreen extends MenuScreen<Class<? extends Attribute>, Point
 	}
 
 	@Override
-	protected PointBuyMenu createMenu(int x, int y, int width, int height,
+	protected PointBuyMenu createMenu(Point position, int width, int height,
 			Collection<? extends Class<? extends Attribute>> choices, boolean cancellable, float background) {
-		menu = new PointBuyMenu(x, y, width, height, cancellable, 1, player);
+		menu = new PointBuyMenu(position, width, height, cancellable, 1, player);
 		
 		TextBox currentValues = new MenuValues<Class<? extends Attribute>>(menu, 18, 0, attributes.size(), new Function<Class<? extends Attribute>, Message>() {
 

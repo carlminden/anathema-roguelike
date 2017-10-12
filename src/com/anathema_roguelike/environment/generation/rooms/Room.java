@@ -21,13 +21,13 @@ import java.util.Random;
 
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.environment.features.Doorway;
 import com.anathema_roguelike.environment.generation.DungeonFeature;
 import com.anathema_roguelike.environment.generation.DungeonGenerator;
 import com.anathema_roguelike.environment.terrain.grounds.Stone;
 import com.anathema_roguelike.main.Config;
 import com.anathema_roguelike.main.ui.uielements.Rectangular;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public abstract class Room extends DungeonFeature implements Rectangular, Comparable<Room> {
 	

@@ -17,10 +17,10 @@
 package com.anathema_roguelike.characters.perks;
 
 import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.perks.targetingstrategies.EnemyTargetValidator;
 import com.anathema_roguelike.characters.perks.targetingstrategies.TargetConsumer;
 import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.characters.perks.targetingstrategies.TargetingStrategy;
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.EnemyTargetConstraint;
 import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
 
 public abstract class OffensiveTargetedPerk<T extends Targetable> extends TargetedPerk<T, Character> {
@@ -29,6 +29,6 @@ public abstract class OffensiveTargetedPerk<T extends Targetable> extends Target
 	public OffensiveTargetedPerk(Range<Character> range, TargetingStrategy<T, Character> strategy, TargetConsumer<?> ...targetConsumers) {
 		super(range, strategy, targetConsumers);
 		
-		range.addConstraint(new EnemyTargetValidator());
+		range.addConstraint(new EnemyTargetConstraint());
 	}
 }

@@ -18,10 +18,11 @@ package com.anathema_roguelike.characters.player;
 
 import com.anathema_roguelike.characters.actions.MoveAction;
 import com.anathema_roguelike.characters.perks.ActivatedPerk;
-import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SquidInput;
 import squidpony.squidgrid.gui.gdx.SquidInput.KeyHandler;
@@ -85,7 +86,7 @@ public class PlayerKeyHandler implements KeyHandler {
 	        	return;
 	        case 'a':
 	        	ActivatedPerk ability = new SelectionScreen<ActivatedPerk>(
-        			0, 0, UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3,
+        			new Point(0, 0), UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3,
         			"Activate an Ability", true, 0f, .5f, player.getPerks(ActivatedPerk.class)
 	        	).run();
 	        	

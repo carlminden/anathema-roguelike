@@ -19,7 +19,7 @@ package com.anathema_roguelike.environment.generation;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public abstract class DungeonFeature {
 	

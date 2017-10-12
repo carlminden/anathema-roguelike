@@ -18,8 +18,8 @@ package com.anathema_roguelike.environment.generation;
 
 import java.util.HashMap;
 
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.environment.generation.rooms.Room;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class TunnelSystem extends DungeonFeature {
 	

@@ -17,14 +17,15 @@
 package com.anathema_roguelike.main.ui.messages;
 
 import com.anathema_roguelike.main.ui.uielements.UIElement;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class MessageBox extends UIElement {
 	
 	private MessageBuffer messages;
 	private boolean pendingNewLine = false;
 	
-	public MessageBox(int x, int y, int width, int height, String title) {
-		super(x, y, width, height, title, 1f);
+	public MessageBox(Point position, int width, int height, String title) {
+		super(position, width, height, title, 1f);
 		
 		messages = new MessageBuffer(getWidth(), getHeight());
 	}

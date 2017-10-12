@@ -16,13 +16,13 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus;
 
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.InteractiveUIElement;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MouseCallback;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
@@ -34,8 +34,8 @@ public class MenuItem<T> extends InteractiveUIElement<T> {
 	private Menu<?> menu;
 	private boolean focused = false;
 	
-	public MenuItem(Menu<?> menu, T item, int x, int y, float background) {
-		super(x, y, Utils.getName(item).length(), 1, false, background);
+	public MenuItem(Menu<?> menu, T item, Point position, float background) {
+		super(position, Utils.getName(item).length(), 1, false, background);
 		this.item = item;
 		this.menu = menu;
 		
@@ -44,8 +44,8 @@ public class MenuItem<T> extends InteractiveUIElement<T> {
 		};
 	}
 	
-	public MenuItem(Menu<?> menu, T item, OnSelectListener<T> onSelectListener, int x, int y, float background) {
-		super(x, y, Utils.getName(item).length(), 1, false, background);
+	public MenuItem(Menu<?> menu, T item, OnSelectListener<T> onSelectListener, Point position, float background) {
+		super(position, Utils.getName(item).length(), 1, false, background);
 		this.onSelectListener = onSelectListener;
 		
 		this.item = item;

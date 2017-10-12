@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
+import com.anathema_roguelike.main.Config;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -38,16 +39,18 @@ import squidpony.squidgrid.gui.gdx.TextCellFactory;
 
 public class Display extends RenderSurface {
 	
-	public enum DisplayLayer { DUNGEON_LIGHT, DUNGEON_BACKGROUND, DUNGEON_FOREGROUND, DUNGEON_OVERLAY, UI_BACKGROUND, UI_FOREGROUND }
+	public enum DisplayLayer { DUNGEON_LIGHT, DUNGEON_BACKGROUND, DUNGEON_FOREGROUND, DUNGEON_OVERLAY, UI_BACKGROUND, UI_FOREGROUND, DEBUG }
 		
 	private SpriteBatch batch;
 	private Pixmap pixmap;
 	private Texture tex;
 	private Stage gameStage;
 	private Stage uiStage;
+	private Stage debugStage;
 	
 	private SparseLayers gameDisplay;
 	private SparseLayers uiDisplay;
+	private SparseLayers debugDisplay;
 	
 	private TextCellFactory gameTextCellFactory = new TextCellFactory();
 	private TextCellFactory uiTextCellFactory = new TextCellFactory();
@@ -72,6 +75,7 @@ public class Display extends RenderSurface {
     	
     	gameStage = new Stage(new StretchViewport(getWidth() * cellWidth, (getHeight()) * cellHeight), batch);
     	uiStage = new Stage(new StretchViewport(getWidth() * cellWidth, (getHeight()) * cellHeight), batch);
+    	debugStage = new Stage(new StretchViewport(getWidth() * cellWidth, (getHeight()) * cellHeight), batch);
 		
 		gameTextCellFactory.fontDistanceField("Inconsolata-LGC-Custom-distance.fnt", "Inconsolata-LGC-Custom-distance.png");
 		
@@ -85,6 +89,10 @@ public class Display extends RenderSurface {
 		uiDisplay.font.tweakWidth(cellWidth).tweakHeight(cellHeight * 1f).initBySize();
 		uiDisplay.setPosition(0, 0);
 		
+		debugDisplay = new SparseLayers(UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, cellWidth, cellHeight, uiTextCellFactory);
+		debugDisplay.font.tweakWidth(cellWidth).tweakHeight(cellHeight * 1f).initBySize();
+		debugDisplay.setPosition(0, 0);
+		
 		
 		layers.put(DisplayLayer.DUNGEON_LIGHT, gameDisplay.addLayer());
 		layers.put(DisplayLayer.DUNGEON_BACKGROUND, gameDisplay.addLayer());
@@ -92,12 +100,14 @@ public class Display extends RenderSurface {
 		layers.put(DisplayLayer.DUNGEON_OVERLAY, gameDisplay.addLayer());
 		layers.put(DisplayLayer.UI_BACKGROUND, uiDisplay.addLayer());
 		layers.put(DisplayLayer.UI_FOREGROUND, uiDisplay.addLayer());
+		layers.put(DisplayLayer.DEBUG, debugDisplay.addLayer());
 		
 		
 		Gdx.input.setInputProcessor(new InputMultiplexer(gameStage, input.getSquidInput()));
 		
 		gameStage.addActor(gameDisplay);
 		uiStage.addActor(uiDisplay);
+		debugStage.addActor(debugDisplay);
 	}
 	
 	public void put(DisplayLayer layer, int x, int y, char string, SColor color) {
@@ -125,6 +135,11 @@ public class Display extends RenderSurface {
 		uiStage.getViewport().apply(false);
 		uiStage.draw();
 		
+		if(Config.DEBUG) {
+			debugStage.getViewport().apply(false);
+			debugStage.draw();
+		}
+		
 		Gdx.graphics.setTitle("FPS: " + Gdx.graphics.getFramesPerSecond());
 	}
 	
@@ -142,6 +157,10 @@ public class Display extends RenderSurface {
 		
 		batch.setColor(color.r, color.g, color.b, color.a);
 		batch.draw(tex, x1, y1, 0f, 1f, length, 1f, 1f, 1f, angle, 0, 0, tex.getWidth(), tex.getHeight(), false, false);
+	}
+	
+	public void clear(DisplayLayer layer) {
+		layers.get(layer).clear();
 	}
 	
 	public void lock() {

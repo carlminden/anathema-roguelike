@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
@@ -16,10 +16,10 @@ import com.anathema_roguelike.main.utilities.Utils;
 public abstract class TargetFilter<T extends Targetable, A> {
 	
 	private Class<T> targetType;
-	private ArrayList<BiFunction<T, A, Boolean>> constraints;
+	private ArrayList<TargetConstraint<T, A>> constraints;
 	
 	@SafeVarargs
-	public TargetFilter(Class<T> targetType, BiFunction<T, A, Boolean> ...constraints) {
+	public TargetFilter(Class<T> targetType, TargetConstraint<T, A> ...constraints) {
 		this.targetType = targetType;
 		this.constraints = new ArrayList<>(Arrays.asList(constraints));
 	}
@@ -61,7 +61,7 @@ public abstract class TargetFilter<T extends Targetable, A> {
 		return targetType;
 	}
 	
-	public void addConstraint(BiFunction<T, A, Boolean> constraint) {
+	public void addConstraint(TargetConstraint<T, A> constraint) {
 		constraints.add(constraint);
 	}
 }

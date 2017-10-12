@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.SelectionMenu;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class SelectionScreen<T> extends MenuScreen<T, SelectionMenu<T>> {
 	
@@ -31,14 +32,14 @@ public class SelectionScreen<T> extends MenuScreen<T, SelectionMenu<T>> {
 		super(title, choices, false);
 	}
 	
-	public SelectionScreen(int x, int y, int width, int height, String title, Message instructionsMessage,
+	public SelectionScreen(Point position, int width, int height, String title, Message instructionsMessage,
 			boolean cancellable, float background, float contentBackground, Collection<T> choices) {
-		super(x, y, width, height, title, instructionsMessage, cancellable, background, contentBackground, choices);
+		super(position, width, height, title, instructionsMessage, cancellable, background, contentBackground, choices);
 	}
 	
-	public SelectionScreen(int x, int y, int width, int height, String title, boolean cancellable, float background,
+	public SelectionScreen(Point position, int width, int height, String title, boolean cancellable, float background,
 			float contentBackground, Collection<T> choices) {
-		super(x, y, width, height, title, cancellable, background, contentBackground, choices);
+		super(position, width, height, title, cancellable, background, contentBackground, choices);
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class SelectionScreen<T> extends MenuScreen<T, SelectionMenu<T>> {
 		return super.run();
 	} 
 	@Override
-	protected SelectionMenu<T> createMenu(int x, int y, int width, int height, Collection<? extends T> choices, boolean cancellable, float background) {
-		return new SelectionMenu<T>(x, y, width, height, false, 1, choices, cancellable, background);
+	protected SelectionMenu<T> createMenu(Point position, int width, int height, Collection<? extends T> choices, boolean cancellable, float background) {
+		return new SelectionMenu<T>(position, width, height, false, 1, choices, cancellable, background);
 	}
 }

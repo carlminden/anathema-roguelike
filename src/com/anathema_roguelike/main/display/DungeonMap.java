@@ -20,7 +20,6 @@ import java.util.HashMap;
 
 import com.anathema_roguelike.characters.foes.Foe;
 import com.anathema_roguelike.characters.player.Player;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.fov.LightLevels;
 import com.anathema_roguelike.fov.TotalLightShader;
 import com.anathema_roguelike.fov.VisibleLightBackgroundShader;
@@ -32,6 +31,7 @@ import com.anathema_roguelike.main.State;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.uielements.Rectangular;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
@@ -210,7 +210,7 @@ public class DungeonMap implements Renderable, Rectangular {
 	private void renderFoVOverlay(BufferMask playerVision, BufferMask enemyFoV, SColor color) {
 		enemyFoV.and(playerVision);
 		
-		Game.getInstance().getDisplay().renderOutline(DisplayLayer.DUNGEON_OVERLAY, new Outline(new Point(getX(), getY()), enemyFoV, color));
+		Game.getInstance().getDisplay().renderOutline(DisplayLayer.DUNGEON_OVERLAY, new BufferMaskOutline(new Point(getX(), getY()), enemyFoV, color));
 	}
 	
 	public void renderEntity(DungeonLayer layer, Entity entity) {

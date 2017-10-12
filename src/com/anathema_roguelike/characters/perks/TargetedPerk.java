@@ -46,6 +46,11 @@ public class TargetedPerk<TargetType extends Targetable, OriginType extends Targ
 	}
 	
 	public boolean applyToTarget(OriginType origin) {
+		
+		if(origin == null) {
+			return false;
+		}
+		
 		boolean activated = false;
 		
 		for(TargetType target : strategy.getTargets(origin)) {

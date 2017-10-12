@@ -20,18 +20,19 @@ import java.util.ArrayList;
 
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
+import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.display.Outline;
 import com.anathema_roguelike.main.display.RenderSurface;
 import com.anathema_roguelike.main.display.Renderable;
-import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.utilities.position.HasPosition;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
-public abstract class UIElement extends RenderSurface implements Renderable {
+public abstract class UIElement extends RenderSurface implements Renderable, HasPosition {
 	
-	private int x;
-	private int y;
-	private int outerX;
-	private int outerY;
+	private Point position;
+	private Point outerPosition;
 	private int outerWidth;
 	private int outerHeight;
 	private float background;
@@ -39,25 +40,23 @@ public abstract class UIElement extends RenderSurface implements Renderable {
 	
 	private ArrayList<UIElement> elements = new ArrayList<>();
 	
-	public UIElement(int x, int y, int width, int height, float background) {
+	public UIElement(Point position, int width, int height, float background) {
 		super(width, height);
 		
-		init(x, y, x, y, width, height, background);
+		init(position, position, width, height, background);
 	}
 	
-	public UIElement(int x, int y, int width, int height, String borderTitle, float background) {
+	public UIElement(Point position, int width, int height, String borderTitle, float background) {
 		super(width - 2, height - ((borderTitle == null) ? 2 : 4));
 		
-		init(x + 1, y + ((borderTitle == null) ? 1 : 3), x, y, width, height, background);
+		init(new Point(position.getX() + 1, position.getY() + ((borderTitle == null) ? 1 : 3)), position, width, height, background);
 		
 		this.border = new Border(this, borderTitle);
 	}
 	
-	private void init(int x, int y, int outerX, int outerY, int width, int height, float background) {
-		this.x = x;
-		this.y = y;
-		this.outerX = outerX;
-		this.outerY = outerY;
+	private void init(Point position, Point outerPosition, int width, int height, float background) {
+		this.position = position;
+		this.outerPosition = outerPosition;
 		this.outerWidth = width;
 		this.outerHeight = height;
 		this.background = background;
@@ -85,6 +84,10 @@ public abstract class UIElement extends RenderSurface implements Renderable {
 		}
 	}
 	
+	@Override
+	public Point getPosition() {
+		return position;
+	}
 		
 	public void addUIElement(UIElement element) {
 		elements.add(element);
@@ -98,20 +101,12 @@ public abstract class UIElement extends RenderSurface implements Renderable {
 		return elements;
 	}
 	
-	public int getX() {
-		return x;
-	}
-	
-	public int getY() {
-		return y;
-	}
-	
 	public int getOuterX() {
-		return outerX;
+		return outerPosition.getX();
 	}
 
 	public int getOuterY() {
-		return outerY;
+		return outerPosition.getY();
 	}
 
 	public int getOuterWidth() {
@@ -143,8 +138,14 @@ public abstract class UIElement extends RenderSurface implements Renderable {
 //		renderChar(DisplayLayer.UI_FOREGROUND, getWidth() - 1, 0, 'X', Color.ERROR);
 //		renderChar(DisplayLayer.UI_FOREGROUND, getWidth() - 1, getHeight() - 1, 'X', Color.ERROR);
 	}
+	
 	@Override
 	public void renderChar(DisplayLayer layer, int x, int y, char string, SColor color) {
 		Game.getInstance().getDisplay().renderChar(layer, x + getX(), y + getY(), string, color);
+	}
+	
+	public void renderOutline(Outline outline) {
+		outline.setOffset(new Point(getX(), getY()));
+		outline.render();
 	}
 }

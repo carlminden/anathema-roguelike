@@ -16,8 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies;
 
-import java.util.function.BiFunction;
-
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.environment.Location;
@@ -28,7 +27,7 @@ public class Spread<T extends Targetable> extends AreaOfEffect<T> {
 	private Calculation radius;
 	
 	@SafeVarargs
-	public Spread(Class<T> targetType, Calculation radius, BiFunction<T, Location, Boolean> ...constraints) {
+	public Spread(Class<T> targetType, Calculation radius, TargetConstraint<T, Location> ...constraints) {
 		super(targetType, constraints);
 		
 		this.radius = radius;

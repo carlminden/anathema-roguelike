@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import com.anathema_roguelike.environment.HasLocation;
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.effects.Calculation;
 
 public class Square extends Shape {

@@ -22,10 +22,10 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.actions.MoveAction;
 import com.anathema_roguelike.characters.actions.TurnAction;
 import com.anathema_roguelike.characters.foes.Foe;
-import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class AI {
 	private Foe npc;

@@ -1,6 +1,9 @@
 package com.anathema_roguelike.environment;
 
-public interface HasLocation {
+import com.anathema_roguelike.main.utilities.position.HasPosition;
+import com.anathema_roguelike.main.utilities.position.Point;
+
+public interface HasLocation extends HasPosition {
 	
 	public abstract Location getLocation();
 	

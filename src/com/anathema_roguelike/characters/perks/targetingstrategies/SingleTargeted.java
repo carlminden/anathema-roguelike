@@ -19,12 +19,13 @@ package com.anathema_roguelike.characters.perks.targetingstrategies;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.function.BiFunction;
+
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.TargetConstraint;
 
 public class SingleTargeted<T extends Targetable> extends TargetingStrategy<T, T> {
 
 	@SafeVarargs
-	public SingleTargeted(Class<T> targetType, BiFunction<T, T, Boolean> ...constraints) {
+	public SingleTargeted(Class<T> targetType, TargetConstraint<T, T> ...constraints) {
 		super(targetType, constraints);
 	}
 

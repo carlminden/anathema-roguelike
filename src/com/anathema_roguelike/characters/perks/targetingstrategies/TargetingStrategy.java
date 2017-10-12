@@ -16,12 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies;
 
-import java.util.function.BiFunction;
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.TargetConstraint;
 
 public abstract class TargetingStrategy<TargetType extends Targetable, OriginType extends Targetable> extends TargetFilter<TargetType, OriginType> {
 	
 	@SafeVarargs
-	public TargetingStrategy(Class<TargetType> targetType, BiFunction<TargetType, OriginType, Boolean> ...constraints) {
+	public TargetingStrategy(Class<TargetType> targetType, TargetConstraint<TargetType, OriginType> ...constraints) {
 		super(targetType, constraints);
 	}
 }

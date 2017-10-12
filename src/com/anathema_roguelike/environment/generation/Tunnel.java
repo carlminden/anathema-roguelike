@@ -17,8 +17,8 @@
 package com.anathema_roguelike.environment.generation;
 
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.environment.terrain.grounds.Stone;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class Tunnel extends DungeonFeature {
 	

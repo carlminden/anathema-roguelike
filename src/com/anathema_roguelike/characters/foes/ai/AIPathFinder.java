@@ -20,9 +20,9 @@ import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.HasLocation;
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 import com.anathema_roguelike.main.utilities.pathfinding.PathFinder;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 

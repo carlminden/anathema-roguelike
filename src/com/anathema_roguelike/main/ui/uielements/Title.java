@@ -17,11 +17,12 @@
 package com.anathema_roguelike.main.ui.uielements;
 
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.utilities.position.Direction;
 
 public class Title extends UIElement {
 	
 	public Title(UIElement parent, String title) {
-		super(parent.getX(), parent.getY() - 2, parent.getWidth(), 3, 1f);		
+		super(Direction.offset(parent.getPosition(), Direction.UP, 2), parent.getWidth(), 3, 1f);		
 		this.title = title;
 	}
 

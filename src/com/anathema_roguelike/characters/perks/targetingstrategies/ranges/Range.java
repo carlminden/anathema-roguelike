@@ -17,11 +17,11 @@
 package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
 import java.util.Collection;
-import java.util.function.BiFunction;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.perks.targetingstrategies.TargetFilter;
 import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.GetTargetInterface;
 import com.anathema_roguelike.main.utilities.Utils;
@@ -29,7 +29,7 @@ import com.anathema_roguelike.main.utilities.Utils;
 public abstract class Range<T extends Targetable> extends TargetFilter<T, Character> {
 
 	@SafeVarargs
-	public Range(Class<T> targetType, BiFunction<T, Character, Boolean> ...constraints) {
+	public Range(Class<T> targetType, TargetConstraint<T, Character> ...constraints) {
 		super(targetType, constraints);
 	}
 	

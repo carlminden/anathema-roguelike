@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SquidInput;
 
@@ -29,8 +30,8 @@ public class TextBox extends InteractiveUIElement<Void> {
 	private ArrayList<Message> text = new ArrayList<Message>();
 	private int position = 0;
 
-	public TextBox(int x, int y, int width, int height, String title, Message text, float background) {
-		super(x, y, width, height, title, true, background);
+	public TextBox(Point position, int width, int height, String title, Message text, float background) {
+		super(position, width, height, title, true, background);
 		
 		if(text == null) {
 			text = new Message();
@@ -38,8 +39,8 @@ public class TextBox extends InteractiveUIElement<Void> {
 		setMessage(text);
 	}
 	
-	public TextBox(int x, int y, int width, int height, Message text, float background) {
-		super(x, y, width, height, true, background);
+	public TextBox(Point position, int width, int height, Message text, float background) {
+		super(position, width, height, true, background);
 		
 		if(text == null) {
 			text = new Message();

@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import com.anathema_roguelike.environment.HasLocation;
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.effects.Calculation;
 
 public class Circle extends Shape {
@@ -54,18 +54,16 @@ public class Circle extends Shape {
 		
 		int x = center.getX();
 		int y = center.getY();
-		
-		for(int i = (x - radius); i < x; i++) {
-			for(int j = (y - radius); j < y; j++) {
-				if(center.squareDistance(new Point(x, y)) <= radius*radius) {
-					ret.add(new Point(x, y));
-					ret.add(new Point(-x, y));
-					ret.add(new Point(x, -y));
-					ret.add(new Point(-x, -y));
+		for(int i = 0; i <= radius; i++) {
+			for(int j = 0; j <= radius; j++) {
+				if(center.squareDistance(new Point(x + i, y + j)) <= radius*radius) {
+					ret.add(new Point(x + i, y + j));
+					ret.add(new Point(x - i, y + j));
+					ret.add(new Point(x + i, y - j));
+					ret.add(new Point(x - i, y - j));
 				}
 			}
 		}
-		
 		return ret;
 	}
 }

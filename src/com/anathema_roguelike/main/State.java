@@ -21,13 +21,13 @@ import java.util.ArrayList;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.events.TurnEvent;
 import com.anathema_roguelike.characters.player.Player;
-import com.anathema_roguelike.environment.Direction;
 import com.anathema_roguelike.environment.Environment;
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.environment.generation.CaveDungeonGenerator;
 import com.anathema_roguelike.environment.generation.DungeonGenerator;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.ui.charactercreation.CharacterCreationUI;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class State implements Renderable {
 	

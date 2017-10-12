@@ -21,9 +21,9 @@ import java.util.concurrent.CountDownLatch;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 
-import com.anathema_roguelike.environment.Point;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MouseCallback;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.badlogic.gdx.InputAdapter;
 
 import squidpony.squidgrid.gui.gdx.SquidInput;

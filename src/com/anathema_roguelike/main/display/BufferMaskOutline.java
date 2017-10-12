@@ -14,21 +14,44 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package com.anathema_roguelike.environment;
+package com.anathema_roguelike.main.display;
 
-public class Orientation {
-	public final static int HORIZONTAL = Direction.LEFT | Direction.RIGHT;
-	public final static int VERTICAL = Direction.UP | Direction.DOWN;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.anathema_roguelike.main.utilities.position.Point;
+
+import squidpony.squidgrid.gui.gdx.SColor;
+
+public class BufferMaskOutline extends Outline {
 	
-	public final static int[] ORIENTATIONS = { VERTICAL, HORIZONTAL };
+	private BufferMask mask;
 	
-	public static int getOrientation(int direction) {
-		if(direction == Direction.UP || direction == Direction.DOWN) {
-			return VERTICAL;
-		} else if(direction == Direction.LEFT || direction == Direction.RIGHT) {
-			return HORIZONTAL;
-		} else {
-			return 0;
-		}
+	public BufferMaskOutline(Point position, BufferMask mask, SColor color) {
+		super(position, color);
+		
+		this.mask = mask;
 	}
+
+	@Override
+	public Collection<Point> getPoints() {
+		ArrayList<Point> points = new ArrayList<>();
+		
+		for(int x = 0; x < mask.getWidth(); x++) {
+        	for(int y = 0; y < mask.getWidth(); y++) {
+            	if(mask.get(x, y)) {
+            		points.add(new Point(x, y));
+            	}
+        	}
+		}
+		
+		return points;
+	}
+
+	@Override
+	public boolean validPoint(Point point) {
+		return mask.get(point.getX(), point.getY());
+	}
+	
+	
 }

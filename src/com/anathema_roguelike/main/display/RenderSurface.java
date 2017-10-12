@@ -45,6 +45,9 @@ public abstract class RenderSurface {
 		return height;
 	}
 	
+	public void renderOutline(Outline outline) {
+		outline.render();
+	}
 	
 	public void renderString(DisplayLayer foregroundLayer, DisplayLayer backgroundLayer, int x, int y, String string, SColor foreground, SColor background) {
 		for(int i = 0; i < string.length(); i++) {

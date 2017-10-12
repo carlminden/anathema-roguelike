@@ -16,10 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
-import java.util.function.BiFunction;
-
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
+import com.anathema_roguelike.characters.perks.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
 
@@ -28,7 +27,7 @@ public abstract class CircularRange<T extends Targetable> extends Range<T> {
 	
 	
 	@SafeVarargs
-	public CircularRange(Class<T> targetType, BiFunction<T, Character, Boolean> ...constraints) {
+	public CircularRange(Class<T> targetType, TargetConstraint<T, Character> ...constraints) {
 		super(targetType, constraints);
 	}
 

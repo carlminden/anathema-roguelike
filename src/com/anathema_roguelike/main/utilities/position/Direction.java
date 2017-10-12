@@ -14,8 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package com.anathema_roguelike.environment;
+package com.anathema_roguelike.main.utilities.position;
 
+import com.anathema_roguelike.environment.HasLocation;
 
 public class Direction {
 	public final static int UP = 0x1;
@@ -34,6 +35,11 @@ public class Direction {
 	public static Point offset(Point point, int direction) {
 		
 		return offset(point, direction, 1);
+	}
+	
+public static Point offset(HasPosition point, int direction) {
+		
+		return offset(point.getPosition(), direction, 1);
 	}
 	
 	public static Point offset(Point point, int direction, int amount) {

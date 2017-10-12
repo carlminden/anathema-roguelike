@@ -19,13 +19,14 @@ package com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.TextBox;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class MenuDescription<T> extends TextBox {
 	
 	private Menu<T> menu;
 	
 	public MenuDescription(final Menu<T> menu, Object type) {
-		super(menu.getX() + menu.getWidth(), menu.getY() - 1, menu.getWidth() * 2, menu.getHeight(), ((type != null) ? Utils.getName(type) : null) + " Description", null, menu.getBackground());
+		super(new Point(menu.getX() + menu.getWidth(), menu.getY() - 1), menu.getWidth() * 2, menu.getHeight(), ((type != null) ? Utils.getName(type) : null) + " Description", null, menu.getBackground());
 		
 		this.menu = menu;
 		

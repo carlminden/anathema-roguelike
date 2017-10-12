@@ -19,7 +19,7 @@ package com.anathema_roguelike.characters.perks.targetingstrategies.shapes;
 import java.util.Collection;
 import java.util.HashSet;
 
-import com.anathema_roguelike.environment.Point;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class SinglePoint extends Shape {
 	

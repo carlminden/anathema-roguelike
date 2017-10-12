@@ -22,6 +22,7 @@ import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Menu;
 import com.anathema_roguelike.main.utilities.Utils;
+import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
 
 import squidpony.squidgrid.gui.gdx.SquidInput;
@@ -35,8 +36,8 @@ public class PointBuyMenu extends Menu<Class<? extends Attribute>> {
 	private Player player;
 	private static Collection<Class<? extends Attribute>> attributes = Utils.getSubclasses(Attribute.class);
 	
-	public PointBuyMenu(int x, int y, int width, int height, boolean centered, int spacing, Player player) {
-		super(x, y, width, height, centered, spacing, false, 1.0f, attributes, "Finish");
+	public PointBuyMenu(Point position, int width, int height, boolean centered, int spacing, Player player) {
+		super(position, width, height, centered, spacing, false, 1.0f, attributes, "Finish");
 		
 		this.player = player;
 		

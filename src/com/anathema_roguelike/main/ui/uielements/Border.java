@@ -17,6 +17,8 @@
 package com.anathema_roguelike.main.ui.uielements;
 
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 public class Border extends UIElement {
 	
@@ -32,15 +34,15 @@ public class Border extends UIElement {
 	private Title title;
 	
 	public Border(UIElement uiElement, String title) {
-		super(uiElement.getX() - 1, uiElement.getY() - 1, uiElement.getWidth() + 2, uiElement.getHeight() + 2, 0f);
+		super(Direction.offset(uiElement.getPosition(), Direction.UP_LEFT), uiElement.getWidth() + 2, uiElement.getHeight() + 2, 0f);
 		
 		if(title != null) {
 			this.title = new Title(this, title);
 		}
 	}
 
-	public Border(int x, int y, int width, int height, String title) {
-		super(x - 1, y - 1, width + 2, height + 2, 0f);
+	public Border(Point position, int width, int height, String title) {
+		super(Direction.offset(position, Direction.UP_LEFT), width + 2, height + 2, 0f);
 		
 		if(title != null) {
 			this.title = new Title(this, title);
