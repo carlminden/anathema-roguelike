@@ -27,7 +27,7 @@ public class Vision extends Sense {
 	
 	@Override
 	public double getAmount() {
-		return (getObject().getStatAmount(Perception.class) / 2);
+		return (getObject().getStatAmount(Perception.class));
 	}
 
 }

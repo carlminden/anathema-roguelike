@@ -23,10 +23,8 @@ import com.anathema_roguelike.main.utilities.position.Point;
 
 public class SinglePoint extends Shape {
 	
-	private Point point;
-	
 	public SinglePoint(Point point) {
-		this.point = point;
+		super(point);
 	}
 
 	@Override
@@ -38,7 +36,7 @@ public class SinglePoint extends Shape {
 	public Collection<Point> generatePoints() {
 		HashSet<Point> ret = new HashSet<>();
 		
-		ret.add(point);
+		ret.add(getPosition());
 		
 		return ret;
 	}

@@ -19,19 +19,17 @@ package com.anathema_roguelike.characters.perks.targetingstrategies.shapes;
 import java.util.Collection;
 import java.util.HashSet;
 
-import com.anathema_roguelike.environment.HasLocation;
+import com.anathema_roguelike.main.utilities.position.HasPosition;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.effects.Calculation;
 
 public class Square extends Shape {
 	
-	private Point origin;
 	private Calculation sideLengthCalculation;
 	
 	
-	public Square(HasLocation origin, Calculation sideLengthCalculation) {
-		
-		this.origin = origin.getPosition();
+	public Square(HasPosition origin, Calculation sideLengthCalculation) {
+		super(origin);
 		this.sideLengthCalculation = sideLengthCalculation;
 	}
 
@@ -41,8 +39,8 @@ public class Square extends Shape {
 		int x = point.getX();
 		int y = point.getY();
 		
-		int originX = origin.getX();
-		int originY = origin.getY();
+		int originX = getX();
+		int originY = getY();
 		
 		double sideLength = sideLengthCalculation.get();
 		
@@ -53,8 +51,8 @@ public class Square extends Shape {
 	public Collection<Point> generatePoints() {
 		HashSet<Point> ret = new HashSet<>();
 		
-		int x = origin.getX();
-		int y = origin.getY();
+		int x = getX();
+		int y = getY();
 		
 		double sideLength = sideLengthCalculation.get();
 		

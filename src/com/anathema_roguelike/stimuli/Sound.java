@@ -20,11 +20,20 @@ import java.util.Optional;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.environment.Location;
+import com.anathema_roguelike.main.animations.Ripple;
+import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.ui.UIConfig;
+import com.anathema_roguelike.main.utilities.position.HasPosition;
 
 public class Sound extends Stimulus {
 
 	public Sound(int magnitude) {
 		super(magnitude);
+	}
+	
+	@Override
+	public void render(HasPosition point) {
+		new Ripple(point, getMagnitude() / 10, 0.2f).create(DisplayLayer.DUNGEON_OVERLAY, UIConfig.DUNGEON_OFFSET);
 	}
 
 	@Override

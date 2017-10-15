@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.utilities.position;
 
-public class Point implements Comparable<Point> {
+public class Point implements Comparable<HasPosition>, HasPosition {
 	private int x;
 	private int y;
 	
@@ -30,10 +30,17 @@ public class Point implements Comparable<Point> {
 		this.y = point.getY();
 	}
 
+	@Override
+	public Point getPosition() {
+		return this;
+	}
+	
+	@Override
 	public int getX() {
 		return x;
 	}
-
+	
+	@Override
 	public int getY() {
 		return y;
 	}
@@ -65,7 +72,7 @@ public class Point implements Comparable<Point> {
 	
 
 	@Override
-	public int compareTo(Point other) {
+	public int compareTo(HasPosition other) {
 		
 		int dx = this.x - other.getX();
 		int dy = this.y - other.getY();
@@ -77,7 +84,7 @@ public class Point implements Comparable<Point> {
 		}
 	}
 	
-	public boolean isAdjacentTo(Point other) {
+	public boolean isAdjacentTo(HasPosition other) {
 		int dx = this.x - other.getX();
 		int dy = this.y - other.getY();
 		
@@ -97,7 +104,7 @@ public class Point implements Comparable<Point> {
      * @param other
      * @return 
      */
-	public double distance(Point other) {
+	public double distance(HasPosition other) {
         return Math.sqrt(squareDistance(other));
     }
 
@@ -108,9 +115,9 @@ public class Point implements Comparable<Point> {
      * @param other
      * @return 
      */
-    public int squareDistance(Point other) {
-    	int dx = x - other.x;
-    	int dy = y - other.y;
+    public int squareDistance(HasPosition other) {
+    	int dx = x - other.getX();
+    	int dy = y - other.getY();
         return dx * dx + dy * dy;
     }
 
@@ -122,9 +129,9 @@ public class Point implements Comparable<Point> {
      * @param other
      * @return 
      */
-    public int manhattanDistance(Point other) {
-        int distance = Math.abs(x - other.x);
-        distance += Math.abs(y - other.y);
+    public int manhattanDistance(HasPosition other) {
+        int distance = Math.abs(x - other.getX());
+        distance += Math.abs(y - other.getY());
         return distance;
     }
 
@@ -134,7 +141,7 @@ public class Point implements Comparable<Point> {
      * @param other
      * @return 
      */
-    public int maxAxisDistance(Point other) {
-        return Math.max(Math.abs(x - other.x), Math.abs(y - other.y));
+    public int maxAxisDistance(HasPosition other) {
+        return Math.max(Math.abs(x - other.getX()), Math.abs(y - other.getY()));
     }
 }

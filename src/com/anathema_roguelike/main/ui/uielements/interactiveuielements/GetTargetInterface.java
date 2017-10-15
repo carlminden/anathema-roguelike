@@ -17,7 +17,6 @@
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
 import java.util.Collection;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.anathema_roguelike.characters.perks.targetingstrategies.TargetSet;
@@ -26,7 +25,6 @@ import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.animations.Blink;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
-import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.PointsOutline;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.ui.UIConfig;
@@ -42,8 +40,7 @@ public class GetTargetInterface<T extends Targetable> extends InteractiveUIEleme
 	private Border mapBorder;
 	private TargetSet<T> targets;
 	
-	//TODO: the whole animation system needs to be rebuilt
-	private Blink animation = new Blink(Optional.of(new VisualRepresentation('X', Color.RED)), DungeonLayer.FOREGROUND);
+	private Blink animation = new Blink(new VisualRepresentation('X', Color.RED), new Point(0, 0), 1f);;
 	
 	public GetTargetInterface(Collection<T> potentialTargets, String instructions) {
 		super(new Point(0, UIConfig.MAP_START_Y), UIConfig.DUNGEON_MAP_WIDTH, UIConfig.DUNGEON_MAP_HEIGHT, true, 0f);
@@ -103,14 +100,13 @@ public class GetTargetInterface<T extends Targetable> extends InteractiveUIEleme
 	
 	@Override
 	public void finish() {
-		Game.getInstance().getState().getCurrentEnvironment().removeEntity(animation);
+		animation.finish();
 		super.finish();
 	}
 	
 	@Override
 	public boolean processScrollEvent(int amount) {
 		targets.next(amount);
-		animation.reset();
 		return true;
 	}
 	
@@ -125,19 +121,19 @@ public class GetTargetInterface<T extends Targetable> extends InteractiveUIEleme
 		mapBorder.render();
 		
 		
-		Game.getInstance().getDisplay().renderOutline(DisplayLayer.DUNGEON_OVERLAY, new PointsOutline(new Point(1,3), targets.getTargets().stream().map(t -> t.getPosition()).collect(Collectors.toList()), Color.ERROR));
-		Game.getInstance().getState().getCurrentEnvironment().moveEntityTo(animation, currentlyTargeted().getLocation());
+		Game.getInstance().getDisplay().renderOutline(DisplayLayer.DUNGEON_OVERLAY, new PointsOutline(UIConfig.DUNGEON_OFFSET, targets.getTargets().stream().map(t -> t.getPosition()).collect(Collectors.toList()), Color.ERROR));
 	}
 	
 	private T currentlyTargeted() {
+		animation.moveTo(targets.current().getPosition());
 		return targets.current();
 	}
 	
 	@Override
 	public T run() {
 		
-		Game.getInstance().getState().getCurrentEnvironment().addEntity(animation, new Point(0, 0));
-		
+		animation.moveTo(currentlyTargeted().getPosition());
+		animation.create(DisplayLayer.DUNGEON_OVERLAY, UIConfig.DUNGEON_OFFSET);
 		return super.run();
 	}
 

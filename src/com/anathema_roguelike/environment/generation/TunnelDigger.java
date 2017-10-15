@@ -31,7 +31,7 @@ public class TunnelDigger extends PathFinder {
 	Room endingRoom;
 	
 	@Override
-	protected int[] getValidDirections() {
+	protected Integer[] getValidDirections() {
 		return Direction.DIRECTIONS_4;
 	}
 	

@@ -54,7 +54,7 @@ public abstract class PathFinder {
 		openQueue.add(startingNode);
 		openMap.put(startingNode.getPosition(), startingNode);
 		
-		int[] directions = getValidDirections();
+		Integer[] directions = getValidDirections();
 		
 		while(!openQueue.isEmpty() && !closed.containsKey(src)) {
 			
@@ -106,7 +106,7 @@ public abstract class PathFinder {
 		return path;
 	}
 	
-	protected int[] getValidDirections() {
+	protected Integer[] getValidDirections() {
 		return Direction.DIRECTIONS_8;
 	}
 	

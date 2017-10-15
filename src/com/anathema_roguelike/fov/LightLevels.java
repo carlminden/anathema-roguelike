@@ -21,12 +21,15 @@ import java.util.Map.Entry;
 
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.main.Entity;
+import com.anathema_roguelike.main.Game;
+import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.eventbus.Subscribe;
 
 import squidpony.squidgrid.FOV;
+import squidpony.squidmath.PerlinNoise;
 
 public class LightLevels extends FOVProcessor {
 	
@@ -37,6 +40,18 @@ public class LightLevels extends FOVProcessor {
 	HashMap<Integer, float[][]> computedLightLevels = new HashMap<>();
 	
 	private Environment level;
+	
+	public static double anitmateLight(double light, double x, double y) {
+		double turnTime = (Game.getInstance().getDisplay().getRenderTime());
+		
+		double noise = PerlinNoise.noise(x, y, Math.sin(Math.floor(turnTime / 75 % 75) / 75 * Math.PI) * 13);
+		
+		light += (Math.sin((turnTime + (noise * 1000))/ (100 * Math.PI))) / 18 + noise / 18;
+		
+		light = Utils.clamp(light, 0.0, 1.0);
+		
+		return light;
+	}
 	
 	public LightLevels(int width, int height, Environment level) {
 		super(width, height, level.getFOVResistances());

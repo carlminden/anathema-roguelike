@@ -67,21 +67,26 @@ public class PlayerKeyHandler implements KeyHandler {
 	        	return;
 	        case 'y':
 	        case SquidInput.UP_LEFT_ARROW:
+	        case SquidInput.HOME:
 	        	player.takeAction(new MoveAction(Direction.UP_LEFT));
 	        	return;
 	        case 'u':
 	        case SquidInput.UP_RIGHT_ARROW:
+	        case SquidInput.PAGE_UP:
 	        	player.takeAction(new MoveAction(Direction.UP_RIGHT));
 	        	return;
 	        case 'b':
 	        case SquidInput.DOWN_LEFT_ARROW:
+	        case SquidInput.END:
 	        	player.takeAction(new MoveAction(Direction.DOWN_LEFT));
 	        	return;
 	        case 'n':
 	        case SquidInput.DOWN_RIGHT_ARROW:
+	        case SquidInput.PAGE_DOWN:
 	        	player.takeAction(new MoveAction(Direction.DOWN_RIGHT));
 	        	return;
-	        case SquidInput.CENTER_ARROW:
+	        case SquidInput.INSERT:
+	        case SquidInput.VERTICAL_ARROW:
 	        	player.setActionRemaining(false);
 	        	return;
 	        case 'a':

@@ -17,6 +17,10 @@
 package com.anathema_roguelike.characters.foes.ai;
 
 import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.actions.MoveAction;
@@ -76,7 +80,7 @@ public class AI {
 		SecureRandom rand = new SecureRandom();
 		double action = rand.nextDouble();
 		
-		if(action < 2) {
+		if(action < .8) {
 			//continue walking
 			Point continueWalking = Direction.offset(npc.getPosition(), Direction.angleToDirection(npc.getFacing()));
 			
@@ -84,8 +88,20 @@ public class AI {
 				npc.takeAction(new MoveAction(Direction.angleToDirection(npc.getFacing())));
 			} else {
 				//turn around
-				
-				npc.takeAction(new TurnAction((npc.getFacing() + 180) % 360));
+				Point reverse = Direction.offset(npc.getPosition(), Direction.angleToDirection((npc.getFacing() + 180) % 360));
+				if(npc.getEnvironment().isPassable(reverse)) {
+					npc.takeAction(new TurnAction((npc.getFacing() + 180) % 360));
+				} else {
+					List<Integer> passableDirections = Arrays.asList(Direction.DIRECTIONS_8).stream()
+						.filter(d -> npc.getEnvironment().isPassable(Direction.offset(npc.getPosition(), d)))
+						.collect(Collectors.toList());
+					
+					if(passableDirections.isEmpty()) {
+						throw new RuntimeException(npc + " is stuck at " + npc.getPosition());
+					}
+					
+					npc.takeAction(new MoveAction(passableDirections.get(new Random().nextInt(passableDirections.size()))));
+				}
 			}
 		} else if (action < .9) {
 			//do nothing

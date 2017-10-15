@@ -19,18 +19,17 @@ package com.anathema_roguelike.characters.perks.targetingstrategies.shapes;
 import java.util.Collection;
 import java.util.HashSet;
 
-import com.anathema_roguelike.environment.HasLocation;
+import com.anathema_roguelike.main.utilities.position.HasPosition;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.effects.Calculation;
 
 public class Circle extends Shape {
 	
-	private Point center;
 	private Calculation radiusCalculation;
 	
-	public Circle(HasLocation center, Calculation radius) {
+	public Circle(HasPosition center, Calculation radius) {
+		super(center);
 		
-		this.center = center.getPosition();
 		this.radiusCalculation = radius;
 	}
 	
@@ -43,8 +42,9 @@ public class Circle extends Shape {
 		
 		double radius = getRadius();
 		
-		return center.squareDistance(point) <= radius*radius;
+		return getPosition().squareDistance(point) <= radius*radius;
 	}
+	
 
 	@Override
 	public Collection<Point> generatePoints() {
@@ -52,11 +52,11 @@ public class Circle extends Shape {
 		
 		int radius = getRadius();
 		
-		int x = center.getX();
-		int y = center.getY();
+		int x = getX();
+		int y = getY();
 		for(int i = 0; i <= radius; i++) {
 			for(int j = 0; j <= radius; j++) {
-				if(center.squareDistance(new Point(x + i, y + j)) <= radius*radius) {
+				if(getPosition().squareDistance(new Point(x + i, y + j)) <= radius*radius) {
 					ret.add(new Point(x + i, y + j));
 					ret.add(new Point(x - i, y + j));
 					ret.add(new Point(x + i, y - j));

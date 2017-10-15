@@ -30,6 +30,8 @@ public class StimulusEvent implements HasLocation {
 	public StimulusEvent(Location location, Stimulus stimulus) {
 		this.stimulus = stimulus;
 		this.location = location;
+		
+		stimulus.render(location);
 	}
 	
 	public Optional<PercievedStimulus> getPercievedStimulus(Character character) {

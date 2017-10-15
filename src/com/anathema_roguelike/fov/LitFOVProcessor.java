@@ -51,7 +51,7 @@ public class LitFOVProcessor extends FOVProcessor {
 	public BufferMask computeLitFOVMask(Character character) {
 		
 		this.character = character;
-		this.visionDistance = (int) character.getStatAmount(Vision.class);
+		this.visionDistance = (int) character.getStatAmount(Vision.class) + 2;
 		
 		mask = new BufferMask(width, height);
 		
@@ -60,7 +60,7 @@ public class LitFOVProcessor extends FOVProcessor {
 		if(character instanceof Player) {
 			angle = 360;
 		} else {
-			angle = visionDistance * 10;
+			angle = visionDistance * 20;
 		}
 		
 		doFOV(character, visionDistance, character.getFacing(), angle, new FOV(FOV.RIPPLE_TIGHT));

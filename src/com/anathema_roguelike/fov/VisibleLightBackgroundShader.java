@@ -38,6 +38,8 @@ public class VisibleLightBackgroundShader extends LightLevelShader {
 
 		SColor backgroundColor = cell.getColor();
 		
+		light = LightLevels.anitmateLight(light, x, y);
+		
 		backgroundColor = Color.factory.blend(Color.NO_LIGHT_BACKGROUND, Color.FULL_LIGHT_BACKGROUND, light);
 		
         return new DisplayCell(cell.getChar(), backgroundColor, true);

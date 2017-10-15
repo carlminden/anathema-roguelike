@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.anathema_roguelike.main.Config;
+import com.anathema_roguelike.main.animations.Animation;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -40,22 +41,26 @@ import squidpony.squidgrid.gui.gdx.TextCellFactory;
 public class Display extends RenderSurface {
 	
 	public enum DisplayLayer { DUNGEON_LIGHT, DUNGEON_BACKGROUND, DUNGEON_FOREGROUND, DUNGEON_OVERLAY, UI_BACKGROUND, UI_FOREGROUND, DEBUG }
-		
+	
+	private long renderTime = System.currentTimeMillis();
 	private SpriteBatch batch;
 	private Pixmap pixmap;
 	private Texture tex;
-	private Stage gameStage;
-	private Stage uiStage;
-	private Stage debugStage;
 	
+	private Stage gameStage;
 	private SparseLayers gameDisplay;
+	
+	private Stage uiStage;
 	private SparseLayers uiDisplay;
+	
+	private Stage debugStage;
 	private SparseLayers debugDisplay;
 	
 	private TextCellFactory gameTextCellFactory = new TextCellFactory();
 	private TextCellFactory uiTextCellFactory = new TextCellFactory();
 	
 	private HashMap<DisplayLayer, SparseTextMap> layers = new HashMap<>();
+	private HashMap<DisplayLayer, SparseLayers> layerGroups = new HashMap<>();
 	
 	private ReentrantLock lock = new ReentrantLock();
 	
@@ -94,24 +99,45 @@ public class Display extends RenderSurface {
 		debugDisplay.setPosition(0, 0);
 		
 		
-		layers.put(DisplayLayer.DUNGEON_LIGHT, gameDisplay.addLayer());
-		layers.put(DisplayLayer.DUNGEON_BACKGROUND, gameDisplay.addLayer());
-		layers.put(DisplayLayer.DUNGEON_FOREGROUND, gameDisplay.addLayer());
-		layers.put(DisplayLayer.DUNGEON_OVERLAY, gameDisplay.addLayer());
-		layers.put(DisplayLayer.UI_BACKGROUND, uiDisplay.addLayer());
-		layers.put(DisplayLayer.UI_FOREGROUND, uiDisplay.addLayer());
-		layers.put(DisplayLayer.DEBUG, debugDisplay.addLayer());
+		layers.put(DisplayLayer.DUNGEON_LIGHT, gameDisplay.addLayer(DisplayLayer.DUNGEON_LIGHT.ordinal()));
+		layerGroups.put(DisplayLayer.DUNGEON_LIGHT, gameDisplay);
 		
+		layers.put(DisplayLayer.DUNGEON_BACKGROUND, gameDisplay.addLayer(DisplayLayer.DUNGEON_BACKGROUND.ordinal()));
+		layerGroups.put(DisplayLayer.DUNGEON_BACKGROUND, gameDisplay);
+		
+		layers.put(DisplayLayer.DUNGEON_FOREGROUND, gameDisplay.addLayer(DisplayLayer.DUNGEON_FOREGROUND.ordinal()));
+		layerGroups.put(DisplayLayer.DUNGEON_FOREGROUND, gameDisplay);
+		
+		layers.put(DisplayLayer.DUNGEON_OVERLAY, gameDisplay.addLayer(DisplayLayer.DUNGEON_OVERLAY.ordinal()));
+		layerGroups.put(DisplayLayer.DUNGEON_OVERLAY, gameDisplay);
+		
+		layers.put(DisplayLayer.UI_BACKGROUND, uiDisplay.addLayer(DisplayLayer.UI_BACKGROUND.ordinal()));
+		layerGroups.put(DisplayLayer.UI_BACKGROUND, uiDisplay);
+		
+		layers.put(DisplayLayer.UI_FOREGROUND, uiDisplay.addLayer(DisplayLayer.UI_FOREGROUND.ordinal()));
+		layerGroups.put(DisplayLayer.UI_FOREGROUND, uiDisplay);
+		
+		layers.put(DisplayLayer.DEBUG, debugDisplay.addLayer(DisplayLayer.DEBUG.ordinal()));
+		layerGroups.put(DisplayLayer.DEBUG, debugDisplay);
 		
 		Gdx.input.setInputProcessor(new InputMultiplexer(gameStage, input.getSquidInput()));
 		
 		gameStage.addActor(gameDisplay);
 		uiStage.addActor(uiDisplay);
 		debugStage.addActor(debugDisplay);
+		
 	}
 	
 	public void put(DisplayLayer layer, int x, int y, char string, SColor color) {
 		layers.get(layer).place(x, y, string, color);
+	}
+	
+	public SparseTextMap getLayer(DisplayLayer layer) {
+		return layers.get(layer);
+	}
+	
+	public SparseLayers getLayerGroup(DisplayLayer layer) {
+		return layerGroups.get(layer);
 	}
 	
 	public void quit() {
@@ -119,8 +145,12 @@ public class Display extends RenderSurface {
 	}
 
 	public void draw() {
+		renderTime = System.currentTimeMillis();
+		
+		gameStage.act();
 		gameStage.getViewport().apply(false);
 		gameStage.draw();
+		gameDisplay.clear();
 		
 		batch.begin();
 		
@@ -132,15 +162,22 @@ public class Display extends RenderSurface {
 		outlines.clear();
 		batch.end();
 		
+		uiStage.act();
 		uiStage.getViewport().apply(false);
 		uiStage.draw();
 		
 		if(Config.DEBUG) {
+			debugStage.act();
 			debugStage.getViewport().apply(false);
 			debugStage.draw();
+			debugDisplay.clear();
 		}
 		
-		Gdx.graphics.setTitle("FPS: " + Gdx.graphics.getFramesPerSecond());
+		Gdx.graphics.setTitle("Anathema");
+	}
+	
+	public long getRenderTime() {
+		return renderTime;
 	}
 	
 	public void renderOutline(DisplayLayer layer, Outline outline) {
@@ -157,6 +194,10 @@ public class Display extends RenderSurface {
 		
 		batch.setColor(color.r, color.g, color.b, color.a);
 		batch.draw(tex, x1, y1, 0f, 1f, length, 1f, 1f, 1f, angle, 0, 0, tex.getWidth(), tex.getHeight(), false, false);
+	}
+	
+	public void addAnimation(Animation animation) {
+		animation.create(DisplayLayer.DUNGEON_OVERLAY);
 	}
 	
 	public void clear(DisplayLayer layer) {

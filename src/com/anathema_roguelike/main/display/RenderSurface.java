@@ -17,7 +17,9 @@
 package com.anathema_roguelike.main.display;
 
 import com.anathema_roguelike.main.Game;
+import com.anathema_roguelike.main.animations.Animation;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SColor;
 
@@ -35,6 +37,15 @@ public abstract class RenderSurface {
 		if(x >= 0 && x < width && y >= 0 && y < height) {
 			Game.getInstance().getDisplay().put(layer, x, y, string, color);
 		}
+	}
+	
+	public void createAnimation(DisplayLayer layer, Animation animation) {
+		createAnimation(layer, animation, new Point(0, 0));
+	}
+	
+	public void createAnimation(DisplayLayer layer, Animation animation, Point offset) {
+		animation.setOffset(offset);
+		animation.create(layer);
 	}
 	
 	public int getWidth() {

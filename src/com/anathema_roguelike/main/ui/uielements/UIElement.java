@@ -19,6 +19,7 @@ package com.anathema_roguelike.main.ui.uielements;
 import java.util.ArrayList;
 
 import com.anathema_roguelike.main.Game;
+import com.anathema_roguelike.main.animations.Animation;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.display.Outline;
@@ -142,6 +143,11 @@ public abstract class UIElement extends RenderSurface implements Renderable, Has
 	@Override
 	public void renderChar(DisplayLayer layer, int x, int y, char string, SColor color) {
 		Game.getInstance().getDisplay().renderChar(layer, x + getX(), y + getY(), string, color);
+	}
+	
+	@Override
+	public void createAnimation(DisplayLayer layer, Animation animation) {
+		super.createAnimation(layer, animation, getPosition());
 	}
 	
 	public void renderOutline(Outline outline) {

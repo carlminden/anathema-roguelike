@@ -66,14 +66,20 @@ public class TargetSet<T extends Targetable> {
 			CircularArrayList<ArrayList<T>> line = getLine(direction);
 			
 			switch (direction) {
-				case Direction.UP:
 				case Direction.UP_RIGHT:
 				case Direction.UP_LEFT:
+				case Direction.DOWN_LEFT:
+				case Direction.DOWN_RIGHT:
+					ArrayList<T> newTarget = get(Direction.offset(currentPosition.get(0), direction));
+					if(newTarget != null) {
+						return target(newTarget.get(0));
+					} else {
+						return next();
+					}
+				case Direction.UP:
 				case Direction.LEFT:
 					return target(line.get(line.indexOf(currentPosition) - 1).get(0));
 				case Direction.DOWN:
-				case Direction.DOWN_LEFT:
-				case Direction.DOWN_RIGHT:
 				case Direction.RIGHT:
 				default:
 					return target(line.get(line.indexOf(currentPosition) + 1).get(0));
@@ -112,6 +118,11 @@ public class TargetSet<T extends Targetable> {
 	}
 	
 	private T target(T target) {
+		
+		if(target == null) {
+			return next();
+		}
+		
 		T oldTarget = current();
 		index = targetList.indexOf(target);
 		

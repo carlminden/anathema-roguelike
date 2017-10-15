@@ -16,34 +16,49 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.animations;
 
-import com.anathema_roguelike.main.display.Color;
+import java.util.Optional;
+
+import com.anathema_roguelike.main.Entity;
+import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.VisualRepresentation;
-import com.anathema_roguelike.main.utilities.position.Point;
 
-import squidpony.squidgrid.gui.gdx.SColor;
-
-public class Blink extends PersistentAnimation {
-
-	VisualRepresentation representation;
+public abstract class OldAnimation extends Entity {
 	
-	public Blink(VisualRepresentation representation, Point position, float duration) {
-		super(position, duration);
+	private Long startTime = null;
+	private DungeonLayer layer;
+
+	public OldAnimation(char representation, DungeonLayer layer) {
+		super(representation);
 		
-		this.representation = representation;
+		this.layer = layer;
 	}
+	
+	public OldAnimation(Optional<VisualRepresentation> representation, DungeonLayer layer) {
+		super(representation);
+		
+		this.layer = layer;
+	}
+	
+	protected abstract void animate();
 
 	@Override
-	protected void update(float percent) {
-		
-		SColor color;
-		
-		if(percent < .5) {
-			color = Color.factory.blend(Color.BLACK, representation.getColor(), percent * 2);
-		} else {
-			color = Color.factory.blend(representation.getColor(), Color.BLACK, (percent - .5) * 2);
+	protected final void renderThis() {
+		if(startTime == null) {
+			startTime = System.currentTimeMillis();
 		}
 		
-		renderChar(getPosition(), representation.getChar(), color);
+		animate();
 	}
 	
+	public void reset() {
+		startTime = System.currentTimeMillis();
+	}
+	
+	public Long getStartTime() {
+		return startTime;
+	}
+	
+	public DungeonLayer getLayer() {
+		return layer;
+	}
 }

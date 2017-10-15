@@ -16,6 +16,8 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui;
 
+import com.anathema_roguelike.main.utilities.position.Point;
+
 public class UIConfig {
 	public static final int DUNGEON_MAP_WIDTH = 108;
 	public static final int DUNGEON_MAP_HEIGHT = 57;
@@ -27,4 +29,6 @@ public class UIConfig {
 	public static final int SCREEN_START_Y = 1;
 	public static final int MAP_START_Y = 0;
 	public static final int MAP_START_X = 0;
+	
+	public static final Point DUNGEON_OFFSET = new Point(1, 3);
 }

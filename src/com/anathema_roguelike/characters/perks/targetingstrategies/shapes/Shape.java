@@ -21,11 +21,17 @@ import java.util.stream.Collectors;
 
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
+import com.anathema_roguelike.main.utilities.position.HasPosition;
 import com.anathema_roguelike.main.utilities.position.Point;
 
-public abstract class Shape {
+public abstract class Shape implements HasPosition {
 	
 	Collection<Point> points;
+	HasPosition center;
+	
+	public Shape(HasPosition center) {
+		this.center = center;
+	}
 	
 	public abstract boolean validPoint(Point point);
 	protected abstract Collection<Point> generatePoints();
@@ -41,6 +47,11 @@ public abstract class Shape {
 	
 	private void setPoints(Collection<Point> points) {
 		this.points = points;
+	}
+	
+	@Override
+	public Point getPosition() {
+		return center.getPosition();
 	}
 	
 	public Collection<Location> getLocations(Environment env) {

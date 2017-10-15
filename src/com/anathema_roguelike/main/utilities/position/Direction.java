@@ -28,9 +28,9 @@ public class Direction {
 	public final static int DOWN_RIGHT = DOWN | RIGHT;
 	public final static int DOWN_LEFT = DOWN | LEFT;
 	
-	public final static int[] DIRECTIONS_4 = { UP, DOWN, LEFT, RIGHT};
-	public final static int[] DIAGONALS = { UP_RIGHT, DOWN_RIGHT, DOWN_LEFT, UP_LEFT };
-	public final static int[] DIRECTIONS_8 = { UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT , UP_LEFT };
+	public final static Integer[] DIRECTIONS_4 = { UP, DOWN, LEFT, RIGHT};
+	public final static Integer[] DIAGONALS = { UP_RIGHT, DOWN_RIGHT, DOWN_LEFT, UP_LEFT };
+	public final static Integer[] DIRECTIONS_8 = { UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT , UP_LEFT };
 	
 	public static Point offset(Point point, int direction) {
 		

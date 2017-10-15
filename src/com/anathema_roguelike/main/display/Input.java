@@ -49,7 +49,7 @@ public class Input {
 			
 			@Override
 			public void handle(char key, boolean alt, boolean ctrl, boolean shift) {
-				setResult((inputHandler) -> { inputHandler.getKeyHandler().handle(key, alt, ctrl, shift); });
+				setResult((inputHandler) -> inputHandler.getKeyHandler().handle(key, alt, ctrl, shift));
 			}
 		};
 		

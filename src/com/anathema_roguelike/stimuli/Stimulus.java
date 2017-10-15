@@ -20,6 +20,7 @@ import java.util.Optional;
 
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.environment.Location;
+import com.anathema_roguelike.main.utilities.position.HasPosition;
 
 public abstract class Stimulus {
 	
@@ -41,6 +42,10 @@ public abstract class Stimulus {
 	
 	public Optional<Character> getSource() {
 		return source;
+	}
+	
+	public void render(HasPosition point) {
+		
 	}
 	
 	public abstract Optional<PercievedStimulus> computePercievedStimulus(Location location, Character character);

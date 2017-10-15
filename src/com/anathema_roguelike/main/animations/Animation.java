@@ -1,64 +1,94 @@
-/*******************************************************************************
- * Copyright (C) 2017 Carl Minden
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- ******************************************************************************/
 package com.anathema_roguelike.main.animations;
 
-import java.util.Optional;
+import com.anathema_roguelike.main.Game;
+import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.utilities.position.HasPosition;
+import com.anathema_roguelike.main.utilities.position.Point;
 
-import com.anathema_roguelike.main.Entity;
-import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
-import com.anathema_roguelike.main.display.VisualRepresentation;
+import squidpony.squidgrid.gui.gdx.PanelEffect;
+import squidpony.squidgrid.gui.gdx.SColor;
+import squidpony.squidgrid.gui.gdx.SparseLayers;
+import squidpony.squidgrid.gui.gdx.SparseTextMap;
 
-public abstract class Animation extends Entity {
+public abstract class Animation implements HasPosition {
 	
-	private Long startTime = null;
-	private DungeonLayer layer;
+	
+	private PanelEffect panelEffect;
+	SparseTextMap target;
+	private float duration;
+	private HasPosition position;
+	private HasPosition offset;
+	private boolean finished = false;
 
-	public Animation(char representation, DungeonLayer layer) {
-		super(representation);
-		
-		this.layer = layer;
+	public Animation(HasPosition position, float duration) {
+		this.position = position;
+		this.duration = duration;
 	}
 	
-	public Animation(Optional<VisualRepresentation> representation, DungeonLayer layer) {
-		super(representation);
-		
-		this.layer = layer;
+	protected abstract void update(float percent);
+	
+	public void create(DisplayLayer layer) {
+		create(layer, new Point(0, 0));
 	}
 	
-	protected abstract void animate();
-
+	public void create(DisplayLayer layer, HasPosition offset) {
+		this.offset = offset;
+		this.target = Game.getInstance().getDisplay().getLayer(layer);
+		SparseLayers layerGroup = Game.getInstance().getDisplay().getLayerGroup(layer);
+		
+		panelEffect = new PanelEffect(layerGroup, duration){
+			
+			@Override
+			protected void update(float percent) {
+				Animation.this.update(percent);
+			}
+			
+			@Override
+			protected void end() {
+				Animation.this.end();
+				super.end();
+			}
+			
+			@Override
+			public boolean act(float delta) {
+				if(finished) {
+					return true;
+				} else {
+					return super.act(delta);
+				}
+			}
+			
+		};
+		
+		layerGroup.addAction(panelEffect);
+	}
+	
+	protected void end() {
+		
+	}
+	
 	@Override
-	protected final void renderThis() {
-		if(startTime == null) {
-			startTime = System.currentTimeMillis();
-		}
-		
-		animate();
+	public Point getPosition() {
+		return new Point(position.getX() + offset.getX(), position.getY() + offset.getY());
 	}
 	
-	public void reset() {
-		startTime = System.currentTimeMillis();
+	public void moveTo(Point position) {
+		this.position = position;
 	}
 	
-	public Long getStartTime() {
-		return startTime;
+	public void finish() {
+		finished = true;
 	}
 	
-	public DungeonLayer getLayer() {
-		return layer;
+	protected PanelEffect getPanelEffect() {
+		return panelEffect;
+	}
+	
+	protected void renderChar(Point p, char c, SColor color) {
+		target.place(p.getX(), p.getY(), c, color);
+	}
+
+	public void setOffset(HasPosition offset) {
+		this.offset = offset;
 	}
 }
