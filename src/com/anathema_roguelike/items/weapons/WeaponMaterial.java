@@ -16,11 +16,8 @@
  ******************************************************************************/
 package com.anathema_roguelike.items.weapons;
 
-import com.univocity.parsers.annotations.Parsed;
-
 public abstract class WeaponMaterial extends WeaponProperty {
 	
-	@Parsed(field = "Damage")
 	private double damage;
 	
 	public WeaponMaterial() {
@@ -34,5 +31,9 @@ public abstract class WeaponMaterial extends WeaponProperty {
 	
 	public double getDamage() {
 		return damage;
+	}
+	
+	public void setDamage(double damage) {
+		this.damage = damage;
 	}
 }

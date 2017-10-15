@@ -26,7 +26,6 @@ import com.anathema_roguelike.stats.itemstats.BaseWeaponDamage;
 import com.anathema_roguelike.stats.itemstats.ItemStat;
 import com.anathema_roguelike.stats.itemstats.WeaponRange;
 import com.anathema_roguelike.stats.itemstats.Weight;
-import com.univocity.parsers.annotations.Parsed;
 
 public class WoodWeaponMaterial extends WeaponMaterial {
 	
@@ -38,11 +37,14 @@ public class WoodWeaponMaterial extends WeaponMaterial {
 		super(name, weight, damage);
 	}
 
-	@Parsed(field = "Range")
 	private double range;
 	
 	public double getRange() {
 		return range;
+	}
+	
+	public void setRange(double range) {
+		this.range = range;
 	}
 	
 	@Override

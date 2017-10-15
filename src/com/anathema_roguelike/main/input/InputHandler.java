@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package com.anathema_roguelike.main.display;
+package com.anathema_roguelike.main.input;
 
 import com.badlogic.gdx.InputAdapter;
 

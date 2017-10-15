@@ -27,6 +27,7 @@ import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.display.PointsOutline;
 import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.main.input.DirectionalKeyHandler;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.Border;
@@ -55,47 +56,62 @@ public class GetTargetInterface<T extends Targetable> extends InteractiveUIEleme
 
 	@Override
 	public void processKeyEvent(char key, boolean alt, boolean ctrl, boolean shift) {
-		switch(key) {
-        case SquidInput.ENTER:
-        case ' ':
-        	setResult(targets.current());
-        	finish();
-        	return;
-        case 'j':
-        case SquidInput.DOWN_ARROW:
-        	targets.inDirection((Direction.DOWN));
-        	return;
-        case 'k':
-        case SquidInput.UP_ARROW:
-        	targets.inDirection((Direction.UP));
-        	return;
-        case 'h':
-        case SquidInput.LEFT_ARROW:
-        	targets.inDirection((Direction.LEFT));
-        	return;
-        case 'l':
-        case SquidInput.RIGHT_ARROW:
-        	targets.inDirection((Direction.RIGHT));
-        	return;
-        case 'y':
-        case SquidInput.UP_LEFT_ARROW:
-        	targets.inDirection((Direction.UP_LEFT));
-        	return;
-        case 'u':
-        case SquidInput.UP_RIGHT_ARROW:
-        	targets.inDirection((Direction.UP_RIGHT));
-        	return;
-        case 'b':
-        case SquidInput.DOWN_LEFT_ARROW:
-        	targets.inDirection((Direction.DOWN_LEFT));
-        	return;
-        case 'n':
-        case SquidInput.DOWN_RIGHT_ARROW:
-        	targets.inDirection((Direction.DOWN_RIGHT));
-        	return;
-        default:
-        	return;
-		}
+		
+		new DirectionalKeyHandler() {
+			
+			@Override
+			public void upRight(boolean alt, boolean ctrl, boolean shift) {
+				targets.inDirection((Direction.UP_RIGHT));
+			}
+			
+			@Override
+			public void upLeft(boolean alt, boolean ctrl, boolean shift) {
+				targets.inDirection((Direction.UP_LEFT));
+			}
+			
+			@Override
+			public void up(boolean alt, boolean ctrl, boolean shift) {
+				targets.inDirection((Direction.UP));
+			}
+			
+			@Override
+			public void right(boolean alt, boolean ctrl, boolean shift) {
+				targets.inDirection((Direction.RIGHT));
+			}
+			
+			@Override
+			public void left(boolean alt, boolean ctrl, boolean shift) {
+				targets.inDirection((Direction.LEFT));
+			}
+			
+			@Override
+			public void downRight(boolean alt, boolean ctrl, boolean shift) {
+				targets.inDirection((Direction.DOWN_RIGHT));
+			}
+			
+			@Override
+			public void downLeft(boolean alt, boolean ctrl, boolean shift) {
+				targets.inDirection((Direction.DOWN_LEFT));
+			}
+			
+			@Override
+			public void down(boolean alt, boolean ctrl, boolean shift) {
+				targets.inDirection((Direction.DOWN));
+			}
+			
+			@Override
+			public void handleKey(char key, boolean alt, boolean ctrl, boolean shift) {
+				switch(key) {
+			        case SquidInput.ENTER:
+			        case ' ':
+			        	setResult(targets.current());
+			        	finish();
+			        	return;
+			        default:
+			        	return;
+				}
+			}
+		}.handle(key, alt, ctrl, shift);
 	}
 	
 	@Override

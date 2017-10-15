@@ -1,4 +1,4 @@
-Name,Attack Speed,Damage,Weight
+Name,AttackSpeed,Damage,Weight
 Mace,1.25,10,5
-Staff,1.5,12.5
+Staff,1.5,12.5,7
 Maul,2,15,10

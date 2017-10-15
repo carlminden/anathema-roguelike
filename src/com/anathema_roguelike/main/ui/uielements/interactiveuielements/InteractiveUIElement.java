@@ -18,7 +18,7 @@ package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
 
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.InputHandler;
+import com.anathema_roguelike.main.input.InputHandler;
 import com.anathema_roguelike.main.ui.uielements.UIElement;
 import com.anathema_roguelike.main.utilities.datastructures.CollectionUtils;
 import com.anathema_roguelike.main.utilities.position.Point;

@@ -16,11 +16,19 @@
  ******************************************************************************/
 package com.anathema_roguelike.items;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
+
+import org.supercsv.cellprocessor.ParseDouble;
+import org.supercsv.cellprocessor.constraint.NotNull;
+import org.supercsv.cellprocessor.ift.CellProcessor;
+import org.supercsv.io.CsvBeanReader;
+import org.supercsv.io.ICsvBeanReader;
+import org.supercsv.prefs.CsvPreference;
 
 import com.anathema_roguelike.items.armor.ArmorMaterial;
 import com.anathema_roguelike.items.armor.ArmorType;
@@ -35,37 +43,44 @@ import com.anathema_roguelike.items.weapons.types.Spear;
 import com.anathema_roguelike.items.weapons.types.ThrowingWeapon;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.ImmutableTable.Builder;
-import com.univocity.parsers.common.processor.BeanListProcessor;
-import com.univocity.parsers.csv.CsvParser;
-import com.univocity.parsers.csv.CsvParserSettings;
 
 public abstract class ItemPropertyCache {
 
 	public static ImmutableTable<Class<? extends ItemProperty<?>>, String, ItemProperty<?>> propertyCache;
 
 	static {
-
+		
 		Builder<Class<? extends ItemProperty<?>>, String, ItemProperty<?>> builder = ImmutableTable
 				.<Class<? extends ItemProperty<?>>, String, ItemProperty<?>> builder();
 
-		loadPropertyFile(builder, ArmorMaterial.class, "res/items/materials/armor_materials.csv");
-		loadPropertyFile(builder, ArmorType.class, "res/items/armor_types.csv");
+		loadPropertyFile(builder, ArmorMaterial.class, "/items/materials/armor_materials.csv", cellProcessors(4));
+		loadPropertyFile(builder, ArmorType.class, "/items/armor_types.csv", cellProcessors(4));
 
-		loadPropertyFile(builder, MetalWeaponMaterial.class, "res/items/materials/metal_weapon_materials.csv");
-		loadPropertyFile(builder, WoodWeaponMaterial.class, "res/items/materials/wood_weapon_materials.csv");
+		loadPropertyFile(builder, MetalWeaponMaterial.class, "/items/materials/metal_weapon_materials.csv", cellProcessors(2));
+		loadPropertyFile(builder, WoodWeaponMaterial.class, "/items/materials/wood_weapon_materials.csv", cellProcessors(3));
 
-		loadPropertyFile(builder, ShortBlade.class, "res/items/weapon_types/short_blade.csv");
-		loadPropertyFile(builder, LongBlade.class, "res/items/weapon_types/long_blade.csv");
-		loadPropertyFile(builder, BluntWeapon.class, "res/items/weapon_types/blunt.csv");
-		loadPropertyFile(builder, Spear.class, "res/items/weapon_types/spear.csv");
-		loadPropertyFile(builder, Bow.class, "res/items/weapon_types/bow.csv");
-		loadPropertyFile(builder, Crossbow.class, "res/items/weapon_types/crossbow.csv");
-		loadPropertyFile(builder, ThrowingWeapon.class, "res/items/weapon_types/throwing.csv");
+		loadPropertyFile(builder, ShortBlade.class, "/items/weapon_types/short_blade.csv", cellProcessors(3));
+		loadPropertyFile(builder, LongBlade.class, "/items/weapon_types/long_blade.csv", cellProcessors(3));
+		loadPropertyFile(builder, BluntWeapon.class, "/items/weapon_types/blunt.csv", cellProcessors(3));
+		loadPropertyFile(builder, Spear.class, "/items/weapon_types/spear.csv", cellProcessors(3));
+		loadPropertyFile(builder, Bow.class, "/items/weapon_types/bow.csv", cellProcessors(4));
+		loadPropertyFile(builder, Crossbow.class, "/items/weapon_types/crossbow.csv", cellProcessors(4));
+		loadPropertyFile(builder, ThrowingWeapon.class, "/items/weapon_types/throwing.csv", cellProcessors(3));
 
 		propertyCache = builder.build();
 	}
-
-	static int i = 0;
+	
+	private static CellProcessor[] cellProcessors(int columns) {
+		ArrayList<CellProcessor> ret = new ArrayList<>();
+		
+		ret.add(new NotNull());
+		
+		for(int i = 0; i < columns; i++) {
+			ret.add(new ParseDouble());
+		}
+		
+		return ret.toArray(new CellProcessor[ret.size()]);
+	}
 
 	@SuppressWarnings("unchecked")
 	public static <T extends ItemProperty<?>> Collection<? extends T> getProperties(Class<T> type) {
@@ -90,34 +105,34 @@ public abstract class ItemPropertyCache {
 	@SuppressWarnings("deprecation")
 	private static <T extends ItemProperty<?>> void loadPropertyFile(
 			Builder<Class<? extends ItemProperty<?>>, String, ItemProperty<?>> builder, Class<T> type,
-			String filename) {
+			String filename, CellProcessor[] processors) {
 		
-		BeanListProcessor<T> rowProcessor = new BeanListProcessor<T>(type);
-
-		CsvParserSettings parserSettings = new CsvParserSettings();
-		parserSettings.setProcessor(rowProcessor);
-		parserSettings.setHeaderExtractionEnabled(true);
-
-		CsvParser parser = new CsvParser(parserSettings);
-		try {
-			parser.parse(new FileInputStream(filename));
-		} catch (FileNotFoundException e) {
+		ICsvBeanReader beanReader = null;
+		
+        try {
+        	InputStreamReader reader = new InputStreamReader(ItemPropertyCache.class.getResourceAsStream(filename));
+        	beanReader = new CsvBeanReader(reader, CsvPreference.STANDARD_PREFERENCE);
+        	String[] header = beanReader.getHeader(true);
+        	
+        	T obj;
+        	while((obj = beanReader.read(type, header, processors)) != null ) {
+				builder.put(type, obj.getName(), obj);
+			}
+		} catch (FileNotFoundException e1) {
+			throw new RuntimeException();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new RuntimeException("Failed to load Item Property file: " + filename);
+		} finally {
+			if( beanReader != null ) {
+			    try {
+					beanReader.close();
+				} catch (IOException e) {
+					throw new RuntimeException();
+				}
+			}
 		}
-
-		List<T> properties = rowProcessor.getBeans();
-		
-		if(properties.isEmpty()) {
-			//CSV parsing library is unreliable, should get a better solution, but for now just try again
-			loadPropertyFile(builder, type, filename);
-		} else {
-			properties.forEach(p -> {
-				builder.put(type, p.getName(), p);
-	
-			});
-		}
-	}
+    }
 
 	public static void main(String[] args) {
 		ItemPropertyCache.getProperties(Spear.class).forEach(p -> System.out.println(p.getName()));

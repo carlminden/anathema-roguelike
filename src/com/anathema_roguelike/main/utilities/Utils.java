@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.utilities;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
@@ -57,9 +56,9 @@ public class Utils {
 			descriptions = new Properties();
 			colors = new Properties();
 			
-			names.load(new FileInputStream("res/names.properties"));
-			descriptions.load(new FileInputStream("res/descriptions.properties"));
-			colors.load(new FileInputStream("res/colors.properties"));
+			names.load(Utils.class.getResourceAsStream("/names.properties"));
+			descriptions.load(Utils.class.getResourceAsStream("/descriptions.properties"));
+			colors.load(Utils.class.getResourceAsStream("/colors.properties"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -14,10 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package com.anathema_roguelike.characters.player;
+package com.anathema_roguelike.main.input;
 
 import com.anathema_roguelike.characters.actions.MoveAction;
 import com.anathema_roguelike.characters.perks.ActivatedPerk;
+import com.anathema_roguelike.characters.player.Player;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
@@ -25,9 +26,8 @@ import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SquidInput;
-import squidpony.squidgrid.gui.gdx.SquidInput.KeyHandler;
 
-public class PlayerKeyHandler implements KeyHandler {
+public class PlayerKeyHandler extends DirectionalKeyHandler {
 	
 	Player player;
 	
@@ -36,8 +36,47 @@ public class PlayerKeyHandler implements KeyHandler {
 	}
 
 	@Override
-	public void handle(char key, boolean alt, boolean ctrl, boolean shift) {
-		
+	public void up(boolean alt, boolean ctrl, boolean shift) {
+		player.takeAction(new MoveAction(Direction.UP));
+	}
+
+	@Override
+	public void down(boolean alt, boolean ctrl, boolean shift) {
+		player.takeAction(new MoveAction(Direction.DOWN));
+	}
+
+	@Override
+	public void left(boolean alt, boolean ctrl, boolean shift) {
+		player.takeAction(new MoveAction(Direction.LEFT));
+	}
+
+	@Override
+	public void right(boolean alt, boolean ctrl, boolean shift) {
+		player.takeAction(new MoveAction(Direction.RIGHT));
+	}
+
+	@Override
+	public void upRight(boolean alt, boolean ctrl, boolean shift) {
+		player.takeAction(new MoveAction(Direction.UP_RIGHT));
+	}
+
+	@Override
+	public void upLeft(boolean alt, boolean ctrl, boolean shift) {
+		player.takeAction(new MoveAction(Direction.UP_LEFT));
+	}
+
+	@Override
+	public void downRight(boolean alt, boolean ctrl, boolean shift) {
+		player.takeAction(new MoveAction(Direction.DOWN_RIGHT));
+	}
+
+	@Override
+	public void downLeft(boolean alt, boolean ctrl, boolean shift) {
+		player.takeAction(new MoveAction(Direction.DOWN_LEFT));
+	}
+
+	@Override
+	public void handleKey(char key, boolean alt, boolean ctrl, boolean shift) {
 		switch (key) {
 	        case '.':
 	        	if(shift) {
@@ -49,50 +88,14 @@ public class PlayerKeyHandler implements KeyHandler {
 	        		player.takeStairs(Direction.UP);
 	        		return;
 	        	}
-	        case 'j':
-	        case SquidInput.DOWN_ARROW:
-	        	player.takeAction(new MoveAction(Direction.DOWN));
-	        	return;
-	        case 'k':
-	        case SquidInput.UP_ARROW:
-	        	player.takeAction(new MoveAction(Direction.UP));
-	        	return;
-	        case 'h':
-	        case SquidInput.LEFT_ARROW:
-	        	player.takeAction(new MoveAction(Direction.LEFT));
-	        	return;
-	        case 'l':
-	        case SquidInput.RIGHT_ARROW:
-	        	player.takeAction(new MoveAction(Direction.RIGHT));
-	        	return;
-	        case 'y':
-	        case SquidInput.UP_LEFT_ARROW:
-	        case SquidInput.HOME:
-	        	player.takeAction(new MoveAction(Direction.UP_LEFT));
-	        	return;
-	        case 'u':
-	        case SquidInput.UP_RIGHT_ARROW:
-	        case SquidInput.PAGE_UP:
-	        	player.takeAction(new MoveAction(Direction.UP_RIGHT));
-	        	return;
-	        case 'b':
-	        case SquidInput.DOWN_LEFT_ARROW:
-	        case SquidInput.END:
-	        	player.takeAction(new MoveAction(Direction.DOWN_LEFT));
-	        	return;
-	        case 'n':
-	        case SquidInput.DOWN_RIGHT_ARROW:
-	        case SquidInput.PAGE_DOWN:
-	        	player.takeAction(new MoveAction(Direction.DOWN_RIGHT));
-	        	return;
 	        case SquidInput.INSERT:
 	        case SquidInput.VERTICAL_ARROW:
 	        	player.setActionRemaining(false);
 	        	return;
 	        case 'a':
 	        	ActivatedPerk ability = new SelectionScreen<ActivatedPerk>(
-        			new Point(0, 0), UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3,
-        			"Activate an Ability", true, 0f, .5f, player.getPerks(ActivatedPerk.class)
+	    			new Point(0, 0), UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3,
+	    			"Activate an Ability", true, 0f, .5f, player.getPerks(ActivatedPerk.class)
 	        	).run();
 	        	
 	        	if(ability != null) {
@@ -112,7 +115,7 @@ public class PlayerKeyHandler implements KeyHandler {
 	        	return;
 	        default:
 	        	return;
-        }
+	    }
 	}
 
 }

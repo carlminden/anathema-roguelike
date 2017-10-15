@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.items.weapons.types;
 
-import java.util.Optional;
-
 import com.anathema_roguelike.items.Item;
 import com.anathema_roguelike.items.ItemType;
 import com.anathema_roguelike.items.weapons.Weapon;
@@ -31,14 +29,10 @@ import com.anathema_roguelike.stats.itemstats.ItemStat;
 import com.anathema_roguelike.stats.itemstats.WeaponRange;
 import com.anathema_roguelike.stats.itemstats.WeaponSpeed;
 import com.anathema_roguelike.stats.itemstats.Weight;
-import com.univocity.parsers.annotations.Parsed;
 
 public abstract class WeaponType extends WeaponProperty implements ItemType<Weapon> {
 	
-	@Parsed(field = "Attack Speed")
 	private double attackSpeed;
-	
-	@Parsed(field = "Damage")
 	private double damage;
 	
 	public WeaponType() {
@@ -55,8 +49,16 @@ public abstract class WeaponType extends WeaponProperty implements ItemType<Weap
 		return attackSpeed;
 	}
 	
+	public void setAttackSpeed(double attackSpeed) {
+		this.attackSpeed = attackSpeed;
+	}
+	
 	public double getDamage() {
 		return damage;
+	}
+	
+	public void setDamage(double damage) {
+		this.damage = damage;
 	}
 	
 	public abstract Class<? extends WeaponMaterial> getMaterialType();
@@ -64,9 +66,9 @@ public abstract class WeaponType extends WeaponProperty implements ItemType<Weap
 	public abstract double getRange();
 	
 	@Override
-	public Optional<Effect<Item, ItemStat>> getEffect() {
+	public java.util.Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return Optional.of(new Effect<Item, ItemStat>(this,
+		return java.util.Optional.of(new Effect<Item, ItemStat>(this,
 				new Modifier<Item, WeaponSpeed>(WeaponSpeed.class, AdditiveCalculation.build(() -> getAttackSpeed())),
 				new Modifier<Item, BaseWeaponDamage>(BaseWeaponDamage.class, AdditiveCalculation.build(() -> getDamage())),
 				new Modifier<Item, WeaponRange>(WeaponRange.class, AdditiveCalculation.build(() -> getRange())),
