@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class EnsnaringShades extends Spell<TargetedPerk> {
 
 	public EnsnaringShades() {
-		super(1, Shadow.class, null);
+		super(1, Shadow.class);
+	}
+
+	@Override
+	protected TargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

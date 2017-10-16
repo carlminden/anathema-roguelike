@@ -38,7 +38,7 @@ public class AttributeArray extends AttributeSelector {
 			
 			Message instructions = new Message("Choose The Attribute to assign ");
 			instructions.appendMessage(Integer.toString(array[i]), Color.GREEN);
-			instructions.appendMessage(" points");
+			instructions.appendMessage(" pointSet");
 		
 			SelectionScreen<Class<? extends Attribute>> selectorScreen = new SelectionScreen<Class<? extends Attribute>>("Select your Ability Scores", attributes, instructions, false);
 			

@@ -130,8 +130,8 @@ public class SparseDemo extends ApplicationAdapter {
     private double[][] visible;
     // GreasedRegion is a hard-to-explain class, but it's an incredibly useful one for map generation and many other
     // tasks; it stores a region of "on" cells where everything not in that region is considered "off," and can be used
-    // as a Collection of Coord points. However, it's more than that! Because of how it is implemented, it can perform
-    // bulk operations on as many as 64 points at a time, and can efficiently do things like expanding the "on" area to
+    // as a Collection of Coord pointSet. However, it's more than that! Because of how it is implemented, it can perform
+    // bulk operations on as many as 64 pointSet at a time, and can efficiently do things like expanding the "on" area to
     // cover adjacent cells that were "off", retracting the "on" area away from "off" cells to shrink it, getting the
     // surface ("on" cells that are adjacent to "off" cells) or fringe ("off" cells that are adjacent to "on" cells),
     // and generally useful things like picking a random point from all "on" cells.
@@ -257,7 +257,7 @@ public class SparseDemo extends ApplicationAdapter {
         // have serious problems -- if it takes too long to find a floor cell, either it needs to be able to figure out
         // that random choice isn't working and instead choose the first it finds in simple iteration, or potentially
         // keep trying forever on an all-wall map. There are better ways! These involve using a kind of specific storage
-        // for points or regions, getting that to store only floors, and finding a random cell from that collection of
+        // for pointSet or regions, getting that to store only floors, and finding a random cell from that collection of
         // floors. The two kinds of such storage used commonly in SquidLib are the "packed data" as short[] produced by
         // CoordPacker (which use very little memory, but can be slow, and are treated as unchanging by CoordPacker so
         // any change makes a new array), and GreasedRegion objects (which use slightly more memory, tend to be faster
@@ -268,7 +268,7 @@ public class SparseDemo extends ApplicationAdapter {
         // no problem whatsoever for GreasedRegion. CoordPacker is called that because it compresses the information
         // for nearby Coords into a smaller amount of memory. GreasedRegion is called that because it encodes regions,
         // but is "greasy" both in the fatty-food sense of using more space, and in the "greased lightning" sense of
-        // being especially fast. Both of them can be seen as storing regions of points in 2D space as "on" and "off."
+        // being especially fast. Both of them can be seen as storing regions of pointSet in 2D space as "on" and "off."
 
         // Here we fill a GreasedRegion so it stores the cells that contain a floor, the '.' char, as "on."
         floors = new GreasedRegion(bareDungeon, '.');

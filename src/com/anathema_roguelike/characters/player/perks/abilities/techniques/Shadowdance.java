@@ -5,6 +5,12 @@ import com.anathema_roguelike.characters.perks.TargetedPerk;
 public class Shadowdance extends Technique<TargetedPerk> {
 
 	public Shadowdance() {
-		super(null);
+		super();
+	}
+
+	@Override
+	protected TargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

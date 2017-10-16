@@ -5,6 +5,12 @@ import com.anathema_roguelike.characters.perks.PassivePerk;
 public class UnfetteredSpirit extends Technique<PassivePerk> {
 
 	public UnfetteredSpirit() {
-		super(null);
+		super();
+	}
+
+	@Override
+	protected PassivePerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

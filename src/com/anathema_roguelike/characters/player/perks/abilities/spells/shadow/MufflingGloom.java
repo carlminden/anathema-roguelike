@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class MufflingGloom extends Spell<AuraPerk> {
 
 	public MufflingGloom() {
-		super(1, Shadow.class, null);
+		super(1, Shadow.class);
+	}
+
+	@Override
+	protected AuraPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

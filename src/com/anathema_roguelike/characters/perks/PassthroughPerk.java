@@ -18,23 +18,38 @@ package com.anathema_roguelike.characters.perks;
 
 import com.anathema_roguelike.characters.Character;
 
-public class PassthroughPerk<T extends Perk> extends Perk {
+public abstract class PassthroughPerk<T extends Perk> extends Perk {
 	
-	private T perk;
+	T perk;
 	
-	public PassthroughPerk(T perk) {
-		this.perk = perk;
+	public PassthroughPerk() {
+		super("");
+		
 	}
+	
+	protected abstract T createPerk();
 	
 	@Override
 	public void grant(Character character) {
 		super.grant(character);
-		perk.grant(character);
+		getPerk().grant(character);
 	}
 	
 	@Override
 	public void remove(Character character) {
 		super.remove(character);
-		perk.remove(character);
+		getPerk().remove(character);
+	}
+	
+	public T getPerk() {
+		if(perk == null) {
+			perk = createPerk();
+		}
+		return perk;
+	}
+	
+	@Override
+	public String toString() {
+		return getPerk().toString();
 	}
 }

@@ -66,7 +66,7 @@ public abstract class Resource extends CharacterStat {
 	protected void printResourceGainedMessage(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Character target, int amount) {
 		
 		if(getObject() instanceof Player) {
-			Message m = new Message("You gain " + amount + " points of " + Utils.getName(this), Color.GREEN);
+			Message m = new Message("You gain " + amount + " pointSet of " + Utils.getName(this), Color.GREEN);
 			
 			if(initiator instanceof Player) {
 				m.appendMessage(" from your ", Color.GREEN);
@@ -78,7 +78,7 @@ public abstract class Resource extends CharacterStat {
 			
 			Game.getInstance().getUserInterface().addMessage(m);
 		} else if(initiator instanceof Player) {
-			Message m = new Message("You grant " + amount + " points of " + Utils.getName(this), Color.GREEN);
+			Message m = new Message("You grant " + amount + " pointSet of " + Utils.getName(this), Color.GREEN);
 			
 			m.appendMessage(" to the " + Utils.getName(target) + " with your " + Utils.getName(source), Color.GREEN);
 			
@@ -88,7 +88,7 @@ public abstract class Resource extends CharacterStat {
 	
 	protected void printResourceLostMessage(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Character target, int amount) {
 		if(getObject() instanceof Player) {
-			Message m = new Message("You lose " + amount + " points of " + Utils.getName(this), Color.RED);
+			Message m = new Message("You lose " + amount + " pointSet of " + Utils.getName(this), Color.RED);
 			
 			if(initiator instanceof Player) {
 				m.appendMessage(" from your ", Color.RED);
@@ -100,7 +100,7 @@ public abstract class Resource extends CharacterStat {
 			
 			Game.getInstance().getUserInterface().addMessage(m);
 		} else if(initiator instanceof Player) {
-			Message m = new Message("You deal " + amount + " points of " + Utils.getName(this));
+			Message m = new Message("You deal " + amount + " pointSet of " + Utils.getName(this));
 			
 			m.appendMessage(" damage to the " + Utils.getName(target) + " with your " + Utils.getName(source));
 			

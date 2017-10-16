@@ -16,7 +16,10 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies.shapes;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import com.anathema_roguelike.environment.Environment;
@@ -26,27 +29,39 @@ import com.anathema_roguelike.main.utilities.position.Point;
 
 public abstract class Shape implements HasPosition {
 	
-	Collection<Point> points;
+	HashSet<Point> pointSet = new HashSet<>();
+	ArrayList<Point> pointList = new ArrayList<>();
 	HasPosition center;
 	
 	public Shape(HasPosition center) {
 		this.center = center;
 	}
 	
-	public abstract boolean validPoint(Point point);
-	protected abstract Collection<Point> generatePoints();
+	protected abstract void generatePoints();
 	
-	
-	public final Collection<Point> getPoints() {
-		if(points == null) {
-			setPoints(generatePoints());
-		}
+	public boolean validPoint(Point point) {
 		
-		return points;
+		return getPoints().contains(point);
 	}
 	
-	private void setPoints(Collection<Point> points) {
-		this.points = points;
+	public final Collection<Point> getPoints() {
+		if(pointSet.isEmpty()) {
+			generatePoints();
+		}
+		
+		return pointSet;
+	}
+	
+	public Point getRandomPoint() {
+		if(pointSet.isEmpty()) {
+			generatePoints();
+		}
+		return pointList.get(new Random().nextInt(pointList.size()));
+	}
+	
+	protected void addPoint(Point p) {
+		pointSet.add(p);
+		pointList.add(p);
 	}
 	
 	@Override

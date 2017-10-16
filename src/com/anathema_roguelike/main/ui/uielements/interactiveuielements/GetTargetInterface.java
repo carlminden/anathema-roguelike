@@ -60,47 +60,47 @@ public class GetTargetInterface<T extends Targetable> extends InteractiveUIEleme
 		new DirectionalKeyHandler() {
 			
 			@Override
-			public void upRight(boolean alt, boolean ctrl, boolean shift) {
+			protected void upRight(boolean alt, boolean ctrl, boolean shift) {
 				targets.inDirection((Direction.UP_RIGHT));
 			}
 			
 			@Override
-			public void upLeft(boolean alt, boolean ctrl, boolean shift) {
+			protected void upLeft(boolean alt, boolean ctrl, boolean shift) {
 				targets.inDirection((Direction.UP_LEFT));
 			}
 			
 			@Override
-			public void up(boolean alt, boolean ctrl, boolean shift) {
+			protected void up(boolean alt, boolean ctrl, boolean shift) {
 				targets.inDirection((Direction.UP));
 			}
 			
 			@Override
-			public void right(boolean alt, boolean ctrl, boolean shift) {
+			protected void right(boolean alt, boolean ctrl, boolean shift) {
 				targets.inDirection((Direction.RIGHT));
 			}
 			
 			@Override
-			public void left(boolean alt, boolean ctrl, boolean shift) {
+			protected void left(boolean alt, boolean ctrl, boolean shift) {
 				targets.inDirection((Direction.LEFT));
 			}
 			
 			@Override
-			public void downRight(boolean alt, boolean ctrl, boolean shift) {
+			protected void downRight(boolean alt, boolean ctrl, boolean shift) {
 				targets.inDirection((Direction.DOWN_RIGHT));
 			}
 			
 			@Override
-			public void downLeft(boolean alt, boolean ctrl, boolean shift) {
+			protected void downLeft(boolean alt, boolean ctrl, boolean shift) {
 				targets.inDirection((Direction.DOWN_LEFT));
 			}
 			
 			@Override
-			public void down(boolean alt, boolean ctrl, boolean shift) {
+			protected void down(boolean alt, boolean ctrl, boolean shift) {
 				targets.inDirection((Direction.DOWN));
 			}
 			
 			@Override
-			public void handleKey(char key, boolean alt, boolean ctrl, boolean shift) {
+			protected void handleKey(char key, boolean alt, boolean ctrl, boolean shift) {
 				switch(key) {
 			        case SquidInput.ENTER:
 			        case ' ':

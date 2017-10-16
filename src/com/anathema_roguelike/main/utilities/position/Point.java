@@ -136,7 +136,7 @@ public class Point implements Comparable<HasPosition>, HasPosition {
     }
 
     /**
-     * Returns the largest difference between the two points along any one axis.
+     * Returns the largest difference between the two pointSet along any one axis.
      * 
      * @param other
      * @return 

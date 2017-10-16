@@ -5,6 +5,12 @@ import com.anathema_roguelike.characters.perks.PassivePerk;
 public class SecondSight extends Skill<PassivePerk> {
 
 	public SecondSight() {
-		super(null);
+		super();
+	}
+
+	@Override
+	protected PassivePerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

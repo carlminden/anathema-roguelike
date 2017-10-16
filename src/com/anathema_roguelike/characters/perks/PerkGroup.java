@@ -26,6 +26,7 @@ public class PerkGroup extends Perk {
 	private HashSet<Perk> perks = new HashSet<>();
 	
 	public PerkGroup(Perk ...perks) {
+		super("");
 		this.perks.addAll(Arrays.asList(perks));
 	}
 	

@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class UmbralAura extends Spell<AuraPerk> {
 
 	public UmbralAura() {
-		super(3, Shadow.class, null);
+		super(3, Shadow.class);
+	}
+
+	@Override
+	protected AuraPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -24,7 +24,7 @@ import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.MeleeR
 public class BasicAttackAbility extends AttackPerk<Character> {
 
 	public BasicAttackAbility() {
-		super(new MeleeRange<Character>(Character.class), new SingleTargeted<Character>(Character.class));
+		super("Basic Attack", new MeleeRange<Character>(Character.class), new SingleTargeted<Character>(Character.class));
 	}
 
 	@Override

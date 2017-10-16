@@ -20,4 +20,7 @@ import com.anathema_roguelike.characters.perks.SelfTargetedPerk;
 
 public abstract class Brew extends SelfTargetedPerk {
 
+	public Brew(String name) {
+		super(name);
+	}
 }

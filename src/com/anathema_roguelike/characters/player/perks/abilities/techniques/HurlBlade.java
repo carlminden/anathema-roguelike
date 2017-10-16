@@ -5,6 +5,12 @@ import com.anathema_roguelike.characters.perks.OffensiveTargetedPerk;
 public class HurlBlade extends Technique<OffensiveTargetedPerk> {
 
 	public HurlBlade() {
-		super(null);
+		super();
+	}
+
+	@Override
+	protected OffensiveTargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

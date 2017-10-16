@@ -17,9 +17,10 @@
 package com.anathema_roguelike.characters.player.classes;
 
 import com.anathema_roguelike.characters.perks.PerkGroup;
-import com.anathema_roguelike.characters.player.perks.abilities.shapeshifting.Shapeshifting;
-import com.anathema_roguelike.characters.player.perks.abilities.shapeshifting.ShapeshiftingBat;
-import com.anathema_roguelike.characters.player.perks.abilities.shapeshifting.ShapeshiftingPanther;
+import com.anathema_roguelike.characters.player.perks.abilities.shapeshifting.Shapeshift;
+import com.anathema_roguelike.characters.player.perks.abilities.shapeshifting.ShapeshiftBat;
+import com.anathema_roguelike.characters.player.perks.abilities.shapeshifting.ShapeshiftBear;
+import com.anathema_roguelike.characters.player.perks.abilities.shapeshifting.ShapeshiftPanther;
 import com.anathema_roguelike.characters.player.perks.abilities.spells.SpellOrSpecialization;
 import com.anathema_roguelike.characters.player.perks.masteries.MasteryLevel;
 import com.anathema_roguelike.characters.player.perks.skills.AnimalisticCasting;
@@ -35,23 +36,23 @@ public class Druid extends PlayerClass {
 
 	public Druid() {
 		super(
-			new PerkGroup/*1*/(new SpellOrSpecialization(1, Druid.class), new ShapeshiftingPanther()),
+			new PerkGroup/*1*/(new SpellOrSpecialization(1, Druid.class), new ShapeshiftPanther()),
 			new PerkGroup/*2*/(new SpellOrSpecialization(1, Druid.class), new MasteryLevel<>(SpellMastery.class)),
 			new PerkGroup/*3*/(new MasteryLevel<>(BluntWeaponMastery.class), new MasteryLevel<>(ShapeshiftingMastery.class)),
 			new PerkGroup/*4*/(new SpellOrSpecialization(1, Druid.class), new MasteryLevel<>(SpellMastery.class)),
 			new PerkGroup/*5*/(new SpellOrSpecialization(1, Druid.class), new MasteryLevel<>(BluntWeaponMastery.class), new MasteryLevel<>(ShapeshiftingMastery.class)),
 			new PerkGroup/*6*/(new SpellOrSpecialization(1, Druid.class), new MasteryLevel<>(SpellMastery.class)),
-			new PerkGroup/*7*/(new SpellOrSpecialization(2, Druid.class), new ShapeshiftingBat()),
-			new PerkGroup/*8*/(new MasteryLevel<>(SpellMastery.class), new AbilitySpecialization(Shapeshifting.class)),
+			new PerkGroup/*7*/(new SpellOrSpecialization(2, Druid.class), new ShapeshiftBat()),
+			new PerkGroup/*8*/(new MasteryLevel<>(SpellMastery.class), new AbilitySpecialization(Shapeshift.class)),
 			new PerkGroup/*9*/(new SpellOrSpecialization(2, Druid.class), new MasteryLevel<>(ShapeshiftingMastery.class)),
 			new PerkGroup/*10*/(new SpellOrSpecialization(2, Druid.class), new MasteryLevel<>(SpellMastery.class), new Discipline()),
-			new PerkGroup/*11*/(new MasteryLevel<>(ShapeshiftingMastery.class), new AbilitySpecialization(Shapeshifting.class)),
-			new PerkGroup/*12*/(new SpellOrSpecialization(2, Druid.class)),
+			new PerkGroup/*11*/(new MasteryLevel<>(ShapeshiftingMastery.class), new AbilitySpecialization(Shapeshift.class)),
+			new PerkGroup/*12*/(new SpellOrSpecialization(2, Druid.class), new ShapeshiftBear()),
 			new PerkGroup/*13*/(new MasteryLevel<>(ShapeshiftingMastery.class), new Attunement()),
 			new PerkGroup/*14*/(new SpellOrSpecialization(3, Druid.class), new MasteryLevel<>(SpellMastery.class)),
-			new PerkGroup/*15*/(new MasteryLevel<>(BluntWeaponMastery.class), new AbilitySpecialization(Shapeshifting.class), new SureFooting()),
+			new PerkGroup/*15*/(new MasteryLevel<>(BluntWeaponMastery.class), new AbilitySpecialization(Shapeshift.class), new SureFooting()),
 			new PerkGroup/*16*/(new SpellOrSpecialization(3, Druid.class), new MasteryLevel<>(ShapeshiftingMastery.class)),
-			new PerkGroup/*17*/(new MasteryLevel<>(SpellMastery.class), new AbilitySpecialization(Shapeshifting.class)),
+			new PerkGroup/*17*/(new MasteryLevel<>(SpellMastery.class), new AbilitySpecialization(Shapeshift.class)),
 			new PerkGroup/*18*/(new SpellOrSpecialization(3, Druid.class), new MasteryLevel<>(SpellMastery.class)),
 			new PerkGroup/*19*/(new MasteryLevel<>(SpellMastery.class), new MasteryLevel<>(ShapeshiftingMastery.class)),
 			new PerkGroup/*20*/(new SpellOrSpecialization(4, Druid.class), new MasteryLevel<>(BluntWeaponMastery.class), new AnimalisticCasting())

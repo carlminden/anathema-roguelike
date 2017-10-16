@@ -5,6 +5,12 @@ import com.anathema_roguelike.characters.perks.OffensiveTargetedPerk;
 public class Assassinate extends Technique<OffensiveTargetedPerk>{
 
 	public Assassinate() {
-		super(null);
+		super();
+	}
+
+	@Override
+	protected OffensiveTargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

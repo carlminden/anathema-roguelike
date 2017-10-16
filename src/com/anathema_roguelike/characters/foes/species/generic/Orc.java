@@ -52,8 +52,4 @@ public class Orc extends GenericSpecies {
 		return "The Orc";
 	}
 	
-	@Override
-	public boolean isVisibleTo(Character character) {
-		return true;
-	}
 }

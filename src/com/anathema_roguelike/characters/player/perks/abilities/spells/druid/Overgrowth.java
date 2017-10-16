@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class Overgrowth extends Spell<TargetedPerk> {
 
 	public Overgrowth() {
-		super(1, Druid.class, null);
+		super(1, Druid.class);
+	}
+
+	@Override
+	protected TargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

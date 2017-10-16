@@ -6,11 +6,18 @@ import com.anathema_roguelike.characters.perks.triggers.ActionModificationTrigge
 public class Hide extends Technique<TriggeredPerk<ActionModificationTrigger>> {
 
 	public Hide() {
-		super(new TriggeredPerk<ActionModificationTrigger>(){
+		super();
+	}
+
+	@Override
+	protected TriggeredPerk<ActionModificationTrigger> createPerk() {
+		return new TriggeredPerk<ActionModificationTrigger>("Hide"){
 
 			@Override
 			protected boolean onTrigger(ActionModificationTrigger trigger) {
+				// TODO Auto-generated method stub
 				return false;
-			}});
+			}
+		};
 	}
 }

@@ -24,6 +24,7 @@ import com.anathema_roguelike.environment.Location;
 
 public abstract class AreaOfEffect<T extends Targetable> extends TargetingStrategy<T, Location> {
 	
+	
 	@SafeVarargs
 	public AreaOfEffect(Class<T> targetType, TargetConstraint<T, Location> ...constraints) {
 		super(targetType, constraints);

@@ -27,8 +27,8 @@ public abstract class AttackPerk<T extends Targetable> extends OffensiveTargeted
 	
 	protected abstract Attack getAttack();
 	
-	public AttackPerk(Range<Character> range, TargetingStrategy<T, Character> strategy, TargetConsumer<?> ...targetConsumers) {
-		super(range, strategy, targetConsumers);
+	public AttackPerk(String name, Range<Character> range, TargetingStrategy<T, Character> strategy, TargetConsumer<?> ...targetConsumers) {
+		super(name, range, strategy, targetConsumers);
 		
 		addTargetConsumer(new TargetConsumer<Character>(Character.class) {
 

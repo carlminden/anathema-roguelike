@@ -35,24 +35,31 @@ public abstract class Perk {
 	private Collection<PerkRequirement> requirements = new ArrayList<>();
 	private Collection<PerkCost> costs = new ArrayList<>();
 	
-	public Perk() {
-		initialize();
+	private String name = "UNNAMED PERK";
+	
+	public Perk(String name) {
+		
+		this.name = name;
+	
+		addRequirement(new CooldownRequirement(this));
+		addCost(new CooldownCost(this));
 	}
 	
-	public Perk(Object source, PerkRequirement condition) {
-		initialize();
+	public Perk(String name, Object source, PerkRequirement condition) {
+		this(name);
 		
 		requirements.add(condition);
 	}
 	
-	public Perk(Object source, Duration cooldown) {
+	public Perk(String name, Object source, Duration cooldown) {
+		this(name);
+		
 		this.cooldown = Duration.copy(cooldown);
 	}
 	
-	private void initialize() {
-		addRequirement(new CooldownRequirement(this));
-		
-		addCost(new CooldownCost(this));
+	@Override
+	public String toString() {
+		return name;
 	}
 	
 	public void grant(Character character) {

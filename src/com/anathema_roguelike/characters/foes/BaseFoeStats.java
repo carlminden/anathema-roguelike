@@ -17,8 +17,12 @@ import com.anathema_roguelike.stats.effects.Modifier;
 
 public class BaseFoeStats extends PassivePerk {
 	
+	public BaseFoeStats() {
+		super("");
+	}
+
 	AdditiveCalculation onePerLevel = AdditiveCalculation.build(() -> new Double(getCharacter().getLevel()));
-	AdditiveCalculation defenseCalculation = AdditiveCalculation.build(() -> new Double(20 + getCharacter().getLevel() * 15));
+	AdditiveCalculation defenseCalculation = AdditiveCalculation.build(() -> new Double(10 + getCharacter().getLevel() * 5));
 	
 	@Override
 	public Optional<Buff> getEffect() {

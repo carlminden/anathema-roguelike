@@ -11,6 +11,7 @@ public abstract class PerkChoice extends Perk {
 	private String title;
 	
 	public PerkChoice(String title) {
+		super(title);
 		this.title = title;
 	}
 	

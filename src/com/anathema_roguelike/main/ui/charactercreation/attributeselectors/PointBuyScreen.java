@@ -43,7 +43,7 @@ public class PointBuyScreen extends MenuScreen<Class<? extends Attribute>, Point
 	static {
 		instructionsMessage = new Message("You have ");
 		instructionsMessage.appendMessage("15", Color.GREEN);
-		instructionsMessage.appendMessage(" remaining points to allocate to your Ability scores");
+		instructionsMessage.appendMessage(" remaining pointSet to allocate to your Ability scores");
 	}
 	
 
@@ -57,7 +57,7 @@ public class PointBuyScreen extends MenuScreen<Class<? extends Attribute>, Point
 		
 		Message instructionsMessage = new Message("You have ");
 		instructionsMessage.appendMessage(Integer.toString(menu.getPoints()), Color.GREEN);
-		instructionsMessage.appendMessage(" remaining points to allocate to your Ability scores");
+		instructionsMessage.appendMessage(" remaining pointSet to allocate to your Ability scores");
 		
 		setInstructionsMessage(instructionsMessage);
 	}

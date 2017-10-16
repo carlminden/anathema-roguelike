@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class Slow extends Spell<OffensiveTargetedPerk> {
 
 	public Slow() {
-		super(2, Inquisitor.class, null);
+		super(2, Inquisitor.class);
+	}
+
+	@Override
+	protected OffensiveTargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

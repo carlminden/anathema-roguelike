@@ -6,11 +6,18 @@ import com.anathema_roguelike.characters.perks.triggers.ActionModificationTrigge
 public class PointBlankExpertise extends Technique<TriggeredPerk<ActionModificationTrigger>>{
 
 	public PointBlankExpertise() {
-		super(new TriggeredPerk<ActionModificationTrigger>(){
+		super();
+	}
+
+	@Override
+	protected TriggeredPerk<ActionModificationTrigger> createPerk() {
+		// TODO Auto-generated method stub
+		return new TriggeredPerk<ActionModificationTrigger>("Point Blank Expertise"){
 
 			@Override
 			protected boolean onTrigger(ActionModificationTrigger trigger) {
 				return false;
-			}});
+			}
+		};
 	}
 }

@@ -5,6 +5,12 @@ import com.anathema_roguelike.characters.perks.OffensiveTargetedPerk;
 public class FlyingKick extends Technique<OffensiveTargetedPerk> {
 
 	public FlyingKick() {
-		super(null);
+		super();
+	}
+
+	@Override
+	protected OffensiveTargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

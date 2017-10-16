@@ -6,6 +6,12 @@ import com.anathema_roguelike.characters.perks.triggers.ActionModificationTrigge
 public class KatanaExpertise extends Technique<TriggeredPerk<ActionModificationTrigger>> {
 
 	public KatanaExpertise() {
-		super(null);
+		super();
+	}
+
+	@Override
+	protected TriggeredPerk<ActionModificationTrigger> createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

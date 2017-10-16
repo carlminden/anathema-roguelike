@@ -5,7 +5,7 @@ import com.anathema_roguelike.characters.perks.Perk;
 
 public abstract class Trait<T extends Perk> extends PassthroughPerk<T> {
 
-	public Trait(T perk) {
-		super(perk);
+	public Trait() {
+		super();
 	}
 }

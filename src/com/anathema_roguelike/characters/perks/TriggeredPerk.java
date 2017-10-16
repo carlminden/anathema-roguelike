@@ -23,8 +23,8 @@ public abstract class TriggeredPerk<T extends Trigger> extends PassivePerk {
 	
 	protected abstract boolean onTrigger(T trigger);
 	
-	public TriggeredPerk() {
-		super();
+	public TriggeredPerk(String name) {
+		super(name);
 	}
 	
 	@Subscribe

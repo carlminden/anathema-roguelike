@@ -1,8 +1,5 @@
 package com.anathema_roguelike.characters.perks.targetingstrategies.shapes;
 
-import java.util.Collection;
-import java.util.HashSet;
-
 import com.anathema_roguelike.main.utilities.position.HasPosition;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.effects.Calculation;
@@ -14,9 +11,7 @@ public class Ring extends Circle {
 	}
 	
 	@Override
-	public Collection<Point> generatePoints() {
-		HashSet<Point> ret = new HashSet<>();
-		
+	public void generatePoints() {
 		int radius = getRadius();
 		
 		int x = getX();
@@ -25,14 +20,13 @@ public class Ring extends Circle {
 			for(int j = 0; j <= radius; j++) {
 				float squareDistance = getPosition().squareDistance(new Point(x + i, y + j));
 				if(squareDistance < (radius + .5)*(radius + .5) && squareDistance > (radius - .5)*(radius - .5)) {
-					ret.add(new Point(x + i, y + j));
-					ret.add(new Point(x - i, y + j));
-					ret.add(new Point(x + i, y - j));
-					ret.add(new Point(x - i, y - j));
+					addPoint(new Point(x + i, y + j));
+					addPoint(new Point(x - i, y + j));
+					addPoint(new Point(x + i, y - j));
+					addPoint(new Point(x - i, y - j));
 				}
 			}
 		}
-		return ret;
 	}
 
 }

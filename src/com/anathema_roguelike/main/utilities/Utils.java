@@ -33,6 +33,7 @@ import org.apache.commons.math3.distribution.EnumeratedDistribution;
 import org.apache.commons.math3.util.Pair;
 import org.reflections.Reflections;
 
+import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.MeleeRange;
 import com.anathema_roguelike.main.display.Color;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
@@ -204,6 +205,18 @@ public class Utils {
 	}
 
 	public static String getName(Object obj) {
+		
+		if(obj instanceof MeleeRange) {
+			System.out.println("test");
+		}
+		
+		if(!(obj instanceof Class<?>)) {
+			try {
+				if (obj.getClass().getMethod("toString").getDeclaringClass() != Object.class){
+					return obj.toString();
+				}
+			} catch (NoSuchMethodException | SecurityException e) { }
+		}
 		
 		Class<?> cls = classify(obj);
 		

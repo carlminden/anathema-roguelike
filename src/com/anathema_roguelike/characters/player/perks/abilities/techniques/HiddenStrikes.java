@@ -6,11 +6,18 @@ import com.anathema_roguelike.characters.perks.triggers.ActionModificationTrigge
 public class HiddenStrikes extends Technique<TriggeredPerk<ActionModificationTrigger>> {
 
 	public HiddenStrikes() {
-		super(new TriggeredPerk<ActionModificationTrigger>(){
+		super();
+	}
+
+	@Override
+	protected TriggeredPerk<ActionModificationTrigger> createPerk() {
+		return new TriggeredPerk<ActionModificationTrigger>("Hidden Strikes"){
 
 			@Override
 			protected boolean onTrigger(ActionModificationTrigger trigger) {
+				// TODO Auto-generated method stub
 				return false;
-			}});
+			}
+		};
 	}
 }

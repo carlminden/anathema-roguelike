@@ -23,8 +23,8 @@ public abstract class SelfTargetedPerk extends ActivatedPerk implements HasBuff 
 	
 	private EventBus eventBus = new EventBus();
 	
-	public SelfTargetedPerk() {
-		super();
+	public SelfTargetedPerk(String name) {
+		super(name);
 	}
 
 	public Duration getDuration() {

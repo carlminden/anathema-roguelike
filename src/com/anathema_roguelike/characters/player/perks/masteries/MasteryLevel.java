@@ -21,6 +21,7 @@ import java.util.Optional;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.perks.Buff;
 import com.anathema_roguelike.characters.perks.PassivePerk;
+import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.characterstats.masteries.Mastery;
 import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 import com.anathema_roguelike.stats.effects.Modifier;
@@ -31,11 +32,12 @@ public class MasteryLevel<T extends Mastery> extends PassivePerk {
 	private Class<T> mastery;
 	
 	public MasteryLevel(Class<T> mastery, int amount) {
-		this.mastery = mastery;
+		this(mastery);
 		this.amount = amount;
 	}
 	
 	public MasteryLevel(Class<T> mastery) {
+		super(Utils.getName(mastery));
 		this.mastery = mastery;
 	}
 	

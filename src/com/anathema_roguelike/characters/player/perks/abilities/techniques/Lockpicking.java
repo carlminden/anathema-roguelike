@@ -5,6 +5,12 @@ import com.anathema_roguelike.characters.perks.TargetedPerk;
 public class Lockpicking extends Technique<TargetedPerk>{
 
 	public Lockpicking() {
-		super(null);
+		super();
+	}
+
+	@Override
+	protected TargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -32,7 +32,8 @@ public class TargetedPerk<TargetType extends Targetable, OriginType extends Targ
 	private TargetingStrategy<TargetType, OriginType> strategy;
 	private Range<OriginType> range;
 	
-	public TargetedPerk(Range<OriginType> range, TargetingStrategy<TargetType, OriginType> strategy, TargetConsumer<?> ...targetConsumers) {
+	public TargetedPerk(String name, Range<OriginType> range, TargetingStrategy<TargetType, OriginType> strategy, TargetConsumer<?> ...targetConsumers) {
+		super(name);
 		this.strategy = strategy;
 		this.range = range;
 		this.targetConsumers = new ArrayList<TargetConsumer<?>>(Arrays.asList(targetConsumers));

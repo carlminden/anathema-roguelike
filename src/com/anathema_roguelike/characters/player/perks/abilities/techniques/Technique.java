@@ -22,7 +22,7 @@ import com.anathema_roguelike.characters.player.perks.abilities.Ability;
 
 public abstract class Technique<T extends Perk> extends PassthroughPerk<T> implements Ability {
 
-	public Technique(T technique) {
-		super(technique);
+	public Technique() {
+		super();
 	}
 }

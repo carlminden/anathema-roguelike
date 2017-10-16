@@ -29,7 +29,7 @@ public class Ripple extends Animation {
 	}
 	
 	private void drawRing(double radius, float opacity) {
-		new Ring(getPosition(), () -> radius).generatePoints().forEach(p -> {
+		new Ring(getPosition(), () -> radius).getPoints().forEach(p -> {
 			renderChar(p, '\u2588', Color.opacity(Color.WHITE, opacity));
 		});
 	}

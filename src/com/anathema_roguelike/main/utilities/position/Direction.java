@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.utilities.position;
 
-import com.anathema_roguelike.environment.HasLocation;
-
 public class Direction {
 	public final static int UP = 0x1;
 	public final static int DOWN = 0x2;
@@ -32,17 +30,11 @@ public class Direction {
 	public final static Integer[] DIAGONALS = { UP_RIGHT, DOWN_RIGHT, DOWN_LEFT, UP_LEFT };
 	public final static Integer[] DIRECTIONS_8 = { UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT , UP_LEFT };
 	
-	public static Point offset(Point point, int direction) {
-		
+	public static Point offset(HasPosition point, int direction) {
 		return offset(point, direction, 1);
 	}
 	
-public static Point offset(HasPosition point, int direction) {
-		
-		return offset(point.getPosition(), direction, 1);
-	}
-	
-	public static Point offset(Point point, int direction, int amount) {
+	public static Point offset(HasPosition point, int direction, int amount) {
 		
 		int x = point.getX();
 		int y = point.getY();
@@ -62,7 +54,7 @@ public static Point offset(HasPosition point, int direction) {
 		return new Point(x, y);
 	}
 	
-	public static int of(Point src, Point dst) {
+	public static int of(HasPosition src, HasPosition dst) {
 		int ret = 0;
 		
 		int dx = dst.getX() - src.getX();
@@ -87,7 +79,7 @@ public static Point offset(HasPosition point, int direction) {
 		return ret;
 	}
 	
-	public static double angleOf(HasLocation src, HasLocation dst) {
+	public static double angleOf(HasPosition src, HasPosition dst) {
 		int dx = dst.getX() - src.getX();
 		int dy = dst.getY() - src.getY();
 		

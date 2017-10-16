@@ -20,6 +20,10 @@ import com.anathema_roguelike.characters.Character;
 
 public abstract class PassivePerk extends Perk implements HasBuff {
 	
+	public PassivePerk(String name) {
+		super(name);
+	}
+
 	@Override
 	public void grant(Character character) {
 		

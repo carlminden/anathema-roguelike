@@ -20,8 +20,8 @@ public abstract class ActivatedPerk extends Perk {
 	
 	protected abstract boolean onActivate();
 	
-	public ActivatedPerk() {
-		super();
+	public ActivatedPerk(String name) {
+		super(name);
 	}
 	
 	public void actviate() {

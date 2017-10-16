@@ -6,11 +6,18 @@ import com.anathema_roguelike.characters.perks.triggers.ActionModificationTrigge
 public class WallRunning extends Technique<TriggeredPerk<ActionModificationTrigger>>{
 
 	public WallRunning() {
-		super(new TriggeredPerk<ActionModificationTrigger>(){
+		super();
+	}
+
+	@Override
+	protected TriggeredPerk<ActionModificationTrigger> createPerk() {
+		// TODO Auto-generated method stub
+		return new TriggeredPerk<ActionModificationTrigger>("Wall Running"){
 
 			@Override
 			protected boolean onTrigger(ActionModificationTrigger trigger) {
 				return false;
-			}});
+			}
+		};
 	}
 }

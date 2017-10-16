@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class MagicMapping extends Spell<ActivatedPerk> {
 
 	public MagicMapping() {
-		super(3, Inquisitor.class, null);
+		super(3, Inquisitor.class);
+	}
+
+	@Override
+	protected ActivatedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

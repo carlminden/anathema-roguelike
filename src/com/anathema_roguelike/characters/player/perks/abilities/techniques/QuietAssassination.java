@@ -6,12 +6,19 @@ import com.anathema_roguelike.characters.perks.triggers.ActionModificationTrigge
 public class QuietAssassination extends Technique<TriggeredPerk<ActionModificationTrigger>>{
 
 	public QuietAssassination() {
-		super(new TriggeredPerk<ActionModificationTrigger>(){
+		super();
+	}
+
+	@Override
+	protected TriggeredPerk<ActionModificationTrigger> createPerk() {
+		// TODO Auto-generated method stub
+		return new TriggeredPerk<ActionModificationTrigger>("Quiet Assassination"){
 
 			@Override
 			protected boolean onTrigger(ActionModificationTrigger trigger) {
 				return false;
-			}});
+			}
+		};
 	}
 
 }

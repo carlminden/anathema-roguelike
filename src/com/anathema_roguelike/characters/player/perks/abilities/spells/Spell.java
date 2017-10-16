@@ -36,8 +36,8 @@ public abstract class Spell<T extends ActivatedPerk> extends PassthroughPerk<T> 
 	private int spellLevel;
 	private Class<? extends PlayerClass> casterClass;
 	
-	public Spell(int spellLevel, Class<? extends PlayerClass> casterClass, T spell) {
-		super(spell);
+	public Spell(int spellLevel, Class<? extends PlayerClass> casterClass) {
+		super();
 		
 		this.spellLevel = spellLevel;
 		this.casterClass = casterClass;

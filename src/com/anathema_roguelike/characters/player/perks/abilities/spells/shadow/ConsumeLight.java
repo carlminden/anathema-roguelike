@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class ConsumeLight extends Spell<TargetedPerk> {
 
 	public ConsumeLight() {
-		super(2, Shadow.class, null);
+		super(2, Shadow.class);
+	}
+
+	@Override
+	protected TargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

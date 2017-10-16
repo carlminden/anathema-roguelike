@@ -16,29 +16,17 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies.shapes;
 
-import java.util.Collection;
-import java.util.HashSet;
-
-import com.anathema_roguelike.main.utilities.position.Point;
+import com.anathema_roguelike.main.utilities.position.HasPosition;
 
 public class SinglePoint extends Shape {
 	
-	public SinglePoint(Point point) {
+	public SinglePoint(HasPosition point) {
 		super(point);
 	}
 
 	@Override
-	public boolean validPoint(Point point) {
-		return point.equals(point);
-	}
-
-	@Override
-	public Collection<Point> generatePoints() {
-		HashSet<Point> ret = new HashSet<>();
-		
-		ret.add(getPosition());
-		
-		return ret;
+	public void generatePoints() {
+		addPoint(getPosition());
 	}
 
 }

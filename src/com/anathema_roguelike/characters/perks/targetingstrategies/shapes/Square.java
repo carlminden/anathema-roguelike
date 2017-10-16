@@ -16,9 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.characters.perks.targetingstrategies.shapes;
 
-import java.util.Collection;
-import java.util.HashSet;
-
 import com.anathema_roguelike.main.utilities.position.HasPosition;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.effects.Calculation;
@@ -34,23 +31,7 @@ public class Square extends Shape {
 	}
 
 	@Override
-	public boolean validPoint(Point point) {
-		
-		int x = point.getX();
-		int y = point.getY();
-		
-		int originX = getX();
-		int originY = getY();
-		
-		double sideLength = sideLengthCalculation.get();
-		
-		return x >= originX && x < (originX + sideLength) && y >= originY && y < (originY + sideLength);
-	}
-
-	@Override
-	public Collection<Point> generatePoints() {
-		HashSet<Point> ret = new HashSet<>();
-		
+	public void generatePoints() {
 		int x = getX();
 		int y = getY();
 		
@@ -58,10 +39,8 @@ public class Square extends Shape {
 		
 		for(int i = 0; i < sideLength; i++) {
 			for(int j = 0; j < sideLength; j++) {
-				ret.add(new Point(x + i, y + j));
+				addPoint(new Point(x + i, y + j));
 			}
 		}
-		
-		return ret;
 	}
 }

@@ -13,15 +13,21 @@ import com.anathema_roguelike.stimuli.Sound;
 public class ThrowRock extends Technique<TargetedPerk<Location, Location>> {
 
 	public ThrowRock() {
-		super(new TargetedPerk<Location, Location>(
-				new ThrowingRange<>(Location.class, new Rock(), new LineOfSight<>(), new LineOfEffect<>()),
-				new SingleTargeted<>(Location.class),
-				new TargetConsumer<Location>(Location.class) {
+		super();
+	}
 
-					@Override
-					public void consume(Location target) {
-						target.generateStimulus(new Sound(100));
-					}
-				}));
+	@Override
+	protected TargetedPerk<Location, Location> createPerk() {
+		return new TargetedPerk<Location, Location>("Throw Rock",
+			new ThrowingRange<>(Location.class, new Rock(), new LineOfSight<>(), new LineOfEffect<>()),
+			new SingleTargeted<>(Location.class),
+			new TargetConsumer<Location>(Location.class) {
+
+				@Override
+				public void consume(Location target) {
+					target.generateStimulus(new Sound(100));
+				}
+			}
+		);
 	}
 }

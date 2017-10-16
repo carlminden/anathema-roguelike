@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class ObscuringFog extends Spell<ActivatedPerk> {
 
 	public ObscuringFog() {
-		super(4, Druid.class, null);
+		super(4, Druid.class);
+	}
+
+	@Override
+	protected ActivatedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

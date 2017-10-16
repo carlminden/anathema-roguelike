@@ -6,12 +6,19 @@ import com.anathema_roguelike.characters.perks.triggers.ActionModificationTrigge
 public class LightStep extends Technique<TriggeredPerk<ActionModificationTrigger>> {
 
 	public LightStep() {
-		super(new TriggeredPerk<ActionModificationTrigger>(){
+		super();
+	}
+
+	@Override
+	protected TriggeredPerk<ActionModificationTrigger> createPerk() {
+		return new TriggeredPerk<ActionModificationTrigger>("Light Step"){
 
 			@Override
 			protected boolean onTrigger(ActionModificationTrigger trigger) {
+				// TODO Auto-generated method stub
 				return false;
-			}});
+			}
+		};
 	}
 
 }

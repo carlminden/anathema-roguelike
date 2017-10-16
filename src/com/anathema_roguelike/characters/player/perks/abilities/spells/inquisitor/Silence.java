@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class Silence extends Spell<OffensiveTargetedPerk> {
 
 	public Silence() {
-		super(1, Inquisitor.class, null);
+		super(1, Inquisitor.class);
+	}
+
+	@Override
+	protected OffensiveTargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

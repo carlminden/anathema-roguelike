@@ -19,6 +19,7 @@ package com.anathema_roguelike.characters.player.perks.specializations;
 import com.anathema_roguelike.characters.Character;
 import com.anathema_roguelike.characters.perks.Perk;
 import com.anathema_roguelike.characters.player.perks.abilities.Ability;
+import com.anathema_roguelike.main.utilities.Utils;
 
 public class AbilitySpecialization extends Perk {
 	
@@ -26,11 +27,12 @@ public class AbilitySpecialization extends Perk {
 	private int amount = 1;
 	
 	public AbilitySpecialization(Class<? extends Ability> ability, int amount) {
-		this.ability = ability;
+		this(ability);
 		this.amount = amount;
 	}
 	
 	public AbilitySpecialization(Class<? extends Ability> ability) {
+		super(Utils.getName(ability) + " Specialization");
 		this.ability = ability;
 	}
 	

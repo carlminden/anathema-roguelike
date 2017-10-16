@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class UtterDark extends Spell<TargetedPerk> {
 
 	public UtterDark() {
-		super(3, Shadow.class, null);
+		super(3, Shadow.class);
+	}
+
+	@Override
+	protected TargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

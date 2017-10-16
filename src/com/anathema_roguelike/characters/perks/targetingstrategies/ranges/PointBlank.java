@@ -14,11 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
-package com.anathema_roguelike.characters.player.perks.abilities.shapeshifting;
+package com.anathema_roguelike.characters.perks.targetingstrategies.ranges;
 
-import com.anathema_roguelike.characters.perks.SelfTargetedPerk;
-import com.anathema_roguelike.characters.player.perks.abilities.Ability;
+import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.Shape;
+import com.anathema_roguelike.characters.perks.targetingstrategies.shapes.SinglePoint;
 
-public abstract class Shapeshifting extends SelfTargetedPerk implements Ability {
+public class PointBlank extends Range<Character> {
 
+	public PointBlank() {
+		super(Character.class);
+	}
+
+	@Override
+	protected Shape getShape(Character character) {
+		return new SinglePoint(character.getPosition());
+	}
 }

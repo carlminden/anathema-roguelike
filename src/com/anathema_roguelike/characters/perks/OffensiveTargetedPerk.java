@@ -26,8 +26,8 @@ import com.anathema_roguelike.characters.perks.targetingstrategies.ranges.Range;
 public abstract class OffensiveTargetedPerk<T extends Targetable> extends TargetedPerk<T, Character> {
 
 	@SafeVarargs
-	public OffensiveTargetedPerk(Range<Character> range, TargetingStrategy<T, Character> strategy, TargetConsumer<?> ...targetConsumers) {
-		super(range, strategy, targetConsumers);
+	public OffensiveTargetedPerk(String name, Range<Character> range, TargetingStrategy<T, Character> strategy, TargetConsumer<?> ...targetConsumers) {
+		super(name, range, strategy, targetConsumers);
 		
 		range.addConstraint(new EnemyTargetConstraint());
 	}

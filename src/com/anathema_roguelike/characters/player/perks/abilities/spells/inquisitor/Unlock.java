@@ -7,6 +7,12 @@ import com.anathema_roguelike.characters.player.perks.abilities.spells.Spell;
 public class Unlock extends Spell<TargetedPerk> {
 
 	public Unlock() {
-		super(3, Inquisitor.class, null);
+		super(3, Inquisitor.class);
+	}
+
+	@Override
+	protected TargetedPerk createPerk() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
