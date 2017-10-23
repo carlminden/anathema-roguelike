@@ -44,7 +44,7 @@ public abstract class CharacterAction extends Action<Character> {
 			}
 			
 			for(ActionCostModificationPerk<?> acm : getActor().getPerks(ActionCostModificationPerk.class)) {
-				if(getClass().isAssignableFrom(acm.getActionType())) {
+				if(acm.getActionType().isAssignableFrom(getClass())) {
 					c = acm.getClass().cast(acm).modify(this, c);
 				}
 			}

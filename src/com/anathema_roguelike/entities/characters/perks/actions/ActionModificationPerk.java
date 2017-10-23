@@ -21,7 +21,7 @@ public abstract class ActionModificationPerk<T extends CharacterAction> extends 
 	}
 	
 	protected boolean requirementsMet(T action) {
-		return action.getClass().isAssignableFrom(getActionType()) && requirements.stream().allMatch(r -> r.apply(action));
+		return getActionType().isAssignableFrom(action.getClass()) && requirements.stream().allMatch(r -> r.apply(action));
 	}
 	
 	public Class<T> getActionType() {
