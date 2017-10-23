@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
 import com.anathema_roguelike.main.Config;
-import com.anathema_roguelike.main.animations.Animation;
+import com.anathema_roguelike.main.display.animations.Animation;
 import com.anathema_roguelike.main.input.Input;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.badlogic.gdx.Gdx;

@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.masteries;
 
-import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.characterstats.CharacterStat;
 
 public class Mastery extends CharacterStat {

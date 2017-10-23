@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.utilities.position;
 
-public class Point implements Comparable<HasPosition>, HasPosition {
+public class Point implements HasPosition {
 	private int x;
 	private int y;
 	
@@ -49,99 +49,29 @@ public class Point implements Comparable<HasPosition>, HasPosition {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + x;
-		result = prime * result + y;
+		result = prime * result + getX();
+		result = prime * result + getY();
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		} else if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		} else if (!(obj instanceof HasPosition))
 			return false;
-		Point other = (Point) obj;
-		if (x != other.x)
+		HasPosition other = (HasPosition) obj;
+		if (getX() != other.getX())
 			return false;
-		if (y != other.y)
+		if (getY() != other.getY())
 			return false;
 		return true;
-	}
-	
-
-	@Override
-	public int compareTo(HasPosition other) {
-		
-		int dx = this.x - other.getX();
-		int dy = this.y - other.getY();
-		
-		if(dx != 0) {
-			return dx;
-		} else {
-			return dy;
-		}
-	}
-	
-	public boolean isAdjacentTo(HasPosition other) {
-		int dx = this.x - other.getX();
-		int dy = this.y - other.getY();
-		
-		return Math.abs(dx) <= 1 && Math.abs(dy) <= 1;
 	}
 	
 	@Override
 	public String toString() {
 		return "x = " + x + ", y = " + y;
 	}
-	
-	//Stole the following methods from the Squidlib Point3D class
-	
-	/**
-     * Returns the linear distance between this coordinate point and the provided one.
-     * 
-     * @param other
-     * @return 
-     */
-	public double distance(HasPosition other) {
-        return Math.sqrt(squareDistance(other));
-    }
-
-    /**
-     * Returns the square of the linear distance between this coordinate
-     * point and the provided one.
-     * 
-     * @param other
-     * @return 
-     */
-    public int squareDistance(HasPosition other) {
-    	int dx = x - other.getX();
-    	int dy = y - other.getY();
-        return dx * dx + dy * dy;
-    }
-
-    /**
-     * Returns the Manhattan distance between this point and the provided one.
-     * The Manhattan distance is the distance between each point on each separate
-     * axis all added together.
-     * 
-     * @param other
-     * @return 
-     */
-    public int manhattanDistance(HasPosition other) {
-        int distance = Math.abs(x - other.getX());
-        distance += Math.abs(y - other.getY());
-        return distance;
-    }
-
-    /**
-     * Returns the largest difference between the two pointSet along any one axis.
-     * 
-     * @param other
-     * @return 
-     */
-    public int maxAxisDistance(HasPosition other) {
-        return Math.max(Math.abs(x - other.getX()), Math.abs(y - other.getY()));
-    }
 }

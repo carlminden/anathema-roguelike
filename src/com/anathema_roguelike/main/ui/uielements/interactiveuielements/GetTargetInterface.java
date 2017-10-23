@@ -19,12 +19,12 @@ package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import com.anathema_roguelike.characters.perks.targetingstrategies.TargetSet;
-import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
+import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.TargetSet;
+import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.animations.Blink;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.display.animations.Blink;
 import com.anathema_roguelike.main.display.PointsOutline;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.input.DirectionalKeyHandler;

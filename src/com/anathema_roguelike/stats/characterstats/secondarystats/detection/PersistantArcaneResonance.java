@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.secondarystats.detection;
 
-import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.characterstats.secondarystats.SecondaryStat;
 
 public class PersistantArcaneResonance extends SecondaryStat {

@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats;
 
-import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.Stat;
 
 public abstract class CharacterStat extends Stat<Character> {

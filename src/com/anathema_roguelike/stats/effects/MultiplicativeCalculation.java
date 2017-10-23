@@ -21,4 +21,8 @@ public interface MultiplicativeCalculation extends Calculation {
 	public static MultiplicativeCalculation build(MultiplicativeCalculation mc) {
 		return mc;
 	}
+	
+	public static MultiplicativeCalculation fixed(double value) {
+		return () -> value;
+	}
 }

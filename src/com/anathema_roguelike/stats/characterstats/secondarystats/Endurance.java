@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.secondarystats;
 
-import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.characterstats.attributes.Constitution;
 
 public class Endurance extends SecondaryStat {

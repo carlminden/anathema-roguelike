@@ -20,7 +20,7 @@ import java.util.Collection;
 
 import javax.annotation.Nullable;
 
-import com.anathema_roguelike.characters.player.Player;
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MenuScreen;

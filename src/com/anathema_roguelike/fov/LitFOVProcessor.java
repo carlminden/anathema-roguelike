@@ -16,9 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.fov;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.player.Player;
-import com.anathema_roguelike.main.Entity;
+import com.anathema_roguelike.entities.Entity;
+import com.anathema_roguelike.entities.characters.Character;
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.display.BufferMask;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;

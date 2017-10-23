@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.secondarystats;
 
-import com.anathema_roguelike.characters.Character;
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.itemstats.Weight;
 
 public class ItemWeight extends SecondaryStat {

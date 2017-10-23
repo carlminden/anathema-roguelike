@@ -18,14 +18,14 @@ package com.anathema_roguelike.main.display;
 
 import java.util.HashMap;
 
-import com.anathema_roguelike.characters.foes.Foe;
-import com.anathema_roguelike.characters.player.Player;
+import com.anathema_roguelike.entities.Entity;
+import com.anathema_roguelike.entities.characters.foes.Foe;
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.fov.LightLevels;
 import com.anathema_roguelike.fov.TotalLightShader;
 import com.anathema_roguelike.fov.VisibleLightBackgroundShader;
 import com.anathema_roguelike.fov.VisibleLightForegroundShader;
 import com.anathema_roguelike.main.Config;
-import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.State;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
@@ -196,10 +196,9 @@ public class DungeonMap implements Renderable, Rectangular {
 				if(!player.isVisibleTo(character) && character.getMostInterestingStimulus() != null) {
 					
 					//TODO needs work
-					
-					Point p = character.getMostInterestingStimulus().getPosition();
-					
-					if(p != null) {
+					if(character.getMostInterestingStimulus().getLocation().isPresent()) {
+						//TODO remove, this is just a debug output
+						Point p = character.getMostInterestingStimulus().getLocation().get().getPosition();
 						Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + p.getX(), getY() + p.getY(), '@', Color.ALERTED);
 					}
 				}

@@ -18,9 +18,9 @@ package com.anathema_roguelike.stats.effects;
 
 import java.util.Collection;
 
-import com.anathema_roguelike.characters.events.TurnEvent;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.stats.Stat;
+import com.anathema_roguelike.time.TimeElapsedEvent;
 import com.google.common.collect.HashBiMap;
 import com.google.common.eventbus.Subscribe;
 
@@ -59,8 +59,8 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 	}
 	
 	@Subscribe
-	public void handleTurnEvent(TurnEvent event) {
-		decrement();
+	public void handleSegmentElapsedEvent(TimeElapsedEvent event) {
+		elapse(event.getElapsedTime());
 		removeExpired();
 	}
 	
@@ -71,7 +71,6 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 	public void apply(Effect<T, ?> effect) {
 		
 		effects.forcePut(effect.getSource(), effect);
-		effect.getDuration().activate();
 		
 		effect.applyTo(affected);
 	}
@@ -85,9 +84,9 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		}
 	}
 	
-	public void decrement() {
+	public void elapse(double duration) {
 		for(Effect<? extends T, ?> effect : effects.values()) {
-			effect.getDuration().decrement();
+			effect.getDuration().elapse(duration);
 		}
 	}
 	

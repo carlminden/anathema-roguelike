@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment;
 
-import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.VisualRepresentation;
@@ -24,7 +23,7 @@ import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
 import com.anathema_roguelike.stats.locationstats.LocationStat;
 
-public abstract class LocationProperty implements HasEffect<Effect<Location, LocationStat>>, Targetable {
+public abstract class LocationProperty implements HasEffect<Effect<Location, LocationStat>>, HasLocation {
 	
 	private VisualRepresentation visualRepresentation;
 	private VisualRepresentation fogOfWarRepresentation;

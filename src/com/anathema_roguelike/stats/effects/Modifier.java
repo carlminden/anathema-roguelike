@@ -24,16 +24,18 @@ public class Modifier<T, S extends Stat<?>> {
 	private Calculation additiveModifier;
 	private Calculation multiplicativeModifier;
 	
-	public Modifier(Class<? extends S> affectedStat, Calculation calculation) {
+	public Modifier(Class<? extends S> affectedStat, AdditiveCalculation calculation) {
 
 		this.affectedStat = affectedStat;
 		
-		if(calculation instanceof AdditiveCalculation) {
-			this.additiveModifier = calculation;
-		} else {
-			this.multiplicativeModifier = calculation;
-		}
+		this.additiveModifier = calculation;		
+	}
+	
+	public Modifier(Class<? extends S> affectedStat, MultiplicativeCalculation calculation) {
+
+		this.affectedStat = affectedStat;
 		
+		this.multiplicativeModifier = calculation;
 	}
 	
 	public Class<? extends S> getAffectedStat() {

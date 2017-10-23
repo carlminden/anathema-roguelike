@@ -20,8 +20,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.anathema_roguelike.stats.Stat;
+import com.anathema_roguelike.time.Duration;
 
-public abstract class Effect<T, S extends Stat<? extends T>> {
+public class Effect<T, S extends Stat<? extends T>> {
 	
 	private HasEffect<? extends Effect<T, ?>> source;
 	private Duration duration;
@@ -31,7 +32,7 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 	@SafeVarargs
 	public Effect(HasEffect<? extends Effect<T, ?>> source, Modifier<T, ?>... modifiers) {
 		this.source = source;
-		this.duration = new FixedDuration(Duration.PERMANENT);
+		this.duration = Duration.permanent();
 		this.modifiers = new ArrayList<Modifier<T, ?>>(Arrays.asList(modifiers));
 	}
 	
@@ -46,7 +47,7 @@ public abstract class Effect<T, S extends Stat<? extends T>> {
 		return source;
 	}
 	
-	private ArrayList<Modifier<T, ?>> getModifiers() {
+	public ArrayList<Modifier<T, ?>> getModifiers() {
 		return modifiers;
 	}
 	

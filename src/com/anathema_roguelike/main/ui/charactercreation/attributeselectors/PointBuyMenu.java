@@ -18,7 +18,7 @@ package com.anathema_roguelike.main.ui.charactercreation.attributeselectors;
 
 import java.util.Collection;
 
-import com.anathema_roguelike.characters.player.Player;
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Menu;
 import com.anathema_roguelike.main.utilities.Utils;

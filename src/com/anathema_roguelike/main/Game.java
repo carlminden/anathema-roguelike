@@ -22,7 +22,6 @@ import java.util.Random;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display;
 import com.anathema_roguelike.main.display.DungeonMap;
-import com.anathema_roguelike.main.events.GameTurnEvent;
 import com.anathema_roguelike.main.input.Input;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.UserInterface;
@@ -149,7 +148,6 @@ public class Game extends ApplicationAdapter {
 			display.lock();
 			
 			state.computeNextState();
-			eventBus.post(new GameTurnEvent());
 			
 			display.unlock();
 		}
@@ -198,7 +196,7 @@ public class Game extends ApplicationAdapter {
 		}
 	}
 	
-	public long getElapsedTime() {
+	public double getElapsedTime() {
 		if(state == null) {
 			return 0;
 		} else {

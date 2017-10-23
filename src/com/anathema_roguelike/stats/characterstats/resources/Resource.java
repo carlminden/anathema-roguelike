@@ -16,9 +16,11 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.resources;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.events.ResourceChangedEvent;
-import com.anathema_roguelike.characters.player.Player;
+import java.util.Optional;
+
+import com.anathema_roguelike.entities.characters.Character;
+import com.anathema_roguelike.entities.characters.events.ResourceChangedEvent;
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
@@ -36,7 +38,7 @@ public abstract class Resource extends CharacterStat {
 		
 	}
 	
-	public void modify(Character initiator, HasEffect<? extends Effect<Character, ?>> source, int amount) {
+	public void modify(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, int amount) {
 		set(initiator, source, (int) (getAmount() + amount));
 	}
 	@Override
@@ -44,7 +46,7 @@ public abstract class Resource extends CharacterStat {
 		return amount;
 	}
 	
-	public void set(Character initiator, HasEffect<? extends Effect<Character, ?>> source, int amount) {
+	public void set(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, int amount) {
 		
 		int currentAmount = (int) getAmount();
 		
@@ -52,7 +54,7 @@ public abstract class Resource extends CharacterStat {
 		
 		getObject().postEvent(new ResourceChangedEvent(source, getClass(), difference));
 		
-		if(initiator != null) {
+		if(initiator.isPresent()) {
 			if(difference > 0) {
 				printResourceGainedMessage(initiator, source, getObject(), difference);
 			} else if(difference < 0) {
@@ -63,46 +65,54 @@ public abstract class Resource extends CharacterStat {
 		this.amount = amount;
 	}
 
-	protected void printResourceGainedMessage(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Character target, int amount) {
+	protected void printResourceGainedMessage(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Character target, int amount) {
 		
 		if(getObject() instanceof Player) {
 			Message m = new Message("You gain " + amount + " pointSet of " + Utils.getName(this), Color.GREEN);
 			
-			if(initiator instanceof Player) {
-				m.appendMessage(" from your ", Color.GREEN);
-			} else {
-				m.appendMessage(" from the " + Utils.getName(initiator) + "'s ", Color.GREEN);
-			}
+			initiator.ifPresent(i -> {
+				if(i instanceof Player) {
+					m.appendMessage(" from your ", Color.GREEN);
+				} else {
+					m.appendMessage(" from the " + Utils.getName(i) + "'s ", Color.GREEN);
+				}
+			});
 			
 			m.appendMessage(Utils.getName(source), Color.GREEN);
 			
 			Game.getInstance().getUserInterface().addMessage(m);
-		} else if(initiator instanceof Player) {
+		} else if(initiator.isPresent() && initiator.get() instanceof Player) {
 			Message m = new Message("You grant " + amount + " pointSet of " + Utils.getName(this), Color.GREEN);
 			
-			m.appendMessage(" to the " + Utils.getName(target) + " with your " + Utils.getName(source), Color.GREEN);
+			m.appendMessage(" to the " + Utils.getName(target));
+			
+			source.ifPresent(s -> m.appendMessage(" with your " + Utils.getName(s), Color.GREEN));
 			
 			Game.getInstance().getUserInterface().addMessage(m);
 		}
 	}
 	
-	protected void printResourceLostMessage(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Character target, int amount) {
+	protected void printResourceLostMessage(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Character target, int amount) {
 		if(getObject() instanceof Player) {
 			Message m = new Message("You lose " + amount + " pointSet of " + Utils.getName(this), Color.RED);
 			
-			if(initiator instanceof Player) {
-				m.appendMessage(" from your ", Color.RED);
-			} else {
-				m.appendMessage(" from the " + Utils.getName(initiator) + "'s ", Color.RED);
-			}
+			initiator.ifPresent(i -> {
+				if(i instanceof Player) {
+					m.appendMessage(" from your ", Color.RED);
+				} else {
+					m.appendMessage(" from the " + Utils.getName(i) + "'s ", Color.RED);
+				}
+			});
 			
-			m.appendMessage(Utils.getName(source), Color.RED);
+			source.ifPresent(s -> m.appendMessage(Utils.getName(s), Color.RED));
 			
 			Game.getInstance().getUserInterface().addMessage(m);
-		} else if(initiator instanceof Player) {
+		} else if(initiator.isPresent() && initiator.get() instanceof Player) {
 			Message m = new Message("You deal " + amount + " pointSet of " + Utils.getName(this));
 			
-			m.appendMessage(" damage to the " + Utils.getName(target) + " with your " + Utils.getName(source));
+			m.appendMessage(" damage to the " + Utils.getName(target));
+			
+			source.ifPresent(s -> m.appendMessage(" with your " + Utils.getName(s)));
 			
 			Game.getInstance().getUserInterface().addMessage(m);
 		}

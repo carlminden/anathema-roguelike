@@ -18,17 +18,17 @@ package com.anathema_roguelike.environment;
 
 import java.util.Collection;
 
-import com.anathema_roguelike.characters.perks.targetingstrategies.Targetable;
+import com.anathema_roguelike.entities.Entity;
+import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
+import com.anathema_roguelike.entities.characters.stimuli.Stimulus;
+import com.anathema_roguelike.entities.characters.stimuli.StimulusEvent;
 import com.anathema_roguelike.environment.features.Feature;
 import com.anathema_roguelike.environment.terrain.Terrain;
-import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.HasStats;
 import com.anathema_roguelike.stats.StatSet;
 import com.anathema_roguelike.stats.locationstats.LocationStat;
 import com.anathema_roguelike.stats.locationstats.LocationStatSet;
-import com.anathema_roguelike.stimuli.Stimulus;
-import com.anathema_roguelike.stimuli.StimulusEvent;
 import com.google.common.collect.TreeMultiset;
 import com.google.common.eventbus.EventBus;
 
@@ -59,7 +59,7 @@ public class Location implements HasStats<Location, LocationStat>, Targetable {
 	
 	@Override
 	public String toString() {
-		return getX() + ", " + getY();
+		return terrain.toString() + ": " + getX() + ", " + getY();
 	}
 	
 	@Override

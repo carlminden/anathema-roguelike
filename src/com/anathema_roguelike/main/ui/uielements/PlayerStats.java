@@ -19,13 +19,13 @@ package com.anathema_roguelike.main.ui.uielements;
 
 import java.util.stream.Collectors;
 
-import com.anathema_roguelike.characters.inventory.Chest;
-import com.anathema_roguelike.characters.inventory.Feet;
-import com.anathema_roguelike.characters.inventory.Head;
-import com.anathema_roguelike.characters.inventory.Legs;
-import com.anathema_roguelike.characters.inventory.PrimaryWeapon;
-import com.anathema_roguelike.characters.inventory.SecondaryWeapon;
-import com.anathema_roguelike.characters.player.Player;
+import com.anathema_roguelike.entities.characters.inventory.Chest;
+import com.anathema_roguelike.entities.characters.inventory.Feet;
+import com.anathema_roguelike.entities.characters.inventory.Head;
+import com.anathema_roguelike.entities.characters.inventory.Legs;
+import com.anathema_roguelike.entities.characters.inventory.PrimaryWeapon;
+import com.anathema_roguelike.entities.characters.inventory.SecondaryWeapon;
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.utilities.Utils;

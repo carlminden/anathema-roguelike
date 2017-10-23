@@ -19,8 +19,8 @@ package com.anathema_roguelike.fov;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import com.anathema_roguelike.entities.Entity;
 import com.anathema_roguelike.environment.Environment;
-import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.position.Direction;

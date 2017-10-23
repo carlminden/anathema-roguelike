@@ -25,10 +25,10 @@ public class VisualRepresentation {
 	private char representation;
 	private SColor color;
 	
-	public VisualRepresentation(char representation, SColor foregroundColor) {
+	public VisualRepresentation(char representation, SColor color) {
 		super();
 		this.representation = representation;
-		this.color = foregroundColor;
+		this.color = color;
 	}
 	
 	public VisualRepresentation(char representation) {
@@ -49,8 +49,8 @@ public class VisualRepresentation {
 		this.representation = representation;
 	}
 
-	public void setForegroundColor(SColor foregroundColor) {
-		this.color = foregroundColor;
+	public void setColor(SColor color) {
+		this.color = color;
 	}
 	
 	public VisualRepresentation darkened() {

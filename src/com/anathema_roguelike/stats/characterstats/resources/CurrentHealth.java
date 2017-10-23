@@ -16,7 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.resources;
 
-import com.anathema_roguelike.characters.Character;
+import java.util.Optional;
+
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
@@ -28,7 +30,7 @@ public class CurrentHealth extends BoundedResource {
 	}
 	
 	@Override
-	public void modify(Character initiator, HasEffect<? extends Effect<Character, ?>> source, int amount) {
+	public void modify(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, int amount) {
 		if(amount < 0) {
 			
 			Character character = getObject();

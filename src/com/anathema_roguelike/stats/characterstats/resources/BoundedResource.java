@@ -16,7 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.resources;
 
-import com.anathema_roguelike.characters.Character;
+import java.util.Optional;
+
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
@@ -38,7 +40,7 @@ public abstract class BoundedResource extends Resource {
 			initialized = true;
 			
 			if(initiallyFull) {
-				set(null, null, getMaximum());
+				set(Optional.empty(), Optional.empty(), getMaximum());
 			}
 		}
 		
@@ -46,12 +48,12 @@ public abstract class BoundedResource extends Resource {
 	}
 	
 	@Override
-	public void set(Character initiator, HasEffect<? extends Effect<Character, ?>> source, int amount) {
+	public void set(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, int amount) {
 		super.set(initiator, source, Utils.clamp(amount, 0, getMaximum()));
 	}
 	
 	public void reset() {
-		set(null, null, getMaximum());
+		set(Optional.empty(), Optional.empty(), getMaximum());
 	}
 	
 	public abstract int getMaximum();

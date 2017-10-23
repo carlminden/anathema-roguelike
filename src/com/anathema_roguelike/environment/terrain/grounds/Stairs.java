@@ -25,10 +25,14 @@ public class Stairs extends Ground {
 	public Stairs(int direction) {
 		super((direction == Direction.UP) ? '<' : '>', 0, 0);
 		
+		if(direction != Direction.UP && direction != Direction.DOWN) {
+			throw new RuntimeException("Invalid Stairs Direction");
+		}
+		
 		this.direction = direction;
 	}
 	
-	public boolean takeStairs(int direction) {
-		return (this.direction == direction);
+	public int getDirection() {
+		return direction;
 	}
 }

@@ -17,10 +17,12 @@
 package com.anathema_roguelike.main;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
-import com.anathema_roguelike.characters.Character;
-import com.anathema_roguelike.characters.events.TurnEvent;
-import com.anathema_roguelike.characters.player.Player;
+import com.anathema_roguelike.entities.characters.Character;
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.generation.CaveDungeonGenerator;
 import com.anathema_roguelike.environment.generation.DungeonGenerator;
@@ -28,15 +30,27 @@ import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.ui.charactercreation.CharacterCreationUI;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
+import com.anathema_roguelike.time.Actor;
+import com.anathema_roguelike.time.TimeElapsedEvent;
 
 public class State implements Renderable {
 	
-	private long elapsedTime = 0;
+	private double elapsedTime = 0;
+	double currentSegmentTime = 1;
 	private Player player;
 	private volatile ArrayList<Environment> dungeonLevels;
 //	private DungeonGenerator dungeonLevelFactory = new DefaultDungeonLevelGenerator();
 	private DungeonGenerator dungeonLevelFactory = new CaveDungeonGenerator();
 //	private DungeonGenerator dungeonLevelFactory = new BigRoomDungeonGenerator();
+	
+	private PriorityQueue<Actor> actors = new PriorityQueue<Actor>(Collections.reverseOrder(new Comparator<Actor>() {
+
+		@Override
+		public int compare(Actor o1, Actor o2) {
+			return Double.compare(o1.getEnergyLevel(), o2.getEnergyLevel());
+		}
+		
+	}));
 	
 	public State() {
 		
@@ -44,16 +58,44 @@ public class State implements Renderable {
 	
 	public void computeNextState() {
 		
-		Environment level = getCurrentEnvironment();
+		Actor currentActor = actors.remove();
 		
-		for(Character character : new ArrayList<>(level.getEntities(Character.class))) {
-			if(character.isAlive() || character instanceof Player) {
-					character.postEvent(new TurnEvent());
-					character.takeTurn();
+		while(!(currentActor instanceof Player)) {
+			
+			if(currentActor.getDuration().isExpired()) {
+				currentActor = actors.remove();
+				
+				continue;
 			}
+			
+			handleActor(currentActor);
+			
+			actors.add(currentActor);
+			
+			currentActor = actors.remove();
 		}
 		
-		elapsedTime += 1000;
+		//Player CharacterAction
+		handleActor(currentActor);
+		actors.add(currentActor);
+		
+	}
+	
+	private void handleActor(Actor actor) {
+		double startTime = actor.getEnergyLevel();
+		
+		if(actor.getEnergyLevel() <= 0) {
+			actors.forEach(a -> a.energize());
+		} else {
+			actor.act();
+			
+			double timePassed = startTime - actors.peek().getEnergyLevel();
+			
+			elapsedTime += timePassed;
+			currentSegmentTime -= timePassed;
+			
+			Game.getInstance().getEventBus().post(new TimeElapsedEvent(elapsedTime));
+		}
 	}
 	
 	public void render() {
@@ -91,7 +133,7 @@ public class State implements Renderable {
 		}
 	}
 	
-	public long getElapsedTime() {
+	public double getElapsedTime() {
 		return elapsedTime;
 	}
 	
@@ -104,5 +146,13 @@ public class State implements Renderable {
 		Point upstairs = getEnvironment(0).getStairs(Direction.UP).getPosition();
 		
 		dungeonLevels.get(0).addEntity(player, upstairs);
+	}
+	
+	public void registerActor(Actor actor) {
+		actors.add(actor);
+	}
+	
+	public void removeActor(Actor actor) {
+		actors.remove(actor);
 	}
 }

@@ -16,18 +16,20 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.resources;
 
-import com.anathema_roguelike.characters.Character;
+import java.util.Optional;
+
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.effects.Calculation;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
 
 public class Heal<T extends Resource> extends ResourceModification<T> {
 
-	public Heal(Character initiator, HasEffect<? extends Effect<Character, T>> source, Class<T> resource, int amount) {
+	public Heal(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<T> resource, int amount) {
 		super(initiator, source, resource, amount);
 	}
 	
-	public Heal(Character initiator, HasEffect<? extends Effect<Character, T>> source, Class<T> resource, final Calculation calculation) {
+	public Heal(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<T> resource, final Calculation calculation) {
 		super(initiator, source, resource, calculation);
 	}
 }

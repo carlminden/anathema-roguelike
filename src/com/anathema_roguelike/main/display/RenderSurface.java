@@ -17,8 +17,8 @@
 package com.anathema_roguelike.main.display;
 
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.animations.Animation;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.display.animations.Animation;
 import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SColor;

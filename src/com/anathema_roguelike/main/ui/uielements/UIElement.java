@@ -19,9 +19,9 @@ package com.anathema_roguelike.main.ui.uielements;
 import java.util.ArrayList;
 
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.animations.Animation;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
+import com.anathema_roguelike.main.display.animations.Animation;
 import com.anathema_roguelike.main.display.Outline;
 import com.anathema_roguelike.main.display.RenderSurface;
 import com.anathema_roguelike.main.display.Renderable;

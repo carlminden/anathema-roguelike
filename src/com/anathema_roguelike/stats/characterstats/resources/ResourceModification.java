@@ -16,35 +16,37 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.resources;
 
-import com.anathema_roguelike.characters.Character;
+import java.util.Optional;
+
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.effects.Calculation;
-import com.anathema_roguelike.stats.effects.Duration;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.FixedCalculation;
 import com.anathema_roguelike.stats.effects.HasEffect;
+import com.anathema_roguelike.time.Duration;
 
-public abstract class ResourceModification<T extends Resource> extends Effect<Character, T> {
+public class ResourceModification<T extends Resource> extends Effect<Character, T> {
 	
 	private Calculation calculation;
 	private Class<? extends Resource> resource;
-	private Character initiator;
+	private Optional<Character> initiator;
 	
-	public ResourceModification(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> resource, int amount) {
-		super(source, Duration.instant());
+	public ResourceModification(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> resource, int amount) {
+		super(source.orElse(null), Duration.instant());
 		
 		this.resource = resource;
 		this.calculation = new FixedCalculation(amount);
 		this.initiator = initiator;
 	}
 	
-	public ResourceModification(Character initiator, HasEffect<? extends Effect<Character, ?>> source, Class<? extends Resource> resource, Calculation calculation) {
-		super(source, Duration.instant());
+	public ResourceModification(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> resource, Calculation calculation) {
+		super(source.orElse(null), Duration.instant());
 		this.resource = resource;
 		this.calculation = calculation;
 		this.initiator = initiator;
 	}
 	
-	public Character getInitiator() {
+	public Optional<Character> getInitiator() {
 		return initiator;
 	}
 	
@@ -52,6 +54,6 @@ public abstract class ResourceModification<T extends Resource> extends Effect<Ch
 	public void onApplicationCallback(Character character) {
 		super.onApplicationCallback(character);
 		
-		character.modifyResource(getInitiator(), getSource(), resource, calculation.get().intValue());
+		character.modifyResource(getInitiator(), Optional.of(getSource()), resource, calculation.get().intValue());
 	}
 }

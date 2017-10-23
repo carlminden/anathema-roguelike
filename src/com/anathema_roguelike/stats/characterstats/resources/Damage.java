@@ -16,19 +16,21 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.resources;
 
-import com.anathema_roguelike.characters.Character;
+import java.util.Optional;
+
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.effects.Calculation;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
 
 public class Damage<T extends Resource> extends ResourceModification<T> {
 	
-	public Damage(Character attacker, HasEffect<? extends Effect<Character, ?>> source, Class<T> resource, int amount) {
+	public Damage(Optional<Character> attacker, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<T> resource, int amount) {
 		super(attacker, source, resource, amount * -1);
 		
 	}
 	
-	public Damage(Character attacker, HasEffect<? extends Effect<Character, ?>> source, Class<T> resource, Calculation calculation) {
+	public Damage(Optional<Character> attacker, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<T> resource, Calculation calculation) {
 		super(attacker, source, resource, () -> calculation.get() * -1);
 		
 	}

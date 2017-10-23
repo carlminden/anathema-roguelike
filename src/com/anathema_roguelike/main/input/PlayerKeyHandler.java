@@ -16,9 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.input;
 
-import com.anathema_roguelike.characters.actions.MoveAction;
-import com.anathema_roguelike.characters.perks.ActivatedPerk;
-import com.anathema_roguelike.characters.player.Player;
+import com.anathema_roguelike.entities.characters.actions.WaitAction;
+import com.anathema_roguelike.entities.characters.perks.actions.ActionPerk;
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
@@ -37,42 +37,42 @@ public class PlayerKeyHandler extends DirectionalKeyHandler {
 
 	@Override
 	public void up(boolean alt, boolean ctrl, boolean shift) {
-		player.takeAction(new MoveAction(Direction.UP));
+		player.move(Direction.UP);
 	}
 
 	@Override
 	public void down(boolean alt, boolean ctrl, boolean shift) {
-		player.takeAction(new MoveAction(Direction.DOWN));
+		player.move(Direction.DOWN);
 	}
 
 	@Override
 	public void left(boolean alt, boolean ctrl, boolean shift) {
-		player.takeAction(new MoveAction(Direction.LEFT));
+		player.move(Direction.LEFT);
 	}
 
 	@Override
 	public void right(boolean alt, boolean ctrl, boolean shift) {
-		player.takeAction(new MoveAction(Direction.RIGHT));
+		player.move(Direction.RIGHT);
 	}
 
 	@Override
 	public void upRight(boolean alt, boolean ctrl, boolean shift) {
-		player.takeAction(new MoveAction(Direction.UP_RIGHT));
+		player.move(Direction.UP_RIGHT);
 	}
 
 	@Override
 	public void upLeft(boolean alt, boolean ctrl, boolean shift) {
-		player.takeAction(new MoveAction(Direction.UP_LEFT));
+		player.move(Direction.UP_LEFT);
 	}
 
 	@Override
 	public void downRight(boolean alt, boolean ctrl, boolean shift) {
-		player.takeAction(new MoveAction(Direction.DOWN_RIGHT));
+		player.move(Direction.DOWN_RIGHT);
 	}
 
 	@Override
 	public void downLeft(boolean alt, boolean ctrl, boolean shift) {
-		player.takeAction(new MoveAction(Direction.DOWN_LEFT));
+		player.move(Direction.DOWN_LEFT);
 	}
 
 	@Override
@@ -90,17 +90,17 @@ public class PlayerKeyHandler extends DirectionalKeyHandler {
 	        	}
 	        case SquidInput.INSERT:
 	        case SquidInput.VERTICAL_ARROW:
-	        	player.setActionRemaining(false);
+	        	player.addPendingAction(new WaitAction(player));
 	        	return;
 	        case 'a':
-	        	ActivatedPerk ability = new SelectionScreen<ActivatedPerk>(
+	        	@SuppressWarnings("rawtypes")
+				ActionPerk<?> ability = new SelectionScreen<ActionPerk>(
 	    			new Point(0, 0), UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3,
-	    			"Activate an Ability", true, 0f, .5f, player.getPerks(ActivatedPerk.class)
+	    			"Activate an Ability", true, 0f, .5f, player.getPerks(ActionPerk.class)
 	        	).run();
 	        	
 	        	if(ability != null) {
-	        		ability.actviate();
-	        		player.setActionRemaining(false);
+	        		player.addPendingAction(ability.activate());
 	        	}
 	        	return;
 	        case 'q':

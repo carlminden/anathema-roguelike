@@ -18,20 +18,23 @@ package com.anathema_roguelike.environment;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.anathema_roguelike.entities.Entity;
+import com.anathema_roguelike.entities.events.EnvironmentChangedEvent;
 import com.anathema_roguelike.environment.terrain.Terrain;
 import com.anathema_roguelike.environment.terrain.grounds.Stairs;
 import com.anathema_roguelike.fov.LightLevels;
 import com.anathema_roguelike.fov.LitFOVProcessor;
 import com.anathema_roguelike.fov.ObstructionChangedEvent;
 import com.anathema_roguelike.main.Config;
-import com.anathema_roguelike.main.Entity;
 import com.anathema_roguelike.main.display.DisplayBuffer;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.utilities.datastructures.CollectionUtils;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 import com.anathema_roguelike.main.utilities.position.Direction;
+import com.anathema_roguelike.main.utilities.position.HasPosition;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.locationstats.Opacity;
 import com.google.common.eventbus.EventBus;
@@ -108,21 +111,30 @@ public class Environment implements Renderable {
 	
 	public void removeEntity(Entity entity) {
 		entities.remove(entity);
+		
 		lightLevels.entityRemoved(entity);
 		
 		eventBus.unregister(entity);
 	}
 	
-	public void addEntity(Entity entity, Point position) {
+	public void addEntity(Entity entity, HasPosition position) {
 		addEntity(entity, getLocation(position));
 	}
 	
 	public void addEntity(Entity entity, Location location) {
+		Optional<Environment> old = Optional.empty();
+		if(entity.getLocation() != null) {
+			old = Optional.of(entity.getEnvironment());
+			
+			old.ifPresent(e -> removeEntity(entity));
+		}
+		
 		entities.add(entity);
 		
 		entity.setLocation(location);
 		
 		eventBus.register(entity);
+		entity.postEvent(new EnvironmentChangedEvent(old, this));
 	}
 	
 	public void moveEntityBy(Entity entity, int xOffset, int yOffset) {
@@ -155,7 +167,7 @@ public class Environment implements Renderable {
 		return map[x][y];
 	}
 	
-	public Location getLocation(Point position) {
+	public Location getLocation(HasPosition position) {
 		return getLocation(position.getX(), position.getY());
 	}
 
@@ -190,11 +202,11 @@ public class Environment implements Renderable {
 		return getLocation(x, y).isPassable();
 	}
 
-	public boolean isPassable(Point point) {
+	public boolean isPassable(HasPosition point) {
 		return isPassable(point.getX(), point.getY());
 	}
 	
-	public boolean isInBounds(Point point) {
+	public boolean isInBounds(HasPosition point) {
 		return point.getX() >= 0 && point.getY() >= 0 && point.getX() < width && point.getY() < height;
 	}
 	

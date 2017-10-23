@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.itemstats;
 
-import com.anathema_roguelike.items.Item;
+import com.anathema_roguelike.entities.items.Item;
 
 public abstract class ArmorStat extends ItemStat {
 
