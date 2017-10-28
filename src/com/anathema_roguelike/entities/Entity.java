@@ -18,15 +18,15 @@ package com.anathema_roguelike.entities;
 
 import java.util.Optional;
 
+import com.anathema_roguelike.actors.Actor;
+import com.anathema_roguelike.actors.Duration;
+import com.anathema_roguelike.actors.Energy;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.display.VisualRepresentation;
-import com.anathema_roguelike.time.Actor;
-import com.anathema_roguelike.time.Duration;
-import com.anathema_roguelike.time.Energy;
 import com.google.common.eventbus.EventBus;
 
 public abstract class Entity implements Renderable, Targetable, Actor {

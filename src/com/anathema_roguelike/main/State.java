@@ -21,6 +21,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+import com.anathema_roguelike.actors.Actor;
+import com.anathema_roguelike.actors.TimeElapsedEvent;
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.environment.Environment;
@@ -30,8 +32,6 @@ import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.ui.charactercreation.CharacterCreationUI;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
-import com.anathema_roguelike.time.Actor;
-import com.anathema_roguelike.time.TimeElapsedEvent;
 
 public class State implements Renderable {
 	

@@ -18,6 +18,7 @@ package com.anathema_roguelike.entities.characters.perks.actions;
 
 import java.util.Optional;
 
+import com.anathema_roguelike.actors.Action;
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.TargetedAction;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
@@ -25,7 +26,6 @@ import com.anathema_roguelike.entities.characters.perks.actions.targetingstrateg
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.Range;
 import com.anathema_roguelike.entities.characters.perks.requirements.SelectedTargetRequirement;
 import com.anathema_roguelike.entities.characters.perks.requirements.ValidTargetLocationInRangeRequirement;
-import com.anathema_roguelike.time.Action;
 
 public abstract class GenericTargetedPerk<TargetType extends Targetable, OriginType extends Targetable> extends ActionPerk<TargetedAction<TargetType, OriginType>> {
 

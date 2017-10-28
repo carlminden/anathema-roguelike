@@ -19,8 +19,8 @@ package com.anathema_roguelike.stats.effects;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.anathema_roguelike.actors.Duration;
 import com.anathema_roguelike.stats.Stat;
-import com.anathema_roguelike.time.Duration;
 
 public class Effect<T, S extends Stat<? extends T>> {
 	

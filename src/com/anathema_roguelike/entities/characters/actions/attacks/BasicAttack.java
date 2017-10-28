@@ -19,7 +19,7 @@ package com.anathema_roguelike.entities.characters.actions.attacks;
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.costs.ResourceCost;
 import com.anathema_roguelike.entities.characters.actions.costs.StimulusCost;
-import com.anathema_roguelike.entities.characters.stimuli.Sound;
+import com.anathema_roguelike.entities.characters.stimuli.AttenuatedSound;
 import com.anathema_roguelike.stats.characterstats.resources.CurrentEndurance;
 import com.anathema_roguelike.stats.characterstats.resources.RecentMotion;
 
@@ -29,7 +29,7 @@ public class BasicAttack extends WeaponAttack {
 		super(attacker, target);
 		
 		addCost(new ResourceCost<>(attacker, RecentMotion.class, 50));
-		addCost(new StimulusCost<>(attacker, Sound.class, 30));
+		addCost(new StimulusCost<>(attacker, AttenuatedSound.class, () -> 30.0));
 		addCost(new ResourceCost<>(attacker, CurrentEndurance.class, -30));
 	}
 	
@@ -37,7 +37,7 @@ public class BasicAttack extends WeaponAttack {
 		super(attacker);
 		
 		addCost(new ResourceCost<>(attacker, RecentMotion.class, 50));
-		addCost(new StimulusCost<>(attacker, Sound.class, 30));
+		addCost(new StimulusCost<>(attacker, AttenuatedSound.class, () -> 30.0));
 		addCost(new ResourceCost<>(attacker, CurrentEndurance.class, -30));
 	}
 }

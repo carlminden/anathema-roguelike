@@ -1,6 +1,7 @@
-package com.anathema_roguelike.time;
+package com.anathema_roguelike.actors;
 
 import java.util.Collection;
+import java.util.stream.Stream;
 
 import com.anathema_roguelike.entities.characters.actions.costs.ActionCost;
 import com.anathema_roguelike.entities.characters.actions.costs.ActionCosts;
@@ -29,9 +30,11 @@ public abstract class Action<T extends Actor> {
 	protected abstract void onTake();
 	
 	public void take() {
-		getCosts().stream().forEach(c -> c.pay());
+		getBeforeCosts().forEach(c -> c.pay());
 		
 		onTake();
+		
+		getAfterCosts().forEach(c -> c.pay());
 	}
 	
 	protected void setCosts(Collection<ActionCost> costs) {
@@ -46,7 +49,11 @@ public abstract class Action<T extends Actor> {
 		costs.add(cost);
 	}
 	
-	public ActionCosts getCosts() {
-		return costs;
+	public Stream<ActionCost> getBeforeCosts() {
+		return costs.getBeforeCosts();
+	}
+	
+	public Stream<ActionCost> getAfterCosts() {
+		return costs.getAfterCosts();
 	}
 }

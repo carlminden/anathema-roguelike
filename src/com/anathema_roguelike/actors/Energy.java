@@ -1,4 +1,4 @@
-package com.anathema_roguelike.time;
+package com.anathema_roguelike.actors;
 
 public class Energy {
 	private double energyLevel = 1;

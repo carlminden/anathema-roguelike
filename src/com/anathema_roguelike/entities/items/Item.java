@@ -18,6 +18,7 @@ package com.anathema_roguelike.entities.items;
 
 import java.util.Optional;
 
+import com.anathema_roguelike.actors.Action;
 import com.anathema_roguelike.entities.Entity;
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
@@ -31,7 +32,6 @@ import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
 import com.anathema_roguelike.stats.itemstats.ItemStat;
 import com.anathema_roguelike.stats.itemstats.ItemStatSet;
-import com.anathema_roguelike.time.Action;
 
 public abstract class Item extends Entity implements HasStats<Item, ItemStat>, HasEffect<Effect<Character, CharacterStat>> {
 	

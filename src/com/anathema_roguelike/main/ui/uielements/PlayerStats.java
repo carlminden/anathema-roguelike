@@ -73,7 +73,7 @@ public class PlayerStats extends UIElement {
 	}
 	
 	public void renderChar() {
-		renderString(DisplayLayer.UI_FOREGROUND, 0, renderPos, "" + player);
+		renderString(DisplayLayer.UI_FOREGROUND, 0, renderPos, player.getLocation().toString());
 		renderString(DisplayLayer.UI_FOREGROUND, 0, ++renderPos, "Level " + player.getLevel() + " " + player.getClasses().stream().map(c -> Utils.getName(c)).collect(Collectors.joining(",")));
 	}
 	

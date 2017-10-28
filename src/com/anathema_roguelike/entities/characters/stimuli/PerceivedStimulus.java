@@ -60,4 +60,13 @@ public class PerceivedStimulus {
 		
 		return vr;
 	}
+	
+	@Override
+	public String toString() {
+		return getRemainingMagnitude() + " remaining of " + stimulus.toString() + (location.isPresent() ? " at: " + location.get() : "");
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new PerceivedStimulus(Optional.empty(), new Resonance(3), 4).toString());
+	}
 }

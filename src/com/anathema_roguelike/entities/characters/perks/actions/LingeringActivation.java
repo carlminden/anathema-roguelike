@@ -1,10 +1,10 @@
 package com.anathema_roguelike.entities.characters.perks.actions;
 
+import com.anathema_roguelike.actors.Action;
+import com.anathema_roguelike.actors.Actor;
+import com.anathema_roguelike.actors.Duration;
+import com.anathema_roguelike.actors.Energy;
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.time.Action;
-import com.anathema_roguelike.time.Actor;
-import com.anathema_roguelike.time.Duration;
-import com.anathema_roguelike.time.Energy;
 
 public abstract class LingeringActivation implements Actor {
 	

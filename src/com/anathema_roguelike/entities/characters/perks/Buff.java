@@ -16,12 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks;
 
+import com.anathema_roguelike.actors.Duration;
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.characterstats.CharacterStat;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
 import com.anathema_roguelike.stats.effects.Modifier;
-import com.anathema_roguelike.time.Duration;
 
 public class Buff extends Effect<Character, CharacterStat> {
 	

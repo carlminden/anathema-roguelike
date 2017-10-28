@@ -3,6 +3,7 @@ package com.anathema_roguelike.entities.characters.actions;
 import java.util.Arrays;
 import java.util.Optional;
 
+import com.anathema_roguelike.actors.Duration;
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.TargetEffect;
@@ -12,7 +13,6 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.detection.sens
 import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.Modifier;
-import com.anathema_roguelike.time.Duration;
 
 public class WaitAction extends TargetedAction<Character, Character> {
 

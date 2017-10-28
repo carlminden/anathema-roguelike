@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Optional;
-import java.util.TreeSet;
 
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.events.TurnEvent;
 import com.anathema_roguelike.entities.characters.foes.ai.Faction;
+import com.google.common.collect.TreeMultiset;
 import com.google.common.eventbus.Subscribe;
 
 public class PerceivedStimuli implements Collection<PerceivedStimulus>{
@@ -42,7 +42,7 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 		}
 	};
 	
-	TreeSet<PerceivedStimulus> set = new TreeSet<>(stimuliComparator);
+	TreeMultiset<PerceivedStimulus> set = TreeMultiset.create(stimuliComparator);
 	
 	
 	public PerceivedStimuli(Character character) {
@@ -52,7 +52,13 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 	}
 	
 	protected void prune() {
-		set.removeIf(s -> s.getRemainingMagnitude() <= 0 || s.getLocation().equals(character.getLocation()));
+		set.removeIf(s ->{
+			boolean ret = s.getRemainingMagnitude() <= 0 ||
+			(s.getLocation().isPresent() && (character.isAdjacentTo(s.getLocation().get()) || !s.getLocation().get().isPassable())) ||
+			(s.getStimulus().getOwner().isPresent() ? s.getStimulus().getOwner().get().isVisibleTo(character) : false);
+			
+			return ret;
+		});
 	}
 	
 	@Subscribe
@@ -63,10 +69,10 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 			return;
 		}
 		
-		Optional<PerceivedStimulus> percieved = e.getPercievedStimulus(character);
+		Optional<PerceivedStimulus> perceived = e.getPercievedStimulus(character);
 		
 		//TODO should override existing stimuli at location if magnitude is greater (including dissipation)
-		percieved.ifPresent(p -> set.add(p));
+		perceived.ifPresent(p -> set.add(p));
 	}
 	
 	@Subscribe
@@ -74,11 +80,11 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 		prune();
 	}
 
-	public PerceivedStimulus mostInterestingStimulus() {
+	public Optional<PerceivedStimulus> mostInterestingStimulus() {
 		if(set.size() > 0) {
-			return Collections.max(set, stimuliComparator);
+			return Optional.of(Collections.max(set, stimuliComparator));
 		} else {
-			return null;
+			return Optional.empty();
 		}
 	}
 

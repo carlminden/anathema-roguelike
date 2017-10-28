@@ -16,12 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.actions;
 
+import com.anathema_roguelike.actors.Action;
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.costs.ActionCost;
 import com.anathema_roguelike.entities.characters.actions.costs.ActionCosts;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.entities.characters.perks.actions.ActionCostModificationPerk;
-import com.anathema_roguelike.time.Action;
 
 public abstract class CharacterAction extends Action<Character> {
 	
@@ -34,24 +34,27 @@ public abstract class CharacterAction extends Action<Character> {
 		super(character, energyCost, costs);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void take() {
-		getCosts().stream().map(c -> {
-			
-			if(c.getActor() != getActor()) {
-				throw new RuntimeException("Cost Actor not equal to Action Actor");
-			}
-			
-			for(ActionCostModificationPerk<?> acm : getActor().getPerks(ActionCostModificationPerk.class)) {
-				if(acm.getActionType().isAssignableFrom(getClass())) {
-					c = acm.getClass().cast(acm).modify(this, c);
-				}
-			}
-			
-			return c;
-		}).forEach(c -> c.pay());
+		getBeforeCosts().map(c -> modifyCost(c)).forEach(c -> c.pay());
 		
 		onTake();
+		
+		getAfterCosts().map(c -> modifyCost(c)).forEach(c -> c.pay());
+	}
+	
+	@SuppressWarnings("unchecked")
+	private ActionCost modifyCost(ActionCost c) {
+		if(c.getActor() != getActor()) {
+			throw new RuntimeException("Cost Actor not equal to Action Actor");
+		}
+		
+		for(ActionCostModificationPerk<?> acm : getActor().getPerks(ActionCostModificationPerk.class)) {
+			if(acm.getActionType().isAssignableFrom(getClass())) {
+				c = acm.getClass().cast(acm).modify(this, c);
+			}
+		}
+		
+		return c;
 	}
 }

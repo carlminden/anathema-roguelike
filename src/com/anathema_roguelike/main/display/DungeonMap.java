@@ -173,10 +173,10 @@ public class DungeonMap implements Renderable, Rectangular {
 				if(player.isVisibleTo(character)) {
 					enemyDetectedVision.or(character.getCurrentVisibility());
 				} else {
-					if(character.getMostInterestingStimulus() == null) {
-						enemyUnawareVision.or(character.getCurrentVisibility());
-					} else {
+					if(character.getMostInterestingStimulus().isPresent()) {
 						enemyAlertedVision.or(character.getCurrentVisibility());
+					} else {
+						enemyUnawareVision.or(character.getCurrentVisibility());
 					}
 				}
 			}
@@ -193,14 +193,19 @@ public class DungeonMap implements Renderable, Rectangular {
 		
 		for(Foe character : state.getCurrentEnvironment().getEntities(Foe.class)) {
 			if(character.isVisibleTo(player)) {
-				if(!player.isVisibleTo(character) && character.getMostInterestingStimulus() != null) {
+				if(!player.isVisibleTo(character) && character.getMostInterestingStimulus().isPresent()) {
 					
-					//TODO needs work
-					if(character.getMostInterestingStimulus().getLocation().isPresent()) {
-						//TODO remove, this is just a debug output
-						Point p = character.getMostInterestingStimulus().getLocation().get().getPosition();
-						Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + p.getX(), getY() + p.getY(), '@', Color.ALERTED);
-					}
+//					//TODO needs work
+//					if(character.getMostInterestingStimulus().get().getLocation().isPresent()) {
+//						//TODO remove, this is just a debug output
+//						Point p = character.getMostInterestingStimulus().get().getLocation().get().getPosition();
+//						Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + p.getX(), getY() + p.getY(), '@', Color.ALERTED);
+//					}
+					character.getPercievedStimuli().stream().forEach(s -> {
+						s.getLocation().ifPresent(l -> {
+							Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + l.getX(), getY() + l.getY(), '@', Color.ALERTED);
+						});
+					});
 				}
 			}
 		}

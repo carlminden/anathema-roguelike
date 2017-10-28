@@ -18,6 +18,8 @@ package com.anathema_roguelike.main.display;
 
 import java.util.BitSet;
 
+import com.anathema_roguelike.main.utilities.position.HasPosition;
+
 public class BufferMask {
 	private BitSet mask;
 	private int width;
@@ -49,6 +51,10 @@ public class BufferMask {
 		}
 		
 		return mask.get(x * width + y);
+	}
+	
+	public boolean get(HasPosition point) {
+		return get(point.getX(), point.getY());
 	}
 	
 	public int getWidth() {

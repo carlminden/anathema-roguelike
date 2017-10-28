@@ -18,16 +18,16 @@ public class ActionCosts {
 		this.costs = costs;
 	}
 	
-	public Collection<ActionCost> getCosts() {
-		return costs;
+	public Stream<ActionCost> getBeforeCosts() {
+		return costs.stream().filter(ActionCost::isBefore);
+	}
+	
+	public Stream<ActionCost> getAfterCosts() {
+		return costs.stream().filter(ActionCost::isAfter);
 	}
 	
 	public void add(ActionCost cost) {
 		costs.add(cost);
-	}
-
-	public Stream<ActionCost> stream() {
-		return costs.stream();
 	}
 }
 	

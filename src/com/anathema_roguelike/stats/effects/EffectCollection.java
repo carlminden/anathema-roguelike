@@ -18,9 +18,9 @@ package com.anathema_roguelike.stats.effects;
 
 import java.util.Collection;
 
+import com.anathema_roguelike.actors.TimeElapsedEvent;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.stats.Stat;
-import com.anathema_roguelike.time.TimeElapsedEvent;
 import com.google.common.collect.HashBiMap;
 import com.google.common.eventbus.Subscribe;
 

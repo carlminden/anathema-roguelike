@@ -21,6 +21,7 @@ import com.anathema_roguelike.entities.characters.actions.costs.ActionCost;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.entities.characters.actions.costs.StimulusCost;
 import com.anathema_roguelike.entities.characters.events.MoveEvent;
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.entities.characters.stimuli.Sight;
 import com.anathema_roguelike.environment.HasLocation;
 import com.anathema_roguelike.environment.Location;
@@ -36,8 +37,8 @@ public class MoveAction extends CharacterAction implements HasLocation {
 		
 		this.location = location.getLocation();
 		
-		addCost(new StimulusCost<>(character, Sight.class, character.getStatAmount(Visibility.class)));
-		addCost(new StimulusCost<>(character, Sight.class, character.getStatAmount(Visibility.class), location));
+		addCost(new StimulusCost<>(character, Sight.class, () -> character.getStatAmount(Visibility.class)));
+		addCost(new StimulusCost<>(character, Sight.class, () -> character.getStatAmount(Visibility.class), location, true));
 	}
 	
 	@Override
@@ -45,6 +46,10 @@ public class MoveAction extends CharacterAction implements HasLocation {
 		getActor().getEnvironment().getEventBus().post(new MoveEvent(getActor(), location));
 		
 		getEnvironment().moveEntityTo(getActor(), location);
+		
+		if(getActor() instanceof Player) {
+			System.out.println("Player moving to: " + location);
+		}
 	}
 
 	@Override

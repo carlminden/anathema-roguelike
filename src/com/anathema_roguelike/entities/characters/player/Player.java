@@ -117,8 +117,6 @@ public class Player extends Character {
 	public void setNextPendingAction() {
 		Game.getInstance().getUserInterface().newLine();
 		
-		computeVisibility();
-		
 		Game.getInstance().getDisplay().unlock();
 		
 		Game.getInstance().getInput().proccessInput(inputHandler, () -> hasPendingActions(), null );

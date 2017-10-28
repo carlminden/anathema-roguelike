@@ -19,6 +19,7 @@ package com.anathema_roguelike.entities.characters.foes.ai;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.TurnAction;
 import com.anathema_roguelike.entities.characters.actions.WaitAction;
 import com.anathema_roguelike.entities.characters.foes.Foe;
+import com.anathema_roguelike.entities.characters.stimuli.PerceivedStimulus;
 import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 import com.anathema_roguelike.main.utilities.position.Direction;
@@ -42,33 +44,35 @@ public class AI {
 	}
 	
 	public void addNextPendingAction() {
-		Character enemy = null;
-		Location target = null;
+		Optional<Character> enemy = Optional.empty();
+		Optional<Location> target = Optional.empty();
+		Optional<PerceivedStimulus> mostInterestingPerceivedStimulus = npc.getMostInterestingStimulus();
 		
 		if(npc.getVisibleEnemies().count() > 0) {
-			enemy = npc.getVisibleEnemies().findFirst().get();
-			target = enemy.getLocation();
-		} else if(npc.getMostInterestingStimulus() != null && npc.getMostInterestingStimulus().getLocation().isPresent()) {
-			target = npc.getMostInterestingStimulus().getLocation().get();
+			enemy = Optional.of(npc.getVisibleEnemies().findFirst().get());
+			target = Optional.of(enemy.get().getLocation());
+		} else if(mostInterestingPerceivedStimulus.isPresent()) {
+			PerceivedStimulus ps = mostInterestingPerceivedStimulus.get();
+			if(ps.getLocation().isPresent()) {
+			
+				npc.getPercievedStimuli().forEach(s -> System.out.println(s));
+				
+				target = ps.getLocation();
+			}
 		}
 		
-		if(target != null) {
-			Path path = pathfinder.getPath(npc, target);
+		if(target.isPresent()) {
+			Path path = pathfinder.getPath(npc, target.get());
 			
-			if(path != null && !npc.getPosition().equals(target)) {
+			if(path != null && !npc.getPosition().equals(target.get())) {
 				
-				if(npc.getFacing() != Direction.angleOf(npc, target)) {
-					npc.addPendingAction(new TurnAction(npc, Direction.angleOf(npc, target)));
+				if(npc.getFacing() != Direction.angleOf(npc, target.get())) {
+					npc.addPendingAction(new TurnAction(npc, Direction.angleOf(npc, target.get())));
 				} else {
 					npc.move(Direction.of(npc.getPosition(), path.get(1)));
 				}
 			} else {
 				randomStep();
-				
-				if(npc.getPosition().equals(target) && npc.getMostInterestingStimulus().getLocation().isPresent() &&
-						target == npc.getMostInterestingStimulus().getLocation().get()) {
-					npc.getPercievedStimuli().remove(npc.getMostInterestingStimulus());
-				}
 			}
 		} else {
 			randomStep();

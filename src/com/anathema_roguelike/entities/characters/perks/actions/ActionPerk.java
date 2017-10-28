@@ -18,9 +18,9 @@ package com.anathema_roguelike.entities.characters.perks.actions;
 
 import java.util.Optional;
 
+import com.anathema_roguelike.actors.Action;
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.perks.Perk;
-import com.anathema_roguelike.time.Action;
 
 public abstract class ActionPerk<T extends Action<Character>> extends Perk {
 	

@@ -5,7 +5,7 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defe
 
 public class AttenuatedSound extends Sound {
 
-	public AttenuatedSound(int magnitude, Character owner) {
-		super((int) (magnitude - owner.getStatAmount(Attenuation.class)), owner);
+	public AttenuatedSound(double magnitude, Character owner) {
+		super(magnitude - owner.getStatAmount(Attenuation.class), owner);
 	}
 }

@@ -12,6 +12,12 @@ public abstract class CharacterActionCost extends ActionCost {
 		this.character = character;
 	}
 	
+	public CharacterActionCost(Character character, boolean after) {
+		super(character, after);
+
+		this.character = character;
+	}
+	
 	public Character getCharacter() {
 		return character;
 	}

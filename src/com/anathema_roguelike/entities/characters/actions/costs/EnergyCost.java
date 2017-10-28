@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.actions.costs;
 
-import com.anathema_roguelike.time.Actor;
+import com.anathema_roguelike.actors.Actor;
 
 public class EnergyCost extends ActionCost {
 	

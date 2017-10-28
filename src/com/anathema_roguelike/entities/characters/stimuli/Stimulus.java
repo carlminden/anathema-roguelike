@@ -47,4 +47,9 @@ public abstract class Stimulus {
 	}
 	
 	public abstract Optional<PerceivedStimulus> computePerceivedStimulus(Location location, Character character);
+	
+	@Override
+	public String toString() {
+		return magnitude + " " + this.getClass().getSimpleName();
+	}
 }

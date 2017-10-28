@@ -59,7 +59,7 @@ public class Location implements HasStats<Location, LocationStat>, Targetable {
 	
 	@Override
 	public String toString() {
-		return terrain.toString() + ": " + getX() + ", " + getY();
+		return terrain.getClass().getSimpleName() + ": " + getX() + ", " + getY();
 	}
 	
 	@Override

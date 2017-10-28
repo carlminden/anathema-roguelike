@@ -29,7 +29,7 @@ public interface HasPosition extends Comparable<HasPosition> {
 		int dx = getX() - other.getX();
 		int dy = getY() - other.getY();
 		
-		return Math.abs(dx) <= 1 && Math.abs(dy) <= 1;
+		return !equals(other) && Math.abs(dx) <= 1 && Math.abs(dy) <= 1;
 	}
 	
 	

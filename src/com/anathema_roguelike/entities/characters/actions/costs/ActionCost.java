@@ -16,19 +16,33 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.actions.costs;
 
-import com.anathema_roguelike.time.Actor;
+import com.anathema_roguelike.actors.Actor;
 
 public abstract class ActionCost {
 	
 	private Actor actor;
+	private boolean after = false;
 	
 	public ActionCost(Actor actor) {
 		this.actor = actor;
+	}
+	
+	public ActionCost(Actor actor, boolean after) {
+		this.actor = actor;
+		this.after = after;
 	}
 	
 	public abstract void pay();
 	
 	public Actor getActor() {
 		return actor;
+	}
+	
+	public boolean isAfter() {
+		return after;
+	}
+	
+	public boolean isBefore() {
+		return !after;
 	}
 }

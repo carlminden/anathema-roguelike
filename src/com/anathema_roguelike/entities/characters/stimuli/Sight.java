@@ -34,10 +34,19 @@ public class Sight extends Stimulus {
 	@Override
 	public Optional<PerceivedStimulus> computePerceivedStimulus(Location location, Character character) {
 		
+		if(getOwner().isPresent() && character.getLastSeenCharacterLocations().containsKey(getOwner().get())) {
+			if(character.getLastSeenCharacterLocations().get(getOwner().get()).isAdjacentTo(location)) {
+				System.out.println(character + " perceiving " + getOwner() + " at: " + location + " with magnitude: " + getMagnitude());
+				return Optional.of(new PerceivedStimulus(Optional.of(location), this, getMagnitude() + 100));
+			}
+		}
+		
 		if(character.getVisibilityOf(getOwner().get()) == VisibilityLevel.PARTIALLYCONCEALED) {
-			Location percievedLocation = character.getEnvironment().getLocation(new Circle(character, () -> 3.0).getRandomPoint());
+			Location percievedLocation = character.getEnvironment().getLocation(new Circle(location, () -> 3.0).getRandomPoint());
 			
 			return Optional.of(new PerceivedStimulus(Optional.of(percievedLocation), this, getMagnitude()));
+		} else if(character.getVisibilityOf(getOwner().get()).ordinal() > VisibilityLevel.VISIBLE.ordinal()) {
+			return Optional.of(new PerceivedStimulus(Optional.of(location), this, getMagnitude()));
 		} else {
 			return Optional.empty();
 		}

@@ -29,7 +29,6 @@ import com.anathema_roguelike.entities.characters.foes.corruptions.Corruption;
 import com.anathema_roguelike.entities.characters.foes.roles.Role;
 import com.anathema_roguelike.entities.characters.foes.traits.Trait;
 import com.anathema_roguelike.entities.characters.stimuli.PerceivedStimulus;
-import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 import com.anathema_roguelike.main.display.VisualRepresentation;
@@ -38,13 +37,9 @@ public abstract class Foe extends Character {
 	
 	protected AI ai;
 	
-	private ArrayList<Character> visibleCharacters;
+	private Optional<PerceivedStimulus> mostInterestingStimulus = Optional.empty();
 	
-	private PerceivedStimulus mostInterestingStimulus;
-	
-	
-	
-	private Comparator<Character> distanceList = new Comparator<Character>() {
+	private Comparator<Character> distanceComparator = new Comparator<Character>() {
 
 		@Override
 		public int compare(Character o1, Character o2) {
@@ -71,9 +66,10 @@ public abstract class Foe extends Character {
 		
 		setFaction(Faction.FOES);
 		
-		ai = new AI(this);
+		this.role = role;
+		this.corruption = corruption;
 		
-		visibleCharacters = new ArrayList<>();
+		ai = new AI(this);
 		
 		new BaseFoeStats().grant(this);
 	}
@@ -91,54 +87,25 @@ public abstract class Foe extends Character {
 	public void setNextPendingAction() {
 		mostInterestingStimulus = getPercievedStimuli().mostInterestingStimulus();
 		
-		observeSurroundings();
-		
 		ai.addNextPendingAction();
-	}
-	
-	@Override
-	public void act() {
-		super.act();
-		
-		observeSurroundings();
 	}
 	
 	public AI getAI() {
 		return ai;
 	}
 	
-	public Stream<Character> getVisibleCharacters() {
-		return visibleCharacters.stream();
-	}
-	
 	public Stream<Character> getVisibleEnemies() {
-		return visibleCharacters.stream().filter(c -> {
+		ArrayList<Character> characters = new ArrayList<>(getCurrentlyVisibleCharacters());
+		
+		Collections.sort(characters, distanceComparator);
+		
+		return characters.stream().filter(c -> {
 			return !Faction.friendly(this, c);	
 		});
 	}
-	
-	public void addVisibleCharacters(Character character) {
-		visibleCharacters.add(character);
-	}
 
-	public PerceivedStimulus getMostInterestingStimulus() {
+	public Optional<PerceivedStimulus> getMostInterestingStimulus() {
 		return mostInterestingStimulus;
-	}
-	
-	public void observeSurroundings() {
-		Environment level = getEnvironment();
-		
-		computeVisibility();
-		
-		visibleCharacters.clear();
-		
-		for(Character character : level.getEntities(Character.class)) {
-			if(character.isVisibleTo(this)) {
-				addVisibleCharacters(character);
-			}
-		}
-		
-		Collections.sort(visibleCharacters, distanceList);
 	}
 
 	@Override

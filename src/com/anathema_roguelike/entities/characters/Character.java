@@ -15,11 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import com.anathema_roguelike.actors.Action;
 import com.anathema_roguelike.entities.Entity;
 import com.anathema_roguelike.entities.characters.actions.BasicMovementAction;
 import com.anathema_roguelike.entities.characters.actions.OpenDoorAction;
@@ -57,7 +61,6 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visi
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.VisibilityLevel;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
-import com.anathema_roguelike.time.Action;
 import com.google.common.base.Predicate;
 import com.google.common.eventbus.Subscribe;
 
@@ -81,6 +84,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	private CharacterStats stats = new CharacterStats(this, getEventBus());
 	private PerceivedStimuli percievedStimuli = new PerceivedStimuli(this);
+	private HashMap<Character, Location> lastSeenCharacterLocations = new HashMap<>();
 	
 	private LinkedList<Action<Character>> pendingActions = new LinkedList<>();
 	
@@ -154,6 +158,18 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	@Subscribe
 	public void handleResourceChangedEvent(ResourceChangedEvent event) {
 		//TODO not sure if i need to do anything in this case but figure its a good thing to have an event for
+	}
+	
+	@Override
+	public void act() {
+		computeVisibility();
+		
+		super.act();
+		
+		computeVisibility();
+		
+		lastSeenCharacterLocations.clear();
+		getCurrentlyVisibleCharacters().stream().forEach(c -> lastSeenCharacterLocations.put(c, c.getLocation()));
 	}
 	
 	@Override
@@ -249,10 +265,18 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 			return VisibilityLevel.IMPERCEPTIBLE;
 		}
 		
+		if(character == this) {
+			return VisibilityLevel.EXPOSED;
+		}
+		
+		VisibilityLevel visibility = character.getStat(Visibility.class).getVisibilityLevel();
+		
 		if(getCurrentVisibility().get(character.getX(), character.getY())) {
 			if(getPosition().isAdjacentTo(character.getPosition())) {
 				return VisibilityLevel.EXPOSED;
-			} else if(getPosition().distance(character) <= 2 && character.getStat(Visibility.class).getVisibilityLevel().ordinal() < 4){
+			} else if(getPosition().isAdjacentTo(character) && visibility.ordinal() < 4){
+				return VisibilityLevel.VISIBLE;
+			} else if(getPosition().distance(character) <= 2 && (visibility == VisibilityLevel.CONCEALED || visibility == VisibilityLevel.PARTIALLYCONCEALED)){
 				return VisibilityLevel.VISIBLE;
 			}
 			
@@ -286,6 +310,14 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	public void computeVisibility() {
 		getEnvironment().getLightLevels().recomputeLightLevels();
 		currentVisibility = getEnvironment().getLitFOVProcessor().computeLitFOVMask(this);
+	}
+	
+	public ArrayList<Character> getCurrentlyVisibleCharacters() {
+		return getEnvironment().getEntities(Character.class).stream().filter(c -> c.isVisibleTo(this)).collect(Collectors.toCollection(ArrayList::new));
+	}
+	
+	public HashMap<Character, Location> getLastSeenCharacterLocations() {
+		return lastSeenCharacterLocations;
 	}
 
 	public double getFacing() {
@@ -324,4 +356,5 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	public boolean hasPendingActions() {
 		return !this.pendingActions.isEmpty();
 	}
+	
 }

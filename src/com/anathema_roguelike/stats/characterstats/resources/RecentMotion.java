@@ -16,11 +16,22 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.resources;
 
+import java.util.Optional;
+
 import com.anathema_roguelike.entities.characters.Character;
+import com.anathema_roguelike.entities.characters.events.TurnEvent;
+import com.google.common.eventbus.Subscribe;
 
 public class RecentMotion extends Resource {
 
 	public RecentMotion(Character character) {
 		super(character);
+		
+		character.getEventBus().register(this);
+	}
+	
+	@Subscribe
+	public void handleTurnEvent(TurnEvent e) {
+		set(Optional.empty(), Optional.empty(), 0);
 	}
 }
