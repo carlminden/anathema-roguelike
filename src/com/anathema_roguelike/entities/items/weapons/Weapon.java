@@ -16,13 +16,16 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.weapons;
 
-import java.util.Optional;
 import java.util.Random;
 
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.entities.items.Item;
+import com.anathema_roguelike.entities.items.ItemPropertyCache;
+import com.anathema_roguelike.entities.items.weapons.types.MeleeWeaponType;
+import com.anathema_roguelike.entities.items.weapons.types.RangedWeaponType;
 import com.anathema_roguelike.entities.items.weapons.types.WeaponType;
+import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Accuracy;
 import com.anathema_roguelike.stats.characterstats.secondarystats.BonusWeaponDamage;
@@ -30,19 +33,23 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.WeaponDamageMu
 import com.anathema_roguelike.stats.itemstats.BaseWeaponDamage;
 import com.anathema_roguelike.stats.itemstats.Weight;
 
+import squidpony.squidgrid.gui.gdx.SColor;
+
 public class Weapon extends Item {
 	
 	private WeaponType type;
 	private WeaponMaterial material;
 	
-	public Weapon(Optional<VisualRepresentation> representation, WeaponType type, WeaponMaterial material) {
-		super(representation);
-		
+	public Weapon(WeaponType type, WeaponMaterial material) {
 		this.type = type;
 		this.material = material;
 		
 		applyEffect(type.getEffect());
 		applyEffect(material.getEffect());
+	}
+	
+	public Weapon(String type, String material) {
+		this(ItemPropertyCache.getProperty(WeaponType.class, type), ItemPropertyCache.getProperty(WeaponMaterial.class, material));
 	}
 	
 	public WeaponType getType() {
@@ -85,6 +92,31 @@ public class Weapon extends Item {
 			return (int) (((baseWeaponDamage * accuracyMultiplier) + bonusWeaponDamage) * (weaponDamageMultiplier));
 		} else {
 			throw new RuntimeException("Cannot get Weapon Damage of unequipped Weapon");
+		}
+	}
+	
+	@Override
+	public VisualRepresentation getVisualRepresentation() {
+		return new VisualRepresentation(getDisplayCharacter(), getColor());
+	}
+
+	private SColor getColor() {
+		if(material instanceof WoodWeaponMaterial) {
+			return Color.BROWN;
+		} else if(material instanceof MetalWeaponMaterial) {
+			return Color.GRAY;
+		} else {
+			return Color.ERROR;
+		}
+	}
+
+	private char getDisplayCharacter() {
+		if(type instanceof MeleeWeaponType) {
+			return '|';
+		} else if(type instanceof RangedWeaponType) {
+			return ')';
+		} else {
+			return 'X';
 		}
 	}
 }

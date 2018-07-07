@@ -16,16 +16,22 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.armor;
 
-import java.util.Optional;
-
+import com.anathema_roguelike.entities.items.ItemPropertyCache;
 import com.anathema_roguelike.entities.items.ItemType;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public class Chestpiece extends Armor implements ItemType<Chestpiece> {
 	
-	public Chestpiece(Optional<VisualRepresentation> representation, ArmorType type, ArmorMaterial material) {
-		super(representation, type, material);
-		// TODO Auto-generated constructor stub
+	public Chestpiece(ArmorMaterial material) {
+		super(ItemPropertyCache.getProperty(ArmorType.class, "Chestpiece"), material);
 	}
-
+	
+	public Chestpiece(String material) {
+		super(ItemPropertyCache.getProperty(ArmorType.class, "Chestpiece"), ItemPropertyCache.getProperty(ArmorMaterial.class, material));
+	}
+	
+	@Override
+	public VisualRepresentation getVisualRepresentation() {
+		return new VisualRepresentation(']', getColor());
+	}
 }

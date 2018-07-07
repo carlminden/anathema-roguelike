@@ -16,24 +16,33 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks.requirements;
 
+import java.util.function.Supplier;
+
 import com.anathema_roguelike.entities.characters.perks.Perk;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
-import com.anathema_roguelike.main.utilities.BooleanCondition;
 
 public abstract class PerkRequirement {
 	private Perk perk;
+	
+	public PerkRequirement() {
+		
+	}
 	
 	public PerkRequirement(Perk perk) {
 		this.perk = perk;
 	}
 	
-	public abstract BooleanCondition getCondition();
+	public abstract Supplier<Boolean> getCondition();
 	public abstract String getRequirementUnmetMessage();
 	
 	public Perk getPerk() {
 		return perk;
+	}
+	
+	public void setPerk(Perk perk) {
+		this.perk = perk;
 	}
 
 	public void printUnmetConditionMessage() {

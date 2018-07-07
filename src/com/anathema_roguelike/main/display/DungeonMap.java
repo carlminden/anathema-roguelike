@@ -209,6 +209,12 @@ public class DungeonMap implements Renderable, Rectangular {
 				}
 			}
 		}
+		
+		player.getPercievedStimuli().stream().forEach(s -> {
+			s.getLocation().ifPresent(l -> {
+				Game.getInstance().getDisplay().renderVisualRepresentation(DisplayLayer.DUNGEON_OVERLAY, getX() + l.getX(), getY() + l.getY(), s.getVisualRepresentation());
+			});
+		});
 	}
 	
 	private void renderFoVOverlay(BufferMask playerVision, BufferMask enemyFoV, SColor color) {
@@ -221,7 +227,7 @@ public class DungeonMap implements Renderable, Rectangular {
 		
 		int x = entity.getX();
 		int y = entity.getY();
-		VisualRepresentation rep = entity.getRepresentation();
+		VisualRepresentation rep = entity.getVisualRepresentation();
 		
 		if(rep == null) {
 			renderVisualRepresentation(layer, x, y, new VisualRepresentation('X', Color.ERROR));

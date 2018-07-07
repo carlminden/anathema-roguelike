@@ -16,8 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks.requirements;
 
+import java.util.function.Supplier;
+
 import com.anathema_roguelike.entities.characters.perks.Perk;
-import com.anathema_roguelike.main.utilities.BooleanCondition;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.characterstats.resources.Resource;
 import com.anathema_roguelike.stats.effects.Calculation;
@@ -35,14 +36,8 @@ public class ResourceRequirement extends PerkRequirement {
 	}
 	
 	@Override
-	public BooleanCondition getCondition() {
-		return new BooleanCondition() {
-
-			@Override
-			public boolean isTrue() {
-				return getPerk().getCharacter().getStatAmount(resource) >= calculation.get().intValue();
-			}
-		};
+	public Supplier<Boolean> getCondition() {
+		return () -> getPerk().getCharacter().getStatAmount(resource) >= calculation.get().intValue();
 	}
 	
 	@Override

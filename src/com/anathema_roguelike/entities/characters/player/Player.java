@@ -18,7 +18,6 @@ package com.anathema_roguelike.entities.characters.player;
 
 
 import java.util.Collection;
-import java.util.Optional;
 
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.foes.ai.Faction;
@@ -27,7 +26,11 @@ import com.anathema_roguelike.entities.characters.inventory.SecondaryWeapon;
 import com.anathema_roguelike.entities.characters.player.classes.ClassSet;
 import com.anathema_roguelike.entities.characters.player.classes.PlayerClass;
 import com.anathema_roguelike.entities.items.AnyItemFactory;
-import com.anathema_roguelike.entities.items.armor.ArmorType;
+import com.anathema_roguelike.entities.items.armor.ArmorMaterial;
+import com.anathema_roguelike.entities.items.armor.Boots;
+import com.anathema_roguelike.entities.items.armor.Chestpiece;
+import com.anathema_roguelike.entities.items.armor.Helm;
+import com.anathema_roguelike.entities.items.armor.Pants;
 import com.anathema_roguelike.entities.items.weapons.types.WeaponType;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Color;
@@ -49,28 +52,19 @@ public class Player extends Character {
 	private ClassSet classSet = new ClassSet(this);
 	
 	public Player() {
-		super(Optional.of(new VisualRepresentation('@')));
-		
 		setFaction(Faction.PLAYER);
 		
 		AnyItemFactory f = new AnyItemFactory();
 		
-		getInventory().equip(f.generate(ArmorType.class));
-		getInventory().equip(f.generate(ArmorType.class));
-		getInventory().equip(f.generate(ArmorType.class));
-		getInventory().equip(f.generate(ArmorType.class));
-		getInventory().equip(f.generate(ArmorType.class));
-		getInventory().equip(f.generate(ArmorType.class));
-		getInventory().equip(f.generate(ArmorType.class));
+		getInventory().equip(new Helm(ArmorMaterial.CHAINMAIL));
+		getInventory().equip(new Chestpiece(ArmorMaterial.LEATHER));
+		getInventory().equip(new Pants(ArmorMaterial.CHAINMAIL));
+		getInventory().equip(new Boots(ArmorMaterial.CHAINMAIL));
 		
-		getInventory().getSlot(PrimaryWeapon.class).equip(f.generate(WeaponType.class));
-		getInventory().getSlot(SecondaryWeapon.class).equip(f.generate(WeaponType.class));
 		getInventory().getSlot(PrimaryWeapon.class).equip(f.generate(WeaponType.class));
 		getInventory().getSlot(SecondaryWeapon.class).equip(f.generate(WeaponType.class));
 		
 		System.out.println(getInventory().getEquippedItems());
-		System.out.println("Backpack: ");
-		System.out.println(getInventory().getUnequippedItems());
 		
 		setName("Carl");
 		
@@ -130,11 +124,16 @@ public class Player extends Character {
 		
 		SColor color = Color.factory.blend(Color.NO_LIGHT_PLAYER, Color.WHITE, getStatAmount(Light.class) + 0.2);
 		
-		Game.getInstance().getMap().renderChar(DungeonLayer.PLAYER, getX(), getY(), getRepresentation().getChar(), color);
+		Game.getInstance().getMap().renderChar(DungeonLayer.PLAYER, getX(), getY(), getVisualRepresentation().getChar(), color);
 	}
 	
 	@Override
 	public void setFacing(double facing) {
 		super.setFacing(facing);
+	}
+
+	@Override
+	public VisualRepresentation getVisualRepresentation() {
+		return new VisualRepresentation('@');
 	}
 }

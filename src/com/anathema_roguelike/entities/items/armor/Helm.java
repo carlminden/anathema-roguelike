@@ -16,14 +16,22 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.armor;
 
-import java.util.Optional;
-
+import com.anathema_roguelike.entities.items.ItemPropertyCache;
 import com.anathema_roguelike.entities.items.ItemType;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public class Helm extends Armor implements ItemType<Helm> {
 	
-	public Helm(Optional<VisualRepresentation> representation, ArmorType type, ArmorMaterial material) {
-		super(representation, type, material);
+	public Helm(ArmorMaterial material) {
+		super(ItemPropertyCache.getProperty(ArmorType.class, "Helm"), material);
+	}
+	
+	public Helm(String material) {
+		super(ItemPropertyCache.getProperty(ArmorType.class, "Helm"), ItemPropertyCache.getProperty(ArmorMaterial.class, material));
+	}
+	
+	@Override
+	public VisualRepresentation getVisualRepresentation() {
+		return new VisualRepresentation('^', getColor());
 	}
 }

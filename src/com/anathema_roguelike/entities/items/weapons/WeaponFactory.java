@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.weapons;
 
-import java.util.Optional;
-
 import com.anathema_roguelike.entities.items.ItemFactory;
 import com.anathema_roguelike.entities.items.ItemPropertyCache;
 import com.anathema_roguelike.entities.items.ItemType;
@@ -41,7 +39,7 @@ public class WeaponFactory extends ItemFactory<Weapon> {
 					WeaponType type = Utils.getWeightedRandomSample(ItemPropertyCache.getProperties(t));
 					WeaponMaterial material = Utils.getWeightedRandomSample(ItemPropertyCache.getProperties(type.getMaterialType()));
 					
-					return new Weapon(Optional.empty(), type, material);
+					return new Weapon(type, material);
 				}
 			});
 		});

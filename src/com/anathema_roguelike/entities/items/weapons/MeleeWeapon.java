@@ -16,14 +16,11 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.weapons;
 
-import java.util.Optional;
-
 import com.anathema_roguelike.entities.items.weapons.types.WeaponType;
-import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public abstract class MeleeWeapon extends Weapon {
 
-	public MeleeWeapon(Optional<VisualRepresentation> representation, WeaponType type, WeaponMaterial material) {
-		super(representation, type, material);
+	public MeleeWeapon(WeaponType type, WeaponMaterial material) {
+		super(type, material);
 	}
 }

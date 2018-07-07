@@ -7,8 +7,9 @@ import java.util.Iterator;
 import java.util.Optional;
 
 import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.events.TurnEvent;
-import com.anathema_roguelike.entities.characters.foes.ai.Faction;
+import com.anathema_roguelike.entities.characters.events.TurnStartEvent;
+import com.anathema_roguelike.entities.characters.player.Player;
+import com.anathema_roguelike.environment.Location;
 import com.google.common.collect.TreeMultiset;
 import com.google.common.eventbus.Subscribe;
 
@@ -53,9 +54,29 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 	
 	protected void prune() {
 		set.removeIf(s ->{
-			boolean ret = s.getRemainingMagnitude() <= 0 ||
-			(s.getLocation().isPresent() && (character.isAdjacentTo(s.getLocation().get()) || !s.getLocation().get().isPassable())) ||
-			(s.getStimulus().getOwner().isPresent() ? s.getStimulus().getOwner().get().isVisibleTo(character) : false);
+			boolean ret = s.getRemainingMagnitude() <= 0;
+			
+			if(s.getLocation().isPresent()) {
+				
+				Location location = s.getLocation().get();
+				
+				ret = ret || (character.isAdjacentTo(location) || !location.isPassable());
+				
+				if(s.getStimulus().getOwner().isPresent()) {
+					
+					Character owner = s.getStimulus().getOwner().get();
+					
+					ret = ret || (owner == character);
+					
+					if(character instanceof Player && s.getStimulus() instanceof Sight && ret == false) {
+						System.out.println("test");
+					}
+					
+					if(owner.isVisibleTo(character)) {
+						ret = ret || character.getCurrentVisibility().get(location);
+					}
+				}
+			}
 			
 			return ret;
 		});
@@ -63,12 +84,6 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 	
 	@Subscribe
 	public void perceiveStimulus(StimulusEvent e) {
-		Stimulus stimulus = e.getStimulus();
-		
-		if(stimulus.getOwner().isPresent() && Faction.friendly(character, stimulus.getOwner().get())) {
-			return;
-		}
-		
 		Optional<PerceivedStimulus> perceived = e.getPercievedStimulus(character);
 		
 		//TODO should override existing stimuli at location if magnitude is greater (including dissipation)
@@ -76,7 +91,7 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 	}
 	
 	@Subscribe
-	public void handleTurnEvent(TurnEvent t) {
+	public void handleTurnStartEvent(TurnStartEvent t) {
 		prune();
 	}
 

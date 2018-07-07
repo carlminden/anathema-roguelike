@@ -16,15 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities;
 
-import java.util.Optional;
-
 import com.anathema_roguelike.actors.Actor;
 import com.anathema_roguelike.actors.Duration;
 import com.anathema_roguelike.actors.Energy;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.google.common.eventbus.EventBus;
@@ -34,20 +31,9 @@ public abstract class Entity implements Renderable, Targetable, Actor {
 	private Location location;
 	private Energy energy = new Energy();
 	
-	private Optional<VisualRepresentation> representation;
 	private EventBus eventBus = new EventBus();
 	
-	public Entity(Optional<VisualRepresentation> representation) {
-		this.representation = representation; 
-		
-		Game.getInstance().getEventBus().register(this);
-		eventBus.register(this);
-		Game.getInstance().getState().registerActor(this);
-	}
-	
-	public Entity(char representation) {
-		this.representation = Optional.of(new VisualRepresentation(representation));
-		
+	public Entity() {
 		Game.getInstance().getEventBus().register(this);
 		eventBus.register(this);
 		Game.getInstance().getState().registerActor(this);
@@ -64,13 +50,11 @@ public abstract class Entity implements Renderable, Targetable, Actor {
 		return location;
 	}
 	
-	public VisualRepresentation getRepresentation() {
-		return representation.orElse(new VisualRepresentation('X', Color.ERROR));
-	}
+	//	public VisualRepresentation getVisualRepresentation() {
+	//	return new VisualRepresentation('X', Color.ERROR);
+	//}
 
-	public void setRepresentation(Optional<VisualRepresentation> representation) {
-		this.representation = representation;
-	}
+	public abstract VisualRepresentation getVisualRepresentation();
 	
 	@Override
 	public final void render() {

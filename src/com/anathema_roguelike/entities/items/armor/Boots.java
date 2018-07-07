@@ -16,14 +16,22 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.armor;
 
-import java.util.Optional;
-
+import com.anathema_roguelike.entities.items.ItemPropertyCache;
 import com.anathema_roguelike.entities.items.ItemType;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public class Boots extends Armor implements ItemType<Boots> {
 	
-	public Boots(Optional<VisualRepresentation> representation, ArmorType type, ArmorMaterial material) {
-		super(representation, type, material);
+	public Boots(String material) {
+		super(ItemPropertyCache.getProperty(ArmorType.class, "Boots"), material);
+	}
+	
+	public Boots(ArmorMaterial material) {
+		super(ItemPropertyCache.getProperty(ArmorType.class, "Boots"), material);
+	}
+	
+	@Override
+	public VisualRepresentation getVisualRepresentation() {
+		return new VisualRepresentation(':', getColor());
 	}
 }

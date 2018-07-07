@@ -38,7 +38,7 @@ public class PerceivedStimulus {
 	}
 	
 	public double getRemainingMagnitude() {
-		return  magnitude - ((Game.getInstance().getElapsedTime() - created) * 10);
+		return  magnitude - ((Game.getInstance().getElapsedTime() - created) * 25);
 	}
 	
 	protected double getMagnitude() {
@@ -56,7 +56,8 @@ public class PerceivedStimulus {
 	public VisualRepresentation getVisualRepresentation() {
 		VisualRepresentation vr = getStimulus().getVisualRepresentation();
 		
-		vr.setColor(Color.opacity(vr.getColor(), (float) (getRemainingMagnitude() / getMagnitude())));
+		float opacity = (float) (Math.min(100, getRemainingMagnitude()) / 100);
+		vr.setColor(Color.opacity(vr.getColor(), opacity));
 		
 		return vr;
 	}

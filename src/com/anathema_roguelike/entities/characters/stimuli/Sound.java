@@ -30,7 +30,7 @@ import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Hearing;
 
 public class Sound extends Stimulus {
-
+	
 	public Sound(double magnitude) {
 		super(magnitude);
 	}
@@ -42,12 +42,12 @@ public class Sound extends Stimulus {
 	@Override
 	public Optional<PerceivedStimulus> computePerceivedStimulus(Location location, Character character) {
 		
-		if(getOwner().orElseGet(() -> null) instanceof Player) {
-			new Ripple(location, getMagnitude() / 10, 0.2f).create(DisplayLayer.DUNGEON_OVERLAY, UIConfig.DUNGEON_OFFSET);
+		if(getOwner().orElseGet(() -> null) instanceof Player && character instanceof Player) {
+			new Ripple(location, getMagnitude() / 5, 0.2f).create(DisplayLayer.DUNGEON_OVERLAY, UIConfig.DUNGEON_OFFSET);
 		}
 		
 		//TODO determine how to handle sound being stopped/reduced by walls etc
-		if(location.distance(character) > getMagnitude()) {
+		if(location.distance(character) > getMagnitude() / 5) {
 			return Optional.empty();
 		}
 		
@@ -55,14 +55,18 @@ public class Sound extends Stimulus {
 		
 		double perceivedSound = getMagnitude() * (4*hearing)/(hearing + 10);
 		
+		System.out.println(perceivedSound);
+		
 		if(perceivedSound >= 100) {
 			return Optional.of(new PerceivedStimulus(Optional.of(location), this, perceivedSound));
 		} else if(perceivedSound >= 50) {
-			Location percievedLocation = character.getEnvironment().getLocation(new Circle(character, () -> 2.0).getRandomPoint());
+			Location percievedLocation = location.getEnvironment().getLocation(new Circle(location, () -> 2.0).getRandomPassablePoint(location.getEnvironment()));
 			
 			return Optional.of(new PerceivedStimulus(Optional.of(percievedLocation), this, perceivedSound));
 		} else if(perceivedSound >= 25) {
-			return Optional.of(new PerceivedStimulus(Optional.empty(), this, perceivedSound));
+			Location percievedLocation = location.getEnvironment().getLocation(new Circle(location, () -> 3.0).getRandomPassablePoint(location.getEnvironment()));
+			
+			return Optional.of(new PerceivedStimulus(Optional.of(percievedLocation), this, perceivedSound));
 		} else {
 			return Optional.empty();
 		}

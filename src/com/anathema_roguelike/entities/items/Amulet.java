@@ -16,9 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items;
 
-import java.util.Optional;
-
-import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public class Amulet extends Item implements ItemType<Amulet> {
@@ -26,7 +23,7 @@ public class Amulet extends Item implements ItemType<Amulet> {
 	private String name;
 	
 	public Amulet(String name) {
-		super(Optional.of(new VisualRepresentation('}', Color.ENCHANTED_ITEM)));
+		super();
 		
 		this.name = name;
 	}
@@ -34,5 +31,10 @@ public class Amulet extends Item implements ItemType<Amulet> {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	@Override
+	public VisualRepresentation getVisualRepresentation() {
+		return new VisualRepresentation('$');
 	}
 }

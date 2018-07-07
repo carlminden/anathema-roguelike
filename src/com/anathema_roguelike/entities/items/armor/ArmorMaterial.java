@@ -30,6 +30,19 @@ import com.anathema_roguelike.stats.itemstats.Weight;
 
 public class ArmorMaterial extends ArmorProperty {
 	
+	public static final String CLOTH = "Cloth";
+	public static final String LEATHER = "Leather";
+	public static final String CHAINMAIL = "Chainmail";
+	public static final String PLATE = "Plate";
+	public static final String UMBRALSILK = "Umbralsilk";
+	public static final String DRAGONHIDE = "Dragonhide";
+	public static final String COLD_IRON = "Cold Iron";
+	public static final String BLACKSTEEL = "Blacksteel";
+	public static final String SHADOWEAVE = "Shadoweave";
+	public static final String SILENAI_CRYSTAL = "Silenai Crystal";
+	public static final String MITHRIL = "Mithril";
+	public static final String MAGEPLATE = "Mageplate";
+	
 	public ArmorMaterial() {
 		super();
 	}

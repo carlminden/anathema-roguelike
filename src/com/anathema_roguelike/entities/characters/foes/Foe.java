@@ -31,7 +31,6 @@ import com.anathema_roguelike.entities.characters.foes.traits.Trait;
 import com.anathema_roguelike.entities.characters.stimuli.PerceivedStimulus;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
-import com.anathema_roguelike.main.display.VisualRepresentation;
 
 public abstract class Foe extends Character {
 	
@@ -61,9 +60,7 @@ public abstract class Foe extends Character {
 	private Role role;
 	private Corruption corruption;
 
-	public Foe(Optional<VisualRepresentation> representation, Role role, Corruption corruption, Trait<?> ... traits) {
-		super(representation);
-		
+	public Foe(Role role, Corruption corruption, Trait<?> ...traits) {
 		setFaction(Faction.FOES);
 		
 		this.role = role;

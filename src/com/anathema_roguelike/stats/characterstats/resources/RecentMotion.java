@@ -19,7 +19,7 @@ package com.anathema_roguelike.stats.characterstats.resources;
 import java.util.Optional;
 
 import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.events.TurnEvent;
+import com.anathema_roguelike.entities.characters.events.TurnEndEvent;
 import com.google.common.eventbus.Subscribe;
 
 public class RecentMotion extends Resource {
@@ -31,7 +31,7 @@ public class RecentMotion extends Resource {
 	}
 	
 	@Subscribe
-	public void handleTurnEvent(TurnEvent e) {
+	public void handleTurnStartedEvent(TurnEndEvent e) {
 		set(Optional.empty(), Optional.empty(), 0);
 	}
 }

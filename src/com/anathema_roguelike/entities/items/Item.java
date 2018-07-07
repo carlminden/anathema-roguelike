@@ -24,7 +24,6 @@ import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
-import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stats.HasStats;
 import com.anathema_roguelike.stats.StatSet;
 import com.anathema_roguelike.stats.characterstats.CharacterStat;
@@ -38,9 +37,7 @@ public abstract class Item extends Entity implements HasStats<Item, ItemStat>, H
 	private ItemStatSet stats;
 	private Optional<Character> wearer;
 	
-	public Item(Optional<VisualRepresentation> representation) {
-		super(representation);
-		
+	public Item() {
 		this.stats = new ItemStatSet(this);
 	}
 	

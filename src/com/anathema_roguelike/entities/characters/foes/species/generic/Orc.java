@@ -37,7 +37,7 @@ import com.anathema_roguelike.stats.effects.Modifier;
 public class Orc extends GenericSpecies {
 
 	public Orc(Role role, Corruption corruption) {
-		super(Optional.of(new VisualRepresentation('o', Color.GREEN)), role, corruption,
+		super(role, corruption,
 				new Supernatural<>(Strength.class),
 				new Extraordinary<>(Hearing.class),
 				new Deficient<>(Intelligence.class));
@@ -52,4 +52,8 @@ public class Orc extends GenericSpecies {
 		return "The Orc";
 	}
 	
+	@Override
+	public VisualRepresentation getVisualRepresentation() {
+		return new VisualRepresentation('o', Color.GREEN);
+	}
 }

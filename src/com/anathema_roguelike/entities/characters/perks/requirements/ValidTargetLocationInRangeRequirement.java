@@ -16,10 +16,11 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks.requirements;
 
+import java.util.function.Supplier;
+
 import com.anathema_roguelike.entities.characters.perks.actions.GenericTargetedPerk;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.Range;
-import com.anathema_roguelike.main.utilities.BooleanCondition;
 import com.anathema_roguelike.main.utilities.Utils;
 
 public class ValidTargetLocationInRangeRequirement<TargetType extends Targetable, OriginType extends Targetable> extends PerkRequirement {
@@ -33,14 +34,8 @@ public class ValidTargetLocationInRangeRequirement<TargetType extends Targetable
 	}
 
 	@Override
-	public BooleanCondition getCondition() {
-		return new BooleanCondition() {
-			
-			@Override
-			public boolean isTrue() {
-				return range.getTargets(getPerk().getCharacter()).size() > 0;
-			}
-		};
+	public Supplier<Boolean> getCondition() {
+		return () -> range.getTargets(getPerk().getCharacter()).size() > 0;
 	}
 	
 	@Override

@@ -31,7 +31,8 @@ import com.anathema_roguelike.entities.characters.actions.TakeStairsAction;
 import com.anathema_roguelike.entities.characters.actions.attacks.BasicAttack;
 import com.anathema_roguelike.entities.characters.actions.attacks.BasicAttackPerk;
 import com.anathema_roguelike.entities.characters.events.ResourceChangedEvent;
-import com.anathema_roguelike.entities.characters.events.TurnEvent;
+import com.anathema_roguelike.entities.characters.events.TurnEndEvent;
+import com.anathema_roguelike.entities.characters.events.TurnStartEvent;
 import com.anathema_roguelike.entities.characters.foes.ai.Faction;
 import com.anathema_roguelike.entities.characters.inventory.Inventory;
 import com.anathema_roguelike.entities.characters.inventory.PrimaryWeapon;
@@ -47,7 +48,6 @@ import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.environment.features.Doorway;
 import com.anathema_roguelike.environment.terrain.grounds.Stairs;
 import com.anathema_roguelike.main.display.BufferMask;
-import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.stats.HasStats;
 import com.anathema_roguelike.stats.StatSet;
@@ -92,9 +92,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	
 	protected abstract void setNextPendingAction();
 	
-	public Character(Optional<VisualRepresentation> representation) {
-		super(representation);
-		
+	public Character() {
 		new BasicAttackPerk().grant(this);
 	}
 	
@@ -175,13 +173,15 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	@Override
 	public Action<?> getNextAction() {
 		
+		getEventBus().post(new TurnStartEvent());
+		
 		if(!hasPendingActions()) {
 			turn++;
 			
 			setNextPendingAction();
 		}
 		
-		getEventBus().post(new TurnEvent());
+		getEventBus().post(new TurnEndEvent());
 		
 		return pendingActions.pop();
 	}

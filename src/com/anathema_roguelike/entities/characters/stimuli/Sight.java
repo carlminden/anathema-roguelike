@@ -37,7 +37,7 @@ public class Sight extends Stimulus {
 		if(getOwner().isPresent() && character.getLastSeenCharacterLocations().containsKey(getOwner().get())) {
 			if(character.getLastSeenCharacterLocations().get(getOwner().get()).isAdjacentTo(location)) {
 				System.out.println(character + " perceiving " + getOwner() + " at: " + location + " with magnitude: " + getMagnitude());
-				return Optional.of(new PerceivedStimulus(Optional.of(location), this, getMagnitude() + 100));
+				return Optional.of(new PerceivedStimulus(Optional.of(location), this, Math.min(getMagnitude(), getMagnitude() + 100)));
 			}
 		}
 		

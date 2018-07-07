@@ -19,6 +19,7 @@ package com.anathema_roguelike.entities.characters.perks.actions.targetingstrate
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -57,6 +58,16 @@ public abstract class Shape implements HasPosition {
 			generatePoints();
 		}
 		return pointList.get(new Random().nextInt(pointList.size()));
+	}
+	
+	public Point getRandomPassablePoint(Environment env) {
+		if(pointSet.isEmpty()) {
+			generatePoints();
+		}
+		
+		List<Point> passablePoints = pointList.stream().filter(p -> env.getLocation(p).isPassable()).collect(Collectors.toList());
+		
+		return passablePoints.get(new Random().nextInt(passablePoints.size()));
 	}
 	
 	protected void addPoint(Point p) {

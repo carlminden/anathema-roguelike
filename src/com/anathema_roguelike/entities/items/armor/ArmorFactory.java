@@ -17,7 +17,6 @@
 package com.anathema_roguelike.entities.items.armor;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Optional;
 
 import com.anathema_roguelike.entities.items.ItemFactory;
 import com.anathema_roguelike.entities.items.ItemPropertyCache;
@@ -37,13 +36,12 @@ public class ArmorFactory extends ItemFactory<Armor> {
 				
 				@Override
 				public Armor generate() {
-					ArmorType type = ItemPropertyCache.getProperty(ArmorType.class, t.getSimpleName());
 					ArmorMaterial material = Utils.getWeightedRandomSample(ItemPropertyCache.getProperties(ArmorMaterial.class));
 					
 					t.getConstructors();
 					
 					try {
-						return t.getConstructor(new Class[] { Optional.class, ArmorType.class, ArmorMaterial.class }).newInstance(Optional.empty(), type, material);
+						return t.getConstructor(new Class[] { ArmorMaterial.class }).newInstance(material);
 					} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 							| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 						throw new RuntimeException(e);

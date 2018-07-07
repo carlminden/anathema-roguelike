@@ -16,24 +16,35 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.armor;
 
-import java.util.Optional;
-
 import com.anathema_roguelike.entities.items.Item;
-import com.anathema_roguelike.main.display.VisualRepresentation;
+import com.anathema_roguelike.entities.items.ItemPropertyCache;
+import com.anathema_roguelike.main.display.Color;
+
+import squidpony.squidgrid.gui.gdx.SColor;
 
 public abstract class Armor extends Item {
 	
 	private ArmorType type;
 	private ArmorMaterial material;
 	
-	public Armor(Optional<VisualRepresentation> representation, ArmorType type, ArmorMaterial material) {
-		super(representation);
-		
+	public Armor(ArmorType type, ArmorMaterial material) {
 		this.type = type;
 		this.material = material;
 		
 		applyEffect(type.getEffect());
 		applyEffect(material.getEffect());
+	}
+	
+	public Armor(String type, String material) {
+		this(ItemPropertyCache.getProperty(ArmorType.class, type), ItemPropertyCache.getProperty(ArmorMaterial.class, material));
+	}
+	
+	public Armor(String type, ArmorMaterial material) {
+		this(ItemPropertyCache.getProperty(ArmorType.class, type), material);
+	}
+	
+	public Armor(ArmorType type, String material) {
+		this(type, ItemPropertyCache.getProperty(ArmorMaterial.class, material));
 	}
 	
 	public ArmorType getType() {
@@ -47,5 +58,28 @@ public abstract class Armor extends Item {
 	@Override
 	public String toString() {
 		return material.getName() + " " + type.getName();
+	}
+	
+	public SColor getColor() {
+		switch (material.getName()) {
+			case ArmorMaterial.UMBRALSILK:
+			case ArmorMaterial.BLACKSTEEL:
+			case ArmorMaterial.SHADOWEAVE:
+				return Color.DARK_GRAY;
+			case ArmorMaterial.CLOTH:
+			case ArmorMaterial.SILENAI_CRYSTAL:
+				return Color.WHITE;
+			case ArmorMaterial.LEATHER:
+			case ArmorMaterial.DRAGONHIDE:
+				return Color.LIGHT_BROWN;
+			case ArmorMaterial.CHAINMAIL:
+			case ArmorMaterial.COLD_IRON:
+			case ArmorMaterial.MITHRIL:
+			case ArmorMaterial.MAGEPLATE:
+			case ArmorMaterial.PLATE:
+				return Color.GRAY;
+			default:
+				return Color.ERROR;
+		}
 	}
 }

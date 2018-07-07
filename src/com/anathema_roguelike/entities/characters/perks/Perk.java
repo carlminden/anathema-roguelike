@@ -20,10 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.events.TurnEvent;
 import com.anathema_roguelike.entities.characters.perks.requirements.PerkRequirement;
-import com.anathema_roguelike.main.utilities.BooleanCondition;
-import com.google.common.eventbus.Subscribe;
 
 public abstract class Perk {
 	private Character character;
@@ -59,12 +56,8 @@ public abstract class Perk {
 		this.character = null;
 	}
 	
-	@Subscribe
-	public void handleTurnEvent(TurnEvent event) {
-		
-	}
-	
 	public void addRequirement(PerkRequirement requirement) {
+		requirement.setPerk(this);
 		requirements.add(requirement);
 	}
 	
@@ -77,25 +70,15 @@ public abstract class Perk {
 	}
 	
 	public boolean requirementsMet() {
-		return getBooleanCondition().isTrue();
+		return requirements.stream().map((r) -> r.getCondition().get()).reduce(true, (a, b) -> a && b);
 	}
 	
 	public void printUnmetConditionMessages() {
 		for(PerkRequirement requirement : requirements) {
-			if(!requirement.getCondition().isTrue()) {
+			if(!requirement.getCondition().get()) {
 				requirement.printUnmetConditionMessage();
 			}
 		}
-	}
-	
-	public BooleanCondition getBooleanCondition() {
-		BooleanCondition ret = BooleanCondition.alwaysTrue();
-		
-		for(PerkRequirement requirement : requirements) {
-			ret = BooleanCondition.and(requirement.getCondition(), ret);
-		}
-		
-		return ret;
 	}
 	
 	public Collection<PerkRequirement> getPerkRequirements() {
