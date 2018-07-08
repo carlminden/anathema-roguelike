@@ -41,7 +41,7 @@ public class VisibleLightForegroundShader extends LightLevelShader {
 		if(cell.getChar() == '.') {
 			if(light > .3f) {
 				
-				light = LightLevels.anitmateLight(light, x, y);
+				light = LightLevels.Companion.anitmateLight(light, x, y);
 				
 				objectLight = Color.factory.blend(Color.factory.blend(objectLight, Color.BLACK, .8f), objectLight, ((light) - .6));
 			} else {

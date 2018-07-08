@@ -49,7 +49,7 @@ public abstract class ItemFactory<T extends Item> implements HasWeightedProbabil
 		}
 		
 		if(getFactories(type).isEmpty()) {
-			throw new RuntimeException("This Factory does not support that type");
+			throw new RuntimeException("This AutoKClassToInstanceMapFactory does not support that type");
 		}
 		
 		ItemFactory<T> f = Utils.getWeightedRandomSample(getFactories(type));

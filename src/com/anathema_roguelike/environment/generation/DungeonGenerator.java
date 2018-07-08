@@ -35,6 +35,8 @@ import com.anathema_roguelike.main.Config;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
 
+import static jdk.nashorn.internal.objects.Global.println;
+
 public abstract class DungeonGenerator {
 	protected static final Random rand = new Random();
 	
@@ -56,7 +58,8 @@ public abstract class DungeonGenerator {
 		rooms = new FeatureGroup<>();
 		doors = new FeatureGroup<>();
 		tunnelSystems = new FeatureGroup<>();
-		
+
+		System.out.println(map.length);
 		for(int i = 0; i < map.length; i++) {
 			for(int j = 0; j < map[i].length; j++) {
 				map[i][j] = new Location(level, new Point(i, j), level.getEventBus(), new StoneWall());

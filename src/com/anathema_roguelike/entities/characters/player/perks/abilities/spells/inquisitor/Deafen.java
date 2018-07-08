@@ -4,7 +4,7 @@ import com.anathema_roguelike.entities.characters.perks.actions.OffensiveTargete
 import com.anathema_roguelike.entities.characters.player.classes.Inquisitor;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.spells.Spell;
 
-public class Deafen extends Spell<OffensiveTargetedPerk> {
+public class Deafen extends Spell<OffensiveTargetedPerk<?>> {
 
 	public Deafen() {
 		super(2, Inquisitor.class);
