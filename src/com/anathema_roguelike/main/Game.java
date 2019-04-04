@@ -53,13 +53,9 @@ public class Game extends ApplicationAdapter {
 
 	public static void main(String[] args) {
 		
-		Thread.currentThread().setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-			
-			@Override
-			public void uncaughtException(Thread arg0, Throwable arg1) {
-				System.out.println("Thread " + arg0);
-				arg1.printStackTrace();
-			}
+		Thread.currentThread().setUncaughtExceptionHandler((arg0, arg1) -> {
+			System.out.println("Thread " + arg0);
+			arg1.printStackTrace();
 		});
 		
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();

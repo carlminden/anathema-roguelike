@@ -24,7 +24,7 @@ import squidpony.squidgrid.gui.gdx.SColor;
 
 public class Blink extends PersistentAnimation {
 
-	VisualRepresentation representation;
+	private VisualRepresentation representation;
 	
 	public Blink(VisualRepresentation representation, Point position, float duration) {
 		super(position, duration);

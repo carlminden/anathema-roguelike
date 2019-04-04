@@ -40,8 +40,7 @@ public class DirectionVector {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + direction;
-		result = prime * result
-				+ ((position == null) ? 0 : position.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
 		return result;
 	}
 
@@ -57,10 +56,7 @@ public class DirectionVector {
 		if (direction != other.direction)
 			return false;
 		if (position == null) {
-			if (other.position != null)
-				return false;
-		} else if (!position.equals(other.position))
-			return false;
-		return true;
+			return other.position == null;
+		} else return position.equals(other.position);
 	}
 }

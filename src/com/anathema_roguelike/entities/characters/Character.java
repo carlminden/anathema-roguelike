@@ -15,13 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import com.anathema_roguelike.actors.Action;
 import com.anathema_roguelike.entities.Entity;
@@ -61,8 +54,11 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visi
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.VisibilityLevel;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.stats.effects.HasEffect;
-import com.google.common.base.Predicate;
 import com.google.common.eventbus.Subscribe;
+
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public abstract class Character extends Entity implements HasStats<Character, CharacterStat> {
 	
@@ -80,7 +76,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	private boolean alive = true;
 	
 	private double facing = Direction.UP;
-	BufferMask currentVisibility;
+	private BufferMask currentVisibility;
 	
 	private CharacterStats stats = new CharacterStats(this, getEventBus());
 	private PerceivedStimuli percievedStimuli = new PerceivedStimuli(this);
@@ -122,7 +118,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 	}
 	
 	public <T extends Perk> Collection<T> getPerks(Class<T> superclass, Predicate<T> predicate) {
-		return perks.get(superclass, predicate);
+		return perks.get(superclass, predicate::test);
 	}
 	
 	public void addPerk(Perk perk) {
@@ -167,11 +163,11 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		computeVisibility();
 		
 		lastSeenCharacterLocations.clear();
-		getCurrentlyVisibleCharacters().stream().forEach(c -> lastSeenCharacterLocations.put(c, c.getLocation()));
+		getCurrentlyVisibleCharacters().forEach(c -> lastSeenCharacterLocations.put(c, c.getLocation()));
 	}
 	
 	@Override
-	public Action<?> getNextAction() {
+	public Optional<Action<?>> getNextAction() {
 		
 		getEventBus().post(new TurnStartEvent());
 		
@@ -183,7 +179,7 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		
 		getEventBus().post(new TurnEndEvent());
 		
-		return pendingActions.pop();
+		return Optional.of(pendingActions.pop());
 	}
 	
 	@Subscribe

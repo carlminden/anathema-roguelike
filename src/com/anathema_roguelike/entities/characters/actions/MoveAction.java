@@ -31,12 +31,11 @@ public class MoveAction extends CharacterAction implements HasLocation {
 	
 	private Location location;
 
-	@SafeVarargs
 	public MoveAction(Character character, EnergyCost energyCost, HasLocation location, ActionCost ...costs) {
 		super(character, energyCost, costs);
 		
 		this.location = location.getLocation();
-		
+
 		addCost(new StimulusCost<>(character, Sight.class, () -> character.getStatAmount(Visibility.class)));
 		addCost(new StimulusCost<>(character, Sight.class, () -> character.getStatAmount(Visibility.class), location, true));
 	}

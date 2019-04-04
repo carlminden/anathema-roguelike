@@ -21,5 +21,5 @@ public abstract class ConditionalCost<T extends Action<?>, C extends ActionCost>
 		}
 	}
 	
-	protected abstract boolean conditionMet(T action);
+	abstract boolean conditionMet(T action);
 }

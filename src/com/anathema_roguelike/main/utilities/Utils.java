@@ -16,39 +16,28 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.utilities;
 
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Properties;
-import java.util.Set;
-import java.util.stream.Collectors;
-
+import com.anathema_roguelike.main.display.Color;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
+import gigadot.rebound.Rebound;
 import org.apache.commons.math3.distribution.EnumeratedDistribution;
 import org.apache.commons.math3.util.Pair;
 import org.reflections.Reflections;
-
-import com.anathema_roguelike.main.display.Color;
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.common.collect.Collections2;
-
-import gigadot.rebound.Rebound;
 import squidpony.squidgrid.gui.gdx.SColor;
+
+import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Utils {
 	
 	private static HashMap<Class<?>, ArrayList<?>> subtypeCache = new HashMap<>();
 	private static HashMap<Class<? extends Annotation>, Set<Class<?>>> annotationCache = new HashMap<>();
 	
-	public static Properties names;
-	public static Properties descriptions;
-	public static Properties colors;
+	private static Properties names;
+	private static Properties descriptions;
+	private static Properties colors;
 	
 	static {
 		try {
@@ -99,15 +88,15 @@ public class Utils {
 	}
 	
 	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass) {
-		return getSubclasses(superclass, false, false, Predicates.alwaysTrue());
+		return getSubclasses(superclass, false, false, c -> true);
 	}
 	
 	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, boolean includeAbstract) {
-		return getSubclasses(superclass, includeAbstract, false, Predicates.alwaysTrue());
+		return getSubclasses(superclass, includeAbstract, false, c -> true);
 	}
 	
 	public static <T> Collection<Class<? extends T>> getSubclasses(Class<T> superclass, boolean includeAbstract, boolean includeSuperclass) {
-		return getSubclasses(superclass, includeAbstract, includeSuperclass, Predicates.alwaysTrue());
+		return getSubclasses(superclass, includeAbstract, includeSuperclass, c -> true);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -127,15 +116,9 @@ public class Utils {
 			}
 			
 			ArrayList<Class<? extends T>> sorted = new ArrayList<>(subTypes);
-			Collections.sort(sorted,
-				new Comparator<Class<? extends T>>() {
-					@Override
-					public int compare(Class<? extends T> o1, Class<? extends T> o2) {
-						return o1.getName().compareTo(o2.getName());
-					}
-				});
+			Collections.sort(sorted, Comparator.comparing(Class::getName));
 			
-			subtypeCache.put((Class<?>)superclass, (ArrayList<Class<? extends T>>)sorted);
+			subtypeCache.put(superclass, sorted);
 			
 			ret = new ArrayList<>(sorted);
 		}
@@ -209,7 +192,7 @@ public class Utils {
 				if (obj.getClass().getMethod("toString").getDeclaringClass() != Object.class){
 					return obj.toString();
 				}
-			} catch (NoSuchMethodException | SecurityException e) { }
+			} catch (NoSuchMethodException | SecurityException ignored) { }
 		}
 		
 		Class<?> cls = classify(obj);

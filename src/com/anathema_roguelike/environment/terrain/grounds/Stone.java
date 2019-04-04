@@ -28,6 +28,8 @@ public class Stone extends Ground {
 	
 	@Override
 	public void renderToFogOfWar() {
-		Game.getInstance().getMap().renderChar(DungeonLayer.LIT_FOG_OF_WAR_FOREGROUND, getX(), getY(), getRepresentation().getChar(), Color.FOG_OF_WAR_GROUND);
+		Game.getInstance().getMap().renderChar(
+				DungeonLayer.LIT_FOG_OF_WAR_FOREGROUND, getX(), getY(),getRepresentation().getChar(), Color.FOG_OF_WAR_GROUND
+		);
 	}
 }

@@ -25,7 +25,7 @@ import com.anathema_roguelike.main.display.VisualRepresentation;
 public abstract class Stimulus {
 	
 	private double magnitude;
-	Optional<Character> owner = Optional.empty();
+	private Optional<Character> owner = Optional.empty();
 	
 	public Stimulus(double magnitude) {
 		this.magnitude = magnitude;

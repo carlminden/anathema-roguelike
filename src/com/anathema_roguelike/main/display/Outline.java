@@ -78,6 +78,6 @@ public abstract class Outline implements Renderable {
 	}
 
 	public void setOffset(Point point) {
-		this.offset = offset;
+		this.offset = point;
 	}
 }

@@ -104,13 +104,13 @@ public class Message {
 	}
 	
 	public String toString() {
-		String ret = "";
+		StringBuilder ret = new StringBuilder();
 		
 		for(MessagePart part : message) {
-			ret += part;
+			ret.append(part);
 		}
 		
-		return ret;
+		return ret.toString();
 	}
 	
 	public static ArrayList<Message> split(Message longMessage, int width) {

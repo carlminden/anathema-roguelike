@@ -1,8 +1,11 @@
 package com.anathema_roguelike.entities.characters.perks.actions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.anathema_roguelike.actors.Action;
+import com.anathema_roguelike.actors.Actor;
 import com.anathema_roguelike.actors.Duration;
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.CharacterAction;
@@ -36,8 +39,8 @@ public abstract class LingeringTargetedActionPerk<TargetType extends Targetable,
 				new LingeringActivation(duration) {
 
 					@Override
-					protected Action<?> createLingeringAction() {
-						return LingeringTargetedActionPerk.super.activate().get();
+					protected Optional<Action<?>> createLingeringAction() {
+						return LingeringTargetedActionPerk.super.activate().map(a -> a);
 					}
 				};
 			}

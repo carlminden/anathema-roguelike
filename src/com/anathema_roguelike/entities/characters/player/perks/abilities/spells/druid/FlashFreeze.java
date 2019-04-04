@@ -31,7 +31,7 @@ public class FlashFreeze extends Spell<TargetedPerk<Targetable>> {
 				protected TargetedAction<Targetable, Targetable> createAction() {
 					// TODO Auto-generated method stub
 					ActionCosts costs = new ActionCosts();
-					return new TargetedAction<Targetable, Targetable>(getCharacter(), EnergyCost.STANDARD(getCharacter()), costs,
+					return new TargetedAction<>(getCharacter(), EnergyCost.STANDARD(getCharacter()), costs,
 							new TargetEffect<Location, LocationStat>(Location.class, "Flash Freeze") {
 						// TODO Auto-generated method stub
 					}

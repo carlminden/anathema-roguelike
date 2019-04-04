@@ -108,7 +108,6 @@ public class GetTargetInterface<T extends Targetable> extends InteractiveUIEleme
 			        	finish();
 			        	return;
 			        default:
-			        	return;
 				}
 			}
 		}.handle(key, alt, ctrl, shift);
@@ -137,7 +136,10 @@ public class GetTargetInterface<T extends Targetable> extends InteractiveUIEleme
 		mapBorder.render();
 		
 		
-		Game.getInstance().getDisplay().renderOutline(DisplayLayer.DUNGEON_OVERLAY, new PointsOutline(UIConfig.DUNGEON_OFFSET, targets.getTargets().stream().map(t -> t.getPosition()).collect(Collectors.toList()), Color.ERROR));
+		Game.getInstance().getDisplay().renderOutline(
+			DisplayLayer.DUNGEON_OVERLAY,
+			new PointsOutline(UIConfig.DUNGEON_OFFSET,targets.getTargets().stream().map(t -> t.getPosition()).collect(Collectors.toList()),Color.ERROR)
+		);
 	}
 	
 	private T currentlyTargeted() {

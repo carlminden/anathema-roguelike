@@ -21,10 +21,10 @@ import com.anathema_roguelike.entities.characters.perks.actions.OffensiveTargete
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.SingleTargeted;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.PrimaryWeaponRange;
 
-public class BasicAttackPerk extends OffensiveTargetedPerk<Character> {
+public class BasicAttackPerk extends OffensiveTargetedPerk {
 
 	public BasicAttackPerk() {
-		super("Basic Attack", new PrimaryWeaponRange<Character>(Character.class), new SingleTargeted<Character>(Character.class));
+		super("Basic Attack", new PrimaryWeaponRange<>(Character.class), new SingleTargeted<>(Character.class));
 	}
 
 	@Override

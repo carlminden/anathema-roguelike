@@ -33,12 +33,12 @@ import com.anathema_roguelike.main.utilities.position.Point;
 
 public class Cave extends Room {
 	
-	boolean[][] cells;
-	boolean[][] cells2;
+	private boolean[][] cells;
+	private boolean[][] cells2;
 	
 	private Random rand = new Random();
 	
-	ArrayList<Point> floors = new ArrayList<>();
+	private ArrayList<Point> floors = new ArrayList<>();
 	
 	public Cave(int depth, int averageWidth, int averageHeight) {
 		super(depth, 15, 15, averageWidth, averageHeight);
@@ -96,7 +96,7 @@ public class Cave extends Room {
 			
 			for(int i = 0; i < getWidth(); i++) {
 				for(int j = 0; j < getHeight(); j++) {
-					cells2[i][j] = cells[i][j];	
+					cells2[i][j] = cells[i][j];
 				}
 			}
 			

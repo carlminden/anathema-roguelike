@@ -58,14 +58,8 @@ public class AIPathFinder extends PathFinder {
 		Location location = character.getEnvironment().getLocation(p);
 		
 		int ret = 0;
-		
-		if(Iterables.any(location.getEntities(Character.class), new Predicate<Character>() {
 
-			@Override
-			public boolean apply(Character other) {
-				return Faction.friendly(character, other);
-			}
-		})) {
+		if(location.getEntities(Character.class).stream().anyMatch(c -> Faction.friendly(character, c))) {
 			ret += 50;
 		}
 		

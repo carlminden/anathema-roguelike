@@ -114,8 +114,7 @@ public class PlayerKeyHandler extends DirectionalKeyHandler {
 	        	player.levelUp();
 	        	return;
 	        default:
-	        	return;
-	    }
+		}
 	}
 
 }

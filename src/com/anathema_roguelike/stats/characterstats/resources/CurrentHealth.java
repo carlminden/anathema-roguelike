@@ -35,7 +35,7 @@ public class CurrentHealth extends BoundedResource {
 			
 			Character character = getObject();
 			
-			int remainder = (int) Math.min(0, amount);
+			int remainder = Math.min(0, amount);
 			
 			super.modify(initiator, source, remainder);
 			

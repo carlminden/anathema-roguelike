@@ -20,7 +20,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class Latch {
 	
-	CountDownLatch latch = new CountDownLatch(1);
+	private CountDownLatch latch = new CountDownLatch(1);
 	
 	public void await() {
 		try {

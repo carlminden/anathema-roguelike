@@ -18,6 +18,7 @@ package com.anathema_roguelike.entities.characters.actions.attacks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 import com.anathema_roguelike.entities.characters.Character;
@@ -39,7 +40,7 @@ public abstract class WeaponAttack extends Attack<Character, Character> {
 	
 	@SafeVarargs
 	public WeaponAttack(Character attacker, Character target, ActionCosts costs, TargetEffect<Character, ?> ...targetEffects) {
-		super(attacker, target, new ArrayList<>(Arrays.asList(target)), getEnergyCost(attacker), costs, targetEffects);
+		super(attacker, target, Collections.singletonList(target), getEnergyCost(attacker), costs, targetEffects);
 		
 		addTargetEffect(getWeaponAttackEffect());
 	}
@@ -53,7 +54,7 @@ public abstract class WeaponAttack extends Attack<Character, Character> {
 	
 	@SafeVarargs
 	public WeaponAttack(Character attacker, Character target, TargetEffect<Character, ?> ...targetEffects) {
-		super(attacker, target, new ArrayList<>(Arrays.asList(target)), getEnergyCost(attacker), targetEffects);
+		super(attacker, target, Collections.singletonList(target), getEnergyCost(attacker), targetEffects);
 		
 		addTargetEffect(getWeaponAttackEffect());
 	}

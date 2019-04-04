@@ -55,10 +55,10 @@ public class ArmorMaterial extends ArmorProperty {
 	public Optional<Effect<Item, ItemStat>> getEffect() {
 		
 		return Optional.of(new Effect<Item, ItemStat>(this,
-				new Modifier<Item, ConcealmentDefense>(ConcealmentDefense.class, MultiplicativeCalculation.build(() -> getConcealment())),
-				new Modifier<Item, AttenuationDefense>(AttenuationDefense.class, MultiplicativeCalculation.build(() -> getAttenuation())),
-				new Modifier<Item, VeilDefense>(VeilDefense.class, MultiplicativeCalculation.build(() -> getVeil())),
-				new Modifier<Item, Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
+				new Modifier<>(ConcealmentDefense.class, MultiplicativeCalculation.build(() -> getConcealment())),
+				new Modifier<>(AttenuationDefense.class, MultiplicativeCalculation.build(() -> getAttenuation())),
+				new Modifier<>(VeilDefense.class, MultiplicativeCalculation.build(() -> getVeil())),
+				new Modifier<>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
 		));
 	}
 }

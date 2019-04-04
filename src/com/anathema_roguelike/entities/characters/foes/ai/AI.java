@@ -64,12 +64,12 @@ public class AI {
 		if(target.isPresent()) {
 			Path path = pathfinder.getPath(npc, target.get());
 			
-			if(path != null && !npc.getPosition().equals(target.get())) {
+			if(path != null && !npc.getLocation().equals(target.get())) {
 				
 				if(npc.getFacing() != Direction.angleOf(npc, target.get())) {
 					npc.addPendingAction(new TurnAction(npc, Direction.angleOf(npc, target.get())));
 				} else {
-					npc.move(Direction.of(npc.getPosition(), path.get(1)));
+					npc.move(Direction.of(npc.getLocation(), path.get(1)));
 				}
 			} else {
 				randomStep();
@@ -102,7 +102,7 @@ public class AI {
 				if(npc.getEnvironment().isPassable(reverse)) {
 					npc.addPendingAction(new TurnAction(npc, (npc.getFacing() + 180) % 360));
 				} else {
-					List<Integer> passableDirections = Arrays.asList(Direction.DIRECTIONS_8).stream()
+					List<Integer> passableDirections = Arrays.stream(Direction.DIRECTIONS_8)
 						.filter(d -> npc.getEnvironment().isPassable(Direction.offset(npc.getPosition(), d)))
 						.collect(Collectors.toList());
 					

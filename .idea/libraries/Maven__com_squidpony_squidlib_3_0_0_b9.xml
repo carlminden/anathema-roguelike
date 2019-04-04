@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.squidpony:squidlib:3.0.0-b9">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/squidpony/squidlib/3.0.0-b9/squidlib-3.0.0-b9.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/squidpony/squidlib/3.0.0-b9/squidlib-3.0.0-b9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/squidpony/squidlib/3.0.0-b9/squidlib-3.0.0-b9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

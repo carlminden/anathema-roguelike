@@ -23,7 +23,7 @@ public abstract class Feature extends LocationProperty {
 	
 	public enum Priority { LOW, DEFAULT, HIGH, DEBUG }
 	
-	protected Priority renderPriority = Priority.DEFAULT;
+	private Priority renderPriority = Priority.DEFAULT;
 	
 	
 	public Feature(VisualRepresentation representation, VisualRepresentation fogOfWarRepresentation,

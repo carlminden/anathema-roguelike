@@ -30,23 +30,19 @@ public abstract class PathFinder {
 
 	public Path getPath(final Point src, final Point dst) {
 		
-		Comparator<Node> f = new Comparator<Node>() {
-
-			@Override
-			public int compare(Node o1, Node o2) {
-				int df = o1.getF() - o2.getF();
-				if(df == 0){
-					return o1.getPosition().compareTo(o2.getPosition());
-				} else {
-					return df;
-				}
+		Comparator<Node> f = (o1, o2) -> {
+			int df = o1.getF() - o2.getF();
+			if(df == 0){
+				return o1.getPosition().compareTo(o2.getPosition());
+			} else {
+				return df;
 			}
 		};
 		
 		HashMap<Point, Node> closed = new HashMap<>();
 		
 		HashMap<Point, Node> openMap = new HashMap<>();
-		PriorityQueue<Node> openQueue = new PriorityQueue<Node>(25, f);
+		PriorityQueue<Node> openQueue = new PriorityQueue<>(25, f);
 		
 		Node startingNode = new Node(null, dst, 0, 0, distance(dst, src));
 		
@@ -62,26 +58,25 @@ public abstract class PathFinder {
 			openMap.remove(current.getPosition());
 			
 			closed.put(current.getPosition(), current);
-			
-			for(int i = 0; i < directions.length; i++) {
-				
-				int direction = directions[i];
+
+			for (int direction : directions) {
+
 				final Point neighbor = Direction.offset(current.getPosition(), direction);
-				
-				if(!closed.containsKey(neighbor) && isPassable(neighbor, direction)) {
-					
+
+				if (!closed.containsKey(neighbor) && isPassable(neighbor, direction)) {
+
 					int cost = getBaseCost(neighbor, direction, current.getDirection()) + getExtraCost(neighbor, direction, current.getDirection());
-					
+
 					Node neighborNode = new Node(current, neighbor, direction, current.getG() + cost, distance(neighbor, src));
-					
-					if(!openMap.containsKey(neighbor)) {
+
+					if (!openMap.containsKey(neighbor)) {
 						openQueue.add(neighborNode);
 						openMap.put(neighborNode.getPosition(), neighborNode);
-					} else if(openMap.get(neighbor).getG() > (current.getG() + cost)) {
-						
+					} else if (openMap.get(neighbor).getG() > (current.getG() + cost)) {
+
 						Node old = openMap.get(neighbor);
 						openQueue.remove(old);
-						
+
 						old.setParent(current);
 						old.setG(current.getG() + cost);
 						openQueue.add(old);

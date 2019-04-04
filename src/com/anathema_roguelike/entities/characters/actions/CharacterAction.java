@@ -24,8 +24,7 @@ import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.entities.characters.perks.actions.ActionCostModificationPerk;
 
 public abstract class CharacterAction extends Action<Character> {
-	
-	@SafeVarargs
+
 	public CharacterAction(Character character, EnergyCost energyCost, ActionCost... costs) {
 		super(character, energyCost, costs);
 	}

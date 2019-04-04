@@ -53,18 +53,13 @@ public class Duration implements Comparable<Duration> {
 	}
 	
 	public void delay(double amount) {
-		if(initialDuration == PERMANENT) {
-			return;
-		} else {
+		if(initialDuration != PERMANENT) {
 			remainingDuration += amount;
 		}
-		
 	}
 	
 	public void elapse(double amount) {
-		if(initialDuration == PERMANENT) {
-			return;
-		} else {
+		if(initialDuration != PERMANENT) {
 			remainingDuration -= amount;
 		}
 	}

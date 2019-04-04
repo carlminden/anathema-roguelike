@@ -3,6 +3,5 @@ package com.anathema_roguelike.entities.characters.perks.actions.targetingstrate
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 
 public interface TargetConstraint<T extends Targetable, A> {
-	
-	public abstract boolean apply(T target, A arg);
+	boolean apply(T target, A arg);
 }

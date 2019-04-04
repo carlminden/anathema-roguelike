@@ -22,8 +22,8 @@ public class WaitAction extends TargetedAction<Character, Character> {
 			public Optional<Effect<Character, CharacterStat>> getEffect() {
 				return Optional.of(
 						new Effect<>(this, new Duration(Duration.VERY_SHORT), 
-								new Modifier<Character, Vision>(Vision.class, AdditiveCalculation.fixed(5.0)),
-								new Modifier<Character, Hearing>(Hearing.class, AdditiveCalculation.fixed(5.0))
+								new Modifier<>(Vision.class, AdditiveCalculation.fixed(5.0)),
+								new Modifier<>(Hearing.class, AdditiveCalculation.fixed(5.0))
 							)
 						);
 			}

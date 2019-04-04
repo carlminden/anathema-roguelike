@@ -18,11 +18,11 @@ package com.anathema_roguelike.stats.effects;
 
 public interface MultiplicativeCalculation extends Calculation {
 	
-	public static MultiplicativeCalculation build(MultiplicativeCalculation mc) {
+	static MultiplicativeCalculation build(MultiplicativeCalculation mc) {
 		return mc;
 	}
 	
-	public static MultiplicativeCalculation fixed(double value) {
+	static MultiplicativeCalculation fixed(double value) {
 		return () -> value;
 	}
 }

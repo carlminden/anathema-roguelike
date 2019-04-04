@@ -17,8 +17,8 @@
 package com.anathema_roguelike.main.ui.uielements;
 
 public interface Rectangular {
-	public int getWidth();
-	public int getHeight();
-	public int getX();
-	public int getY();
+	int getWidth();
+	int getHeight();
+	int getX();
+	int getY();
 }

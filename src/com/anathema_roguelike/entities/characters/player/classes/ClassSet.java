@@ -20,9 +20,7 @@ public class ClassSet {
 		
 		this.character = character;
 		
-		Utils.getSubclasses(PlayerClass.class).forEach(c -> {
-			classLevels.put(c, 0);
-		});
+		Utils.getSubclasses(PlayerClass.class).forEach(c -> classLevels.put(c, 0));
 	}
 	
 	public int getClassLevels(Class<? extends PlayerClass> playerClass) {
@@ -37,6 +35,6 @@ public class ClassSet {
 	}
 	
 	public Collection<Class<? extends PlayerClass>> getClasses() {
-		return Collections2.filter(classLevels.entrySet(), (e) -> e.getValue() > 0).stream().map(e -> e.getKey()).collect(Collectors.toList());
+		return Collections2.filter(classLevels.entrySet(), e -> e.getValue() > 0).stream().map(e -> e.getKey()).collect(Collectors.toList());
 	}
 }

@@ -16,8 +16,8 @@ public class Rock extends Item {
 	public Rock() {
 		super();
 		
-		applyEffect(Optional.of(new Effect<Item, ItemStat>(null,
-				new Modifier<Item, Weight>(Weight.class, AdditiveCalculation.fixed(1.0))
+		applyEffect(Optional.of(new Effect<>(null,
+				new Modifier<>(Weight.class, AdditiveCalculation.fixed(1.0))
 		)));
 	}
 

@@ -8,8 +8,7 @@ import java.util.stream.Stream;
 public class ActionCosts {
 	
 	private Collection<ActionCost> costs;
-	
-	@SafeVarargs
+
 	public ActionCosts(ActionCost ...costs) {
 		this.costs = new ArrayList<ActionCost>(Arrays.asList(costs));
 	}

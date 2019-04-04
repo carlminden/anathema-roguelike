@@ -53,7 +53,7 @@ public class PointBuyScreen extends MenuScreen<Class<? extends Attribute>, Point
 		this.player = player;
 	}
 	
-	protected void updateCurrentValues() {
+	private void updateCurrentValues() {
 		
 		Message instructionsMessage = new Message("You have ");
 		instructionsMessage.appendMessage(Integer.toString(menu.getPoints()), Color.GREEN);
@@ -73,14 +73,10 @@ public class PointBuyScreen extends MenuScreen<Class<? extends Attribute>, Point
 			Collection<? extends Class<? extends Attribute>> choices, boolean cancellable, float background) {
 		menu = new PointBuyMenu(position, width, height, cancellable, 1, player);
 		
-		TextBox currentValues = new MenuValues<Class<? extends Attribute>>(menu, 18, 0, attributes.size(), new Function<Class<? extends Attribute>, Message>() {
+		TextBox currentValues = new MenuValues<>(menu, 18, 0, attributes.size(), attribute -> {
+			int current = (int) menu.getPlayer().getStatAmount(attribute);
 
-			@Override
-			public Message apply(@Nullable Class<? extends Attribute> attribute) {
-				int current = (int) menu.getPlayer().getStatAmount(attribute);
-				
-				return new Message(Integer.toString(current), Color.GREEN);
-			}
+			return new Message(Integer.toString(current), Color.GREEN);
 		}, 1.0f);
 		
 		addUIElement(currentValues);

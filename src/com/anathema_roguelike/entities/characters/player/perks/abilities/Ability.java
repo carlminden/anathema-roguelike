@@ -20,9 +20,9 @@ import com.anathema_roguelike.entities.characters.Character;
 
 public interface Ability {
 	
-	public abstract Character getCharacter();
+	Character getCharacter();
 	
-	default public int getSpecializationLevel() {
+	default int getSpecializationLevel() {
 		return getCharacter().getSpecialization(getClass());
 	}
 }

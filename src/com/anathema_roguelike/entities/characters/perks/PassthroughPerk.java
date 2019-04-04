@@ -20,7 +20,7 @@ import com.anathema_roguelike.entities.characters.Character;
 
 public abstract class PassthroughPerk<T extends Perk> extends Perk {
 	
-	T perk;
+	private T perk;
 	
 	public PassthroughPerk() {
 		super("");

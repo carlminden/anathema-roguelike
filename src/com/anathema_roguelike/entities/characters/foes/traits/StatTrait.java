@@ -44,9 +44,9 @@ public class StatTrait<T extends CharacterStat> extends Trait<PassivePerk> {
 			@Override
 			public Optional<Buff> getEffect() {
 				if(additiveCalculation != null) {
-					return Optional.<Buff>of(new Buff(this, new Modifier<Character, T>(stat, additiveCalculation)));
+					return Optional.<Buff>of(new Buff(this, new Modifier<>(stat, additiveCalculation)));
 				} else {
-					return Optional.<Buff>of(new Buff(this, new Modifier<Character, T>(stat, multiplicativeCalculation)));
+					return Optional.<Buff>of(new Buff(this, new Modifier<>(stat, multiplicativeCalculation)));
 				}
 			}
 		};

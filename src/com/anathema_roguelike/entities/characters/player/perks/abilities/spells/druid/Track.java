@@ -5,14 +5,14 @@ import com.anathema_roguelike.entities.characters.perks.actions.OffensiveTargete
 import com.anathema_roguelike.entities.characters.player.classes.Druid;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.spells.Spell;
 
-public class Track extends Spell<OffensiveTargetedPerk<Character>> {
+public class Track extends Spell<OffensiveTargetedPerk> {
 
 	public Track() {
 		super(1, Druid.class);
 	}
 
 	@Override
-	protected OffensiveTargetedPerk<Character> createPerk() {
+	protected OffensiveTargetedPerk createPerk() {
 		// TODO Auto-generated method stub
 		return null;
 	}

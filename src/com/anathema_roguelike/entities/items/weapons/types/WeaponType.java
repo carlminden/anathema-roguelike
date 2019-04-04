@@ -68,11 +68,11 @@ public abstract class WeaponType extends WeaponProperty implements ItemType<Weap
 	@Override
 	public java.util.Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return java.util.Optional.of(new Effect<Item, ItemStat>(this,
-				new Modifier<Item, WeaponSpeed>(WeaponSpeed.class, AdditiveCalculation.build(() -> getAttackSpeed())),
-				new Modifier<Item, BaseWeaponDamage>(BaseWeaponDamage.class, AdditiveCalculation.build(() -> getDamage())),
-				new Modifier<Item, WeaponRange>(WeaponRange.class, AdditiveCalculation.build(() -> getRange())),
-				new Modifier<Item, Weight>(Weight.class, AdditiveCalculation.build(() -> getWeight()))
+		return java.util.Optional.of(new Effect<>(this,
+				new Modifier<>(WeaponSpeed.class, AdditiveCalculation.build(() -> getAttackSpeed())),
+				new Modifier<>(BaseWeaponDamage.class, AdditiveCalculation.build(() -> getDamage())),
+				new Modifier<>(WeaponRange.class, AdditiveCalculation.build(() -> getRange())),
+				new Modifier<>(Weight.class, AdditiveCalculation.build(() -> getWeight()))
 		));
 	}
 }

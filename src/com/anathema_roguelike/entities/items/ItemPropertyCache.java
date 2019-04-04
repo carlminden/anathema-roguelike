@@ -50,8 +50,7 @@ public abstract class ItemPropertyCache {
 
 	static {
 		
-		Builder<Class<? extends ItemProperty<?>>, String, ItemProperty<?>> builder = ImmutableTable
-				.<Class<? extends ItemProperty<?>>, String, ItemProperty<?>> builder();
+		Builder<Class<? extends ItemProperty<?>>, String, ItemProperty<?>> builder = ImmutableTable.builder();
 
 		loadPropertyFile(builder, ArmorMaterial.class, "/items/materials/armor_materials.csv", cellProcessors(4));
 		loadPropertyFile(builder, ArmorType.class, "/items/armor_types.csv", cellProcessors(4));

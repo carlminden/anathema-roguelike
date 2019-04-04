@@ -34,8 +34,8 @@ public abstract class LocationProperty implements HasEffect<Effect<Location, Loc
 	private double damping;
 	private double brightness = 0;
 	
-	DungeonLayer layer;
-	DungeonLayer fogOfWarLayer;
+	private DungeonLayer layer;
+	private DungeonLayer fogOfWarLayer;
 	
 	public LocationProperty(VisualRepresentation representation, VisualRepresentation fogOfWarRepresentation, boolean foreground, boolean passable, double opacity, double damping) {
 		this.passable = passable;

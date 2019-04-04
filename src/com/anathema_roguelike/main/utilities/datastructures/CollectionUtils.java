@@ -25,12 +25,6 @@ public abstract class CollectionUtils {
 	
 	@SuppressWarnings(value = { "unchecked" })
 	public static <U, F extends U> Collection<F> filterByClass(Collection<U> unfiltered, final Class<F> cls) {
-		return (Collection<F>) Collections2.filter(unfiltered, new Predicate<U>() {
-
-			@Override
-			public boolean apply(U superclass) {
-				return cls.isAssignableFrom(superclass.getClass());
-			}
-		});
+		return (Collection<F>) Collections2.filter(unfiltered, superclass -> cls.isAssignableFrom(superclass.getClass()));
 	}
 }

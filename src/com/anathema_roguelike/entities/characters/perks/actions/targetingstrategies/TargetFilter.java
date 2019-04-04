@@ -26,9 +26,9 @@ public abstract class TargetFilter<T extends Targetable, A> {
 	public abstract Collection<T> getTargets(A arg);
 	
 	protected Collection<T> getTargetsInShape(Shape shape, Environment environment, A arg) {
-		Collection<T> targets = new HashSet<T>();
+		Collection<T> targets = new HashSet<>();
 		
-		shape.getLocations(environment).stream().forEach(l -> {
+		shape.getLocations(environment).forEach(l -> {
 			targets.addAll(getTargetsAt(l, arg));
 		});
 		
@@ -36,18 +36,17 @@ public abstract class TargetFilter<T extends Targetable, A> {
 	}
 	
 	private Collection<T> getTargetsAt(Location location, A arg) {
-		Collection<Targetable> targets = new HashSet<Targetable>();
+		Collection<Targetable> targets = new HashSet<>();
 		
 		targets.add(location);
 		targets.addAll(location.getEntities());
 		
 		Collection<T> ret = Utils.filterBySubclass(targets, targetType);
 		
-		ret = ret.stream().filter(t -> {
-			return constraints.stream().allMatch(c -> c.apply(t, arg));
-		}).collect(Collectors.toList());
-		
-		return ret;
+		return ret.stream()
+				.filter(t -> constraints.stream()
+				.allMatch(c -> c.apply(t, arg)))
+				.collect(Collectors.toList());
 	}
 	
 	

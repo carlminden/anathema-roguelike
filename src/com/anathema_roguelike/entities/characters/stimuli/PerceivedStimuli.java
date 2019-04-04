@@ -13,6 +13,8 @@ import com.anathema_roguelike.environment.Location;
 import com.google.common.collect.TreeMultiset;
 import com.google.common.eventbus.Subscribe;
 
+import javax.annotation.Nonnull;
+
 public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 	
 	private Character character;
@@ -25,25 +27,19 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 			double stimulus1 = o1.getRemainingMagnitude();
 			double stimulus2 = o2.getRemainingMagnitude();
 			
-			if(o1.getLocation().isPresent() && !character.getPosition().equals(o1.getLocation().get())) {
+			if(o1.getLocation().isPresent() && !character.getLocation().equals(o1.getLocation().get())) {
 				stimulus1 += 20/o1.getLocation().get().squareDistance(character);
 			}
 			
-			if(o2.getLocation().isPresent() && !character.getPosition().equals(o2.getLocation().get())) {
+			if(o2.getLocation().isPresent() && !character.getLocation().equals(o2.getLocation().get())) {
 				stimulus2 += 20/o2.getLocation().get().squareDistance(character);
 			}
-			
-			if(stimulus1 > stimulus2) {
-				return 1;
-			} else if(stimulus2 > stimulus1) {
-				return -1;
-			} else {
-				return 0;
-			}
+
+			return Double.compare(stimulus1, stimulus2);
 		}
 	};
 	
-	TreeMultiset<PerceivedStimulus> set = TreeMultiset.create(stimuliComparator);
+	private TreeMultiset<PerceivedStimulus> set = TreeMultiset.create(stimuliComparator);
 	
 	
 	public PerceivedStimuli(Character character) {
@@ -52,7 +48,7 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 		character.getEventBus().register(this);
 	}
 	
-	protected void prune() {
+	private void prune() {
 		set.removeIf(s ->{
 			boolean ret = s.getRemainingMagnitude() <= 0;
 			
@@ -68,7 +64,7 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 					
 					ret = ret || (owner == character);
 					
-					if(character instanceof Player && s.getStimulus() instanceof Sight && ret == false) {
+					if(character instanceof Player && s.getStimulus() instanceof Sight && !ret) {
 						System.out.println("test");
 					}
 					
@@ -119,16 +115,19 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 	}
 
 	@Override
+	@Nonnull
 	public Iterator<PerceivedStimulus> iterator() {
 		return set.iterator();
 	}
 
 	@Override
+	@Nonnull
 	public Object[] toArray() {
 		return set.toArray();
 	}
 
 	@Override
+	@Nonnull
 	public <T> T[] toArray(T[] a) {
 		return set.toArray(a);
 	}
@@ -155,7 +154,7 @@ public class PerceivedStimuli implements Collection<PerceivedStimulus>{
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		return this.removeAll(c);
+		return set.removeAll(c);
 	}
 
 	@Override

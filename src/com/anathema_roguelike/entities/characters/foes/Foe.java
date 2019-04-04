@@ -34,26 +34,21 @@ import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 
 public abstract class Foe extends Character {
 	
-	protected AI ai;
+	private AI ai;
 	
 	private Optional<PerceivedStimulus> mostInterestingStimulus = Optional.empty();
 	
-	private Comparator<Character> distanceComparator = new Comparator<Character>() {
+	private Comparator<Character> distanceComparator = (Character o1, Character o2) -> {
+		int d1 = getPosition().squareDistance(o1);
+		int d2 = getPosition().squareDistance(o2);
 
-		@Override
-		public int compare(Character o1, Character o2) {
-			
-			int d1 = getPosition().squareDistance(o1);
-			int d2 = getPosition().squareDistance(o2);
-			
-			
-			if(d1 > d2) {
-				return 1;
-			} else if(d2 > d1) {
-				return -1;
-			} else {
-				return o1.getPosition().compareTo(o2.getPosition());
-			}
+
+		if(d1 > d2) {
+			return 1;
+		} else if(d2 > d1) {
+			return -1;
+		} else {
+			return o1.getPosition().compareTo(o2.getPosition());
 		}
 	};
 	
@@ -93,8 +88,8 @@ public abstract class Foe extends Character {
 	
 	public Stream<Character> getVisibleEnemies() {
 		ArrayList<Character> characters = new ArrayList<>(getCurrentlyVisibleCharacters());
-		
-		Collections.sort(characters, distanceComparator);
+
+		characters.sort(distanceComparator);
 		
 		return characters.stream().filter(c -> {
 			return !Faction.friendly(this, c);	

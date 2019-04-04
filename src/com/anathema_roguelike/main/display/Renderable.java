@@ -17,5 +17,5 @@
 package com.anathema_roguelike.main.display;
 
 public interface Renderable {
-	public abstract void render();
+	void render();
 }

@@ -18,7 +18,7 @@ package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
 public interface MouseCallback {
 	
-	public abstract void onClick();
-	public abstract void onMouseover();
+	void onClick();
+	void onMouseover();
 	
 }

@@ -1,20 +1,35 @@
 package com.anathema_roguelike.actors;
 
+import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 public interface Actor {
 	
-	public Duration getDuration();
-	public Energy getEnergy();
-	public Action<?> getNextAction();
+	Duration getDuration();
+	Energy getEnergy();
+	Optional<Action<?>> getNextAction();
+
+	default Action<Actor> getDefaultAction() {
+		return new Action<Actor>(this, EnergyCost.STANDARD(this)) {
+			@Override
+			protected void onTake() {
+
+			}
+		};
+	}
 	
-	public default void energize() {
+	default void energize() {
 		getEnergy().energize();
 	}
 	
-	public default double getEnergyLevel() {
+	default double getEnergyLevel() {
 		return getEnergy().getEnergyLevel();
 	}
 	
-	public default void act() {
-		getNextAction().take();
+	default void act() {
+		getNextAction().ifPresentOrElse(a -> a.take(), () -> getDefaultAction().take());
 	}
 }

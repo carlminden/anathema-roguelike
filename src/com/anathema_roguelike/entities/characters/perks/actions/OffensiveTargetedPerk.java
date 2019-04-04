@@ -22,9 +22,9 @@ import com.anathema_roguelike.entities.characters.perks.actions.targetingstrateg
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.EnemyTargetConstraint;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.Range;
 
-public abstract class OffensiveTargetedPerk<T extends Targetable> extends GenericTargetedPerk<T, Character> {
+public abstract class OffensiveTargetedPerk extends GenericTargetedPerk<Character, Character> {
 
-	public OffensiveTargetedPerk(String name, Range<Character> range, TargetingStrategy<T, Character> strategy) {
+	public OffensiveTargetedPerk(String name, Range<Character> range, TargetingStrategy<Character, Character> strategy) {
 		super(name, range, strategy);
 		
 		range.addConstraint(new EnemyTargetConstraint());

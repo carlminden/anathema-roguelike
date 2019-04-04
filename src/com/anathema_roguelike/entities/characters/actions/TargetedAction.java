@@ -30,7 +30,7 @@ public class TargetedAction<TargetType extends Targetable, OriginType extends Ta
 	public TargetedAction(Character character, EnergyCost energyCost, ActionCosts costs, TargetEffect<? extends TargetType, ?> ...targetEffects) {
 		super(character, energyCost, costs);
 		
-		this.targetEffects = new ArrayList<TargetEffect<? extends TargetType, ?>>(Arrays.asList(targetEffects));
+		this.targetEffects = new ArrayList<>(Arrays.asList(targetEffects));
 	}
 	
 	@SafeVarargs
@@ -45,7 +45,7 @@ public class TargetedAction<TargetType extends Targetable, OriginType extends Ta
 	public TargetedAction(Character character, EnergyCost energyCost, TargetEffect<? extends TargetType, ?> ...targetEffects) {
 		super(character, energyCost);
 		
-		this.targetEffects = new ArrayList<TargetEffect<? extends TargetType, ?>>(Arrays.asList(targetEffects));
+		this.targetEffects = new ArrayList<>(Arrays.asList(targetEffects));
 	}
 	
 	public void setOrigin(OriginType origin) {

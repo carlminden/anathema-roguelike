@@ -126,11 +126,11 @@ public class Menu<T> extends InteractiveUIElement<T> {
 		return menuItems.size();
 	}
 	
-	protected void menuNext() {
+	private void menuNext() {
 		setFocus(focused + 1);
 	}
 	
-	protected void menuPrev() {
+	private void menuPrev() {
 		setFocus(focused - 1);
 	}
 	
@@ -146,7 +146,7 @@ public class Menu<T> extends InteractiveUIElement<T> {
 		return items.get(i);
 	}
 	
-	public ArrayList<MenuItem<?>> getMenuItems() {
+	protected ArrayList<MenuItem<?>> getMenuItems() {
 		return menuItems;
 	}
 	
@@ -176,7 +176,7 @@ public class Menu<T> extends InteractiveUIElement<T> {
 		}
 	}
 	
-	public MenuItem<?> getFocusedMenuItem() {
+	private MenuItem<?> getFocusedMenuItem() {
 		return menuItems.get(getFocused());
 	}
 	
@@ -197,7 +197,6 @@ public class Menu<T> extends InteractiveUIElement<T> {
             return;
         default:
         	getFocusedMenuItem().processKeyEvent(key, alt, ctrl, shift);
-        	return;
 		}
 	}
 	
@@ -206,7 +205,7 @@ public class Menu<T> extends InteractiveUIElement<T> {
 		return getFocusedMenuItem().processScrollEvent(amount);
 	}
 
-	protected boolean isCentered() {
+	private boolean isCentered() {
 		return centered;
 	}
 

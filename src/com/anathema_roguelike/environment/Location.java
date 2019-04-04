@@ -38,7 +38,7 @@ public class Location implements HasStats<Location, LocationStat>, Targetable {
 	private LocationStatSet stats;
 	private Terrain terrain;
 	
-	Point position;
+	private Point position;
 	
 	private TreeMultiset<Feature> features = TreeMultiset.create(
 			(o1, o2) -> o2.getRenderPriority().compareTo(o1.getRenderPriority()

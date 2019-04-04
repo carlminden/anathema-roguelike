@@ -11,7 +11,6 @@ public class ActionCostModificationPerk<T extends CharacterAction> extends Actio
 	
 	private ArrayList<ActionCostModification<?>> modifications;
 	
-	@SafeVarargs
 	public ActionCostModificationPerk(String name, Class<T> actionType, ActionCostModification<?> ...modifications) {
 		super(name, actionType);
 		

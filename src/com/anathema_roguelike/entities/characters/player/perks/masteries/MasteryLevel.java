@@ -43,6 +43,6 @@ public class MasteryLevel<T extends Mastery> extends PassivePerk {
 	
 	@Override
 	public Optional<Buff> getEffect() {
-		return Optional.of(new Buff(this, new Modifier<Character, T>(mastery, AdditiveCalculation.fixed(amount))));
+		return Optional.of(new Buff(this, new Modifier<>(mastery, AdditiveCalculation.fixed(amount))));
 	}
 }

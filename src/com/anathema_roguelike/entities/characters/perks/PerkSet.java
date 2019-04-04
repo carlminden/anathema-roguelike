@@ -16,32 +16,22 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks;
 
+import com.anathema_roguelike.main.utilities.datastructures.CollectionUtils;
+import com.google.common.collect.Collections2;
+
 import java.util.Collection;
 import java.util.HashSet;
-
-import com.anathema_roguelike.main.utilities.datastructures.CollectionUtils;
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
+import java.util.function.Predicate;
 
 public class PerkSet {
 	private HashSet<Perk> perks = new HashSet<>();
 	
 	public <T extends Perk> Collection<T> get(final Class<T> superclass) {
-		return Collections2.transform(CollectionUtils.filterByClass(perks, superclass), new Function<T, T>() {
-
-			@Override
-			public T apply(T input) {
-				T ret = input;
-				
-				return ret;
-			}
-			
-		});
+		return CollectionUtils.filterByClass(perks, superclass);
 	}
 	
 	public <T extends Perk> Collection<T> get(final Class<T> superclass, Predicate<T> predicate) {
-		return Collections2.filter(get(superclass), predicate);
+		return Collections2.filter(get(superclass), predicate::test);
 	}
 	
 	public void add(Perk perk) {

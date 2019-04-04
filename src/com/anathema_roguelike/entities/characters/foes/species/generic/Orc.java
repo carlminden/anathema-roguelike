@@ -42,7 +42,7 @@ public class Orc extends GenericSpecies {
 				new Extraordinary<>(Hearing.class),
 				new Deficient<>(Intelligence.class));
 		
-		applyEffect(Optional.of(new Buff(null, new Modifier<Character, LightEmission>(
+		applyEffect(Optional.of(new Buff(null, new Modifier<>(
 				LightEmission.class, AdditiveCalculation.fixed(15.0)))));
 		
 	}

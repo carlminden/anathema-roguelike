@@ -114,7 +114,8 @@ public class State implements Renderable {
 		if(z < 0 || z >= Config.DUNGEON_DEPTH) {
 			return null;
 		}
-		
+
+		//TODO: WTF is this? is it to wait for another thread or something? seems like we could do better with a concurrency object
 		while(dungeonLevels.size() <= z) {}
 		
 		return dungeonLevels.get(z);

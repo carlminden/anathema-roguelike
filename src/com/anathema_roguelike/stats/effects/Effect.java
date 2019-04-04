@@ -23,7 +23,8 @@ import com.anathema_roguelike.actors.Duration;
 import com.anathema_roguelike.stats.Stat;
 
 public class Effect<T, S extends Stat<? extends T>> {
-	
+
+	//TODO: source should be Optional
 	private HasEffect<? extends Effect<T, ?>> source;
 	private Duration duration;
 	private ArrayList<Modifier<T, ?>> modifiers;
@@ -33,14 +34,14 @@ public class Effect<T, S extends Stat<? extends T>> {
 	public Effect(HasEffect<? extends Effect<T, ?>> source, Modifier<T, ?>... modifiers) {
 		this.source = source;
 		this.duration = Duration.permanent();
-		this.modifiers = new ArrayList<Modifier<T, ?>>(Arrays.asList(modifiers));
+		this.modifiers = new ArrayList<>(Arrays.asList(modifiers));
 	}
 	
 	@SafeVarargs
 	public Effect(HasEffect<? extends Effect<T, ?>> source, Duration duration, Modifier<T, ?>... modifiers) {
 		this.source = source;
 		this.duration = Duration.copy(duration);
-		this.modifiers = new ArrayList<Modifier<T, ?>>(Arrays.asList(modifiers));
+		this.modifiers = new ArrayList<>(Arrays.asList(modifiers));
 	}
 	
 	public HasEffect<? extends Effect<T, ?>> getSource() {
@@ -90,7 +91,7 @@ public class Effect<T, S extends Stat<? extends T>> {
 		StringBuilder builder = new StringBuilder();
 		
 		builder.append("Effect: ");
-		builder.append("Duration: " + duration.getRemaining());
+		builder.append("Duration: ").append(duration.getRemaining());
 		modifiers.forEach(m -> builder.append(" Modifier: " + m.getAffectedStat().getSimpleName()
 				+ " +" + m.getAdditiveAmount() + " *" + m.getMultiplier()));
 		

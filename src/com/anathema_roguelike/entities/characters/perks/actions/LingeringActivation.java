@@ -6,6 +6,8 @@ import com.anathema_roguelike.actors.Duration;
 import com.anathema_roguelike.actors.Energy;
 import com.anathema_roguelike.main.Game;
 
+import java.util.Optional;
+
 public abstract class LingeringActivation implements Actor {
 	
 	private Energy energy = new Energy();
@@ -17,7 +19,7 @@ public abstract class LingeringActivation implements Actor {
 		Game.getInstance().getState().registerActor(this);
 	}
 	
-	protected abstract Action<?> createLingeringAction();
+	protected abstract Optional<Action<?>> createLingeringAction();
 
 	@Override
 	public Duration getDuration() {
@@ -30,7 +32,7 @@ public abstract class LingeringActivation implements Actor {
 	}
 
 	@Override
-	public Action<?> getNextAction() {
+	public Optional<Action<?>> getNextAction() {
 		return createLingeringAction();
 	}
 	

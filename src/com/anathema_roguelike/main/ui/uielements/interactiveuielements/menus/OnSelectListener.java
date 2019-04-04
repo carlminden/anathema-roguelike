@@ -17,5 +17,5 @@
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus;
 
 public interface OnSelectListener<T> {
-	public abstract void onSelect(T selectedItem);
+	void onSelect(T selectedItem);
 }

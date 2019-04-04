@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.items.Item;
@@ -42,7 +43,7 @@ public class Inventory {
 	public Inventory(Character character) {
 		this.character = character;
 		character.getEventBus().register(this);
-		slots = new AutoClassToInstanceMap<Slot>(Slot.class, new Class[] { Character.class }, character);
+		slots = new AutoClassToInstanceMap<>(Slot.class, new Class[] { Character.class }, character);
 		
 	}
 	
@@ -88,7 +89,7 @@ public class Inventory {
 	public <T extends Item> void equip(T item) {
 		Collection<Slot<T>> validSlots = getValidSlots(item);
 		
-		Slot<T> slot = new SelectionScreen<Slot<T>>("Equip to which Slot?", validSlots, true).run();
+		Slot<T> slot = new SelectionScreen<>("Equip to which Slot?", validSlots, true).run();
 		
 		if(slot != null) {
 			slot.equip(item);
@@ -102,16 +103,19 @@ public class Inventory {
 		for(Slot<T> s : getValidSlots(item)) {
 			s.remove(item);
 		}
-		
-		
-//		getValidSlots(item).forEach(s -> {
-//			s.remove(item);
-//		});
 	}
 	
 	public <T extends Item> Collection<Slot<T>> getValidSlots(T item) {
-		return slots.getValues().stream().filter(s -> s.validItem(item))
-				.collect(Collectors.toCollection(() -> new ArrayList<Slot<T>>()));
+
+		ArrayList<Slot<T>> validSlots = new ArrayList<>();
+
+		slots.getValues().forEach(s -> {
+			if(s.validItem(item)) {
+				validSlots.add(s);
+			}
+		});
+
+		return validSlots;
 	}
 	
 	public void pickUp(Item item) {

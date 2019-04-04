@@ -64,7 +64,7 @@ public class PerceivedStimulus {
 	
 	@Override
 	public String toString() {
-		return getRemainingMagnitude() + " remaining of " + stimulus.toString() + (location.isPresent() ? " at: " + location.get() : "");
+		return getRemainingMagnitude() + " remaining of " + stimulus.toString() + (location.map(value -> " at: " + value).orElse(""));
 	}
 	
 	public static void main(String[] args) {

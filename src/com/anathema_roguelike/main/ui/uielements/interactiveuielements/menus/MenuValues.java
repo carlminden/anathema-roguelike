@@ -17,11 +17,11 @@
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.TextBox;
 import com.anathema_roguelike.main.utilities.position.Direction;
-import com.google.common.base.Function;
 
 public class MenuValues<T> extends TextBox {
 	
@@ -54,7 +54,7 @@ public class MenuValues<T> extends TextBox {
 		ArrayList<Message> values = new ArrayList<>();
 		
 		for(int i = 0; i < length; i++) {
-			values.add(calculator.apply((T) menu.getItem(i + start)));
+			values.add(calculator.apply(menu.getItem(i + start)));
 		}
 		
 		setMessages(values);

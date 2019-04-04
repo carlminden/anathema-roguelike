@@ -5,21 +5,21 @@ import com.anathema_roguelike.main.utilities.position.Point;
 
 public interface HasLocation extends HasPosition {
 	
-	public abstract Location getLocation();
+	Location getLocation();
 	
-	public default Environment getEnvironment() {
+	default Environment getEnvironment() {
 		return getLocation().getEnvironment();
 	}
 	
-	public default Point getPosition() {
+	default Point getPosition() {
 		return getLocation().getPosition();
 	}
 	
-	public default int getX() {
+	default int getX() {
 		return getPosition().getX();
 	}
 	
-	public default int getY() {
+	default int getY() {
 		return getPosition().getY();
 	}
 }

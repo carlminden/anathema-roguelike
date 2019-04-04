@@ -65,7 +65,7 @@ public abstract class DungeonGenerator {
 		
 		ArrayList<Room> potentialRooms = new ArrayList<Room>(generateRooms(depth));
 		
-		Collections.sort(potentialRooms, Collections.reverseOrder());
+		potentialRooms.sort(Collections.reverseOrder());
 		
 		for(Room room : potentialRooms) {
 			if(room.validate(this)) {

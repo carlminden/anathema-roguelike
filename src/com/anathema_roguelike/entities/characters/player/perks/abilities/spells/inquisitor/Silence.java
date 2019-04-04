@@ -5,14 +5,14 @@ import com.anathema_roguelike.entities.characters.perks.actions.OffensiveTargete
 import com.anathema_roguelike.entities.characters.player.classes.Inquisitor;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.spells.Spell;
 
-public class Silence extends Spell<OffensiveTargetedPerk<Character>> {
+public class Silence extends Spell<OffensiveTargetedPerk> {
 
 	public Silence() {
 		super(1, Inquisitor.class);
 	}
 
 	@Override
-	protected OffensiveTargetedPerk<Character> createPerk() {
+	protected OffensiveTargetedPerk createPerk() {
 		// TODO Auto-generated method stub
 		return null;
 	}

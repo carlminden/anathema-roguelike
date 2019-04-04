@@ -37,7 +37,7 @@ public class LightLevels extends FOVProcessor {
 	private HashMap<Entity, Point> lastSeen = new HashMap<>();
 	private HashMap<Entity, Boolean> dirty = new HashMap<>();
 	
-	HashMap<Integer, float[][]> computedLightLevels = new HashMap<>();
+	private HashMap<Integer, float[][]> computedLightLevels = new HashMap<>();
 	
 	private Environment level;
 	

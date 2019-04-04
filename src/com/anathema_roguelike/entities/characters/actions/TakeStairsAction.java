@@ -15,6 +15,8 @@ public class TakeStairsAction extends CharacterAction {
 	
 	public TakeStairsAction(Character character, Stairs stairs) {
 		super(character, EnergyCost.STANDARD(character));
+
+		this.stairs = stairs;
 	}
 	
 	@Override
@@ -33,7 +35,7 @@ public class TakeStairsAction extends CharacterAction {
 		int newDepth = getActor().getEnvironment().getDepth() + zOffset;
 		
 		if(newDepth < 0 || newDepth >= Config.DUNGEON_DEPTH) {
-			throw new RuntimeException("Dungeon is not deep enough, these stairs shouldnt have been made");
+			throw new RuntimeException("Dungeon is not deep enough, these stairs shouldn't have been made");
 		}
 		
 		Environment newEnvironment = Game.getInstance().getState().getEnvironment(newDepth);

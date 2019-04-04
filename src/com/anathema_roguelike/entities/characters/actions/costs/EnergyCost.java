@@ -44,7 +44,7 @@ public class EnergyCost extends ActionCost {
 		return new EnergyCost(actor, 4);
 	}
 	
-	double energy;
+	private double energy;
 	
 	public EnergyCost(Actor actor, double energy) {
 		super(actor);

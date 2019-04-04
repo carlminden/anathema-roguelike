@@ -26,9 +26,9 @@ import com.anathema_roguelike.main.utilities.position.Point;
 
 public class TunnelDigger extends PathFinder {
 	
-	DungeonGenerator generator;
-	Room startingRoom;
-	Room endingRoom;
+	private DungeonGenerator generator;
+	private Room startingRoom;
+	private Room endingRoom;
 	
 	@Override
 	protected Integer[] getValidDirections() {
@@ -144,7 +144,7 @@ public class TunnelDigger extends PathFinder {
 					if(!generator.getRoomGraph().containsEdge(currentRoom, room)) {
 						try {
 						generator.getRoomGraph().addEdge(currentRoom, room);
-						} catch (IllegalArgumentException e) {
+						} catch (IllegalArgumentException ignored) {
 							
 						}
 					}

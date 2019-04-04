@@ -42,7 +42,7 @@ public class Sound extends Stimulus {
 	@Override
 	public Optional<PerceivedStimulus> computePerceivedStimulus(Location location, Character character) {
 		
-		if(getOwner().orElseGet(() -> null) instanceof Player && character instanceof Player) {
+		if(getOwner().orElse(null) instanceof Player && character instanceof Player) {
 			new Ripple(location, getMagnitude() / 5, 0.2f).create(DisplayLayer.DUNGEON_OVERLAY, UIConfig.DUNGEON_OFFSET);
 		}
 		

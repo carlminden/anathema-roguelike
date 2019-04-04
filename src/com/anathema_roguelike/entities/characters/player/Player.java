@@ -100,7 +100,7 @@ public class Player extends Character {
 	public void levelUp() {
 		Collection<Class<? extends PlayerClass>> classes = Utils.getSubclasses(PlayerClass.class);
 		
-		SelectionScreen<Class<? extends PlayerClass>> classSelectionScreen = new SelectionScreen<Class<? extends PlayerClass>>("Select your Class", classes, false);
+		SelectionScreen<Class<? extends PlayerClass>> classSelectionScreen = new SelectionScreen<>("Select your Class", classes, false);
 		
 		grantClassLevel(classSelectionScreen.run());
 		

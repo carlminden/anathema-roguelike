@@ -21,7 +21,7 @@ package com.anathema_roguelike.stats.effects;
 import java.util.Optional;
 
 public interface HasEffect<E extends Effect<?, ?>> {
-	public default Optional<E> getEffect() {
+	default Optional<E> getEffect() {
 		return Optional.empty();
 	}
 }

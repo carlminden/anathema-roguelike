@@ -30,14 +30,8 @@ public class TargetSet<T extends Targetable> {
 		}
 		
 		targetList = new CircularArrayList<>(this.targetPositions.values().stream().flatMap(t -> t.stream()).collect(Collectors.toList()));
-		
-		Collections.sort(targetList, new Comparator<T>() {
 
-			@Override
-			public int compare(T o1, T o2) {
-				return o1.getPosition().squareDistance(new Point(0, 0)) - o2.getPosition().squareDistance(new Point(0, 0));
-			}
-		});
+		Collections.sort(targetList,Comparator.comparingInt(p -> p.getPosition().squareDistance(new Point(0, 0))));
 	}
 	
 	public T inDirection(int direction) {

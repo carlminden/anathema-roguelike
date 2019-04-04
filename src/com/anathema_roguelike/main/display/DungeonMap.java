@@ -17,6 +17,7 @@
 package com.anathema_roguelike.main.display;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import com.anathema_roguelike.entities.Entity;
 import com.anathema_roguelike.entities.characters.foes.Foe;
@@ -201,7 +202,7 @@ public class DungeonMap implements Renderable, Rectangular {
 //						Point p = character.getMostInterestingStimulus().get().getLocation().get().getPosition();
 //						Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + p.getX(), getY() + p.getY(), '@', Color.ALERTED);
 //					}
-					character.getPercievedStimuli().stream().forEach(s -> {
+					character.getPercievedStimuli().forEach(s -> {
 						s.getLocation().ifPresent(l -> {
 							Game.getInstance().getDisplay().renderChar(DisplayLayer.DUNGEON_OVERLAY, getX() + l.getX(), getY() + l.getY(), '@', Color.ALERTED);
 						});
@@ -210,7 +211,7 @@ public class DungeonMap implements Renderable, Rectangular {
 			}
 		}
 		
-		player.getPercievedStimuli().stream().forEach(s -> {
+		player.getPercievedStimuli().forEach(s -> {
 			s.getLocation().ifPresent(l -> {
 				Game.getInstance().getDisplay().renderVisualRepresentation(DisplayLayer.DUNGEON_OVERLAY, getX() + l.getX(), getY() + l.getY(), s.getVisualRepresentation());
 			});
@@ -228,12 +229,8 @@ public class DungeonMap implements Renderable, Rectangular {
 		int x = entity.getX();
 		int y = entity.getY();
 		VisualRepresentation rep = entity.getVisualRepresentation();
-		
-		if(rep == null) {
-			renderVisualRepresentation(layer, x, y, new VisualRepresentation('X', Color.ERROR));
-		} else {
-			renderVisualRepresentation(layer, x, y, rep);
-		}
+
+		renderVisualRepresentation(layer, x, y, Objects.requireNonNullElseGet(rep, () -> new VisualRepresentation('X', Color.ERROR)));
 	}
 	
 	public void renderVisualRepresentation(DungeonLayer layer, int x, int y, VisualRepresentation rep) {

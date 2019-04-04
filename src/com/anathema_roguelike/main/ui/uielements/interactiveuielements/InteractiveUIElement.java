@@ -55,18 +55,14 @@ public abstract class InteractiveUIElement<T> extends UIElement {
 		Game.getInstance().getUserInterface().addUIElement(this);
 		setResult(null);
 		
-		KeyHandler keyHandler = new KeyHandler() {
-			
-			@Override
-			public void handle(char key, boolean alt, boolean ctrl, boolean shift) {
-				
-				if(key == SquidInput.ESCAPE) {
-					if(isCancellable()) {
-		        		finish();
-		        	}
-				} else {
-					processKeyEvent(key, alt, ctrl, shift);
+		KeyHandler keyHandler = (key, alt, ctrl, shift) -> {
+
+			if(key == SquidInput.ESCAPE) {
+				if(isCancellable()) {
+					finish();
 				}
+			} else {
+				processKeyEvent(key, alt, ctrl, shift);
 			}
 		};
 		
@@ -77,7 +73,7 @@ public abstract class InteractiveUIElement<T> extends UIElement {
 			}
 		};
 		
-		Game.getInstance().getInput().proccessInput(new InputHandler(keyHandler, mouse), () -> { return isFinished(); }, () -> {
+		Game.getInstance().getInput().proccessInput(new InputHandler(keyHandler, mouse), () -> isFinished(), () -> {
 			for(InteractiveUIElement<?> element : CollectionUtils.filterByClass(getUIElements(), InteractiveUIElement.class)) {
 				element.registerMouseCallbacks();
 			}

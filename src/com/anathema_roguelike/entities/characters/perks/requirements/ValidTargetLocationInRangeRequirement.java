@@ -25,7 +25,7 @@ import com.anathema_roguelike.main.utilities.Utils;
 
 public class ValidTargetLocationInRangeRequirement<TargetType extends Targetable, OriginType extends Targetable> extends PerkRequirement {
 	
-	Range<OriginType> range;
+	private Range<OriginType> range;
 	
 	public ValidTargetLocationInRangeRequirement(GenericTargetedPerk<TargetType, OriginType> perk, Range<OriginType> range) {
 		super(perk);

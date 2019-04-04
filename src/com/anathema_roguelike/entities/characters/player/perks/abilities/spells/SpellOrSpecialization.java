@@ -27,9 +27,9 @@ public class SpellOrSpecialization extends PerkChoice {
 		
 		Collection<Perk> choices = new ArrayList<>(new SpellSpecializationChoice(spellLevel, casterClass).getChoices(character)); 
 		
-		Collection<Perk> unlearnedSpells = new ArrayList<>(Collections2.filter(Spell.findSpells(spellLevel, casterClass), s -> {
-			return !getCharacter().hasPerk(s.getClass());
-		}));
+		Collection<Perk> unlearnedSpells = new ArrayList<>(Collections2.filter(
+				Spell.findSpells(spellLevel, casterClass), s -> !getCharacter().hasPerk(s.getClass())
+		));
 		
 		choices.addAll(unlearnedSpells);
 		

@@ -21,7 +21,7 @@ public class ThrowRock extends Technique<TargetedPerk<Location>> {
 	protected TargetedPerk<Location> createPerk() {
 		return new TargetedPerk<Location>("Throw Rock",
 			new ThrowingRange<>(Location.class, new Rock(), new LineOfSight<>(), new LineOfEffect<>()),
-			new SingleTargeted<Location>(Location.class)){
+			new SingleTargeted<>(Location.class)){
 
 				@Override
 				protected TargetedAction<Location, Location> createAction() {

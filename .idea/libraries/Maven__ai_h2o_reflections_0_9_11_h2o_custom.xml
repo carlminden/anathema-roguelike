@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: ai.h2o:reflections:0.9.11-h2o-custom">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ai/h2o/reflections/0.9.11-h2o-custom/reflections-0.9.11-h2o-custom.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/ai/h2o/reflections/0.9.11-h2o-custom/reflections-0.9.11-h2o-custom-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/ai/h2o/reflections/0.9.11-h2o-custom/reflections-0.9.11-h2o-custom-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

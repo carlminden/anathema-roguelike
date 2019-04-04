@@ -12,7 +12,6 @@ public abstract class Action<T extends Actor> {
 	private T actor;
 	private ActionCosts costs;
 	
-	@SafeVarargs
 	public Action(T actor, EnergyCost energyCost, ActionCost ...costs) {
 		this.costs = new ActionCosts(costs);
 		this.actor = actor;
@@ -30,11 +29,11 @@ public abstract class Action<T extends Actor> {
 	protected abstract void onTake();
 	
 	public void take() {
-		getBeforeCosts().forEach(c -> c.pay());
+		getBeforeCosts().forEach(ActionCost::pay);
 		
 		onTake();
 		
-		getAfterCosts().forEach(c -> c.pay());
+		getAfterCosts().forEach(ActionCost::pay);
 	}
 	
 	protected void setCosts(Collection<ActionCost> costs) {

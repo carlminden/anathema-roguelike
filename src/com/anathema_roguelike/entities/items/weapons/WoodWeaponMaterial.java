@@ -50,10 +50,10 @@ public class WoodWeaponMaterial extends WeaponMaterial {
 	@Override
 	public Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return Optional.of(new Effect<Item, ItemStat>(this,
-				new Modifier<Item, BaseWeaponDamage>(BaseWeaponDamage.class, MultiplicativeCalculation.build(() -> getDamage())),
-				new Modifier<Item, WeaponRange>(WeaponRange.class, MultiplicativeCalculation.build(() -> getRange())),
-				new Modifier<Item, Weight>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
+		return Optional.of(new Effect<>(this,
+				new Modifier<>(BaseWeaponDamage.class, MultiplicativeCalculation.build(() -> getDamage())),
+				new Modifier<>(WeaponRange.class, MultiplicativeCalculation.build(() -> getRange())),
+				new Modifier<>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
 		));
 	}
 }

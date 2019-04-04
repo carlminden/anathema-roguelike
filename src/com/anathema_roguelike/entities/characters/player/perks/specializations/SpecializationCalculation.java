@@ -6,7 +6,7 @@ import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability
 
 public abstract class SpecializationCalculation<T> implements Supplier<T> {
 	
-	Ability ability;
+	private Ability ability;
 	
 	public SpecializationCalculation(Ability ability) {
 		this.ability = ability;

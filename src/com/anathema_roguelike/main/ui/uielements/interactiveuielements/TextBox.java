@@ -27,7 +27,7 @@ import squidpony.squidgrid.gui.gdx.SquidInput;
 
 public class TextBox extends InteractiveUIElement<Void> {
 	
-	private ArrayList<Message> text = new ArrayList<Message>();
+	private ArrayList<Message> text = new ArrayList<>();
 	private int position = 0;
 
 	public TextBox(Point position, int width, int height, String title, Message text, float background) {
@@ -91,18 +91,17 @@ public class TextBox extends InteractiveUIElement<Void> {
 	public void processKeyEvent(char key, boolean alt, boolean ctrl, boolean shift) {
 		
 		switch(key) {
-        case SquidInput.PAGE_UP:
-        	if(text.size() > getHeight()) {
-        		position = Utils.clamp(position - 5, 0, text.size() - getHeight());
-        	}
-        	return;
-        case SquidInput.PAGE_DOWN:
-        	if(text.size() > getHeight()) {
-        		position = Utils.clamp(position + 5, 0, text.size() - getHeight());
-        	}
-        	return;
-        default:
-        	return;
+			case SquidInput.PAGE_UP:
+				if(text.size() > getHeight()) {
+					position = Utils.clamp(position - 5, 0, text.size() - getHeight());
+				}
+				return;
+			case SquidInput.PAGE_DOWN:
+				if(text.size() > getHeight()) {
+					position = Utils.clamp(position + 5, 0, text.size() - getHeight());
+				}
+				return;
+			default:
 		}
 	}
 	

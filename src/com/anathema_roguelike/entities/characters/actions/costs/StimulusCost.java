@@ -2,6 +2,7 @@ package com.anathema_roguelike.entities.characters.actions.costs;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.player.Player;
@@ -9,7 +10,6 @@ import com.anathema_roguelike.entities.characters.stimuli.Sight;
 import com.anathema_roguelike.entities.characters.stimuli.Stimulus;
 import com.anathema_roguelike.environment.HasLocation;
 import com.anathema_roguelike.environment.Location;
-import com.google.common.base.Supplier;
 
 public class StimulusCost<T extends Stimulus> extends CharacterActionCost {
 	

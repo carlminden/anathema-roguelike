@@ -45,13 +45,8 @@ public class Input {
 	
 	public Input() {
 		
-		keyHandler = new KeyHandler() {
-			
-			@Override
-			public void handle(char key, boolean alt, boolean ctrl, boolean shift) {
+		keyHandler = (key, alt, ctrl, shift) ->
 				setResult((inputHandler) -> inputHandler.getKeyHandler().handle(key, alt, ctrl, shift));
-			}
-		};
 		
 		mouse = new SquidMouse(UIConfig.CELL_WIDTH, UIConfig.CELL_HEIGHT, UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, 0, 0, new InputAdapter() {
 			@Override
@@ -63,7 +58,6 @@ public class Input {
 					
 					if(callback != null) {
 						callback.onClick();
-					} else {
 					}
 				});
 				return true;

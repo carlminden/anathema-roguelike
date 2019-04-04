@@ -2,18 +2,18 @@ package com.anathema_roguelike.main.utilities.position;
 
 public interface HasPosition extends Comparable<HasPosition> {
 	
-	public abstract Point getPosition();
+	Point getPosition();
 	
-	public default int getX() {
+	default int getX() {
 		return getPosition().getX();
 	}
 	
-	public default int getY() {
+	default int getY() {
 		return getPosition().getY();
 	}
 	
 	@Override
-	public default int compareTo(HasPosition other) {
+	default int compareTo(HasPosition other) {
 		
 		int dx = this.getX() - other.getX();
 		int dy = this.getY() - other.getY();
@@ -25,7 +25,7 @@ public interface HasPosition extends Comparable<HasPosition> {
 		}
 	}
 	
-	public default boolean isAdjacentTo(HasPosition other) {
+	default boolean isAdjacentTo(HasPosition other) {
 		int dx = getX() - other.getX();
 		int dy = getY() - other.getY();
 		
@@ -42,7 +42,7 @@ public interface HasPosition extends Comparable<HasPosition> {
      * @param other
      * @return 
      */
-	public default double distance(HasPosition other) {
+	default double distance(HasPosition other) {
         return Math.sqrt(squareDistance(other));
     }
 
@@ -53,7 +53,7 @@ public interface HasPosition extends Comparable<HasPosition> {
      * @param other
      * @return 
      */
-    public default int squareDistance(HasPosition other) {
+    default int squareDistance(HasPosition other) {
     	int dx = Math.abs(getX() - other.getX());
     	int dy = Math.abs(getY() - other.getY());
         return dx * dx + dy * dy;
@@ -67,7 +67,7 @@ public interface HasPosition extends Comparable<HasPosition> {
      * @param other
      * @return 
      */
-    public default int manhattanDistance(HasPosition other) {
+    default int manhattanDistance(HasPosition other) {
         int distance = Math.abs(getX() - other.getX());
         distance += Math.abs(getY() - other.getY());
         return distance;
@@ -79,7 +79,7 @@ public interface HasPosition extends Comparable<HasPosition> {
      * @param other
      * @return 
      */
-    public default int maxAxisDistance(HasPosition other) {
+    default int maxAxisDistance(HasPosition other) {
         return Math.max(Math.abs(getX() - other.getX()), Math.abs(getY() - other.getY()));
     }
 }

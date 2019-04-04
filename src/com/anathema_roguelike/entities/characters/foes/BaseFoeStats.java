@@ -18,7 +18,7 @@ public class BaseFoeStats extends PassivePerk {
 		super("");
 	}
 
-	AdditiveCalculation onePerLevel = AdditiveCalculation.build(() -> new Double(getCharacter().getLevel()));
+	private AdditiveCalculation onePerLevel = AdditiveCalculation.build(() -> (double) getCharacter().getLevel());
 	
 	@Override
 	public Optional<Buff> getEffect() {

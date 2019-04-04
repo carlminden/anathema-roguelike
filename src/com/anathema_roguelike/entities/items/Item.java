@@ -52,7 +52,7 @@ public abstract class Item extends Entity implements HasStats<Item, ItemStat>, H
 	}
 	
 	public void removedFrom(Character character) {
-		this.wearer = null;
+		this.wearer = Optional.empty();
 		character.removeEffectBySource(this);
 	}
 	
@@ -66,13 +66,8 @@ public abstract class Item extends Entity implements HasStats<Item, ItemStat>, H
 	}
 	
 	@Override
-	public Action<?> getNextAction() {
+	public Optional<Action<?>> getNextAction() {
 		//Most Items shouldnt do anything, but it could be interesting in some cases, maybe certain magical items will make noise/resonance
-		return new Action<Item>(this, EnergyCost.STANDARD(this)) {
-			@Override
-			protected void onTake() {
-				
-			}
-		};
+		return Optional.empty();
 	}
 }

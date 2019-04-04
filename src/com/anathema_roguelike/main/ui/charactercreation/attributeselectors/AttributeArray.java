@@ -33,18 +33,18 @@ public class AttributeArray extends AttributeSelector {
 	public void selectScores(Player player) {
 		
 		Collection<Class<? extends Attribute>> attributes = Utils.getSubclasses(Attribute.class);
-		
-		for(int i = 0; i < array.length; i++) {
-			
+
+		for (int value : array) {
+
 			Message instructions = new Message("Choose The Attribute to assign ");
-			instructions.appendMessage(Integer.toString(array[i]), Color.GREEN);
+			instructions.appendMessage(Integer.toString(value), Color.GREEN);
 			instructions.appendMessage(" pointSet");
-		
-			SelectionScreen<Class<? extends Attribute>> selectorScreen = new SelectionScreen<Class<? extends Attribute>>("Select your Ability Scores", attributes, instructions, false);
-			
+
+			SelectionScreen<Class<? extends Attribute>> selectorScreen = new SelectionScreen<>("Select your Ability Scores", attributes, instructions, false);
+
 			Class<? extends Attribute> attribute = selectorScreen.run();
-			
-			player.setAttributeScore(attribute, array[i]);
+
+			player.setAttributeScore(attribute, value);
 			attributes.remove(attribute);
 		}
 	}
