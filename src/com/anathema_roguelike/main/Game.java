@@ -59,8 +59,8 @@ public class Game extends ApplicationAdapter {
 		});
 		
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-   		config.width = UIConfig.TERM_WIDTH * UIConfig.CELL_WIDTH;
-    	config.height = UIConfig.TERM_HEIGHT * UIConfig.CELL_HEIGHT;
+   		config.width = UIConfig.TERM_WIDTH * Display.cellWidth;
+    	config.height = UIConfig.TERM_HEIGHT * Display.cellHeight;
     	config.title = "Anathema";
     	config.vSyncEnabled = false;
         config.foregroundFPS = 0;

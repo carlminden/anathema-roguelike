@@ -21,6 +21,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 
+import com.anathema_roguelike.main.display.Display;
 import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MouseCallback;
 import com.anathema_roguelike.main.utilities.position.Point;
@@ -48,7 +49,7 @@ public class Input {
 		keyHandler = (key, alt, ctrl, shift) ->
 				setResult((inputHandler) -> inputHandler.getKeyHandler().handle(key, alt, ctrl, shift));
 		
-		mouse = new SquidMouse(UIConfig.CELL_WIDTH, UIConfig.CELL_HEIGHT, UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, 0, 0, new InputAdapter() {
+		mouse = new SquidMouse(Display.cellWidth, Display.cellHeight, UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT, 0, 0, new InputAdapter() {
 			@Override
 			public boolean touchUp(int x, int y, int pointer, int button) {
 				setResult((inputHandler) -> { 

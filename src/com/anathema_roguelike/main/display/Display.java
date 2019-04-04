@@ -16,6 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.display;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
@@ -40,6 +41,16 @@ import squidpony.squidgrid.gui.gdx.TextCellFactory;
 
 
 public class Display extends RenderSurface {
+
+	private static Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+
+	public static int cellWidth = (int) dimension.getWidth() / 150;
+	public static int cellHeight = (int) dimension.getHeight() / 48;
+
+	static {
+		System.out.println(cellWidth);
+		System.out.println(cellHeight);
+	}
 	
 	public enum DisplayLayer { DUNGEON_LIGHT, DUNGEON_BACKGROUND, DUNGEON_FOREGROUND, DUNGEON_OVERLAY, UI_BACKGROUND, UI_FOREGROUND, DEBUG }
 	
@@ -70,8 +81,8 @@ public class Display extends RenderSurface {
 	public Display(Input input) {
 		super(UIConfig.TERM_WIDTH, UIConfig.TERM_HEIGHT);
 		
-		int cellWidth = UIConfig.CELL_WIDTH;
-		int cellHeight = UIConfig.CELL_HEIGHT;
+		int cellWidth = Display.cellWidth;
+		int cellHeight = Display.cellHeight;
         
 		batch = new SpriteBatch();
 		pixmap = new Pixmap(256,128, Pixmap.Format.RGBA8888);
@@ -187,8 +198,8 @@ public class Display extends RenderSurface {
 	
 	public void drawLine(int x1, int y1, int x2, int y2, SColor color) {
 		
-		y1 = (getHeight() * UIConfig.CELL_HEIGHT) - y1;
-		y2 = (getHeight() * UIConfig.CELL_HEIGHT) - y2;
+		y1 = (getHeight() * Display.cellHeight) - y1;
+		y2 = (getHeight() * Display.cellHeight) - y2;
 		
 		int length = (int) Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
 		int angle = (int) Math.toDegrees(Math.atan2(y2 - y1, x2 - x1));

@@ -53,28 +53,28 @@ public abstract class Outline implements Renderable {
 		int x = point.getX() + offset.getX();
 		int y = point.getY() + offset.getY();
 		
-		Game.getInstance().getDisplay().drawLine(x * UIConfig.CELL_WIDTH - 1, y * UIConfig.CELL_HEIGHT, (x + 1) * UIConfig.CELL_WIDTH, y * UIConfig.CELL_HEIGHT, color);
+		Game.getInstance().getDisplay().drawLine(x * Display.cellWidth - 1, y * Display.cellHeight, (x + 1) * Display.cellWidth, y * Display.cellHeight, color);
 	}
 	
 	private void bottom(Point point, SColor color) {
 		int x = point.getX() + offset.getX();
 		int y = point.getY() + offset.getY();
 		
-		Game.getInstance().getDisplay().drawLine(x * UIConfig.CELL_WIDTH - 1, (y + 1) * UIConfig.CELL_HEIGHT - 1, (x + 1) * UIConfig.CELL_WIDTH, (y + 1) * UIConfig.CELL_HEIGHT - 1, color);
+		Game.getInstance().getDisplay().drawLine(x * Display.cellWidth - 1, (y + 1) * Display.cellHeight - 1, (x + 1) * Display.cellWidth, (y + 1) * Display.cellHeight - 1, color);
 	}
 	
 	private void left(Point point, SColor color) {
 		int x = point.getX() + offset.getX();
 		int y = point.getY() + offset.getY();
 		
-		Game.getInstance().getDisplay().drawLine(x * UIConfig.CELL_WIDTH, y * UIConfig.CELL_HEIGHT, x * UIConfig.CELL_WIDTH, (y + 1) * UIConfig.CELL_HEIGHT, color);
+		Game.getInstance().getDisplay().drawLine(x * Display.cellWidth, y * Display.cellHeight, x * Display.cellWidth, (y + 1) * Display.cellHeight, color);
 	}
 	
 	private void right(Point point, SColor color) {
 		int x = point.getX() + offset.getX();
 		int y = point.getY() + offset.getY();
 		
-		Game.getInstance().getDisplay().drawLine((x + 1) * UIConfig.CELL_WIDTH, y * UIConfig.CELL_HEIGHT, (x + 1) * UIConfig.CELL_WIDTH, (y + 1) * UIConfig.CELL_HEIGHT, color);
+		Game.getInstance().getDisplay().drawLine((x + 1) * Display.cellWidth, y * Display.cellHeight, (x + 1) * Display.cellWidth, (y + 1) * Display.cellHeight, color);
 	}
 
 	public void setOffset(Point point) {
