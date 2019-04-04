@@ -2,152 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da2c8047-2012-41c2-b0ab-d05c72db2653" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ai_h2o_reflections_0_9_11_h2o_custom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_badlogicgames_gdx_gdx_1_9_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_badlogicgames_gdx_gdx_backend_lwjgl_1_9_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_badlogicgames_gdx_gdx_platform_1_9_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_badlogicgames_jlayer_jlayer_1_0_1_gdx.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_tommyettinger_regexodus_0_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_1_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_0_18.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_23_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squidpony_squidlib_3_0_0_b9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squidpony_squidlib_extra_3_0_0_b9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squidpony_squidlib_util_3_0_0_b9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_jinput_jinput_2_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_jinput_jinput_platform_natives_linux_2_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_jinput_jinput_platform_natives_osx_2_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_jinput_jinput_platform_natives_windows_2_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_jutils_jutils_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_supercsv_super_csv_2_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_1_2_api_2_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_9_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_19_0_GA.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jcraft_jorbis_0_0_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jgrapht_jgrapht_jdk1_5_0_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_lwjgl_lwjgl_lwjgl_2_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_lwjgl_lwjgl_lwjgl_platform_natives_linux_2_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_lwjgl_lwjgl_lwjgl_platform_natives_osx_2_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_lwjgl_lwjgl_lwjgl_platform_natives_windows_2_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_lwjgl_lwjgl_lwjgl_util_2_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/roguelike.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Duration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Duration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/CharacterAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/CharacterAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/MoveAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/MoveAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/TakeStairsAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/TakeStairsAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/TargetedAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/TargetedAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/WaitAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/WaitAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/BasicAttackPerk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/BasicAttackPerk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/WeaponAttack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/WeaponAttack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/ActionCosts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/ActionCosts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/ConditionalCost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/ConditionalCost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/EnergyCost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/EnergyCost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/StimulusCost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/StimulusCost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/BaseFoeStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/BaseFoeStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/Foe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/Foe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/ai/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/ai/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/ai/AIPathFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/ai/AIPathFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/inventory/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/inventory/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PassthroughPerk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PassthroughPerk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PerkSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PerkSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/ActionCostModificationPerk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/ActionCostModificationPerk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/LingeringActivation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/LingeringActivation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/LingeringTargetedActionPerk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/LingeringTargetedActionPerk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/OffensiveTargetedPerk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/OffensiveTargetedPerk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/TargetFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/TargetFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/TargetSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/TargetSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/Targetable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/Targetable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/constraints/TargetConstraint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/constraints/TargetConstraint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/requirements/ValidTargetLocationInRangeRequirement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/requirements/ValidTargetLocationInRangeRequirement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/ClassSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/ClassSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/Ability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/SpellOrSpecialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/SpellOrSpecialization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/druid/FlashFreeze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/druid/FlashFreeze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/druid/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/druid/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Blind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Blind.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Silence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Silence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Slow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Slow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Teleport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Teleport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Unlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/inquisitor/Unlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/shadow/UtterDark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/shadow/UtterDark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/ThrowRock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/ThrowRock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/masteries/MasteryLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/masteries/MasteryLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/SpecializationCalculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/SpecializationCalculation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/stimuli/PerceivedStimuli.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/stimuli/PerceivedStimuli.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/stimuli/PerceivedStimulus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/stimuli/PerceivedStimulus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/stimuli/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/stimuli/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/stimuli/Stimulus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/stimuli/Stimulus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemPropertyCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemPropertyCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/miscellaneous/Rock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/miscellaneous/Rock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MetalWeaponMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MetalWeaponMaterial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WoodWeaponMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WoodWeaponMaterial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeaponMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeaponMaterial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/WeaponType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/WeaponType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/HasLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/HasLocation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/LocationProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/LocationProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Brazier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Brazier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Feature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Feature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/TunnelDigger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/TunnelDigger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Stone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Stone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/fov/DirectionVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/fov/DirectionVector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/fov/LightLevels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/fov/LightLevels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/DungeonMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/DungeonMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/Outline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/Outline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/Renderable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/Renderable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/animations/Blink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/animations/Blink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/input/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/input/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/input/PlayerKeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/input/PlayerKeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/charactercreation/attributeselectors/AttributeArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/charactercreation/attributeselectors/AttributeArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/charactercreation/attributeselectors/PointBuyScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/charactercreation/attributeselectors/PointBuyScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/messages/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/Rectangular.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/Rectangular.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/GetTargetInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/GetTargetInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/InteractiveUIElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/InteractiveUIElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/MouseCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/MouseCallback.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/TextBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/TextBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/menus/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/menus/MenuValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/menus/MenuValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/menus/OnSelectListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/menus/OnSelectListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/HasWeightedProbability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/HasWeightedProbability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/Latch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/Latch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/datastructures/CollectionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/datastructures/CollectionUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/pathfinding/PathFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/pathfinding/PathFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/HasPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/HasPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/HasStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/HasStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/StatSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/StatSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/CurrentHealth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/CurrentHealth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/AdditiveCalculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/AdditiveCalculation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/HasEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/HasEffect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/MultiplicativeCalculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/MultiplicativeCalculation.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -162,16 +17,7 @@
     <option name="delegatedBuild" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/WeaponStat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/Weight.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -244,11 +90,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/StatSet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="594">
-              <caret line="53" column="53" lean-forward="true" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+              <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Duration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -256,6 +114,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -377,7 +236,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -611,7 +470,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -661,6 +520,14 @@
       <option name="presentableId" value="Default" />
       <updated>1554259118505</updated>
     </task>
+    <task id="LOCAL-00001" summary="Updated to work with intellij and various minor code improvements">
+      <created>1554356821823</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1554356821823</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -673,16 +540,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="885" y="0" width="1682" height="1407" extended-state="0" />
+    <frame x="884" y="0" width="1682" height="1408" extended-state="0" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2735732" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27743527" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32881084" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.33519554" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32960895" />
@@ -690,21 +553,22 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
-      <window_info anchor="right" id="Maven" weight="0.21503593" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.3299373" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32881084" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3346395" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.21503593" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
     </layout>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated to work with intellij and various minor code improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated to work with intellij and various minor code improvements" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/detection/senses/Hearing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/detection/senses/Sense.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1051,7 +915,17 @@
     <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/StatSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
-          <caret line="53" column="53" lean-forward="true" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+          <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Duration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
