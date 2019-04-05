@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="da2c8047-2012-41c2-b0ab-d05c72db2653" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="da2c8047-2012-41c2-b0ab-d05c72db2653" name="Default Changelist" comment="Screen size at least sortof scales with resolution now">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/WaitAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/WaitAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/BaseFoeStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/BaseFoeStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/Buff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/Buff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PassivePerk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PassivePerk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/masteries/MasteryLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/masteries/MasteryLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/miscellaneous/Rock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/miscellaneous/Rock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MetalWeaponMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MetalWeaponMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WoodWeaponMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WoodWeaponMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeaponMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeaponMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/WeaponType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/WeaponType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/EnvironmentEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/EnvironmentEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Brazier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Brazier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/BoundedResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/BoundedResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/CurrentHealth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/CurrentHealth.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/ResourceModification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/ResourceModification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/EffectCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/EffectCollection.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -13,105 +40,143 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/Weight.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/Brightness.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/Damping.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/LocationStat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/LocationStatSet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/Opacity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/HasStats.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/Stat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/StatSet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Duration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+            <state relative-caret-position="500">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#1599#1600#0" expanded="true" />
+                <element signature="e#1627#1628#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/EffectCollection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/LightEmission.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="332" column="29" selection-start-line="332" selection-start-column="29" selection-end-line="332" selection-end-column="29" />
+              <folding>
+                <element signature="e#4750#4751#0" expanded="true" />
+                <element signature="e#4773#4774#0" expanded="true" />
+                <element signature="e#10937#10938#0" expanded="true" />
+                <element signature="e#10985#10986#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="48" column="4" lean-forward="true" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/ElixirOfAzureFlame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="e#163#164#0" expanded="true" />
+                <element signature="e#187#188#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/WeaponType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
+              <folding>
+                <element signature="e#2116#2117#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/main/State.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="93" column="12" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+              <folding>
+                <element signature="e#3850#3851#0" expanded="true" />
+                <element signature="e#3889#3890#0" expanded="true" />
+                <element signature="e#3920#3921#0" expanded="true" />
+                <element signature="e#3940#3941#0" expanded="true" />
+                <element signature="e#3988#3989#0" expanded="true" />
+                <element signature="e#4025#4026#0" expanded="true" />
+                <element signature="e#4685#4686#0" expanded="true" />
+                <element signature="e#4710#4711#0" expanded="true" />
+                <element signature="e#5043#5044#0" expanded="true" />
+                <element signature="e#5067#5068#0" expanded="true" />
+                <element signature="e#5109#5110#0" expanded="true" />
+                <element signature="e#5136#5137#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.base/java/util/Collections.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="1013" column="36" selection-start-line="1013" selection-start-column="36" selection-end-line="1013" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="107" column="22" selection-start-line="107" selection-start-column="22" selection-end-line="107" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>UIConfig.CELL_WIDTH</find>
+      <find>UIConfig.CELL_HEIGHT</find>
+      <find>null</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>Display.cellWidth</replace>
+      <replace>Display.cellHeight</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -120,36 +185,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemPropertyCache.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Brazier.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Feature.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/LingeringActivation.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/GenericTargetedPerk.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/LingeringTargetedActionPerk.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/Item.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonGenerator.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/TunnelDigger.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Stone.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/HasLocation.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/Location.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/LocationProperty.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/fov/DirectionVector.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/fov/LightLevels.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/animations/Blink.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/DungeonMap.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/Outline.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/Renderable.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/input/Input.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/input/PlayerKeyHandler.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/charactercreation/attributeselectors/AttributeArray.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/charactercreation/attributeselectors/PointBuyScreen.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/messages/Message.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/menus/Menu.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/menus/MenuValues.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/menus/OnSelectListener.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/GetTargetInterface.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/InteractiveUIElement.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/uielements/interactiveuielements/MouseCallback.java" />
@@ -162,15 +197,45 @@
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/HasWeightedProbability.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/Latch.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/Utils.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/Game.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/State.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/CurrentHealth.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/AdditiveCalculation.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/HasEffect.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/MultiplicativeCalculation.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/HasStats.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/StatSet.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/ui/UIConfig.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/input/Input.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/Outline.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/display/Display.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/Game.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/miscellaneous/Rock.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MetalWeaponMaterial.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeaponMaterial.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Brazier.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WoodWeaponMaterial.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorType.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/ResourceModification.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/Resource.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/Buff.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/WaitAction.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/EnvironmentEffect.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/BoundedResource.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/masteries/MasteryLevel.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/BaseFoeStats.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/CurrentHealth.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/AutoClassToInstanceMap.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PassivePerk.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/MeleeWeaponType.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/WeaponType.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/EffectCollection.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/ElixirOfAzureFlame.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/State.java" />
       </list>
     </option>
   </component>
@@ -226,9 +291,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1326" />
-    <option name="width" value="2523" />
-    <option name="height" value="2112" />
+    <option name="x" value="939" />
+    <option name="width" value="2898" />
+    <option name="height" value="2111" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -247,6 +312,11 @@
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
               <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -254,13 +324,6 @@
               <item name="roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="actors" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -284,7 +347,7 @@
               <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
               <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="foes" type="462c0819:PsiDirectoryNode" />
+              <item name="perks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -293,8 +356,7 @@
               <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
               <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="foes" type="462c0819:PsiDirectoryNode" />
-              <item name="ai" type="462c0819:PsiDirectoryNode" />
+              <item name="player" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -303,8 +365,8 @@
               <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
               <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="foes" type="462c0819:PsiDirectoryNode" />
-              <item name="corruptions" type="462c0819:PsiDirectoryNode" />
+              <item name="player" type="462c0819:PsiDirectoryNode" />
+              <item name="perks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -313,8 +375,9 @@
               <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
               <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="foes" type="462c0819:PsiDirectoryNode" />
-              <item name="species" type="462c0819:PsiDirectoryNode" />
+              <item name="player" type="462c0819:PsiDirectoryNode" />
+              <item name="perks" type="462c0819:PsiDirectoryNode" />
+              <item name="abilities" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -323,9 +386,10 @@
               <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
               <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="foes" type="462c0819:PsiDirectoryNode" />
-              <item name="species" type="462c0819:PsiDirectoryNode" />
-              <item name="generic" type="462c0819:PsiDirectoryNode" />
+              <item name="player" type="462c0819:PsiDirectoryNode" />
+              <item name="perks" type="462c0819:PsiDirectoryNode" />
+              <item name="abilities" type="462c0819:PsiDirectoryNode" />
+              <item name="spells" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -334,36 +398,11 @@
               <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
               <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="foes" type="462c0819:PsiDirectoryNode" />
-              <item name="species" type="462c0819:PsiDirectoryNode" />
-              <item name="natural" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="foes" type="462c0819:PsiDirectoryNode" />
-              <item name="traits" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="inventory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="events" type="462c0819:PsiDirectoryNode" />
+              <item name="player" type="462c0819:PsiDirectoryNode" />
+              <item name="perks" type="462c0819:PsiDirectoryNode" />
+              <item name="abilities" type="462c0819:PsiDirectoryNode" />
+              <item name="spells" type="462c0819:PsiDirectoryNode" />
+              <item name="druid" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -378,93 +417,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="input" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="charactercreation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="charactercreation" type="462c0819:PsiDirectoryNode" />
-              <item name="attributeselectors" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="messages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="utilities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="utilities" type="462c0819:PsiDirectoryNode" />
-              <item name="datastructures" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="utilities" type="462c0819:PsiDirectoryNode" />
-              <item name="pathfinding" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="utilities" type="462c0819:PsiDirectoryNode" />
-              <item name="position" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="stats" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="stats" type="462c0819:PsiDirectoryNode" />
-              <item name="itemstats" type="462c0819:PsiDirectoryNode" />
+              <item name="display" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -527,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1554356821823</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Screen size at least sortof scales with resolution now">
+      <created>1554361064027</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1554361064027</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -540,23 +500,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="884" y="0" width="1682" height="1408" extended-state="0" />
+    <frame x="626" y="0" width="1932" height="1407" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27743527" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24038461" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32960895" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39984038" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32784313" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3992157" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.3299373" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32881084" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.33019608" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32784313" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3346395" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.33411765" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -565,53 +526,266 @@
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Updated to work with intellij and various minor code improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated to work with intellij and various minor code improvements" />
+    <MESSAGE value="Screen size at least sortof scales with resolution now" />
+    <option name="LAST_COMMIT_MESSAGE" value="Screen size at least sortof scales with resolution now" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties>
+            <option name="NOTIFY_CAUGHT" value="false" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/detection/senses/Sense.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="56" column="38" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="44" column="27" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/Buff.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/WaitAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="28" column="18" lean-forward="true" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/EnvironmentEffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/BoundedResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="50" column="70" selection-start-line="50" selection-start-column="70" selection-end-line="50" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/masteries/MasteryLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="45" column="53" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/resources/CurrentHealth.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="32" column="73" selection-start-line="32" selection-start-column="73" selection-end-line="32" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.base/java/util/function/Supplier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.desktop/sun/awt/windows/WToolkit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="319" column="24" selection-start-line="319" selection-start-column="24" selection-end-line="319" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.base/java/lang/reflect/InvocationTargetException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/AutoClassToInstanceMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="34" column="55" selection-start-line="34" selection-start-column="55" selection-end-line="34" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Modifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="46" column="29" lean-forward="true" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.base/java/security/AccessController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="691" selection-start-line="691" selection-end-line="691" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.base/jdk/internal/loader/URLClassPath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="497" selection-start-line="497" selection-end-line="497" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/BaseFoeStats.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/detection/senses/SenseMagic.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/Perk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+          <folding>
+            <element signature="e#1978#1979#0" expanded="true" />
+            <element signature="e#2001#2002#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PassivePerk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/23.0/guava-23.0-sources.jar!/com/google/common/eventbus/Dispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="115" selection-start-line="115" selection-end-line="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/23.0/guava-23.0-sources.jar!/com/google/common/eventbus/EventBus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="216" selection-start-line="216" selection-end-line="216" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/inventory/PrimaryWeapon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/detection/senses/Vision.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/WeaponAttack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="37" column="83" lean-forward="true" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/BasicAttack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/detection/PersistantArcaneResonance.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/ai/AI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="352">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/detection/Visibility.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/Foe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        <state relative-caret-position="628">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/detection/VisibilityLevel.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Action.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+        <state relative-caret-position="587">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#1159#1160#0" expanded="true" />
+            <element signature="e#1195#1196#0" expanded="true" />
+            <element signature="e#1277#1278#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/Accuracy.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/ActionCost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="e#1336#1337#0" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
+            <element signature="e#1387#1388#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/CharacterAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#629#630#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/squidpony/squidlib-util/3.0.0-b9/squidlib-util-3.0.0-b9-sources.jar!/squidpony/squidgrid/FOV.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="609" selection-start-line="609" selection-end-line="609" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/WeaponSpeed.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
@@ -625,306 +799,168 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/BonusWeaponDamage.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/MeleeWeaponType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="220">
+          <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/Encumbrance.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/Unarmed.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        <state relative-caret-position="176">
+          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding>
+            <element signature="e#1061#1062#0" expanded="true" />
+            <element signature="e#1143#1144#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/Endurance.java">
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/jdk.rmic/sun/tools/tree/UnaryExpression.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="264">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/Health.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/inventory/Inventory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="349">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="e#2034#2035#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/ItemEncumbrance.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/inventory/SingleSlot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="594">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#1530#1531#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/ItemWeight.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="544">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+          <folding>
+            <element signature="e#2410#2411#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/Light.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/HasStats.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="242">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#1302#1303#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/StatSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#1599#1600#0" expanded="true" />
+            <element signature="e#1627#1628#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="107" column="22" selection-start-line="107" selection-start-column="22" selection-end-line="107" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.base/java/util/Collections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="1013" column="36" selection-start-line="1013" selection-start-column="36" selection-end-line="1013" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/EffectCollection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/LightEmission.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/MovementSpeed.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="276">
+          <caret line="332" column="29" selection-start-line="332" selection-start-column="29" selection-end-line="332" selection-end-column="29" />
+          <folding>
+            <element signature="e#4750#4751#0" expanded="true" />
+            <element signature="e#4773#4774#0" expanded="true" />
+            <element signature="e#10937#10938#0" expanded="true" />
+            <element signature="e#10985#10986#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/SecondaryStat.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        <state relative-caret-position="374">
+          <caret line="48" column="4" lean-forward="true" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/WeaponDamageMultiplier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/WeaponEncumbrance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/secondarystats/WeaponWeight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/CharacterStat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/characterstats/CharacterStats.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/AdditiveCalculation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Calculation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/EffectCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="80" column="28" lean-forward="true" selection-start-line="80" selection-start-column="28" selection-end-line="80" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/FixedCalculation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/HasEffect.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/ElixirOfAzureFlame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Modifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-275">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/MultiplicativeCalculation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/ArmorStat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/AttenuationDefense.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/BaseWeaponDamage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/ConcealmentDefense.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/ItemStat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/ItemStatSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/VeilDefense.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/WeaponRange.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/WeaponSpeed.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/WeaponStat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/itemstats/Weight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/Brightness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/Damping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/LocationStat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/LocationStatSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/locationstats/Opacity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/HasStats.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/Stat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/StatSet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Duration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#163#164#0" expanded="true" />
+            <element signature="e#187#188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/WeaponType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="e#2116#2117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/main/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="93" column="12" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+          <folding>
+            <element signature="e#3850#3851#0" expanded="true" />
+            <element signature="e#3889#3890#0" expanded="true" />
+            <element signature="e#3920#3921#0" expanded="true" />
+            <element signature="e#3940#3941#0" expanded="true" />
+            <element signature="e#3988#3989#0" expanded="true" />
+            <element signature="e#4025#4026#0" expanded="true" />
+            <element signature="e#4685#4686#0" expanded="true" />
+            <element signature="e#4710#4711#0" expanded="true" />
+            <element signature="e#5043#5044#0" expanded="true" />
+            <element signature="e#5067#5068#0" expanded="true" />
+            <element signature="e#5109#5110#0" expanded="true" />
+            <element signature="e#5136#5137#0" expanded="true" />
           </folding>
         </state>
       </provider>

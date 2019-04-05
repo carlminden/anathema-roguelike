@@ -30,6 +30,8 @@ import com.anathema_roguelike.stats.itemstats.WeaponRange;
 import com.anathema_roguelike.stats.itemstats.WeaponSpeed;
 import com.anathema_roguelike.stats.itemstats.Weight;
 
+import java.util.Optional;
+
 public abstract class WeaponType extends WeaponProperty implements ItemType<Weapon> {
 	
 	private double attackSpeed;
@@ -66,9 +68,9 @@ public abstract class WeaponType extends WeaponProperty implements ItemType<Weap
 	public abstract double getRange();
 	
 	@Override
-	public java.util.Optional<Effect<Item, ItemStat>> getEffect() {
+	public Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return java.util.Optional.of(new Effect<>(this,
+		return Optional.of(new Effect<>(Optional.of(this),
 				new Modifier<>(WeaponSpeed.class, AdditiveCalculation.build(() -> getAttackSpeed())),
 				new Modifier<>(BaseWeaponDamage.class, AdditiveCalculation.build(() -> getDamage())),
 				new Modifier<>(WeaponRange.class, AdditiveCalculation.build(() -> getRange())),

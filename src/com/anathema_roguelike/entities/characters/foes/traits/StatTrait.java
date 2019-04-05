@@ -10,6 +10,8 @@ import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 import com.anathema_roguelike.stats.effects.Modifier;
 import com.anathema_roguelike.stats.effects.MultiplicativeCalculation;
 
+import javax.swing.text.html.Option;
+
 public class StatTrait<T extends CharacterStat> extends Trait<PassivePerk> {
 	
 	private Class<T> stat;
@@ -44,9 +46,9 @@ public class StatTrait<T extends CharacterStat> extends Trait<PassivePerk> {
 			@Override
 			public Optional<Buff> getEffect() {
 				if(additiveCalculation != null) {
-					return Optional.<Buff>of(new Buff(this, new Modifier<>(stat, additiveCalculation)));
+					return Optional.of(new Buff(Optional.of(this), new Modifier<>(stat, additiveCalculation)));
 				} else {
-					return Optional.<Buff>of(new Buff(this, new Modifier<>(stat, multiplicativeCalculation)));
+					return Optional.of(new Buff(Optional.of(this), new Modifier<>(stat, multiplicativeCalculation)));
 				}
 			}
 		};

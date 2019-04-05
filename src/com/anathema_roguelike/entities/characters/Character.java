@@ -237,11 +237,11 @@ public abstract class Character extends Entity implements HasStats<Character, Ch
 		stats.getStat(attribute).setScore(amount);
 	}
 	
-	public void setResource(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> stat, int amount) {
+	public void setResource(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> stat, int amount) {
 		stats.getStat(stat).set(initiator, source, amount);
 	}
 	
-	public void modifyResource(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> stat, int amount) {
+	public void modifyResource(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> stat, int amount) {
 		Resource resource = stats.getStat(stat);
 		resource.modify(initiator, source, amount);
 	}

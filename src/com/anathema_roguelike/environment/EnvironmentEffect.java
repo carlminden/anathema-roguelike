@@ -21,10 +21,12 @@ import com.anathema_roguelike.stats.effects.HasEffect;
 import com.anathema_roguelike.stats.effects.Modifier;
 import com.anathema_roguelike.stats.locationstats.LocationStat;
 
+import java.util.Optional;
+
 public class EnvironmentEffect extends Effect <Location, LocationStat> {
 	
 	@SafeVarargs
-	public EnvironmentEffect(HasEffect<Effect <Location, LocationStat>> source, Modifier<Location, ? extends LocationStat>... modifiers) {
+	public EnvironmentEffect(Optional<? extends HasEffect<Effect <Location, LocationStat>>> source, Modifier<Location, ? extends LocationStat>... modifiers) {
 		super(source, modifiers);
 	}
 }

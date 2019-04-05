@@ -26,9 +26,9 @@ public abstract class PassivePerk extends Perk implements HasBuff {
 
 	@Override
 	public void grant(Character character) {
-		
-		character.applyEffect(getEffect());
 		super.grant(character);
+		character.applyEffect(getEffect());
+
 	}
 
 	@Override

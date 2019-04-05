@@ -13,7 +13,7 @@ public interface Actor {
 	Optional<Action<?>> getNextAction();
 
 	default Action<Actor> getDefaultAction() {
-		return new Action<Actor>(this, EnergyCost.STANDARD(this)) {
+		return new Action<>(this, EnergyCost.STANDARD(this)) {
 			@Override
 			protected void onTake() {
 

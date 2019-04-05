@@ -34,7 +34,7 @@ public class Brazier extends Feature {
 	
 	@Override
 	public Optional<Effect<Location, LocationStat>> getEffect() {
-		Effect<Location, LocationStat> effect = new Effect<>(this,
+		Effect<Location, LocationStat> effect = new Effect<>(Optional.of(this),
 			new Modifier<Location, LocationStat>(Brightness.class, AdditiveCalculation.fixed(20.0)));
 		
 		return Optional.of(effect);

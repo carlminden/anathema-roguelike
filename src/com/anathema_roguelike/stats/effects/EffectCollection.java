@@ -16,18 +16,23 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.effects;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.stream.Stream;
 
 import com.anathema_roguelike.actors.TimeElapsedEvent;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.stats.Stat;
 import com.google.common.collect.HashBiMap;
+import com.google.common.collect.Iterables;
 import com.google.common.eventbus.Subscribe;
 
 public class EffectCollection<T, S extends Stat<? extends T>> {
 	
-	private HashBiMap<HasEffect<? extends Effect<? extends T, ?>>, Effect<? extends T, ?>> effects = HashBiMap.create();
-	
+	private HashBiMap<HasEffect<? extends Effect<? extends T, ?>>, Effect<? extends T, ?>> sourcedEffects = HashBiMap.create();
+	private ArrayList<Effect<? extends T, ?>> unsourcedEffects = new ArrayList<>();
+
 	private T affected;
 	
 	public EffectCollection(T affected) {
@@ -40,7 +45,7 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		
 		double bonus = 0;
 		
-		for(Effect<? extends T, ?> effect : effects.values()) {
+		for(Effect<? extends T, ?> effect : getEffects()) {
 			bonus += effect.getAdditiveBonus(stat); 
 		}
 		
@@ -50,11 +55,11 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 	public double getStatMultiplier(Class<? extends S> stat) {
 		
 		double bonus = 1;
-		
-		for(Effect<? extends T, ?> effect : effects.values()) {
+
+		for(Effect<? extends T, ?> effect : getEffects()) {
 			bonus *= effect.getMultiplier(stat);
 		}
-		
+
 		return bonus;
 	}
 	
@@ -63,37 +68,47 @@ public class EffectCollection<T, S extends Stat<? extends T>> {
 		elapse(event.getElapsedTime());
 		removeExpired();
 	}
-	
-	public Collection<? extends Effect<? extends T, ?>> getEffects() {
-		return effects.values();
+
+	public Iterable<Effect<? extends T, ?>> getEffects() {
+		return Iterables.concat(sourcedEffects.values(), unsourcedEffects);
 	}
-	
+
 	public void apply(Effect<T, ?> effect) {
-		
-		effects.forcePut(effect.getSource(), effect);
-		
+ 		effect.getSource().ifPresentOrElse(
+ 				src -> sourcedEffects.forcePut(src, effect),
+				() -> unsourcedEffects.add(effect));
+
 		effect.applyTo(affected);
 	}
 	
 	public void removeBySource(HasEffect<? extends Effect<? extends T, ?>> source) {
 		
-		Effect<? extends T,?> effect = effects.get(source); 
+		Effect<? extends T,?> effect = sourcedEffects.get(source);
 		if(effect != null) {
-			effects.remove(effect);
+			sourcedEffects.remove(effect);
 			effect.remove();
 		}
 	}
 	
 	public void elapse(double duration) {
-		for(Effect<? extends T, ?> effect : effects.values()) {
+		for(Effect<? extends T, ?> effect : getEffects()) {
 			effect.getDuration().elapse(duration);
 		}
 	}
 	
 	public void removeExpired() {
-		effects.entrySet().removeIf(entry -> {
+		sourcedEffects.entrySet().removeIf(entry -> {
 			if(entry.getValue().getDuration().isExpired()) {
 				entry.getValue().remove();
+				return true;
+			} else {
+				return false;
+			}
+		});
+
+		unsourcedEffects.removeIf(entry -> {
+			if(entry.getDuration().isExpired()) {
+				entry.remove();
 				return true;
 			} else {
 				return false;

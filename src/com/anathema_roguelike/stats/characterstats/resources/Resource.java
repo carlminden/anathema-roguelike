@@ -38,7 +38,7 @@ public abstract class Resource extends CharacterStat {
 		
 	}
 	
-	public void modify(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, int amount) {
+	public void modify(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, int amount) {
 		set(initiator, source, (int) (getAmount() + amount));
 	}
 	@Override
@@ -46,7 +46,7 @@ public abstract class Resource extends CharacterStat {
 		return amount;
 	}
 	
-	public void set(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, int amount) {
+	public void set(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, int amount) {
 		
 		int currentAmount = (int) getAmount();
 		
@@ -65,7 +65,7 @@ public abstract class Resource extends CharacterStat {
 		this.amount = amount;
 	}
 
-	protected void printResourceGainedMessage(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Character target, int amount) {
+	protected void printResourceGainedMessage(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, Character target, int amount) {
 		
 		if(getObject() instanceof Player) {
 			Message m = new Message("You gain " + amount + " pointSet of " + Utils.getName(this), Color.GREEN);
@@ -92,7 +92,7 @@ public abstract class Resource extends CharacterStat {
 		}
 	}
 	
-	protected void printResourceLostMessage(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Character target, int amount) {
+	protected void printResourceLostMessage(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, Character target, int amount) {
 		if(getObject() instanceof Player) {
 			Message m = new Message("You lose " + amount + " pointSet of " + Utils.getName(this), Color.RED);
 			

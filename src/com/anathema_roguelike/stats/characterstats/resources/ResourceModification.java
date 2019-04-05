@@ -31,16 +31,16 @@ public class ResourceModification<T extends Resource> extends Effect<Character, 
 	private Class<? extends Resource> resource;
 	private Optional<Character> initiator;
 	
-	public ResourceModification(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> resource, int amount) {
-		super(source.orElse(null), Duration.instant());
+	public ResourceModification(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> resource, int amount) {
+		super(source, Duration.instant());
 		
 		this.resource = resource;
 		this.calculation = new FixedCalculation(amount);
 		this.initiator = initiator;
 	}
 	
-	public ResourceModification(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> resource, Calculation calculation) {
-		super(source.orElse(null), Duration.instant());
+	public ResourceModification(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, Class<? extends Resource> resource, Calculation calculation) {
+		super(source, Duration.instant());
 		this.resource = resource;
 		this.calculation = calculation;
 		this.initiator = initiator;
@@ -54,6 +54,6 @@ public class ResourceModification<T extends Resource> extends Effect<Character, 
 	public void onApplicationCallback(Character character) {
 		super.onApplicationCallback(character);
 		
-		character.modifyResource(getInitiator(), Optional.of(getSource()), resource, calculation.get().intValue());
+		character.modifyResource(getInitiator(), getSource(), resource, calculation.get().intValue());
 	}
 }

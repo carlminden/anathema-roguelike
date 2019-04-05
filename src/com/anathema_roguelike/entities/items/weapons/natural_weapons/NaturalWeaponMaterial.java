@@ -36,7 +36,7 @@ public class NaturalWeaponMaterial extends WeaponMaterial {
 	@Override
 	public Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return Optional.of(new Effect<>(this,
+		return Optional.of(new Effect<>(Optional.of(this),
 				new Modifier<>(BaseWeaponDamage.class, MultiplicativeCalculation.build(() -> getDamage())),
 				new Modifier<>(Weight.class, MultiplicativeCalculation.build(() -> getWeight()))
 		));

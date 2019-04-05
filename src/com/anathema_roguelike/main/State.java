@@ -24,6 +24,7 @@ import java.util.PriorityQueue;
 import com.anathema_roguelike.actors.Actor;
 import com.anathema_roguelike.actors.TimeElapsedEvent;
 import com.anathema_roguelike.entities.characters.Character;
+import com.anathema_roguelike.entities.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.generation.CaveDungeonGenerator;
@@ -32,6 +33,8 @@ import com.anathema_roguelike.main.display.Renderable;
 import com.anathema_roguelike.main.ui.charactercreation.CharacterCreationUI;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
+import com.anathema_roguelike.stats.characterstats.secondarystats.AttackSpeed;
+import com.anathema_roguelike.stats.itemstats.WeaponSpeed;
 
 public class State implements Renderable {
 	
@@ -88,7 +91,7 @@ public class State implements Renderable {
 			actors.forEach(a -> a.energize());
 		} else {
 			actor.act();
-			
+
 			double timePassed = startTime - actors.peek().getEnergyLevel();
 			
 			elapsedTime += timePassed;

@@ -54,7 +54,7 @@ public class ArmorMaterial extends ArmorProperty {
 	@Override
 	public Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return Optional.of(new Effect<Item, ItemStat>(this,
+		return Optional.of(new Effect<>(Optional.of(this),
 				new Modifier<>(ConcealmentDefense.class, MultiplicativeCalculation.build(() -> getConcealment())),
 				new Modifier<>(AttenuationDefense.class, MultiplicativeCalculation.build(() -> getAttenuation())),
 				new Modifier<>(VeilDefense.class, MultiplicativeCalculation.build(() -> getVeil())),

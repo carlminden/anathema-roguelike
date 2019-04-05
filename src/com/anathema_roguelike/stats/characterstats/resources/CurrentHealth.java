@@ -30,7 +30,7 @@ public class CurrentHealth extends BoundedResource {
 	}
 	
 	@Override
-	public void modify(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, int amount) {
+	public void modify(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, int amount) {
 		if(amount < 0) {
 			
 			Character character = getObject();

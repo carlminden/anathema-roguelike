@@ -42,7 +42,7 @@ public class ArmorType extends ArmorProperty implements ItemType<Armor> {
 	@Override
 	public Optional<Effect<Item, ItemStat>> getEffect() {
 		
-		return Optional.of(new Effect<>(this,
+		return Optional.of(new Effect<>(Optional.of(this),
 				new Modifier<>(ConcealmentDefense.class, AdditiveCalculation.build(() -> getConcealment())),
 				new Modifier<>(AttenuationDefense.class, AdditiveCalculation.build(() -> getAttenuation())),
 				new Modifier<>(VeilDefense.class, AdditiveCalculation.build(() -> getVeil())),

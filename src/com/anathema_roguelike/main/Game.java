@@ -17,6 +17,8 @@
 package com.anathema_roguelike.main;
 
 import java.lang.Thread.UncaughtExceptionHandler;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
 
 import com.anathema_roguelike.main.display.Color;
@@ -52,7 +54,7 @@ public class Game extends ApplicationAdapter {
     private static Game instance = null;
 
 	public static void main(String[] args) {
-		
+
 		Thread.currentThread().setUncaughtExceptionHandler((arg0, arg1) -> {
 			System.out.println("Thread " + arg0);
 			arg1.printStackTrace();

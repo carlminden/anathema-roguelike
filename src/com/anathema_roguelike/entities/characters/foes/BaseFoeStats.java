@@ -22,7 +22,7 @@ public class BaseFoeStats extends PassivePerk {
 	
 	@Override
 	public Optional<Buff> getEffect() {
-		return Optional.of(new Buff(this,
+		return Optional.of(new Buff(Optional.of(this),
 			new Modifier<>(Agility.class, onePerLevel),
 			new Modifier<>(Constitution.class, onePerLevel),
 			new Modifier<>(Intelligence.class, onePerLevel),

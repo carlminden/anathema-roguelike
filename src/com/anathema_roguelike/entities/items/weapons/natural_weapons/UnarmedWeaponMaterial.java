@@ -36,12 +36,13 @@ public class UnarmedWeaponMaterial extends NaturalWeaponMaterial {
 	public Optional<Effect<Item, ItemStat>> getEffect() {
 		Optional<Effect<Item, ItemStat>> effect = super.getEffect();
 		effect.ifPresent(e -> e.addModifier(new Modifier<>(BaseWeaponDamage.class, AdditiveCalculation.build(
-				() -> {
-					Optional<Character> wearer = e.getTarget().getWearer();
-					
-					return wearer.isPresent() ? wearer.get().getLevel() : 0.0;
-				})
-			)));
+			() -> Double.valueOf(
+				e.getTarget()
+				.flatMap(t -> t.getWearer())
+				.map(w -> w.getLevel())
+				.orElse(0)
+			)
+		))));
 		
 		return effect;
 	}

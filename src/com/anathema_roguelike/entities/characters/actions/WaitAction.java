@@ -1,6 +1,7 @@
 package com.anathema_roguelike.entities.characters.actions;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 import com.anathema_roguelike.actors.Duration;
@@ -17,15 +18,15 @@ import com.anathema_roguelike.stats.effects.Modifier;
 public class WaitAction extends TargetedAction<Character, Character> {
 
 	public WaitAction(Character character) {
-		super(character, character, Arrays.asList(character), EnergyCost.STANDARD(character), new TargetEffect<Character, CharacterStat>(character.getClass(), "Waiting") {
+		super(character, character, Collections.singletonList(character), EnergyCost.STANDARD(character), new TargetEffect<Character, CharacterStat>(character.getClass(), "Waiting") {
 			@Override
 			public Optional<Effect<Character, CharacterStat>> getEffect() {
 				return Optional.of(
-						new Effect<>(this, new Duration(Duration.VERY_SHORT), 
-								new Modifier<>(Vision.class, AdditiveCalculation.fixed(5.0)),
-								new Modifier<>(Hearing.class, AdditiveCalculation.fixed(5.0))
-							)
-						);
+					new Effect<>(Optional.of(this), new Duration(Duration.VERY_SHORT),
+						new Modifier<>(Vision.class, AdditiveCalculation.fixed(5.0)),
+						new Modifier<>(Hearing.class, AdditiveCalculation.fixed(5.0))
+					)
+				);
 			}
 		});
 	}

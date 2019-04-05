@@ -48,7 +48,7 @@ public abstract class BoundedResource extends Resource {
 	}
 	
 	@Override
-	public void set(Optional<Character> initiator, Optional<HasEffect<? extends Effect<Character, ?>>> source, int amount) {
+	public void set(Optional<Character> initiator, Optional<? extends HasEffect<? extends Effect<Character, ?>>> source, int amount) {
 		super.set(initiator, source, Utils.clamp(amount, 0, getMaximum()));
 	}
 	

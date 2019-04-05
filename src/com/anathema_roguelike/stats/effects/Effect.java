@@ -18,33 +18,33 @@ package com.anathema_roguelike.stats.effects;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 import com.anathema_roguelike.actors.Duration;
 import com.anathema_roguelike.stats.Stat;
 
 public class Effect<T, S extends Stat<? extends T>> {
 
-	//TODO: source should be Optional
-	private HasEffect<? extends Effect<T, ?>> source;
+	private Optional<? extends HasEffect<? extends Effect<T, ?>>> source;
 	private Duration duration;
 	private ArrayList<Modifier<T, ?>> modifiers;
-	private T target;
+	private Optional<T> target = Optional.empty();
 	
 	@SafeVarargs
-	public Effect(HasEffect<? extends Effect<T, ?>> source, Modifier<T, ?>... modifiers) {
+	public Effect(Optional<? extends HasEffect<? extends Effect<T, ?>>> source, Modifier<T, ?>... modifiers) {
 		this.source = source;
 		this.duration = Duration.permanent();
 		this.modifiers = new ArrayList<>(Arrays.asList(modifiers));
 	}
 	
 	@SafeVarargs
-	public Effect(HasEffect<? extends Effect<T, ?>> source, Duration duration, Modifier<T, ?>... modifiers) {
+	public Effect(Optional<? extends HasEffect<? extends Effect<T, ?>>> source, Duration duration, Modifier<T, ?>... modifiers) {
 		this.source = source;
 		this.duration = Duration.copy(duration);
 		this.modifiers = new ArrayList<>(Arrays.asList(modifiers));
 	}
 	
-	public HasEffect<? extends Effect<T, ?>> getSource() {
+	public Optional<? extends HasEffect<? extends Effect<T, ?>>> getSource() {
 		return source;
 	}
 	
@@ -100,22 +100,22 @@ public class Effect<T, S extends Stat<? extends T>> {
 	
 	final public void applyTo(T target) {
 		
-		this.target = target;
+		this.target = Optional.of(target);
 		
 		onApplicationCallback(target);
 	}
 	
 	final public void remove() {
+
+		getTarget().ifPresent(t -> onExpirationCallback(t));
 		
-		onExpirationCallback(getTarget());
-		
-		this.target = null;
+		this.target = Optional.empty();
 	}
 	
 	public void onApplicationCallback(T target) {};
 	public void onExpirationCallback(T target) {};
 	
-	public T getTarget() {
+	public Optional<T> getTarget() {
 		return target;
 	};
 }
