@@ -16,15 +16,14 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.InteractiveUIElement;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
-
 import squidpony.squidgrid.gui.gdx.SquidInput;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 //The way I handled the finishItem is horrible
 public class Menu<T> extends InteractiveUIElement<T> {

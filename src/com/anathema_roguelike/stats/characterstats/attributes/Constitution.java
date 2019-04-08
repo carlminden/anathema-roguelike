@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.attributes;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public class Constitution extends Attribute {
 
 	public Constitution(Character character, int base) {

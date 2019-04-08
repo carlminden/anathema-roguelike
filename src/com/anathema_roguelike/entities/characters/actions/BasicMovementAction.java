@@ -1,10 +1,9 @@
 package com.anathema_roguelike.entities.characters.actions;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.costs.MovementEnergyCost;
-import com.anathema_roguelike.entities.characters.actions.costs.StimulusCost;
 import com.anathema_roguelike.entities.characters.stimuli.AttenuatedSound;
 import com.anathema_roguelike.environment.HasLocation;
+import com.anathema_roguelike.entities.characters.Character;
 
 public class BasicMovementAction extends MoveAction {
 

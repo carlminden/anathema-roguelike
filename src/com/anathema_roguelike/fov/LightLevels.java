@@ -16,9 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.fov;
 
-import java.util.HashMap;
-import java.util.Map.Entry;
-
 import com.anathema_roguelike.entities.Entity;
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.main.Game;
@@ -27,9 +24,11 @@ import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.eventbus.Subscribe;
-
 import squidpony.squidgrid.FOV;
 import squidpony.squidmath.PerlinNoise;
+
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class LightLevels extends FOVProcessor {
 	

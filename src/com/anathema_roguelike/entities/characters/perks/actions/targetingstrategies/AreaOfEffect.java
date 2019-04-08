@@ -16,16 +16,16 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies;
 
-import java.util.Collection;
-
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Shape;
 
-public abstract class AreaOfEffect<TargetType extends Targetable, OriginType extends Targetable> extends TargetingStrategy<TargetType, OriginType> {
+import java.util.Collection;
+
+public abstract class AreaOfEffect<TargetType extends Targetable, OriginType extends Targetable> extends TargetFilter<TargetType, OriginType> {
 	
 	
 	@SafeVarargs
-	public AreaOfEffect(Class<TargetType> targetType, TargetConstraint<TargetType, OriginType> ...constraints) {
+	public AreaOfEffect(Class<TargetType> targetType, TargetConstraint<TargetType, OriginType>...constraints) {
 		super(targetType, constraints);
 	}
 	

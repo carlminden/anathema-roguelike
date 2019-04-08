@@ -19,7 +19,7 @@ package com.anathema_roguelike.stats.itemstats;
 import com.anathema_roguelike.entities.items.Item;
 import com.anathema_roguelike.stats.StatSet;
 
-public class ItemStatSet extends StatSet<Item, ItemStat>{
+public class ItemStatSet extends StatSet<Item, ItemStat> {
 
 	public ItemStatSet(Item object) {
 		super(object, Item.class, ItemStat.class);

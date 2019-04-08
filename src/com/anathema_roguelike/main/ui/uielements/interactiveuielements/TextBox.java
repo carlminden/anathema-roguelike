@@ -16,14 +16,13 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
-import java.util.ArrayList;
-
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.position.Point;
-
 import squidpony.squidgrid.gui.gdx.SquidInput;
+
+import java.util.ArrayList;
 
 public class TextBox extends InteractiveUIElement<Void> {
 	

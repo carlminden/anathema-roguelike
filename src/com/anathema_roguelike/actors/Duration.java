@@ -17,7 +17,7 @@
 package com.anathema_roguelike.actors;
 
 public class Duration implements Comparable<Duration> {
-	
+
 	public static int INSTANT = 0;
 	public static int EXTREMELY_SHORT = 1;
 	public static int VERY_SHORT = 3;

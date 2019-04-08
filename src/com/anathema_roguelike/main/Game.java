@@ -59,7 +59,7 @@ public class Game extends ApplicationAdapter {
 			System.out.println("Thread " + arg0);
 			arg1.printStackTrace();
 		});
-		
+
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
    		config.width = UIConfig.TERM_WIDTH * Display.cellWidth;
     	config.height = UIConfig.TERM_HEIGHT * Display.cellHeight;
@@ -69,9 +69,9 @@ public class Game extends ApplicationAdapter {
         config.backgroundFPS = 30;
         config.resizable = false;
         //config.addIcon(path, fileType);
-    	
+
     	new LwjglApplication(Game.getInstance(), config);
-    	
+
     	Game.getInstance().start();
     }
 	
@@ -131,7 +131,7 @@ public class Game extends ApplicationAdapter {
         display.quit();
     }
 	
-	private void start() {
+	protected void start() {
 		
 		latch.await();
 		

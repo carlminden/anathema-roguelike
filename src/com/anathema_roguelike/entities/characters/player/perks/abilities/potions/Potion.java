@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.abilities.potions;
 
-import com.anathema_roguelike.entities.characters.perks.Perk;
 import com.anathema_roguelike.entities.characters.perks.PerkGroup;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability;
 

@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.secondarystats.detection;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.characterstats.resources.RecentMotion;
 import com.anathema_roguelike.stats.characterstats.secondarystats.SecondaryStat;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Concealment;

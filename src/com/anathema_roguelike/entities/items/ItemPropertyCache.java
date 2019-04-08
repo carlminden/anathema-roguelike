@@ -16,13 +16,13 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-
+import com.anathema_roguelike.entities.items.armor.ArmorMaterial;
+import com.anathema_roguelike.entities.items.armor.ArmorType;
+import com.anathema_roguelike.entities.items.weapons.MetalWeaponMaterial;
+import com.anathema_roguelike.entities.items.weapons.WoodWeaponMaterial;
+import com.anathema_roguelike.entities.items.weapons.types.*;
+import com.google.common.collect.ImmutableTable;
+import com.google.common.collect.ImmutableTable.Builder;
 import org.supercsv.cellprocessor.ParseDouble;
 import org.supercsv.cellprocessor.constraint.NotNull;
 import org.supercsv.cellprocessor.ift.CellProcessor;
@@ -30,19 +30,12 @@ import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
 
-import com.anathema_roguelike.entities.items.armor.ArmorMaterial;
-import com.anathema_roguelike.entities.items.armor.ArmorType;
-import com.anathema_roguelike.entities.items.weapons.MetalWeaponMaterial;
-import com.anathema_roguelike.entities.items.weapons.WoodWeaponMaterial;
-import com.anathema_roguelike.entities.items.weapons.types.BluntWeapon;
-import com.anathema_roguelike.entities.items.weapons.types.Bow;
-import com.anathema_roguelike.entities.items.weapons.types.Crossbow;
-import com.anathema_roguelike.entities.items.weapons.types.LongBlade;
-import com.anathema_roguelike.entities.items.weapons.types.ShortBlade;
-import com.anathema_roguelike.entities.items.weapons.types.Spear;
-import com.anathema_roguelike.entities.items.weapons.types.ThrowingWeapon;
-import com.google.common.collect.ImmutableTable;
-import com.google.common.collect.ImmutableTable.Builder;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 
 public abstract class ItemPropertyCache {
 
@@ -78,7 +71,7 @@ public abstract class ItemPropertyCache {
 			ret.add(new ParseDouble());
 		}
 		
-		return ret.toArray(new CellProcessor[ret.size()]);
+		return ret.toArray(new CellProcessor[0]);
 	}
 
 	@SuppressWarnings("unchecked")

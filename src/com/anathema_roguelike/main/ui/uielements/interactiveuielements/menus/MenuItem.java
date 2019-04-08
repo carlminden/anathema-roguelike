@@ -23,7 +23,6 @@ import com.anathema_roguelike.main.ui.uielements.interactiveuielements.Interacti
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MouseCallback;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.position.Point;
-
 import squidpony.squidgrid.gui.gdx.SColor;
 
 

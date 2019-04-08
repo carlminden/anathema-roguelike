@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
-import java.util.Collection;
-
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.Screen;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Menu;
@@ -26,6 +24,8 @@ import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.google.common.collect.Iterables;
+
+import java.util.Collection;
 
 public abstract class MenuScreen<T, M extends Menu<T>> extends Screen<T> {
 	

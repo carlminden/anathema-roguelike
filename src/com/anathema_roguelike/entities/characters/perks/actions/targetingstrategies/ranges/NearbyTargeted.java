@@ -3,8 +3,6 @@ package com.anathema_roguelike.entities.characters.perks.actions.targetingstrate
 import java.util.Collection;
 import java.util.function.Function;
 
-import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.environment.Location;
 
@@ -15,8 +13,8 @@ public class NearbyTargeted extends Range<Location> {
 	private Location target;
 	
 	@SafeVarargs
-	public NearbyTargeted(Class<Location> targetType, Range<Location> range, Function<Location, Shape> shapeSupplier, TargetConstraint<Location, Character> ...constraints) {
-		super(targetType, constraints);
+	public NearbyTargeted(Range<Location> range, Function<Location, Shape> shapeSupplier, TargetConstraint<Location, Character> ...constraints) {
+		super(constraints);
 		
 		this.shapeSupplier = shapeSupplier;
 		this.range = range;

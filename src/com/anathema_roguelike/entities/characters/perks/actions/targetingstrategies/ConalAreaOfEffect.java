@@ -1,10 +1,8 @@
 package com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies;
 
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Cone;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.main.utilities.position.Direction;
-import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 
 public abstract class ConalAreaOfEffect<TargetType extends Targetable, OriginType extends Targetable> extends AreaOfEffect<TargetType, OriginType> {
 

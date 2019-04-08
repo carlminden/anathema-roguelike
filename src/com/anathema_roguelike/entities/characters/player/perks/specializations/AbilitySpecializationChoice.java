@@ -1,14 +1,12 @@
 package com.anathema_roguelike.entities.characters.player.perks.specializations;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.perks.Perk;
 import com.anathema_roguelike.entities.characters.perks.PerkChoice;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.google.common.collect.Collections2;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class AbilitySpecializationChoice extends PerkChoice {
 	

@@ -16,9 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.weapons;
 
-import java.util.Random;
-
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.entities.items.Item;
 import com.anathema_roguelike.entities.items.ItemPropertyCache;
@@ -32,8 +29,9 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.BonusWeaponDam
 import com.anathema_roguelike.stats.characterstats.secondarystats.WeaponDamageMultiplier;
 import com.anathema_roguelike.stats.itemstats.BaseWeaponDamage;
 import com.anathema_roguelike.stats.itemstats.Weight;
-
 import squidpony.squidgrid.gui.gdx.SColor;
+
+import java.util.Random;
 
 public class Weapon extends Item {
 	

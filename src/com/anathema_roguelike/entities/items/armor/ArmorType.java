@@ -20,9 +20,6 @@ import java.util.Optional;
 
 import com.anathema_roguelike.entities.items.Item;
 import com.anathema_roguelike.entities.items.ItemType;
-import com.anathema_roguelike.stats.effects.AdditiveCalculation;
-import com.anathema_roguelike.stats.effects.Effect;
-import com.anathema_roguelike.stats.effects.Modifier;
 import com.anathema_roguelike.stats.itemstats.AttenuationDefense;
 import com.anathema_roguelike.stats.itemstats.ConcealmentDefense;
 import com.anathema_roguelike.stats.itemstats.ItemStat;

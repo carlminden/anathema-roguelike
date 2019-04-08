@@ -16,12 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks.requirements;
 
-import java.util.function.Supplier;
-
-import com.anathema_roguelike.entities.characters.perks.Perk;
 import com.anathema_roguelike.main.utilities.Utils;
-import com.anathema_roguelike.stats.characterstats.resources.Resource;
-import com.anathema_roguelike.stats.effects.Calculation;
+
+import java.util.function.Supplier;
 
 public class ResourceRequirement extends PerkRequirement {
 	

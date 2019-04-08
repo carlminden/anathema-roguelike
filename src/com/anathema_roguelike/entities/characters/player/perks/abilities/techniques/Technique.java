@@ -17,7 +17,6 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.techniques;
 
 import com.anathema_roguelike.entities.characters.perks.PassthroughPerk;
-import com.anathema_roguelike.entities.characters.perks.Perk;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability;
 
 public abstract class Technique<T extends Perk> extends PassthroughPerk<T> implements Ability {

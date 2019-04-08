@@ -18,7 +18,6 @@ package com.anathema_roguelike.entities.characters.foes.species.generic;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.foes.corruptions.Corruption;
 import com.anathema_roguelike.entities.characters.foes.roles.Role;
 import com.anathema_roguelike.entities.characters.foes.traits.Deficient;
@@ -31,8 +30,6 @@ import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Hearing;
-import com.anathema_roguelike.stats.effects.AdditiveCalculation;
-import com.anathema_roguelike.stats.effects.Modifier;
 
 public class Orc extends GenericSpecies {
 

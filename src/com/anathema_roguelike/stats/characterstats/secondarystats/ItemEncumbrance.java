@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.secondarystats;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public class ItemEncumbrance extends Encumbrance {
 
 	public ItemEncumbrance(Character character) {

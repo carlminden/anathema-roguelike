@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.inventory;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.items.weapons.Weapon;
 
 public class SecondaryWeapon extends SingleSlot<Weapon> {

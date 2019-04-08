@@ -9,8 +9,6 @@ import com.anathema_roguelike.stats.characterstats.attributes.Constitution;
 import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
 import com.anathema_roguelike.stats.characterstats.attributes.Perception;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
-import com.anathema_roguelike.stats.effects.AdditiveCalculation;
-import com.anathema_roguelike.stats.effects.Modifier;
 
 public class BaseFoeStats extends PassivePerk {
 	

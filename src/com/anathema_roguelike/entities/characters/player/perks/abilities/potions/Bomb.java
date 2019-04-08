@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.abilities.potions;
 
-import com.anathema_roguelike.entities.characters.perks.actions.GenericTargetedPerk;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.environment.Location;
 

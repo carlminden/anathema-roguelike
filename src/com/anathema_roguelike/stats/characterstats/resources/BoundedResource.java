@@ -16,12 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.resources;
 
-import java.util.Optional;
-
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.main.utilities.Utils;
-import com.anathema_roguelike.stats.effects.Effect;
-import com.anathema_roguelike.stats.effects.HasEffect;
+
+import java.util.Optional;
 
 public abstract class BoundedResource extends Resource {
 	

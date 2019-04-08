@@ -3,7 +3,6 @@ package com.anathema_roguelike.entities.characters.perks.actions.targetingstrate
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.HasPosition;
 import com.anathema_roguelike.main.utilities.position.Point;
-import com.anathema_roguelike.stats.effects.Calculation;
 
 public class Burst extends Shape {
 	

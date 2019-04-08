@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.secondarystats;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public class WeaponDamageMultiplier extends SecondaryStat {
 
 	public WeaponDamageMultiplier(Character character) {

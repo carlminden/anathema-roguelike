@@ -21,7 +21,6 @@ import java.util.Objects;
 
 import com.anathema_roguelike.entities.Entity;
 import com.anathema_roguelike.entities.characters.foes.Foe;
-import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.fov.LightLevels;
 import com.anathema_roguelike.fov.TotalLightShader;
 import com.anathema_roguelike.fov.VisibleLightBackgroundShader;

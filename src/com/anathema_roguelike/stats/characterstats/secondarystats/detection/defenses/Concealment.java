@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.itemstats.ConcealmentDefense;
 
 public class Concealment extends Defense {

@@ -1,20 +1,11 @@
 package com.anathema_roguelike.entities.characters.perks.actions;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import com.anathema_roguelike.actors.Action;
-import com.anathema_roguelike.actors.Actor;
 import com.anathema_roguelike.actors.Duration;
-import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.actions.CharacterAction;
-import com.anathema_roguelike.entities.characters.actions.costs.ActionCost;
-import com.anathema_roguelike.entities.characters.actions.costs.ActionCosts;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.TargetingStrategy;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.Range;
+
+import java.util.Optional;
 
 public abstract class LingeringTargetedActionPerk<TargetType extends Targetable, OriginType extends Targetable> extends GenericTargetedPerk<TargetType, OriginType> {
 	
@@ -23,7 +14,7 @@ public abstract class LingeringTargetedActionPerk<TargetType extends Targetable,
 	private EnergyCost activationEnergyCost;
 	
 	public LingeringTargetedActionPerk(String name, Duration duration, Range<OriginType> range, TargetingStrategy<? extends TargetType, OriginType> strategy,
-			EnergyCost activationEnergyCost, ActionCost ...activationCosts) {
+									   EnergyCost activationEnergyCost, ActionCost ...activationCosts) {
 		super(name, range, strategy);
 		
 		this.duration = duration;

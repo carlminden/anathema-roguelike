@@ -1,11 +1,6 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.spells.druid;
 
-import com.anathema_roguelike.entities.characters.actions.TargetedAction;
-import com.anathema_roguelike.entities.characters.actions.costs.ActionCosts;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
-import com.anathema_roguelike.entities.characters.perks.actions.TargetedPerk;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.SingleTargeted;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.TargetEffect;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.LongRange;
 import com.anathema_roguelike.entities.characters.player.classes.Druid;

@@ -2,17 +2,11 @@ package com.anathema_roguelike.entities.characters.foes.traits;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.perks.Buff;
 import com.anathema_roguelike.entities.characters.perks.PassivePerk;
-import com.anathema_roguelike.stats.characterstats.CharacterStat;
-import com.anathema_roguelike.stats.effects.AdditiveCalculation;
-import com.anathema_roguelike.stats.effects.Modifier;
-import com.anathema_roguelike.stats.effects.MultiplicativeCalculation;
+import com.anathema_roguelike.stats.Stat;
 
-import javax.swing.text.html.Option;
-
-public class StatTrait<T extends CharacterStat> extends Trait<PassivePerk> {
+public class StatTrait<T extends Stat<Character>> extends Trait<PassivePerk> {
 	
 	private Class<T> stat;
 	private String name;

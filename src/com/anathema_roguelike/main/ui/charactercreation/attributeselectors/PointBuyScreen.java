@@ -16,11 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.charactercreation.attributeselectors;
 
-import java.util.Collection;
-
-import javax.annotation.Nullable;
-
-import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MenuScreen;
@@ -28,8 +23,8 @@ import com.anathema_roguelike.main.ui.uielements.interactiveuielements.TextBox;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.MenuValues;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.position.Point;
-import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
-import com.google.common.base.Function;
+
+import java.util.Collection;
 
 public class PointBuyScreen extends MenuScreen<Class<? extends Attribute>, PointBuyMenu> {
 	

@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.actions;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.stats.characterstats.secondarystats.MovementSpeed;
 

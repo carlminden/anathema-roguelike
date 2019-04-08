@@ -31,7 +31,7 @@ public class Circle extends Shape {
 	}
 	
 	public int getRadius() {
-		return radiusCalculation.get().intValue();
+		return radiusCalculation().intValue();
 	}
 
 	@Override

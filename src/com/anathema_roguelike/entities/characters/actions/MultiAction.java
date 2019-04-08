@@ -3,7 +3,6 @@ package com.anathema_roguelike.entities.characters.actions;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 
 public class MultiAction extends CharacterAction {

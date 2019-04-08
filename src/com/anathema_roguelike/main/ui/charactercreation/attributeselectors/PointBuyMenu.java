@@ -16,16 +16,13 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.charactercreation.attributeselectors;
 
-import java.util.Collection;
-
-import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Menu;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.position.Point;
-import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
-
 import squidpony.squidgrid.gui.gdx.SquidInput;
+
+import java.util.Collection;
 
 public class PointBuyMenu extends Menu<Class<? extends Attribute>> {
 	

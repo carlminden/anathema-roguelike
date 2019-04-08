@@ -18,7 +18,6 @@ package com.anathema_roguelike.entities.characters.inventory;
 
 import java.util.Collection;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.items.Item;
 
 public abstract class Slot<T extends Item> {

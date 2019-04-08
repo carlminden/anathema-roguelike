@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.events;
 
-import com.anathema_roguelike.entities.characters.actions.attacks.Attack;
-
 public class AttackEvent {
 	
 	private Attack attack;

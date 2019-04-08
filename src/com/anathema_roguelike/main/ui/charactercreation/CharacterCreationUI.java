@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.charactercreation;
 
-import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.ui.charactercreation.attributeselectors.PointBuy;
 
 public class CharacterCreationUI {

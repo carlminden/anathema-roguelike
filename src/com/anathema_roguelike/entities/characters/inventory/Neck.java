@@ -19,7 +19,6 @@ package com.anathema_roguelike.entities.characters.inventory;
 import java.util.Collection;
 import java.util.HashSet;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.items.Amulet;
 
 public class Neck extends Slot<Amulet> {

@@ -16,12 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Square;
-import com.anathema_roguelike.stats.effects.FixedCalculation;
 
 public class MeleeRange<T extends Targetable> extends Range<T> {
 

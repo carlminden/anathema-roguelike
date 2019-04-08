@@ -26,7 +26,7 @@ public class Spread<TargetType extends Targetable, OriginType extends Targetable
 	private AdditiveCalculation radius;
 	
 	@SafeVarargs
-	public Spread(Class<TargetType> targetType, AdditiveCalculation radius, TargetConstraint<TargetType, OriginType> ...constraints) {
+	public Spread(Class<TargetType> targetType, AdditiveCalculation radius, TargetConstraint<TargetType, OriginType>...constraints) {
 		super(targetType, constraints);
 		
 		this.radius = radius;

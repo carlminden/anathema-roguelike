@@ -16,19 +16,17 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.inventory;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.items.Item;
 import com.anathema_roguelike.entities.items.armor.Armor;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
 import com.anathema_roguelike.main.utilities.AutoClassToInstanceMap;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.itemstats.ArmorStat;
+import com.anathema_roguelike.entities.characters.Character;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class Inventory {
 	

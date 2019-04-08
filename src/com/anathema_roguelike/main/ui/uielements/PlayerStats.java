@@ -17,24 +17,12 @@
 package com.anathema_roguelike.main.ui.uielements;
 
 
-import java.util.stream.Collectors;
-
-import com.anathema_roguelike.entities.characters.inventory.Chest;
-import com.anathema_roguelike.entities.characters.inventory.Feet;
-import com.anathema_roguelike.entities.characters.inventory.Head;
-import com.anathema_roguelike.entities.characters.inventory.Legs;
-import com.anathema_roguelike.entities.characters.inventory.PrimaryWeapon;
-import com.anathema_roguelike.entities.characters.inventory.SecondaryWeapon;
-import com.anathema_roguelike.entities.characters.player.Player;
+import com.anathema_roguelike.entities.characters.inventory.*;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.main.utilities.position.Point;
-import com.anathema_roguelike.stats.characterstats.attributes.Agility;
-import com.anathema_roguelike.stats.characterstats.attributes.Constitution;
-import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
-import com.anathema_roguelike.stats.characterstats.attributes.Perception;
-import com.anathema_roguelike.stats.characterstats.attributes.Strength;
+import com.anathema_roguelike.stats.characterstats.attributes.*;
 import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visibility;
@@ -42,8 +30,9 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visi
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Attenuation;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Concealment;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Veil;
-
 import squidpony.squidgrid.gui.gdx.SColor;
+
+import java.util.stream.Collectors;
 
 public class PlayerStats extends UIElement {
 

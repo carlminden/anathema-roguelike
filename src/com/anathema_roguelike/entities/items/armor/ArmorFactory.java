@@ -16,12 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.armor;
 
-import java.lang.reflect.InvocationTargetException;
-
 import com.anathema_roguelike.entities.items.ItemFactory;
 import com.anathema_roguelike.entities.items.ItemPropertyCache;
 import com.anathema_roguelike.entities.items.ItemType;
 import com.anathema_roguelike.main.utilities.Utils;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class ArmorFactory extends ItemFactory<Armor> {
 	

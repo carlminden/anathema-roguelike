@@ -2,7 +2,6 @@ package com.anathema_roguelike.entities.characters.perks;
 
 import java.util.Collection;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
 
 public abstract class PerkChoice extends Perk {

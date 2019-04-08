@@ -16,9 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks;
 
-import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.perks.actions.SelfTargetedPerk;
-
 public class BuffExpireEvent {
 	private SelfTargetedPerk buff;
 	private Character character;

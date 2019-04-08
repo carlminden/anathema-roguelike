@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.weapons;
 
-import com.anathema_roguelike.entities.items.weapons.types.WeaponType;
-
 public class RangedWeapon extends Weapon {
 
 	public RangedWeapon(WeaponType type, WeaponMaterial material) {

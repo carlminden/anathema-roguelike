@@ -1,7 +1,5 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.spells.druid;
 
-import com.anathema_roguelike.entities.characters.actions.TargetedAction;
-import com.anathema_roguelike.entities.characters.perks.actions.GenericTargetedPerk;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ConalAreaOfEffect;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.LineOfEffect;
@@ -19,7 +17,7 @@ public class GustOfWind extends Spell<GenericTargetedPerk<Targetable, Location>>
 
 	@Override
 	protected GenericTargetedPerk<Targetable, Location> createPerk() {
-		return new GenericTargetedPerk<Targetable, Location>(
+		return new GenericTargetedPerk<>(
 			"Gust of Wind",
 			new VeryShortRange<>(Location.class, new LineOfSight<>(), new LineOfEffect<>()),
 			new ConalAreaOfEffect<Targetable, Location>(Targetable.class, () -> getSpecializationLevel() == 3 ? 4.0 : 3.0) {

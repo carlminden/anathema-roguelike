@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.secondarystats;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public class BonusWeaponDamage extends SecondaryStat {
 
 	public BonusWeaponDamage(Character character) {

@@ -16,9 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.StatSet;
 import com.google.common.eventbus.EventBus;
+import com.anathema_roguelike.entities.characters.Character;
 
 public class CharacterStats extends StatSet<Character, CharacterStat> {
 

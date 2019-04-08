@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.abilities.potions;
 
-import com.anathema_roguelike.entities.characters.perks.actions.ActionPerk;
-
 public abstract class Brew extends ActionPerk<BrewAction> {
 
 	public Brew(String name) {

@@ -1,7 +1,7 @@
 package com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.environment.HasLocation;
+import com.anathema_roguelike.entities.characters.Character;
 
 public interface Targetable extends HasLocation {
 	

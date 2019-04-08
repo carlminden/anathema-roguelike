@@ -16,17 +16,15 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Shape;
 
 public abstract class CircularRange<T extends Targetable> extends Range<T> {
 	
 	@SafeVarargs
-	public CircularRange(Class<T> targetType, TargetConstraint<T, Character> ...constraints) {
-		super(targetType, constraints);
+	public CircularRange(TargetConstraint<T, Character> ...constraints) {
+		super(constraints);
 	}
 
 	@Override

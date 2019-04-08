@@ -23,11 +23,9 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.TurnAction;
 import com.anathema_roguelike.entities.characters.actions.WaitAction;
 import com.anathema_roguelike.entities.characters.foes.Foe;
-import com.anathema_roguelike.entities.characters.stimuli.PerceivedStimulus;
 import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 import com.anathema_roguelike.main.utilities.position.Direction;

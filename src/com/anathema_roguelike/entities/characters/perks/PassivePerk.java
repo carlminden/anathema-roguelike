@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public abstract class PassivePerk extends Perk implements HasBuff {
 	
 	public PassivePerk(String name) {

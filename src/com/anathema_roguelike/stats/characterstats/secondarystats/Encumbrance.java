@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.secondarystats;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 
 public abstract class Encumbrance extends SecondaryStat {

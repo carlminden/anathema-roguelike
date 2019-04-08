@@ -16,9 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks.actions;
 
-import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.TargetingStrategy;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.EnemyTargetConstraint;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.Range;
 

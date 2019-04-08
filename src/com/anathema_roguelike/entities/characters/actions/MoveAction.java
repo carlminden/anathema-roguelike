@@ -16,13 +16,8 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.actions;
 
-import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.actions.costs.ActionCost;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
-import com.anathema_roguelike.entities.characters.actions.costs.StimulusCost;
 import com.anathema_roguelike.entities.characters.events.MoveEvent;
-import com.anathema_roguelike.entities.characters.player.Player;
-import com.anathema_roguelike.entities.characters.stimuli.Sight;
 import com.anathema_roguelike.environment.HasLocation;
 import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visibility;

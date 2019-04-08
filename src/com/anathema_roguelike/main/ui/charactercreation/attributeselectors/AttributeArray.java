@@ -16,14 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.charactercreation.attributeselectors;
 
-import java.util.Collection;
-
-import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;
 import com.anathema_roguelike.main.utilities.Utils;
-import com.anathema_roguelike.stats.characterstats.attributes.Attribute;
+
+import java.util.Collection;
 
 public class AttributeArray extends AttributeSelector {
 	

@@ -16,23 +16,20 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.inventory.PrimaryWeapon;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.LineOfEffect;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.LineOfSight;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Circle;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Square;
-import com.anathema_roguelike.stats.effects.FixedCalculation;
 import com.anathema_roguelike.stats.itemstats.WeaponRange;
 
 public class PrimaryWeaponRange<T extends Targetable> extends Range<T> {
 
 	@SafeVarargs
 	public PrimaryWeaponRange(Class<T> targetType, TargetConstraint<T, Character> ...constraints) {
-		super(targetType, constraints);
+		super(constraints);
 		
 		addConstraint(new LineOfSight<>());
 		addConstraint(new LineOfEffect<>());

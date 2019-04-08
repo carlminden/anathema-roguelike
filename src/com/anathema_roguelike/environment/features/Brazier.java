@@ -20,9 +20,6 @@ import java.util.Optional;
 
 import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.main.display.VisualRepresentation;
-import com.anathema_roguelike.stats.effects.AdditiveCalculation;
-import com.anathema_roguelike.stats.effects.Effect;
-import com.anathema_roguelike.stats.effects.Modifier;
 import com.anathema_roguelike.stats.locationstats.Brightness;
 import com.anathema_roguelike.stats.locationstats.LocationStat;
 

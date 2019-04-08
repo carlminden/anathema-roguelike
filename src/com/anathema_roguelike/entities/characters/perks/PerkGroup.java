@@ -19,8 +19,6 @@ package com.anathema_roguelike.entities.characters.perks;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public class PerkGroup extends Perk {
 	
 	private HashSet<Perk> perks = new HashSet<>();

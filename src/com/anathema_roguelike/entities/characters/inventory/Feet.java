@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.inventory;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.items.armor.Boots;
 
 public class Feet extends SingleSlot<Boots> {

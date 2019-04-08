@@ -31,7 +31,6 @@ import com.anathema_roguelike.fov.ObstructionChangedEvent;
 import com.anathema_roguelike.main.Config;
 import com.anathema_roguelike.main.display.DisplayBuffer;
 import com.anathema_roguelike.main.display.Renderable;
-import com.anathema_roguelike.main.utilities.datastructures.CollectionUtils;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.HasPosition;

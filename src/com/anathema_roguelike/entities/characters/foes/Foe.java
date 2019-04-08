@@ -17,18 +17,15 @@
 package com.anathema_roguelike.entities.characters.foes;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.foes.ai.AI;
 import com.anathema_roguelike.entities.characters.foes.ai.Faction;
 import com.anathema_roguelike.entities.characters.foes.corruptions.Corruption;
 import com.anathema_roguelike.entities.characters.foes.roles.Role;
 import com.anathema_roguelike.entities.characters.foes.traits.Trait;
-import com.anathema_roguelike.entities.characters.stimuli.PerceivedStimulus;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer;
 

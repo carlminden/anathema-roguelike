@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks;
 
-import com.anathema_roguelike.actors.Action;
-
 //TODO I dont think this perk quite makes sense yet
 public abstract class TriggeredPerk<T extends Action<?>> extends PassivePerk {
 	

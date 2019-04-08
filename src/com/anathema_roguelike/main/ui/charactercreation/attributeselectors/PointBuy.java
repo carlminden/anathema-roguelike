@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.charactercreation.attributeselectors;
 
-import com.anathema_roguelike.entities.characters.player.Player;
-
 public class PointBuy extends AttributeSelector {
 
 	@Override

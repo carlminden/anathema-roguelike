@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.resources;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public class ArcaneResonance extends Resource {
 
 	public ArcaneResonance(Character character) {

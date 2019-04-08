@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.perks;
 
-import com.anathema_roguelike.stats.effects.HasEffect;
-
 public interface HasBuff extends HasEffect<Buff> {
 	
 }

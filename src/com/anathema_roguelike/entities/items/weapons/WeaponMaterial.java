@@ -16,7 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.weapons;
 
-public abstract class WeaponMaterial extends WeaponProperty {
+import com.anathema_roguelike.entities.items.ItemProperty;
+
+public abstract class WeaponMaterial extends ItemProperty<Weapon> {
 	
 	private double damage;
 	

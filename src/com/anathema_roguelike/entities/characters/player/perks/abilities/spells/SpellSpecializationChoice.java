@@ -1,7 +1,5 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.spells;
 
-import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.player.classes.PlayerClass;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability;
 import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecializationChoice;
 

@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment;
 
-import java.util.Collection;
-
 import com.anathema_roguelike.entities.Entity;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.entities.characters.stimuli.Stimulus;
@@ -31,6 +29,8 @@ import com.anathema_roguelike.stats.locationstats.LocationStat;
 import com.anathema_roguelike.stats.locationstats.LocationStatSet;
 import com.google.common.collect.TreeMultiset;
 import com.google.common.eventbus.EventBus;
+
+import java.util.Collection;
 
 public class Location implements HasStats<Location, LocationStat>, Targetable {
 	

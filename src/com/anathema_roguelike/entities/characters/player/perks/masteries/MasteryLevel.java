@@ -16,15 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.masteries;
 
-import java.util.Optional;
-
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.perks.Buff;
 import com.anathema_roguelike.entities.characters.perks.PassivePerk;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.anathema_roguelike.stats.characterstats.masteries.Mastery;
-import com.anathema_roguelike.stats.effects.AdditiveCalculation;
-import com.anathema_roguelike.stats.effects.Modifier;
+
+import java.util.Optional;
 
 public class MasteryLevel<T extends Mastery> extends PassivePerk {
 	

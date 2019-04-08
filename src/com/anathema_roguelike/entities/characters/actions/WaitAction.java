@@ -1,21 +1,18 @@
 package com.anathema_roguelike.entities.characters.actions;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
-
 import com.anathema_roguelike.actors.Duration;
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.TargetEffect;
 import com.anathema_roguelike.stats.characterstats.CharacterStat;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Hearing;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Vision;
-import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 import com.anathema_roguelike.stats.effects.Effect;
-import com.anathema_roguelike.stats.effects.Modifier;
+import com.anathema_roguelike.entities.characters.Character;
 
-public class WaitAction extends TargetedAction<Character, Character> {
+import java.util.Collections;
+import java.util.Optional;
+
+public class WaitAction extends TargetedAction<Character> {
 
 	public WaitAction(Character character) {
 		super(character, character, Collections.singletonList(character), EnergyCost.STANDARD(character), new TargetEffect<Character, CharacterStat>(character.getClass(), "Waiting") {

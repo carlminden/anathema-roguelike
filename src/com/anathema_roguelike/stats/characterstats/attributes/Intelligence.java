@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.attributes;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public class Intelligence extends Attribute {
 
 	public Intelligence(Character character, int base) {

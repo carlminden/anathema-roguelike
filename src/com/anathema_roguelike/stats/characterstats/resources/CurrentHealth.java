@@ -18,10 +18,7 @@ package com.anathema_roguelike.stats.characterstats.resources;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
-import com.anathema_roguelike.stats.effects.Effect;
-import com.anathema_roguelike.stats.effects.HasEffect;
 
 public class CurrentHealth extends BoundedResource {
 

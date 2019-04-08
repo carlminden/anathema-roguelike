@@ -17,8 +17,6 @@
 package com.anathema_roguelike.fov;
 
 import com.anathema_roguelike.entities.Entity;
-import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.display.BufferMask;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Vision;
 

@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.events;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.environment.HasLocation;
 import com.anathema_roguelike.environment.Location;
 

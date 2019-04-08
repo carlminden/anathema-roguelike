@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.abilities.potions;
 
-import com.anathema_roguelike.entities.characters.perks.actions.SelfTargetedPerk;
-
 public abstract class Poison extends Potion<SelfTargetedPerk> {
 
 	public Poison(Brew brew, SelfTargetedPerk potion) {

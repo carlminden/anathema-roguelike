@@ -18,7 +18,6 @@ package com.anathema_roguelike.stats.characterstats.resources;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.events.TurnEndEvent;
 import com.google.common.eventbus.Subscribe;
 

@@ -1,7 +1,5 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.spells.druid;
 
-import com.anathema_roguelike.entities.characters.actions.TargetedAction;
-import com.anathema_roguelike.entities.characters.perks.actions.GenericTargetedPerk;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.LocationTargeted;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.LineOfEffect;

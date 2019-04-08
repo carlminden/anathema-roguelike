@@ -1,7 +1,5 @@
 package com.anathema_roguelike.entities.characters.actions.costs;
 
-import com.anathema_roguelike.actors.Action;
-
 public abstract class ConditionalCost<T extends Action<?>, C extends ActionCost> extends ActionCost {
 	
 	private T action;

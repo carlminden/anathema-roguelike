@@ -16,9 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment;
 
-import com.anathema_roguelike.stats.effects.Effect;
-import com.anathema_roguelike.stats.effects.HasEffect;
-import com.anathema_roguelike.stats.effects.Modifier;
 import com.anathema_roguelike.stats.locationstats.LocationStat;
 
 import java.util.Optional;

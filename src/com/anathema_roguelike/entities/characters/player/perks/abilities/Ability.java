@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.abilities;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public interface Ability {
 	
 	Character getCharacter();

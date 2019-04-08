@@ -1,14 +1,11 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.spells;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import com.anathema_roguelike.entities.characters.Character;
-import com.anathema_roguelike.entities.characters.perks.Perk;
 import com.anathema_roguelike.entities.characters.perks.PerkChoice;
-import com.anathema_roguelike.entities.characters.player.classes.PlayerClass;
 import com.anathema_roguelike.main.utilities.Utils;
 import com.google.common.collect.Collections2;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class SpellOrSpecialization extends PerkChoice {
 	

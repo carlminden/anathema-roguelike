@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.attributes;
 
-import com.anathema_roguelike.entities.characters.Character;
-
 public class Perception extends Attribute {
 
 	public Perception(Character character, int base) {

@@ -1,8 +1,6 @@
 package com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.entities.items.Item;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 import com.anathema_roguelike.stats.characterstats.masteries.ThrowingWeaponMastery;

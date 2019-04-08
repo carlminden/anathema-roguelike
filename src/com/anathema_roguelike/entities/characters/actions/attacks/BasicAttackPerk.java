@@ -16,9 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.actions.attacks;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.perks.actions.OffensiveTargetedPerk;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.SingleTargeted;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.PrimaryWeaponRange;
 
 public class BasicAttackPerk extends OffensiveTargetedPerk {

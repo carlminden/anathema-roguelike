@@ -52,6 +52,9 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="scala-sdk-2.13.0-M5" level="application" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.13.0-RC1" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.13.0-RC1" level="project" />
     <orderEntry type="library" name="Maven: com.squidpony:squidlib:3.0.0-b9" level="project" />
     <orderEntry type="library" name="Maven: com.badlogicgames.gdx:gdx:1.9.6" level="project" />
     <orderEntry type="library" name="Maven: com.squidpony:squidlib-extra:3.0.0-b9" level="project" />

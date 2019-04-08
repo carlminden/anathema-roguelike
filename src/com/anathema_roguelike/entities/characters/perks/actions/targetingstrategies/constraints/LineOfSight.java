@@ -1,6 +1,5 @@
 package com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints;
 
-import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 
 public class LineOfSight<T extends Targetable> implements TargetConstraint<T, Character> {

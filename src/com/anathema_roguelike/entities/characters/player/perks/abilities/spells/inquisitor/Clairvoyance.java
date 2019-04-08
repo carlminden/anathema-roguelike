@@ -1,6 +1,5 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.spells.inquisitor;
 
-import com.anathema_roguelike.entities.characters.perks.actions.TargetedPerk;
 import com.anathema_roguelike.entities.characters.player.classes.Inquisitor;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.spells.Spell;
 import com.anathema_roguelike.environment.Location;

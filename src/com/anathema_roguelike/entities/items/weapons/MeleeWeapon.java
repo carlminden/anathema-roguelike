@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.weapons;
 
-import com.anathema_roguelike.entities.items.weapons.types.WeaponType;
-
 public abstract class MeleeWeapon extends Weapon {
 
 	public MeleeWeapon(WeaponType type, WeaponMaterial material) {
