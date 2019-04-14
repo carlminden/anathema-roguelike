@@ -1,5 +1,3 @@
-
-
 package com.anathema_roguelike
 package stats.characterstats.secondarystats
 
