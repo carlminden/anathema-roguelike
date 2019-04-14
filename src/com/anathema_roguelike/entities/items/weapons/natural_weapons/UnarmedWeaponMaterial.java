@@ -16,11 +16,14 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.items.weapons.natural_weapons;
 
-import java.util.Optional;
-
 import com.anathema_roguelike.entities.items.Item;
+import com.anathema_roguelike.stats.effects.AdditiveCalculation;
+import com.anathema_roguelike.stats.effects.Effect;
+import com.anathema_roguelike.stats.effects.Modifier;
 import com.anathema_roguelike.stats.itemstats.BaseWeaponDamage;
 import com.anathema_roguelike.stats.itemstats.ItemStat;
+
+import java.util.Optional;
 
 public class UnarmedWeaponMaterial extends NaturalWeaponMaterial {
 

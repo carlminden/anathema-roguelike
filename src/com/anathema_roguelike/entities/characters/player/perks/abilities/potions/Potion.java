@@ -17,7 +17,6 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.potions;
 
 import com.anathema_roguelike.entities.characters.perks.PerkGroup;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability;
 
 public abstract class Potion<T extends Perk> extends PerkGroup implements Ability {
 	

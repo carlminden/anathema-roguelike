@@ -16,7 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.messages;
 
-import com.anathema_roguelike.main.ui.uielements.UIElement;
 import com.anathema_roguelike.main.utilities.position.Point;
 
 public class MessageBox extends UIElement {

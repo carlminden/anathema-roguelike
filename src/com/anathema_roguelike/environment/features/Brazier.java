@@ -18,10 +18,8 @@ package com.anathema_roguelike.environment.features;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stats.locationstats.Brightness;
-import com.anathema_roguelike.stats.locationstats.LocationStat;
 
 public class Brazier extends Feature {
 

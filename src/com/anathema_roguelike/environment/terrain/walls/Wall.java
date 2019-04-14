@@ -16,10 +16,10 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.terrain.walls;
 
-import com.anathema_roguelike.environment.terrain.Terrain;
+import com.anathema_roguelike.environment.LocationProperty;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 
-public abstract class Wall extends Terrain {
+public abstract class Wall extends LocationProperty {
 
 	public Wall(char representation, double opacity, double damping) {
 		super(representation, false, false, opacity, damping);

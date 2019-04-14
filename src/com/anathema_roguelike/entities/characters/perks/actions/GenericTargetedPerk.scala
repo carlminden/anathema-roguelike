@@ -6,18 +6,16 @@ package entities.characters.perks.actions
 import com.anathema_roguelike.actors.Action
 import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.entities.characters.actions.TargetedAction
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.TargetingStrategy
+import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.{TargetFilter, Targetable}
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.Range
 import com.anathema_roguelike.entities.characters.perks.requirements.{PerkRequirement, SelectedTargetRequirement, ValidTargetLocationInRangeRequirement}
 
 abstract class GenericTargetedPerk[TargetType <: Targetable, OriginType <: Targetable](
-      name: String,
-      source: Any,
-      range: Range[OriginType],
-      strategy: TargetingStrategy[_ <: TargetType, OriginType],
-      requirements: PerkRequirement*
-  ) extends ActionPerk[TargetedAction[TargetType]](name, source, requirements:_*) {
+    name: String,
+    range: Range[OriginType],
+    filter: TargetFilter[_ <: TargetType, OriginType],
+    requirements: PerkRequirement*
+  ) extends ActionPerk[TargetedAction[TargetType]](name, requirements:_*) {
 
   private var origin: Option[OriginType] = Option.empty
 
@@ -29,15 +27,22 @@ abstract class GenericTargetedPerk[TargetType <: Targetable, OriginType <: Targe
   })
 
   override def activate: Option[Action[Character]] = {
-    if (requirementsMet()) {
-      val t = createAction
-      t.setTargets(strategy.getTargets(origin))
+    if(requirementsMet()) {
+      val action = createAction
+      action.setTargets(filter.getTargets(origin))
 
-      t
+      action
     }
     else {
       printUnmetConditionMessages()
       Option.empty
     }
+  }
+
+  def activate(targets: Iterable[_ <: TargetType]): Option[Action[Character]] = {
+    val action = createAction
+    action.setTargets(targets)
+
+    action
   }
 }

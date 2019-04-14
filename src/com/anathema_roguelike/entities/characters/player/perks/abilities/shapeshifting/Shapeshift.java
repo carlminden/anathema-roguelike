@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.abilities.shapeshifting;
 
-import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability;
-
 public abstract class Shapeshift extends ActionPerk<TargetedAction<Character, Character>> implements Ability {
 
 	public Shapeshift(String name) {

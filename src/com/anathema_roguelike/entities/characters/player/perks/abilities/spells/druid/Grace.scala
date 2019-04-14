@@ -1,4 +1,5 @@
-package com.anathema_roguelike.entities.characters.player.perks.abilities.spells.druid
+package com.anathema_roguelike
+package entities.characters.player.perks.abilities.spells.druid
 
 import java.util.Optional
 
@@ -10,13 +11,13 @@ import com.anathema_roguelike.entities.characters.perks.actions.targetingstrateg
 import com.anathema_roguelike.entities.characters.player.classes.Druid
 import com.anathema_roguelike.entities.characters.player.perks.abilities.spells.Spell
 import com.anathema_roguelike.entities.characters.stimuli.{Resonance, Sight, Sound}
-import com.anathema_roguelike.stats.characterstats.CharacterStat
 import com.anathema_roguelike.stats.characterstats.attributes.Agility
 import com.anathema_roguelike.stats.effects.{AdditiveArrayCalculation, Effect, Modifier}
 import com.anathema_roguelike.entities.characters.Character
+import com.anathema_roguelike.stats.Stat.CharacterStat
 
 class Grace(source: Any) extends Spell[SelfTargetedPerk](1, classOf[Druid]) {
-  override protected def createPerk: SelfTargetedPerk = new SelfTargetedPerk("Grace", source) {
+  override protected def createPerk: SelfTargetedPerk = new SelfTargetedPerk("Grace") {
     override protected def createAction: TargetedAction[Character] = {
 
 

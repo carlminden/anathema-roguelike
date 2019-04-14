@@ -21,7 +21,6 @@ import com.anathema_roguelike.entities.characters.player.perks.abilities.shapesh
 import com.anathema_roguelike.entities.characters.player.perks.abilities.shapeshifting.ShapeshiftBat;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.shapeshifting.ShapeshiftBear;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.shapeshifting.ShapeshiftPanther;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.spells.SpellOrSpecialization;
 import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
 import com.anathema_roguelike.entities.characters.player.perks.skills.AnimalisticCasting;
 import com.anathema_roguelike.entities.characters.player.perks.skills.Attunement;

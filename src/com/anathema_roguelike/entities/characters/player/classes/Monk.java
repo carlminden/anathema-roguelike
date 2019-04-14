@@ -22,13 +22,6 @@ import com.anathema_roguelike.entities.characters.player.perks.abilities.potions
 import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.FortificationElixir;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.PerceptiveElixir;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.Potion;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.FlurryOfBlows;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.FlyingKick;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.HiddenStrikes;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.Hide;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.LightStep;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.Technique;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.UnfetteredSpirit;
 import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
 import com.anathema_roguelike.entities.characters.player.perks.skills.IronBody;
 import com.anathema_roguelike.entities.characters.player.perks.skills.SureFooting;

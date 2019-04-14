@@ -16,9 +16,9 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.specializations;
 
-import java.util.HashMap;
-
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability;
+
+import java.util.HashMap;
 
 public class AbilitySpecializationSet {
 	

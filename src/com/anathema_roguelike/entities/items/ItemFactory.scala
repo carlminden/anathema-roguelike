@@ -3,49 +3,59 @@
 package com.anathema_roguelike
 package entities.items
 
+import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.main.utilities.{HasWeightedProbability, Utils}
 import com.google.common.collect.HashMultimap
+import com.anathema_roguelike.entities.characters.Character
 
-import scala.collection.JavaConverters._
+import scala.collection.mutable.ListBuffer
 import scala.reflect.runtime.universe._
 
 abstract class ItemFactory[T <: Item] extends HasWeightedProbability {
 
-  private val factories: HashMultimap[Class[_ <: ItemType[_ <: T]], ItemFactory[_ <: T]] = {
+  private val factories: ListBuffer[ItemFactory[_ <: T]] = ListBuffer()
 
-    HashMultimap.create[Class[_ <: ItemType[_ <: T]], ItemFactory[_ <: T]]
-  }
+//  private val factories: HashMultimap[Class[_ <: ItemType[_ <: T]], ItemFactory[_ <: T]] = {
+//
+//    HashMultimap.create[Class[_ <: ItemType[_ <: T]], ItemFactory[_ <: T]]
+//  }
 
   protected def addFactory[F <: ItemFactory[_ <: T]](factory: F): Unit = {
-    factories.put(factory.getSupportedType, factory)
+    factories :+ factory
 
     factory.getSubFactories.foreach(t => addFactory(t))
   }
 
-  def getSubFactories: Iterable[ItemFactory[_ <: T]] = factories.values.asScala
+  def getSubFactories: Iterable[ItemFactory[_ <: T]] = factories
 
-  private def getFactories[P <: ItemType[_ <: T], F <: ItemFactory[T]](itemType: Class[_ <: P]): Set[F] = {
-    factories.get(itemType).asInstanceOf[Set[F]]
+  private def getFactories[P <: ItemType[_ <: T] : TypeTag]: Iterable[ItemFactory[T]] = {
+    factories.collect{
+      case f: ItemFactory[T] if f.getSupportedType.isAssignableFrom(typeTagToClass[P]) => f
+    }
   }
 
-  def generate[S <: T : TypeTag](cls: Class[_ <: ItemType[S]]): S = {
+  def generateByType[S <: ItemType[_ <: T] : TypeTag](location: Either[Location, Character]): S = {
+
+    val cls: Class[S] = typeTagToClass[S]
 
     if (cls == getSupportedType) {
-      generate[S](cls)
-    } else if (getFactories(cls).isEmpty) {
+      generate(location).asInstanceOf[S]
+    } else if (getFactories[S].isEmpty) {
       throw new RuntimeException("This Factory does not support that type")
     } else {
       val f: ItemFactory[T] = Utils.getWeightedRandomSample(getFactories(cls))
 
       if (f.getSupportedType == cls) {
-        f.generate[S](cls)
+        f.generate(location).asInstanceOf[S]
       } else {
-        f.generate[S](cls)
+        f.generateByType[S](location)
       }
     }
   }
 
-  def generate: T = Utils.getWeightedRandomSample(factories.values.asScala).generate
+  def generate(location: Either[Location, Character]): T = {
+    Utils.getWeightedRandomSample(factories).generate(location)
+  }
 
   def getSupportedType: Class[_ <: ItemType[_ <: T]]
 }

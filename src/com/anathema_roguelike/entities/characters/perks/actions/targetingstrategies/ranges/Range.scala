@@ -15,18 +15,19 @@ import com.anathema_roguelike.entities.characters.perks.actions.targetingstrateg
 import scala.reflect.ClassTag
 import scala.reflect.runtime.universe._
 
-abstract class Range[T <: Targetable : TypeTag : ClassTag](constraints: TargetConstraint[T, Character]*) extends TargetFilter[T, Character](constraints:_*) {
+abstract class Range[T <: Targetable : TypeTag](constraints: TargetConstraint[T, Character]*)
+  extends TargetFilter[T, Character](constraints:_*) {
 
-  protected def getShape (character: Character): Shape
+  protected def getShape(character: Character): Shape
 
-  override def getTargets (character: Option[Character]): Iterable[T] = {
+  override def getTargets(character: Option[Character]): Iterable[T] = {
     //This seems like it shouldnt be valid if there is no origin
     val c = character.get
 
     getTargetsInShape(getShape(c), c.getEnvironment, c)
   }
 
-  def getTarget (character: Option[Character]): Option[T] = {
+  def getTarget(character: Option[Character]): Option[T] = {
     character.map(c => {
       val validTargets: Iterable[T] = getTargetsInShape(getShape(c), c.getEnvironment, c)
 

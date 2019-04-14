@@ -18,6 +18,7 @@ package com.anathema_roguelike.entities.characters.perks.actions.targetingstrate
 
 import com.anathema_roguelike.main.utilities.position.HasPosition;
 import com.anathema_roguelike.main.utilities.position.Point;
+import com.anathema_roguelike.stats.effects.Calculation;
 
 public class Square extends Shape {
 	
@@ -34,7 +35,7 @@ public class Square extends Shape {
 		int x = getX();
 		int y = getY();
 		
-		double sideLength = sideLengthCalculation.get();
+		double sideLength = sideLengthCalculation();
 		
 		for(int i = 0; i < sideLength; i++) {
 			for(int j = 0; j < sideLength; j++) {

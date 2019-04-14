@@ -5,12 +5,14 @@ package entities.characters.player
 
 import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.entities.characters.foes.ai.Faction
-import com.anathema_roguelike.entities.characters.inventory.{PrimaryWeapon, SecondaryWeapon}
+import com.anathema_roguelike.entities.characters.inventory.PrimaryWeapon
+import com.anathema_roguelike.entities.characters.inventory.SingleSlot.SecondaryWeapon
 import com.anathema_roguelike.entities.characters.player.classes.{ClassSet, PlayerClass}
 import com.anathema_roguelike.entities.items.AnyItemFactory
 import com.anathema_roguelike.entities.items.armor.{ArmorMaterial, Boots, Chestpiece, Helm, Pants}
 import com.anathema_roguelike.entities.items.weapons.Weapon
 import com.anathema_roguelike.entities.items.weapons.types.WeaponType
+import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer
 import com.anathema_roguelike.main.display.{Color, VisualRepresentation}
@@ -20,10 +22,9 @@ import com.anathema_roguelike.main.utilities.Utils
 import com.anathema_roguelike.stats.characterstats.secondarystats.Light
 import squidpony.squidgrid.gui.gdx.SColor
 
-import scala.collection.JavaConverters._
 import scala.reflect.runtime.universe._
 
-class Player() extends Character {
+class Player(location: Location) extends Character(location) {
   setFaction(Faction.PLAYER)
   val itemFactory: AnyItemFactory = new AnyItemFactory
 
@@ -31,8 +32,9 @@ class Player() extends Character {
   getInventory.equip(new Chestpiece(ArmorMaterial.LEATHER))
   getInventory.equip(new Pants(ArmorMaterial.CHAINMAIL))
   getInventory.equip(new Boots(ArmorMaterial.CHAINMAIL))
-  getInventory.getSlot(classOf[PrimaryWeapon]).equip(itemFactory.generate[Weapon](classOf[WeaponType]))
-  getInventory.getSlot(classOf[SecondaryWeapon]).equip(itemFactory.generate[Weapon](classOf[WeaponType]))
+
+  itemFactory.generateByType[WeaponType](Right(this))
+  itemFactory.generateByType[WeaponType](Right(this))
 
   System.out.println(getInventory.getEquippedItems)
 
@@ -65,12 +67,13 @@ class Player() extends Character {
   def getClasses: Iterable[Class[_ <: PlayerClass]] = classSet.getClasses
 
   override def levelUp(): Unit = {
-    val classes: Iterable[Class[_ <: PlayerClass]] = Utils.getSubclasses[PlayerClass]()
+    val classes: Array[Class[_ <: PlayerClass]] = Utils.getSubclasses[PlayerClass]().toArray
 
     val classSelectionScreen: SelectionScreen[Class[_ <: PlayerClass]] = {
-      new SelectionScreen[Class[_ <: PlayerClass]]("Select your Class", classes.asJavaCollection, false)
+      new SelectionScreen[Class[_ <: PlayerClass]]("Select your Class", classes, cancellable = false)
     }
-    grantClassLevel(classSelectionScreen.run)
+
+    grantClassLevel(classSelectionScreen.run.get)
     super.levelUp()
   }
 

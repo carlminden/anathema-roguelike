@@ -18,7 +18,6 @@ package com.anathema_roguelike.entities.characters.perks.actions.targetingstrate
 
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints.TargetConstraint;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Circle;
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.shapes.Shape;
 import com.anathema_roguelike.stats.effects.AdditiveCalculation;
 
 public class Spread<TargetType extends Targetable, OriginType extends Targetable> extends AreaOfEffect<TargetType, OriginType> {

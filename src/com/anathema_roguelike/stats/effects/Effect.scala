@@ -10,7 +10,7 @@ import scala.reflect.runtime.universe._
 
 class Effect[T, +S <: Stat[_ <: T]](
     source: Option[_ <: HasEffect[_ <: Effect[T, S]]],
-    modifiers: List[Modifier[_ <: Stat[_]]],
+    modifiers: List[Modifier[_ <: Stat[_ <: T]]],
     duration: Duration = Duration.permanent(),
     var target: Option[T] = None) {
 

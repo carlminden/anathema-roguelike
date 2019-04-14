@@ -16,6 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.charactercreation.attributeselectors;
 
+import com.anathema_roguelike.entities.characters.player.Player;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SelectionScreen;

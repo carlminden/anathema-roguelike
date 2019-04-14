@@ -17,9 +17,9 @@
 package com.anathema_roguelike.stats.locationstats;
 
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.features.Feature;
+import com.anathema_roguelike.stats.Stat;
 
-public class Damping extends LocationStat {
+public class Damping extends Stat<Location> {
 
 	public Damping(Location location) {
 		super(location);

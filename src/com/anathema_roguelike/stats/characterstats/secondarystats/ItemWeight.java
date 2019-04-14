@@ -27,6 +27,6 @@ public class ItemWeight extends SecondaryStat {
 	
 	@Override
 	public double getAmount() {
-		return getObject().getInventory().getEquippedItems().parallelStream().mapToDouble(a -> a.getStatAmount(Weight.class)).sum();
+		return getObject().getInventory().getEquippedItemsByType().parallelStream().mapToDouble(a -> a.getStatAmount(Weight.class)).sum();
 	}
 }

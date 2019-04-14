@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment;
 
-import com.anathema_roguelike.stats.locationstats.LocationStat;
-
 import java.util.Optional;
 
 public class EnvironmentEffect extends Effect <Location, LocationStat> {

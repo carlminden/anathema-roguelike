@@ -17,7 +17,6 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.potions;
 
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
-import com.anathema_roguelike.environment.Location;
 
 public abstract class Bomb<T extends Targetable> extends Potion<GenericTargetedPerk<T, Location>> {
 

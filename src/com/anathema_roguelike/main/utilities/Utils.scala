@@ -1,7 +1,7 @@
 package com.anathema_roguelike
 package main.utilities
 
-import java.util
+
 import java.util.{Objects, Properties}
 
 import com.anathema_roguelike.main.display.Color
@@ -15,6 +15,7 @@ import scala.collection.mutable
 import scala.reflect._
 import scala.reflect.runtime._
 import scala.reflect.runtime.universe._
+import Numeric.Implicits._
 
 object Utils {
 
@@ -29,22 +30,20 @@ object Utils {
   descriptions.load(getClass.getResourceAsStream("/descriptions.properties"))
   colors.load(getClass.getResourceAsStream("/colors.properties"))
 
-  def filterBySubclass[T : ClassTag](iterable: Iterable[_]) = {
-    iterable.collect { case t: T => t }
-  }
-
   def getWeightedRandomSample[T <: HasWeightedProbability](iterable: Iterable[T]): T = {
 
     val list = iterable.map(i => {
+      //actually do want java lang Double for compatibility with the distribution library
       new Pair[T, java.lang.Double](i, i.getWeightedProbability)
     })
 
     new EnumeratedDistribution[T](list.toList.asJava).sample
   }
 
-  def clamp[T <: Number](n: T, l: T, h: T): T = {
-    if (n.doubleValue > h.doubleValue) h
-    else if (n.doubleValue < l.doubleValue) l else n
+  def clamp[T : Numeric](n: T, l: T, h: T): T = {
+    val num = implicitly[Numeric[T]]
+
+    if (num.gt(n, h)) h else if (num.lt(n, l)) l else n
   }
 
   def getKeysByValue[T, E](map: Map[T, E], value: E): Set[T] = {

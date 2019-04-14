@@ -12,7 +12,6 @@ import scala.collection.mutable.ListBuffer
 
 abstract class Attack[TargetType <: Targetable](
       attacker: Character,
-      targets: Iterable[_ <: TargetType],
       energyCost: EnergyCost,
       additionalCosts: ActionCosts,
       private val effects: TargetEffect[TargetType, _]*

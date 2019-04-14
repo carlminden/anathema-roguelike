@@ -1,11 +1,8 @@
 package com.anathema_roguelike.entities.characters.actions;
 
 import com.anathema_roguelike.actors.Duration;
-import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.TargetEffect;
 import com.anathema_roguelike.stats.characterstats.CharacterStat;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Hearing;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Vision;
 import com.anathema_roguelike.stats.effects.Effect;
 import com.anathema_roguelike.entities.characters.Character;
 

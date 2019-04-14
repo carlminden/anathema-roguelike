@@ -17,9 +17,9 @@
 package com.anathema_roguelike.stats.locationstats;
 
 import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.environment.features.Feature;
+import com.anathema_roguelike.stats.Stat;
 
-public class Opacity extends LocationStat {
+public class Opacity extends Stat<Location> {
 
 	public Opacity(Location location) {
 		super(location);

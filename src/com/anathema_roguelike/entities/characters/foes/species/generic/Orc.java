@@ -18,18 +18,12 @@ package com.anathema_roguelike.entities.characters.foes.species.generic;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.entities.characters.foes.corruptions.Corruption;
 import com.anathema_roguelike.entities.characters.foes.roles.Role;
-import com.anathema_roguelike.entities.characters.foes.traits.Deficient;
-import com.anathema_roguelike.entities.characters.foes.traits.Extraordinary;
-import com.anathema_roguelike.entities.characters.foes.traits.Supernatural;
-import com.anathema_roguelike.entities.characters.perks.Buff;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;
 import com.anathema_roguelike.stats.characterstats.attributes.Strength;
 import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Hearing;
 
 public class Orc extends GenericSpecies {
 

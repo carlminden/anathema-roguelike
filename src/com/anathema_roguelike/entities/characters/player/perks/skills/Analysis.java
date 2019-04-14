@@ -1,8 +1,6 @@
 package com.anathema_roguelike.entities.characters.player.perks.skills;
 
-import com.anathema_roguelike.entities.characters.perks.PassivePerk;
-
-public class Analysis extends Skill<PassivePerk> {
+public class Analysis extends com.anathema_roguelike.entities.characters.perks.PassthroughPerk<PassivePerk> {
 
 	public Analysis() {
 		super();

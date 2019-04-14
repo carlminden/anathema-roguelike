@@ -21,19 +21,11 @@ import com.anathema_roguelike.entities.characters.player.perks.abilities.potions
 import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.RadiantBomb;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.SlowingPoison;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.SmokeBomb;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.Hide;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.HurlBlade;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.KatanaExpertise;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.LeapingStrike;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.LightStep;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.Technique;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.WallRunning;
 import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
 import com.anathema_roguelike.entities.characters.player.perks.skills.SecondSight;
 import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.BrewingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.LongBladeMastery;
-import com.anathema_roguelike.stats.characterstats.masteries.ThrowingWeaponMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.UnarmedMastery;
 
 public class Ninja extends PlayerClass {

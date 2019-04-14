@@ -16,6 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.specializations;
 
+import com.anathema_roguelike.entities.characters.perks.Perk;
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability;
 import com.anathema_roguelike.main.utilities.Utils;
 

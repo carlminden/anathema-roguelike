@@ -12,14 +12,18 @@ import com.anathema_roguelike.main.utilities.position.Direction
 class TakeStairsAction(character: Character, stairs: Stairs) extends CharacterAction(character, EnergyCost.STANDARD(character)) {
   override protected def onTake(): Unit = {
     var zOffset = 0
-    var newStairDirection = 0
 
-    if (stairs.getDirection == Direction.UP) {
-      zOffset = -1
-      newStairDirection = Direction.DOWN
-    } else if (stairs.getDirection == Direction.DOWN) {
-      zOffset = 1
-      newStairDirection = Direction.UP
+    val newStairDirection = stairs.getDirection match {
+      case Direction.UP => {
+        zOffset = -1
+
+        Direction.DOWN
+      }
+      case Direction.DOWN => {
+        zOffset = 1
+
+        Direction.UP
+      }
     }
 
     val newDepth = getActor.getEnvironment.getDepth + zOffset
@@ -28,7 +32,7 @@ class TakeStairsAction(character: Character, stairs: Stairs) extends CharacterAc
     }
 
     val newEnvironment = Game.getInstance.getState.getEnvironment(newDepth)
-    val stairsLocation = newEnvironment.getStairs(newStairDirection).getLocation
+    val stairsLocation = newEnvironment.getStairs(newStairDirection).get.getLocation
 
     newEnvironment.addEntity(getActor, stairsLocation)
   }

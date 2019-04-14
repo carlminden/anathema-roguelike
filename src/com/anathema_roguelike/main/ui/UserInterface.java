@@ -16,10 +16,8 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui;
 
-import com.anathema_roguelike.main.State;
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
-import com.anathema_roguelike.main.display.DungeonMap;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.messages.MessageBox;
 import com.anathema_roguelike.main.ui.uielements.Placeholder;

@@ -28,10 +28,8 @@ import com.anathema_roguelike.main.display.animations.Blink;
 import com.anathema_roguelike.main.display.PointsOutline;
 import com.anathema_roguelike.main.display.VisualRepresentation;
 import com.anathema_roguelike.main.input.DirectionalKeyHandler;
-import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.messages.Message;
 import com.anathema_roguelike.main.ui.uielements.Border;
-import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SquidInput;

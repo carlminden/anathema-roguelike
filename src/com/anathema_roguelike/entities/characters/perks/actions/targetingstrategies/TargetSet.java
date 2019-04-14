@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 import com.anathema_roguelike.main.utilities.datastructures.CircularArrayList;
-import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.google.common.collect.TreeBasedTable;
 

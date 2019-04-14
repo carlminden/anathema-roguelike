@@ -17,7 +17,6 @@
 package com.anathema_roguelike.entities.characters.events;
 
 import com.anathema_roguelike.environment.HasLocation;
-import com.anathema_roguelike.environment.Location;
 
 public class MoveEvent implements HasLocation {
 	

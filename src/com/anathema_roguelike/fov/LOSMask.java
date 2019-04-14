@@ -16,9 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.fov;
 
-import com.anathema_roguelike.entities.Entity;
 import com.anathema_roguelike.main.display.BufferMask;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Vision;
 
 import squidpony.squidgrid.FOV;
 

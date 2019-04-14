@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.itemstats;
 
-import com.anathema_roguelike.entities.items.Item;
-
 public class WeaponRange extends ItemStat {
 
 	public WeaponRange(Item item) {

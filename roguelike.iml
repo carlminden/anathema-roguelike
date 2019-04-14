@@ -12,7 +12,7 @@
       <src_folder value="file://$MODULE_DIR$/.apt_generated" expected_position="4" />
     </src_description>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_12">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_9">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -55,6 +55,10 @@
     <orderEntry type="library" name="scala-sdk-2.13.0-M5" level="application" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.13.0-RC1" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.13.0-RC1" level="project" />
+    <orderEntry type="library" name="Maven: org.typelevel:cats-core_2.12:1.6.0" level="project" />
+    <orderEntry type="library" name="Maven: org.typelevel:cats-macros_2.12:1.6.0" level="project" />
+    <orderEntry type="library" name="Maven: org.typelevel:cats-kernel_2.12:1.6.0" level="project" />
+    <orderEntry type="library" name="Maven: org.typelevel:machinist_2.12:0.6.6" level="project" />
     <orderEntry type="library" name="Maven: com.squidpony:squidlib:3.0.0-b9" level="project" />
     <orderEntry type="library" name="Maven: com.badlogicgames.gdx:gdx:1.9.6" level="project" />
     <orderEntry type="library" name="Maven: com.squidpony:squidlib-extra:3.0.0-b9" level="project" />

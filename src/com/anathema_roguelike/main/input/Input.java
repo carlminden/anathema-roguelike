@@ -22,7 +22,6 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 
 import com.anathema_roguelike.main.display.Display;
-import com.anathema_roguelike.main.ui.UIConfig;
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.MouseCallback;
 import com.anathema_roguelike.main.utilities.position.Point;
 import com.badlogic.gdx.InputAdapter;

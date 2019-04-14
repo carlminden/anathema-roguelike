@@ -3,8 +3,6 @@ package com.anathema_roguelike.main.display;
 import java.util.Collection;
 
 import com.anathema_roguelike.main.Game;
-import com.anathema_roguelike.main.ui.UIConfig;
-import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
 
 import squidpony.squidgrid.gui.gdx.SColor;

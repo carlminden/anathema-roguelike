@@ -5,15 +5,15 @@ package entities.characters.stimuli
 
 import java.util.{Collections, Comparator}
 
+import cats.Functor
 import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.entities.characters.events.TurnStartEvent
 import com.anathema_roguelike.entities.characters.player.Player
 import com.anathema_roguelike.environment.Location
 import com.google.common.collect.TreeMultiset
 import com.google.common.eventbus.Subscribe
-import scala.collection.JavaConverters._
 
-class PerceivedStimuli(var character: Character, stimuli: PerceivedStimuli*) {
+class PerceivedStimuli(var character: Character) {
 
   character.getEventBus.register(this)
 
@@ -68,4 +68,7 @@ class PerceivedStimuli(var character: Character, stimuli: PerceivedStimuli*) {
     } else Option.empty
   }
 
+  def foreach(f: PerceivedStimulus => Unit): Unit = {
+    set.forEach(s => f(s))
+  }
 }

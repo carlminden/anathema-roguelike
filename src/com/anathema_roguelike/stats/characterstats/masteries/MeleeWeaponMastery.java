@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.masteries;
 
-public abstract class MeleeWeaponMastery extends WeaponMastery {
+public abstract class MeleeWeaponMastery extends Mastery {
 
 	public MeleeWeaponMastery(Character object) {
 		super(object);

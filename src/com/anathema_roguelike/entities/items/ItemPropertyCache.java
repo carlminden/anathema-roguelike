@@ -17,9 +17,6 @@
 package com.anathema_roguelike.entities.items;
 
 import com.anathema_roguelike.entities.items.armor.ArmorMaterial;
-import com.anathema_roguelike.entities.items.armor.ArmorType;
-import com.anathema_roguelike.entities.items.weapons.MetalWeaponMaterial;
-import com.anathema_roguelike.entities.items.weapons.WoodWeaponMaterial;
 import com.anathema_roguelike.entities.items.weapons.types.*;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.ImmutableTable.Builder;

@@ -1,7 +1,5 @@
 package com.anathema_roguelike.entities.characters.player.perks.abilities.potions;
 
-import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
-
 public class BrewAction extends CharacterAction {
 
 	public BrewAction(Character character, ActionCost ...costs) {

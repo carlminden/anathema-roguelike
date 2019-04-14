@@ -28,7 +28,7 @@ public class AmuletFactory extends ItemFactory<Amulet> {
 	}
 	
 	@Override
-	public Amulet generate() {
+	public Amulet subFactoryGenerate() {
 		return new Amulet("Enchanted Amulet of Stuff");
 	}
 }

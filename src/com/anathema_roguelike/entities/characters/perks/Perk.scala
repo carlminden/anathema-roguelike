@@ -7,7 +7,7 @@ import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.entities.characters.perks.requirements.PerkRequirement
 
 
-abstract class Perk(name: String, source: Any, initialRequirements: PerkRequirement*) {
+abstract class Perk(name: String, initialRequirements: PerkRequirement*) {
 
   var character: Option[Character] = Option.empty
   var requirements: List[PerkRequirement] = initialRequirements.toList

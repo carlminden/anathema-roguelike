@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.fov;
 
-import com.anathema_roguelike.entities.Entity;
-
 import squidpony.squidgrid.FOV;
 import squidpony.squidgrid.Radius;
 

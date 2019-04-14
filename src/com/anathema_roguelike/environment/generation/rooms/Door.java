@@ -18,12 +18,9 @@ package com.anathema_roguelike.environment.generation.rooms;
 
 import java.util.Random;
 
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
-import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.environment.features.Doorway;
 import com.anathema_roguelike.environment.generation.DungeonFeature;
 import com.anathema_roguelike.environment.generation.DungeonGenerator;
-import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Orientation;
 import com.anathema_roguelike.main.utilities.position.Point;
 

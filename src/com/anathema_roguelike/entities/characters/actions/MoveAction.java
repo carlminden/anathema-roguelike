@@ -16,11 +16,8 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.actions;
 
-import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.entities.characters.events.MoveEvent;
 import com.anathema_roguelike.environment.HasLocation;
-import com.anathema_roguelike.environment.Location;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visibility;
 
 public class MoveAction extends CharacterAction implements HasLocation {
 	

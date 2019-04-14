@@ -17,7 +17,6 @@
 package com.anathema_roguelike.main.ui.uielements;
 
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
-import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
 
 public class Border extends UIElement {

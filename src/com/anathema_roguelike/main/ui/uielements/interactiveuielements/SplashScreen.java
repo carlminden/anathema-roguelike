@@ -16,21 +16,20 @@
  ******************************************************************************/
 package com.anathema_roguelike.main.ui.uielements.interactiveuielements;
 
-import java.awt.event.KeyEvent;
-import java.util.Arrays;
-
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.display.Display.DisplayLayer;
-import com.anathema_roguelike.main.ui.uielements.Screen;
-import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.Menu;
+import com.anathema_roguelike.main.ui.uielements.interactiveuielements.menus.AbstractMenu;
 import com.anathema_roguelike.main.utilities.position.Point;
+
+import java.awt.event.KeyEvent;
+import java.util.Arrays;
 
 public class SplashScreen extends Screen<String> {
 	
 	public SplashScreen() {
 		super(null, false);
 		
-		final Menu<String> menu = new Menu<String>(new Point(1, 11), getWidth() - 1, 30, true, 2, false, 1f, Arrays.asList("New Game", "Exit"));
+		final AbstractMenu<String> menu = new AbstractMenu<String>(new Point(1, 11), getWidth() - 1, 30, true, 2, false, 1f, Arrays.asList("New Game", "Exit"));
 		
 		menu.setOnSelectListener("New Game", (String obj) -> {
 			menu.finish();

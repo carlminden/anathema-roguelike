@@ -16,9 +16,10 @@
  ******************************************************************************/
 package com.anathema_roguelike.fov;
 
+import com.anathema_roguelike.main.utilities.position.HasPosition;
 import com.anathema_roguelike.main.utilities.position.Point;
 
-public class ObstructionChangedEvent {
+public class ObstructionChangedEvent implements HasPosition {
 	private Point position;
 
 	public ObstructionChangedEvent(Point position) {

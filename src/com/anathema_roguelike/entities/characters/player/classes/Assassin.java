@@ -17,14 +17,6 @@
 package com.anathema_roguelike.entities.characters.player.classes;
 
 import com.anathema_roguelike.entities.characters.perks.PerkGroup;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.spells.SpellOrSpecialization;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.Assassinate;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.HiddenStrikes;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.Hide;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.LightStep;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.Lockpicking;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.QuietAssassination;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.techniques.Technique;
 import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
 import com.anathema_roguelike.entities.characters.player.perks.skills.AffinityForDarkness;
 import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;

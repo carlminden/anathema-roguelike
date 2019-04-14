@@ -31,7 +31,6 @@ import com.anathema_roguelike.entities.characters.player.perks.skills.Grandmaste
 import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.BrewingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpearMastery;
-import com.anathema_roguelike.stats.characterstats.masteries.ThrowingWeaponMastery;
 
 public class Alchemist extends PlayerClass {
 

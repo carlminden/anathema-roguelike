@@ -58,20 +58,18 @@ class PlayerKeyHandler(var player: Player) extends DirectionalKeyHandler {
           player.takeStairs(Direction.UP)
           return
         }
-      case SquidInput.INSERT =>
-      case SquidInput.VERTICAL_ARROW =>
+      case SquidInput.INSERT | SquidInput.VERTICAL_ARROW =>
         player.addPendingAction(new WaitAction(player))
       case 'a' =>
-        @SuppressWarnings(Array("rawtypes")) val ability = {
-          new SelectionScreen[ActionPerk[_]](
+        val ability = {
+          new SelectionScreen[ActionPerk[_]]("Activate an Ability", player.getPerks[ActionPerk[_]].toArray,
             new Point(0, 0), UIConfig.DUNGEON_MAP_WIDTH + 2, UIConfig.DUNGEON_MAP_HEIGHT + 3,
-            "Activate an Ability", true, 0f, .5f,
-            player.getPerks[ActionPerk[_]].asJavaCollection
+            0f, .5f, true
           ).run
         }
-        if (ability != null) player.addPendingAction(ability.activate)
-      case 'q' =>
-      case SquidInput.ESCAPE =>
+
+        ability.foreach(a => player.addPendingAction(a.activate))
+      case SquidInput.ESCAPE | 'q' =>
         Game.getInstance.quit()
       case ' ' =>
         player.takeStairs(Direction.DOWN)

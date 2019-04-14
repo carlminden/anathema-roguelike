@@ -1,6 +1,9 @@
 package com.anathema_roguelike.entities.characters.perks.actions;
 
+import com.anathema_roguelike.actors.Action;
 import com.anathema_roguelike.actors.Duration;
+import com.anathema_roguelike.entities.characters.actions.costs.ActionCost;
+import com.anathema_roguelike.entities.characters.actions.costs.ActionCosts;
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.ranges.Range;
@@ -14,7 +17,7 @@ public abstract class LingeringTargetedActionPerk<TargetType extends Targetable,
 	private EnergyCost activationEnergyCost;
 	
 	public LingeringTargetedActionPerk(String name, Duration duration, Range<OriginType> range, TargetingStrategy<? extends TargetType, OriginType> strategy,
-									   EnergyCost activationEnergyCost, ActionCost ...activationCosts) {
+									   EnergyCost activationEnergyCost, ActionCost...activationCosts) {
 		super(name, range, strategy);
 		
 		this.duration = duration;

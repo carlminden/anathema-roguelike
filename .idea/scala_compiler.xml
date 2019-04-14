@@ -9,6 +9,9 @@
     <option name="existentials" value="true" />
     <option name="macros" value="true" />
     <option name="explainTypeErrors" value="true" />
+    <parameters>
+      <parameter value="-Ypartial-unification" />
+    </parameters>
     <profile name="Maven 1" modules="roguelike">
       <option name="implicitConversions" value="true" />
     </profile>

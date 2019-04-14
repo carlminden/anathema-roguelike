@@ -10,7 +10,7 @@ import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.Color
 import com.anathema_roguelike.main.ui.messages.Message
 import com.anathema_roguelike.main.utilities.Utils
-import com.anathema_roguelike.stats.characterstats.CharacterStat
+import com.anathema_roguelike.stats.Stat.CharacterStat
 import com.anathema_roguelike.stats.effects.{Effect, HasEffect}
 
 abstract class Resource(character: Character) extends CharacterStat(character) {
@@ -53,6 +53,7 @@ abstract class Resource(character: Character) extends CharacterStat(character) {
           init match {
             case Some(_: Player) => m.appendMessage(" from your ", Color.GREEN)
             case Some(npc) => m.appendMessage(" from the " + Utils.getName(npc) + "'s ", Color.GREEN)
+            case _ =>
           }
 
           m.appendMessage(Utils.getName(source), Color.GREEN)
@@ -79,6 +80,7 @@ abstract class Resource(character: Character) extends CharacterStat(character) {
         init match {
           case Some(_: Player) => m.appendMessage(" from your ", Color.RED)
           case Some(npc) => m.appendMessage(" from the " + Utils.getName(npc) + "'s ", Color.RED)
+          case _ =>
         }
 
         source.foreach(s => m.appendMessage(Utils.getName(s), Color.RED))

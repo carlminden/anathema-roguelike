@@ -21,9 +21,11 @@ import com.anathema_roguelike.environment.features.Doorway
 import com.anathema_roguelike.environment.terrain.grounds.Stairs
 import com.anathema_roguelike.main.display.BufferMask
 import com.anathema_roguelike.main.utilities.position.Direction
+import com.anathema_roguelike.main.utilities.position.Direction.Direction2
+import com.anathema_roguelike.stats.Stat.CharacterStat
+import com.anathema_roguelike.stats.StatSet.CharacterStats
 import com.anathema_roguelike.stats.characterstats.attributes.Attribute
 import com.anathema_roguelike.stats.{HasStats, StatSet}
-import com.anathema_roguelike.stats.characterstats.{CharacterStat, CharacterStats}
 import com.anathema_roguelike.stats.characterstats.resources.{BoundedResource, Resource}
 import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.{Visibility, VisibilityLevel}
@@ -32,11 +34,12 @@ import com.google.common.eventbus.Subscribe
 
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
-import scala.collection.JavaConverters._
 import scala.reflect.runtime.universe._
 
-abstract class Character() extends Entity with HasStats[Character, CharacterStat] {
+abstract class Character(location: Location) extends Entity(location) with HasStats[Character, CharacterStat] {
+
   new BasicAttackPerk().grant(this)
+
   private var faction: Int = 0
   private var level: Int = 0
   private var turn: Long = 0
@@ -44,12 +47,12 @@ abstract class Character() extends Entity with HasStats[Character, CharacterStat
   private val abilitySpecializations: AbilitySpecializationSet = new AbilitySpecializationSet
   private val inventory: Inventory = new Inventory(this)
   private var alive: Boolean = true
-  private var facing: Double = Direction.UP
+  private var facing: Double = Direction.UP.toAngle
 
   //TODO: Initialize this better
   private var currentVisibility: BufferMask = _
 
-  private val stats: CharacterStats = new CharacterStats(this, getEventBus)
+  private val stats: CharacterStats = new CharacterStats(this)
   private val percievedStimuli: PerceivedStimuli = new PerceivedStimuli(this)
   private val lastSeenCharacterLocations: mutable.Map[Character, Location] = mutable.Map[Character, Location]()
   private val pendingActions: mutable.Stack[Action[Character]] = mutable.Stack[Action[Character]]()
@@ -95,7 +98,7 @@ abstract class Character() extends Entity with HasStats[Character, CharacterStat
   }
 
   def basicAttack(target: Character): Unit = {
-    addPendingAction(new BasicAttack(this, target))
+    addPendingAction(getPerks[BasicAttackPerk].head.activate(List(target)))
   }
 
   @Subscribe def handleResourceChangedEvent(event: ResourceChangedEvent): Unit = {
@@ -127,13 +130,13 @@ abstract class Character() extends Entity with HasStats[Character, CharacterStat
 
   def getTurn: Long = turn
 
-  def move(direction: Int): Unit = {
+  def move(direction: Direction): Unit = {
     val location: Location = getEnvironment.getLocation(Direction.offset(getPosition, direction))
     if (location.isPassable) {
       location.getTerrain match {
         case door: Doorway if this.isInstanceOf[Player] => addPendingAction(new OpenDoorAction(this, door))
         case _ => {
-          val characters: Iterable[Character] = location.getEntities(classOf[Character]).asScala
+          val characters: Iterable[Character] = location.getEntities(classOf[Character])
           if (characters.nonEmpty) {
             val character: Character = location.getEntities(classOf[Character]).iterator.next
             if (!Faction.friendly(character, this)) basicAttack(character)
@@ -150,7 +153,7 @@ abstract class Character() extends Entity with HasStats[Character, CharacterStat
     alive = false
   }
 
-  def getPrimaryWeaponDamage: Int = inventory.getSlot(classOf[PrimaryWeapon]).getEquippedItem.getWeaponDamage
+  def getPrimaryWeaponDamage: Int = inventory.getSlot[PrimaryWeapon].getEquippedItem.get.getWeaponDamage
 
   def getResourceMax[R <: BoundedResource : TypeTag]: Int = getStat[R].getMaximum
 
@@ -167,7 +170,7 @@ abstract class Character() extends Entity with HasStats[Character, CharacterStat
     resource.modify(initiator, source, amount)
   }
 
-  def takeStairs(direction: Int): Unit = {
+  def takeStairs(direction: Direction2): Unit = {
     getEnvironment.getLocation(getPosition).getTerrain match {
       case stairs: Stairs => {
         if (stairs.getDirection == direction) {
@@ -216,7 +219,7 @@ abstract class Character() extends Entity with HasStats[Character, CharacterStat
   }
 
   def getCurrentlyVisibleCharacters: Iterable[Character] = {
-    getEnvironment.getEntities(classOf[Character]).asScala.filter(c => c.isVisibleTo(this))
+    getEnvironment.getEntities(classOf[Character]).filter(c => c.isVisibleTo(this))
   }
 
   def getLastSeenCharacterLocations: mutable.Map[Character, Location] = lastSeenCharacterLocations

@@ -16,10 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.masteries;
 
-import com.anathema_roguelike.entities.characters.perks.Buff;
-import com.anathema_roguelike.entities.characters.perks.PassivePerk;
 import com.anathema_roguelike.main.utilities.Utils;
-import com.anathema_roguelike.stats.characterstats.masteries.Mastery;
 
 import java.util.Optional;
 

@@ -16,7 +16,7 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.characterstats.masteries;
 
-public class CrossbowMastery extends RangedWeaponMastery {
+public class CrossbowMastery extends Mastery {
 
 	public CrossbowMastery(Character object) {
 		super(object);

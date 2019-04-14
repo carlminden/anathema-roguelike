@@ -2,8 +2,6 @@ package com.anathema_roguelike.entities.characters.foes;
 
 import java.util.Optional;
 
-import com.anathema_roguelike.entities.characters.perks.Buff;
-import com.anathema_roguelike.entities.characters.perks.PassivePerk;
 import com.anathema_roguelike.stats.characterstats.attributes.Agility;
 import com.anathema_roguelike.stats.characterstats.attributes.Constitution;
 import com.anathema_roguelike.stats.characterstats.attributes.Intelligence;

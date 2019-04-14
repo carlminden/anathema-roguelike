@@ -16,11 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.main;
 
-import java.lang.Thread.UncaughtExceptionHandler;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Random;
-
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display;
 import com.anathema_roguelike.main.display.DungeonMap;
@@ -35,8 +30,9 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.google.common.eventbus.EventBus;
-
 import squidpony.squidgrid.gui.gdx.SColor;
+
+import java.util.Random;
 
 public class Game extends ApplicationAdapter {
 	

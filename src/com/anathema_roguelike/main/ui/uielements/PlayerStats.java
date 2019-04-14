@@ -25,11 +25,7 @@ import com.anathema_roguelike.main.utilities.position.Point;
 import com.anathema_roguelike.stats.characterstats.attributes.*;
 import com.anathema_roguelike.stats.characterstats.resources.CurrentHealth;
 import com.anathema_roguelike.stats.characterstats.secondarystats.Health;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.Visibility;
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.VisibilityLevel;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Attenuation;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Concealment;
-import com.anathema_roguelike.stats.characterstats.secondarystats.detection.defenses.Veil;
 import squidpony.squidgrid.gui.gdx.SColor;
 
 import java.util.stream.Collectors;

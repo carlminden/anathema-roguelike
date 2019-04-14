@@ -16,15 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.generation;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Random;
-
-import org.jgrapht.alg.ConnectivityInspector;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.ListenableUndirectedGraph;
-
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.environment.generation.rooms.Door;
@@ -32,8 +23,15 @@ import com.anathema_roguelike.environment.generation.rooms.Room;
 import com.anathema_roguelike.environment.terrain.grounds.Stairs;
 import com.anathema_roguelike.environment.terrain.walls.StoneWall;
 import com.anathema_roguelike.main.Config;
-import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
+import org.jgrapht.alg.ConnectivityInspector;
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.ListenableUndirectedGraph;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Random;
 
 public abstract class DungeonGenerator {
 	protected static final Random rand = new Random();
@@ -105,9 +103,9 @@ public abstract class DungeonGenerator {
 		
 		Room upstairsRoom = rooms.get(rand.nextInt(rooms.size()));
 		Room downstairsRoom = rooms.get(rand.nextInt(rooms.size()));
-		
-		getLevel().setUpStairs(new Stairs(Direction.UP), upstairsRoom.getRandomPointInRoom());
-		getLevel().setDownStairs(new Stairs(Direction.DOWN), downstairsRoom.getRandomPointInRoom());
+
+		getLevel().setUpStairs(new Stairs(upstairsRoom.getRandomPointInRoom(), Direction.UP));
+		getLevel().setDownStairs(new Stairs(upstairsRoom.getRandomPointInRoom(), Direction.DOWN));
 		
 		//TODO maybe not all rooms should get encounters, or maybe that should just be up to the room
 		for(Room room : rooms) {

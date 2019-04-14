@@ -16,10 +16,8 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.generation.rooms;
 
-import com.anathema_roguelike.entities.characters.foes.corruptions.Thrall;
 import com.anathema_roguelike.entities.characters.foes.roles.Brawler;
 import com.anathema_roguelike.entities.characters.foes.species.generic.Orc;
-import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.generation.DungeonGenerator;
 import com.anathema_roguelike.main.Game;
 import com.anathema_roguelike.main.utilities.position.Point;

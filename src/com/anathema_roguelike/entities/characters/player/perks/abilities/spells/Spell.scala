@@ -1,16 +1,13 @@
-package com.anathema_roguelike.entities.characters.player.perks.abilities.spells
+package com.anathema_roguelike
+package entities.characters.player.perks.abilities.spells
 
-import java.util
-import java.util.Collection
-
-import com.anathema_roguelike.actors.Action
 import com.anathema_roguelike.entities.characters.perks.PassthroughPerk
 import com.anathema_roguelike.entities.characters.perks.actions.ActionPerk
 import com.anathema_roguelike.entities.characters.player.classes.PlayerClass
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability
 import com.anathema_roguelike.main.utilities.AutoClassToInstanceMap
 
-abstract class Spell[T <: ActionPerk[_]](var spellLevel: Int, var casterClass: Class[_ <: PlayerClass]) extends PassthroughPerk[T] with Ability {
+abstract class Spell[T <: ActionPerk[_]](spellLevel: Int, casterClass: Class[_ <: PlayerClass]) extends PassthroughPerk[T] with Ability {
   def getSpellLevel: Int = spellLevel
 
   def getCasterClass: Class[_ <: PlayerClass] = casterClass

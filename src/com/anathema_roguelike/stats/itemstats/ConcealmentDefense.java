@@ -16,8 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.stats.itemstats;
 
-import com.anathema_roguelike.entities.items.Item;
-
 public class ConcealmentDefense extends ArmorStat {
 
 	public ConcealmentDefense(Item item) {

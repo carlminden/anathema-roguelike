@@ -12,9 +12,8 @@ import com.anathema_roguelike.entities.characters.perks.requirements.PerkRequire
 
 abstract class ActionPerk[T <: Action[Character]](
     name: String,
-    source: Any,
     requirements: PerkRequirement*
-  ) extends Perk(name, source, requirements:_*) {
+  ) extends Perk(name, requirements:_*) {
 
   protected def createAction: T
 

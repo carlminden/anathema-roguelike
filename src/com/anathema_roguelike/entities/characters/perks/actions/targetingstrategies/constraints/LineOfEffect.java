@@ -1,6 +1,7 @@
 package com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.constraints;
 
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable;
+import com.anathema_roguelike.entities.characters.Character;
 
 public class LineOfEffect<T extends Targetable> implements TargetConstraint<T, Character> {
 
