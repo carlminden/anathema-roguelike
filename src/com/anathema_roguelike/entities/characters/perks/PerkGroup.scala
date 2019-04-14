@@ -32,24 +32,23 @@
 
 package com.anathema_roguelike
 package entities.characters.perks
+import com.anathema_roguelike.entities.characters.Character
 
 class PerkGroup(val perks: Perk*) extends Perk("") {
-  this.perks.addAll(Arrays.asList(perks))
-  private val perks = new util.HashSet[Perk]
 
-  def grant(character: Character): Unit = {
+  override def grant(character: Character): Unit = {
     for (perk <- perks) {
       perk.grant(character)
     }
     super.grant(character)
   }
 
-  def remove(character: Character): Unit = {
+  override def remove(character: Character): Unit = {
     for (perk <- perks) {
       perk.remove(character)
     }
     super.remove(character)
   }
 
-  def getPerks: util.HashSet[Perk] = perks
+  def getPerks: Iterable[Perk] = perks
 }
