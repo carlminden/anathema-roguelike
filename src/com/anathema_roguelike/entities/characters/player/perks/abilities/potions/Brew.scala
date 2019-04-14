@@ -1,4 +1,4 @@
-/*
+/*******************************************************************************
  * Copyright (c) 2019. Carl Minden
  *
  * This program is free software: you can redistribute it and/or modify
@@ -13,7 +13,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+ ******************************************************************************/
 
 package com.anathema_roguelike
 package entities.characters.player.perks.abilities.potions

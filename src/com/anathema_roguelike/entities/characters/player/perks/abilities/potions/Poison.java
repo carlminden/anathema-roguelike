@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (C) 2017 Carl Minden
+ * Copyright (c) 2019. Carl Minden
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.perks.abilities.potions;
+
+import com.anathema_roguelike.entities.characters.perks.actions.SelfTargetedPerk;
 
 public abstract class Poison extends com.anathema_roguelike.entities.characters.perks.PerkGroup implements com.anathema_roguelike.entities.characters.player.perks.abilities.Ability {
 
