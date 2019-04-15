@@ -37,6 +37,27 @@
       </resource>
     </resources>
     <plugins>
+		<plugin>
+		<groupId>net.alchim31.maven</groupId>
+		<artifactId>scala-maven-plugin</artifactId>
+			<executions>
+				<execution>
+					<id>scala-compile-first</id>
+					<phase>process-resources</phase>
+					<goals>
+						<goal>add-source</goal>
+						<goal>compile</goal>
+					</goals>
+				</execution>
+				<execution>
+					<id>scala-test-compile</id>
+					<phase>process-test-resources</phase>
+					<goals>
+						<goal>testCompile</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
@@ -65,6 +86,16 @@
     </plugins>
   </build>
   <dependencies>
+	<dependency>
+	  <groupId>org.scala-lang</groupId>
+	  <artifactId>scala-reflect</artifactId>
+	  <version>2.13.0-RC1</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.typelevel</groupId>
+	  <artifactId>cats-core_2.12</artifactId>
+	  <version>1.6.0</version>
+	</dependency>
   	<dependency>
   		<groupId>com.squidpony</groupId>
   		<artifactId>squidlib</artifactId>

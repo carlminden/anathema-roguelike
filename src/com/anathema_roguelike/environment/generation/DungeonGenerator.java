@@ -1,29 +1,20 @@
 /*******************************************************************************
- * Copyright (C) 2017 Carl Minden
- * 
+ * Copyright (c) 2019. Carl Minden
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 package com.anathema_roguelike.environment.generation;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Random;
-
-import org.jgrapht.alg.ConnectivityInspector;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.ListenableUndirectedGraph;
 
 import com.anathema_roguelike.environment.Environment;
 import com.anathema_roguelike.environment.Location;
@@ -32,8 +23,15 @@ import com.anathema_roguelike.environment.generation.rooms.Room;
 import com.anathema_roguelike.environment.terrain.grounds.Stairs;
 import com.anathema_roguelike.environment.terrain.walls.StoneWall;
 import com.anathema_roguelike.main.Config;
-import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Point;
+import org.jgrapht.alg.ConnectivityInspector;
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.ListenableUndirectedGraph;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Random;
 
 public abstract class DungeonGenerator {
 	protected static final Random rand = new Random();
@@ -105,9 +103,9 @@ public abstract class DungeonGenerator {
 		
 		Room upstairsRoom = rooms.get(rand.nextInt(rooms.size()));
 		Room downstairsRoom = rooms.get(rand.nextInt(rooms.size()));
-		
-		getLevel().setUpStairs(new Stairs(Direction.UP), upstairsRoom.getRandomPointInRoom());
-		getLevel().setDownStairs(new Stairs(Direction.DOWN), downstairsRoom.getRandomPointInRoom());
+
+		getLevel().setUpStairs(new Stairs(upstairsRoom.getRandomPointInRoom(), Direction.UP));
+		getLevel().setDownStairs(new Stairs(upstairsRoom.getRandomPointInRoom(), Direction.DOWN));
 		
 		//TODO maybe not all rooms should get encounters, or maybe that should just be up to the room
 		for(Room room : rooms) {

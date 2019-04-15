@@ -1,0 +1,39 @@
+/*******************************************************************************
+ * Copyright (c) 2019. Carl Minden
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+
+package com.anathema_roguelike
+package environment.generation
+
+import com.anathema_roguelike.environment.generation.rooms.BasicRoom
+import com.anathema_roguelike.environment.generation.rooms.Cave
+import com.anathema_roguelike.environment.generation.rooms.Room
+import java.util
+import java.util.Random
+
+class DefaultDungeonLevelGenerator extends DungeonGenerator {
+  override protected def generateRooms(depth: Int): Iterable[Room] = {
+    val rand = new Random
+
+    (0 until 30).map(i => {
+      if(rand.nextFloat > .15f) {
+        new BasicRoom(depth, 20, 12)
+      } else {
+        new Cave(depth, 40, 30)
+      }
+    })
+  }
+}

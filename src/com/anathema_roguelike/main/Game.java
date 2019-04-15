@@ -1,25 +1,20 @@
 /*******************************************************************************
- * Copyright (C) 2017 Carl Minden
- * 
+ * Copyright (c) 2019. Carl Minden
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 package com.anathema_roguelike.main;
-
-import java.lang.Thread.UncaughtExceptionHandler;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Random;
 
 import com.anathema_roguelike.main.display.Color;
 import com.anathema_roguelike.main.display.Display;
@@ -35,8 +30,9 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.google.common.eventbus.EventBus;
-
 import squidpony.squidgrid.gui.gdx.SColor;
+
+import java.util.Random;
 
 public class Game extends ApplicationAdapter {
 	
@@ -59,7 +55,7 @@ public class Game extends ApplicationAdapter {
 			System.out.println("Thread " + arg0);
 			arg1.printStackTrace();
 		});
-		
+
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
    		config.width = UIConfig.TERM_WIDTH * Display.cellWidth;
     	config.height = UIConfig.TERM_HEIGHT * Display.cellHeight;
@@ -69,9 +65,9 @@ public class Game extends ApplicationAdapter {
         config.backgroundFPS = 30;
         config.resizable = false;
         //config.addIcon(path, fileType);
-    	
+
     	new LwjglApplication(Game.getInstance(), config);
-    	
+
     	Game.getInstance().start();
     }
 	
@@ -131,7 +127,7 @@ public class Game extends ApplicationAdapter {
         display.quit();
     }
 	
-	private void start() {
+	protected void start() {
 		
 		latch.await();
 		
