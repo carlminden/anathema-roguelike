@@ -22,6 +22,6 @@ import com.anathema_roguelike.entities.characters.perks.PassthroughPerk
 import com.anathema_roguelike.entities.characters.perks.actions.OffensiveTargetedPerk
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability
 
-class Assassinate() extends PassthroughPerk[OffensiveTargetedPerk] with Ability {
+class Assassinate() extends Technique[OffensiveTargetedPerk] with Ability {
   override protected def createPerk: OffensiveTargetedPerk = ??? // TODO Auto-generated method stub
 }

@@ -33,7 +33,7 @@ import com.anathema_roguelike.stats.effects.{Effect, HasEffect}
 import com.anathema_roguelike.stats.itemstats.ItemStat
 
 object Item {
-  def locationOfCharacterOrLocation(location: Either[Location, Character]) = {
+  def locationOfCharacterOrLocation(location: Either[Location, Character]): Location = {
     location match {
       case Left(l) => l
       case Right(c) => c.getLocation
@@ -65,6 +65,7 @@ abstract class Item(location: Either[Location, Character])
   def removedFrom(character: Character): Unit = {
     wearer = Option.empty
     character.removeEffectBySource(this)
+    setLocation(character.getLocation)
   }
 
   def getWearer: Option[Character] = wearer
@@ -72,7 +73,7 @@ abstract class Item(location: Either[Location, Character])
   override def getStatSet: ItemStats = stats
 
   override def getLocation: Location = {
-    wearer.map(_.getLocation).getOrElse(location)
+    wearer.map(_.getLocation).getOrElse(super.getLocation)
   }
 
   override def getNextAction: Option[Action[_]] = {

@@ -28,11 +28,9 @@ object Feature {
     type Priority = Value
     val LOW, DEFAULT, HIGH, DEBUG = Value
   }
-
 }
 
 abstract class Feature(
-    location: Location,
     representation: VisualRepresentation,
     fogOfWarRepresentation: VisualRepresentation,
     foreground: Boolean,
@@ -40,7 +38,12 @@ abstract class Feature(
     opacity: Double,
     damping: Double,
     renderPriority: Priority = Feature.Priority.DEFAULT)
-  extends LocationProperty(location, representation, fogOfWarRepresentation, foreground, passable, opacity, damping) {
+  extends LocationProperty(representation, fogOfWarRepresentation, foreground, passable, opacity, damping) {
 
   def getRenderPriority: Priority = renderPriority
+
+  override def setLocation(loc: Location): Unit = {
+    super.setLocation(loc)
+    getLocation.addFeature(this)
+  }
 }

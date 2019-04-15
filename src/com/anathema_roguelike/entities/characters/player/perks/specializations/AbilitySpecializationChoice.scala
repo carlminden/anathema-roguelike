@@ -30,7 +30,7 @@ class AbilitySpecializationChoice[T <: Ability : TypeTag] extends PerkChoice("Ch
 
     val learnedAbilities = character.getPerks[Perk].filterByType[T]
 
-    learnedAbilities.filter(a => validAbility(character, a)).map(a => new AbilitySpecialization(a.getClass))
+    learnedAbilities.filter(a => validAbility(character, a)).map(a => new AbilitySpecialization()(a.getClass))
   }
 
   def validAbility(character: Character, a: Ability): Boolean = {

@@ -23,6 +23,6 @@ import com.anathema_roguelike.entities.characters.perks.actions.TargetedPerk
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability
 import com.anathema_roguelike.environment.Location
 
-class Lockpicking() extends PassthroughPerk[TargetedPerk[Location]] with Ability {
+class Lockpicking() extends Technique[TargetedPerk[Location]] with Ability {
   override protected def createPerk: TargetedPerk[Location] = ??? // TODO Auto-generated method stub
 }

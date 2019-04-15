@@ -64,21 +64,15 @@ class Location(
 
   def setTerrain(terrain: Terrain): Unit = {
 
-    if(terrain.getLocation != this) {
-      throw new RuntimeException(s"Terrain: $terrain is not located at $this")
-    }
-
+    terrain.setLocation(this)
     this.terrain = terrain
   }
 
   def getFeatures: Iterable[Feature] = features.asScala
 
   def addFeature(feature: Feature): Unit = {
-    if(feature.getLocation != this) {
-      throw new RuntimeException(s"Feature: $terrain is not located at $this")
-    }
-
     features.add(feature)
+    feature.setLocation(this)
   }
 
   def getAllEntities: Iterable[Entity] = getEnvironment.getEntitiesAt(this)

@@ -18,6 +18,7 @@
 package com.anathema_roguelike
 package entities.items
 
+import com.anathema_roguelike.entities.items.ItemType.AnyItem
 import com.anathema_roguelike.entities.items.armor.ArmorFactory
 import com.anathema_roguelike.entities.items.weapons.WeaponFactory
 

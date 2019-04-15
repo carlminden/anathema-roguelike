@@ -18,9 +18,7 @@
 package com.anathema_roguelike
 package main.utilities.position
 
-import com.anathema_roguelike.main.utilities.position.Direction.{DOWN, DOWN_LEFT, DOWN_RIGHT, LEFT, RIGHT, UP, UP_LEFT, UP_RIGHT}
-
-sealed trait DirectionUpDown
+import com.anathema_roguelike.main.utilities.position.Direction._
 
 class Direction(val value: Int) {
   def |(d: Direction): Direction = new Direction(value | d.value)
@@ -68,6 +66,21 @@ object Direction {
   val DIRECTIONS_4 = Array(UP, DOWN, LEFT, RIGHT)
   val DIAGONALS = Array(UP_RIGHT, DOWN_RIGHT, DOWN_LEFT, UP_LEFT)
   val DIRECTIONS_8 = Array(UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT)
+
+  //Didnt want to port my shitty dungeon generator, so I needed this
+  def fromJavaDirection(direction: Int): Direction = {
+    direction match {
+      case LEFT.value => LEFT
+      case RIGHT.value => RIGHT
+      case UP.value => UP
+      case DOWN.value => DOWN
+      case UP_RIGHT.value => UP_RIGHT
+      case UP_LEFT.value => UP_LEFT
+      case DOWN_RIGHT.value => DOWN_RIGHT
+      case DOWN_LEFT.value => DOWN_LEFT
+      case _ => NO_DIRECTION
+    }
+  }
 
 
   def offset(point: HasPosition, direction: Direction): Point = offset(point, direction, 1)

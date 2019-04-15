@@ -16,14 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.classes;
 
-import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Analysis;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Autoload;
-import com.anathema_roguelike.entities.characters.player.perks.skills.EagleEye;
-import com.anathema_roguelike.entities.characters.player.perks.skills.SureFooting;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Swiftness;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Trapfinding;
-import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.BowMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.CrossbowMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpellMastery;

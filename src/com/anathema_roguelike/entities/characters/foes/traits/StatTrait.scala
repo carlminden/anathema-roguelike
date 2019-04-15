@@ -24,7 +24,7 @@ import com.anathema_roguelike.stats.effects.{Calculation, Modifier}
 
 import scala.reflect.runtime.universe._
 
-class StatTrait[T <: CharacterStat : TypeTag](name: String, calculation: Calculation) extends PassthroughPerk[PassivePerk] {
+class StatTrait[T <: CharacterStat : TypeTag](name: String, calculation: Calculation) extends Trait[PassivePerk] {
 
   def getStat: Class[T] = typeTagToClass
 

@@ -21,6 +21,7 @@ package stats.effects
 import com.anathema_roguelike.actors.Duration
 import com.anathema_roguelike.stats.Stat
 
+import scala.collection.mutable.ListBuffer
 import scala.reflect.runtime.universe._
 
 class Effect[T, +S <: Stat[_ <: T]](
@@ -29,10 +30,16 @@ class Effect[T, +S <: Stat[_ <: T]](
     duration: Duration = Duration.permanent(),
     var target: Option[T] = None) {
 
+  private val modifiersListBuffer: ListBuffer[Modifier[_ <: Stat[_ <: T]]] = ListBuffer[Modifier[_ <: Stat[_ <: T]]]() ++ modifiers
 
-  def getSource = source
 
-  def getModifiers = modifiers
+  def getSource: Option[_ <: HasEffect[_ <: Effect[T, S]]] = source
+
+  def getModifiers: Iterable[Modifier[_ <: Stat[_ <: T]]] = modifiersListBuffer
+
+  def addModifier(modifier: Modifier[_ <: Stat[_ <: T]]): Unit = {
+    modifiersListBuffer += modifier
+  }
 
   def getAdditiveBonus[B <: Stat[_] : TypeTag]: Double = {
     getModifiers.filter(m => m.getAffectedStat == typeTagToClass[B]).foldLeft(0.0) {
@@ -53,7 +60,7 @@ class Effect[T, +S <: Stat[_ <: T]](
     builder.append("Effect: ")
     builder.append("Duration: ").append(duration.getRemaining)
 
-    modifiers.foreach(m => {
+    modifiersListBuffer.foreach(m => {
       builder.append(" Modifier: " + m.getAffectedStat.getSimpleName + " +" + m.getAdditiveAmount + " *" + m.getMultiplier)
     })
 

@@ -31,11 +31,11 @@ import com.anathema_roguelike.entities.characters.stimuli.Sound
 import com.anathema_roguelike.entities.items.miscellaneous.Rock
 import com.anathema_roguelike.environment.Location
 
-class ThrowRock() extends PassthroughPerk[TargetedPerk[Location]] with Ability {
+class ThrowRock() extends Technique[TargetedPerk[Location]] with Ability {
   override protected def createPerk: TargetedPerk[Location] = {
     new TargetedPerk(
       "Throw Rock",
-      new ThrowingRange[Location](new Rock, new LineOfSight(), new LineOfEffect[Location]()),
+      new ThrowingRange[Location](_ => 1.0, new LineOfSight(), new LineOfEffect[Location]()),
       new SingleTargeted[Location]()
     )
     {

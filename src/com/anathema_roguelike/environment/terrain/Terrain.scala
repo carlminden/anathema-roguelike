@@ -22,11 +22,15 @@ import com.anathema_roguelike.environment.{Location, LocationProperty}
 import com.anathema_roguelike.main.display.VisualRepresentation
 
 abstract class Terrain(
-    location: Location,
     representation: VisualRepresentation,
     foreground: Boolean,
     passable: Boolean,
     opacity: Double,
     damping: Double)
-  extends LocationProperty(location, representation, representation, foreground, passable, opacity, damping) {
+  extends LocationProperty(representation, representation, foreground, passable, opacity, damping) {
+
+  override def setLocation(loc: Location): Unit = {
+    super.setLocation(loc)
+    getLocation.setTerrain(this)
+  }
 }

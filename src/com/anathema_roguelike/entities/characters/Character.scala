@@ -104,8 +104,8 @@ abstract class Character(location: Location) extends Entity(location) with HasSt
 
   def getSpecialization(ability: Class[_ <: Ability]): Int = abilitySpecializations.getSpecializationLevel(ability)
 
-  def specialize(ability: Class[_ <: Ability], amount: Int): Unit = {
-    abilitySpecializations.specialize(ability, amount)
+  def specialize[T <: Ability : TypeTag](amount: Int): Unit = {
+    abilitySpecializations.specialize[T](amount)
   }
 
   protected def setFaction(faction: Int): Unit = {

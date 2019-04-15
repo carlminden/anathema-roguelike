@@ -22,6 +22,6 @@ import com.anathema_roguelike.entities.characters.perks.PassthroughPerk
 import com.anathema_roguelike.entities.characters.perks.actions.GenericTargetedPerk
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability
 
-class Shadowdance() extends PassthroughPerk[GenericTargetedPerk[_, _]] with Ability {
+class Shadowdance() extends Technique[GenericTargetedPerk[_, _]] with Ability {
   override protected def createPerk: GenericTargetedPerk[_, _] = ??? // TODO Auto-generated method stub
 }

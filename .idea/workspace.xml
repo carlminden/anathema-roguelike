@@ -2,7 +2,71 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da2c8047-2012-41c2-b0ab-d05c72db2653" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/copyright/Copyright.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/GenericSpecies.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/TriggeredPerk.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/AmplificationElixir.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Bomb.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/ElixirOfAzureFlame.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/ElixirOfPurity.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/FireBomb.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/FleetFootedElixir.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/FortificationElixir.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/FreezeBomb.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/KnockoutGasBomb.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/PerceptiveElixir.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Poison.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/RadiantBomb.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/SilencingPoison.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/SlowingPoison.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/SmokeBomb.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/TarBomb.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/shapeshifting/Shapeshift.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/shapeshifting/ShapeshiftBat.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/shapeshifting/ShapeshiftBear.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/shapeshifting/ShapeshiftPanther.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/masteries/MasteryLevel.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/AffinityForDarkness.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Analysis.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/AnimalisticCasting.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Attunement.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Autoload.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Discipline.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/EagleEye.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/GrandmasterBrewer.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/IronBody.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/KeenHearing.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/SecondSight.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/SureFooting.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Swiftness.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Trapfinding.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/UncannySenses.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/AbilitySpecialization.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/AbilitySpecializationSet.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/Amulet.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/AmuletFactory.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/BeanReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemPropertyCache.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorFactory.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorProperty.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/Boots.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/Chestpiece.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/Helm.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/Pants.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/miscellaneous/Rock.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeaponMaterial.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Brazier.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/DebugFeature.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Doorway.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/BigRoomDungeonGenerator.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/CaveDungeonGenerator.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DefaultDungeonLevelGenerator.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonFeature.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/BasicRoom.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Room.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/Orientation.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/wiki" beforeDir="false" afterPath="$PROJECT_DIR$/res/wiki" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/wiki/environment/Environment.md" beforeDir="false" afterPath="$PROJECT_DIR$/res/wiki/environment/Environment.md" afterDir="false" />
@@ -130,6 +194,125 @@
       <change beforePath="$PROJECT_DIR$/res/wiki/mechanics/statistics/Weight.md" beforeDir="false" afterPath="$PROJECT_DIR$/res/wiki/mechanics/statistics/Weight.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/wiki/mechanics/statistics/resources/Health.md" beforeDir="false" afterPath="$PROJECT_DIR$/res/wiki/mechanics/statistics/resources/Health.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/wiki/mechanics/statistics/senses/Senses.md" beforeDir="false" afterPath="$PROJECT_DIR$/res/wiki/mechanics/statistics/senses/Senses.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/Character.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/Foe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/Foe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Champion.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Champion.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Thrall.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Thrall.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Zealot.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Zealot.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/GenericSpecies.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/TriggeredPerk.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/ranges/ThrowingRange.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/ranges/ThrowingRange.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/Player.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/Player.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Alchemist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Alchemist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Assassin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Assassin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Druid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Druid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Inquisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Inquisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Monk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Monk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Ninja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Ninja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Ranger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Ranger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Rogue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Rogue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Shadow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/classes/Shadow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/AmplificationElixir.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Bomb.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/BrewAction.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/BrewAction.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/ElixirOfAzureFlame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/ElixirOfPurity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/FireBomb.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/FleetFootedElixir.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/FortificationElixir.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/FreezeBomb.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/KnockoutGasBomb.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/PerceptiveElixir.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Poison.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/RadiantBomb.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/SilencingPoison.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/SlowingPoison.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/SmokeBomb.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/TarBomb.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/shapeshifting/Shapeshift.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/shapeshifting/ShapeshiftBat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/shapeshifting/ShapeshiftBear.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/shapeshifting/ShapeshiftPanther.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Assassinate.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Assassinate.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/FlurryOfBlows.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/FlurryOfBlows.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/FlyingKick.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/FlyingKick.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/HiddenStrikes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/HiddenStrikes.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Hide.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Hide.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/HurlBlade.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/HurlBlade.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/KatanaExpertise.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/KatanaExpertise.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/LeapingStrike.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/LeapingStrike.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/LightStep.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/LightStep.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Lockpicking.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Lockpicking.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/PointBlankExpertise.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/PointBlankExpertise.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/QuickDraw.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/QuickDraw.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/QuietAssassination.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/QuietAssassination.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Shadowdance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Shadowdance.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/ThrowRock.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/ThrowRock.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/UnfetteredSpirit.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/UnfetteredSpirit.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Vanish.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Vanish.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Vault.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/Vault.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/WallRunning.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/WallRunning.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/masteries/MasteryLevel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/AffinityForDarkness.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Analysis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/AnimalisticCasting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Attunement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Autoload.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Discipline.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/EagleEye.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/GrandmasterBrewer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/IronBody.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/KeenHearing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/SecondSight.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/SureFooting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Swiftness.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/Trapfinding.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/skills/UncannySenses.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/AbilitySpecialization.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/AbilitySpecializationChoice.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/AbilitySpecializationChoice.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/AbilitySpecializationSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/Amulet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/AmuletFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/AnyItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemType.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/AnyItemFactory.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/AnyItemFactory.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/Item.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/Item.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemPropertyCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorProperty.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/Boots.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/Chestpiece.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/Helm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/Pants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/miscellaneous/Rock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WeaponFactory.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WeaponFactory.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeaponMaterial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/Location.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/Location.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/LocationProperty.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/LocationProperty.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Brazier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/DebugFeature.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Doorway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Feature.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Feature.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/BigRoomDungeonGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/CaveDungeonGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DefaultDungeonLevelGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonFeature.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/TunnelDigger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/TunnelDigger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/TunnelSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/TunnelSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/BasicRoom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Room.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/Terrain.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/Terrain.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Ground.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Ground.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Stone.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Stone.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/Direction.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/Direction.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/Orientation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -148,82 +331,23 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Action.scala">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+            <state relative-caret-position="620">
+              <caret line="179" column="10" selection-start-line="179" selection-start-column="10" selection-end-line="179" selection-end-column="10" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#916#989#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/Deficient.scala">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/BigRoomDungeonGenerator.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/Extraordinary.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/events/ResourceChangedEvent.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/events/MoveEvent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="72" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="14" selection-end-column="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/BasicAttack.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/MoveAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Duration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+            <state relative-caret-position="594">
+              <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -232,10 +356,86 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/Attack.scala">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/CaveDungeonGenerator.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="528">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DefaultDungeonLevelGenerator.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="748">
+              <caret line="38" column="1" lean-forward="true" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonFeature.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="43" column="60" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#910#926#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+              <folding>
+                <element signature="e#2545#2551#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Thrall.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Zealot.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Corruption.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="23" column="25" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Champion.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -245,8 +445,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Package Object" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -277,57 +477,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/StatSet.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/Item.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/LingeringActivation.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/spells/SpellSpecializationChoice.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/Effect.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Brazier.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/DebugFeature.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/Player.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/Pants.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/techniques/ThrowRock.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/actions/targetingstrategies/ranges/ThrowingRange.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/TriggeredPerk.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/TriggeredPerk.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/AbilitySpecializationChoice.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/AnyItemFactory.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorFactory.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/BeanReader.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemPropertyCache.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WeaponFactory.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/BasicRoom.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/BasicRoom.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/GenericSpecies.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/Foe.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/GenericSpecies.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Room.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Stone.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Ground.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/Terrain.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Feature.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/LocationProperty.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/Location.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Doorway.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Door.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/Orientation.scala" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/Direction.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/Utils.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MeleeWeapon.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MeleeWeapon.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MetalWeaponMaterial.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WoodWeaponMaterial.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/RangedWeapon.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/RangedWeapon.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WeaponMaterial.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/ThrowingWeapon.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/MeleeWeaponType.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/ShortBlade.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/MeleeWeaponType.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/RangedWeaponType.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/RangedWeaponType.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/Crossbow.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/Bow.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/Bow.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/Crossbow.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/ThrowingWeapon.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeapon.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeaponMaterial.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/Unarmed.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeapon.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/Unarmed.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/inventory/PrimaryWeapon.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MetalWeaponMaterial.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Corruption.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Corruption.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Room.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Door.java" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Champion.scala" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Thrall.scala" />
         <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Zealot.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PerkGroup.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Potion.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Potion.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Brew.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/BrewAction.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/BrewAction.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Elixir.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Elixir.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/DisplacementBulwarkElixir.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Brew.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/Attack.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.scala" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/MoveAction.java" />
-        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/actors/Action.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/BigRoomDungeonGenerator.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/BigRoomDungeonGenerator.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/CaveDungeonGenerator.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/CaveDungeonGenerator.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DefaultDungeonLevelGenerator.java" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DefaultDungeonLevelGenerator.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonFeature.scala" />
+        <option value="$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonGenerator.java" />
       </list>
     </option>
   </component>
@@ -351,8 +551,8 @@
     <scope name="Scope" pattern="src:*..*" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="814" />
-    <option name="width" value="3035" />
+    <option name="x" value="1089" />
+    <option name="width" value="2759" />
     <option name="height" value="2111" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -460,6 +660,37 @@
               <item name="characters" type="462c0819:PsiDirectoryNode" />
               <item name="foes" type="462c0819:PsiDirectoryNode" />
               <item name="ai" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
+              <item name="characters" type="462c0819:PsiDirectoryNode" />
+              <item name="foes" type="462c0819:PsiDirectoryNode" />
+              <item name="corruptions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
+              <item name="characters" type="462c0819:PsiDirectoryNode" />
+              <item name="foes" type="462c0819:PsiDirectoryNode" />
+              <item name="species" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
+              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
+              <item name="characters" type="462c0819:PsiDirectoryNode" />
+              <item name="foes" type="462c0819:PsiDirectoryNode" />
+              <item name="species" type="462c0819:PsiDirectoryNode" />
+              <item name="generic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -586,41 +817,7 @@
               <item name="player" type="462c0819:PsiDirectoryNode" />
               <item name="perks" type="462c0819:PsiDirectoryNode" />
               <item name="abilities" type="462c0819:PsiDirectoryNode" />
-              <item name="potions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="player" type="462c0819:PsiDirectoryNode" />
-              <item name="perks" type="462c0819:PsiDirectoryNode" />
-              <item name="abilities" type="462c0819:PsiDirectoryNode" />
               <item name="spells" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="player" type="462c0819:PsiDirectoryNode" />
-              <item name="perks" type="462c0819:PsiDirectoryNode" />
-              <item name="skills" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="characters" type="462c0819:PsiDirectoryNode" />
-              <item name="player" type="462c0819:PsiDirectoryNode" />
-              <item name="perks" type="462c0819:PsiDirectoryNode" />
-              <item name="specializations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -637,44 +834,6 @@
               <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
               <item name="items" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="items" type="462c0819:PsiDirectoryNode" />
-              <item name="armor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="items" type="462c0819:PsiDirectoryNode" />
-              <item name="weapons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="items" type="462c0819:PsiDirectoryNode" />
-              <item name="weapons" type="462c0819:PsiDirectoryNode" />
-              <item name="natural_weapons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
-              <item name="roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="anathema_roguelike" type="462c0819:PsiDirectoryNode" />
-              <item name="entities" type="462c0819:PsiDirectoryNode" />
-              <item name="items" type="462c0819:PsiDirectoryNode" />
-              <item name="weapons" type="462c0819:PsiDirectoryNode" />
-              <item name="types" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="roguelike" type="b2602c69:ProjectViewProjectNode" />
@@ -1042,15 +1201,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="543" y="0" width="2023" height="1407" extended-state="0" />
+    <frame x="726" y="0" width="1839" height="1407" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19694656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21729365" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.27272728" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.27272728" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32784313" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3992157" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1059,7 +1218,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.33019608" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3275862" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.3299373" />
-      <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.20062695" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.20062695" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1087,414 +1246,417 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/RangedWeaponType.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/specializations/AbilitySpecializationChoice.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="33" column="3" lean-forward="true" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/AnyItemFactory.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#902#963#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/net/sf/supercsv/super-csv/2.4.0/super-csv-2.4.0-sources.jar!/org/supercsv/io/CsvBeanReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="178" column="106" lean-forward="true" selection-start-line="178" selection-start-column="4" selection-end-line="178" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/BeanReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="26" column="102" selection-start-line="26" selection-start-column="102" selection-end-line="26" selection-end-column="102" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemPropertyCache.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorFactory.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="32" column="108" selection-start-line="32" selection-start-column="108" selection-end-line="32" selection-end-column="108" />
+          <folding>
+            <element signature="e#908#964#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/armor/ArmorMaterial.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="39" column="84" selection-start-line="39" selection-start-column="84" selection-end-line="39" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WeaponFactory.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="36" column="110" selection-start-line="36" selection-start-column="110" selection-end-line="36" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#926#975#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/Entity.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
+          <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/Bow.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/Environment.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="105" column="25" lean-forward="true" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/BasicRoom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="40" column="23" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PerkGroup.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/Bow.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="41" column="50" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/Crossbow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/Crossbow.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/ThrowingWeapon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/types/ThrowingWeapon.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="42" column="1" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/UnarmedWeaponMaterial.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeapon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/Weapon.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="15" column="100" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="100" />
+          <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeapon.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/Extraordinary.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="41" column="47" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
-          <folding>
-            <element signature="e#1802#1861#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="154">
+          <caret line="25" column="49" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/Unarmed.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/Foe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="331">
+          <caret line="53" column="11" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/Unarmed.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="41" column="93" selection-start-line="41" selection-start-column="93" selection-end-line="41" selection-end-column="93" />
-          <folding>
-            <element signature="e#1802#1861#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/natural_weapons/NaturalWeaponMaterial.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/inventory/PrimaryWeapon.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/GenericSpecies.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="10" column="69" selection-start-line="10" selection-start-column="69" selection-end-line="10" selection-end-column="69" />
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+          <folding>
+            <element signature="e#1178#1179#0" expanded="true" />
+            <element signature="e#1216#1217#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/stats/effects/HasEffect.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/ItemProperty.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="9" column="81" lean-forward="true" selection-start-line="9" selection-start-column="81" selection-end-line="9" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/WeaponMaterial.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="37" column="88" lean-forward="true" selection-start-line="37" selection-start-column="88" selection-end-line="37" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/items/weapons/MetalWeaponMaterial.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/GenericSpecies.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
-          <caret line="41" column="90" selection-start-line="41" selection-start-column="90" selection-end-line="41" selection-end-column="90" />
+          <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
           <folding>
-            <element signature="e#1786#1835#0" expanded="true" />
+            <element signature="e#928#986#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Corruption.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/Trait.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="27" />
+          <caret line="23" column="30" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/StatTrait.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="26" column="99" selection-start-line="26" selection-start-column="99" selection-end-line="26" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/Supernatural.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/species/generic/Orc.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="37" column="52" lean-forward="true" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Room.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2288">
+          <caret line="138" column="10" lean-forward="true" selection-start-line="138" selection-start-column="10" selection-end-line="138" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Feature.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/LocationProperty.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/Terrain.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Ground.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/terrain/grounds/Stone.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Door.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="40" column="13" lean-forward="true" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/Location.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="814">
+          <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2596">
+          <caret line="146" column="12" lean-forward="true" selection-start-line="146" selection-start-column="12" selection-end-line="146" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/Orientation.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#232#233#0" expanded="true" />
-            <element signature="e#252#253#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Champion.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Room.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+        <state relative-caret-position="554">
+          <caret line="136" column="64" selection-start-line="136" selection-start-column="64" selection-end-line="136" selection-end-column="64" />
+          <folding>
+            <element signature="e#916#969#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Thrall.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/BasicRoom.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="308">
+          <caret line="35" column="11" lean-forward="true" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/main/utilities/position/Direction.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/features/Doorway.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="40" column="23" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+          <folding>
+            <element signature="e#908#958#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Door.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="928">
+          <caret line="113" column="53" selection-start-line="113" selection-start-column="53" selection-end-line="113" selection-end-column="53" />
+          <folding>
+            <element signature="e#3548#3549#0" expanded="true" />
+            <element signature="e#3597#3598#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Champion.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Corruption.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-          <folding>
-            <element signature="e#69#136#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Thrall.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Zealot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="154">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Zealot.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PerkGroup.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/corruptions/Thrall.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/Perk.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/rooms/Cave.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="33" column="6" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/perks/PerkGroup.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Potion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+        <state relative-caret-position="620">
+          <caret line="179" column="10" selection-start-line="179" selection-start-column="10" selection-end-line="179" selection-end-column="10" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#916#989#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Potion.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/BigRoomDungeonGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="39" column="45" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
+        <state relative-caret-position="176">
+          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Brew.java">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/BigRoomDungeonGenerator.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/BrewAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="75" lean-forward="true" selection-start-line="4" selection-start-column="75" selection-end-line="4" selection-end-column="75" />
+        <state relative-caret-position="594">
+          <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/costs/ActionCost.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/CaveDungeonGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        <state relative-caret-position="176">
+          <caret line="27" column="27" lean-forward="true" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/BrewAction.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding>
-            <element signature="e#91#164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Elixir.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Elixir.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/CaveDungeonGenerator.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#953#1018#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/DisplacementBulwarkElixir.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/DisplacementBulwarkElixir.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-          <folding>
-            <element signature="e#91#156#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/player/perks/abilities/potions/Brew.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/Attack.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DefaultDungeonLevelGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="176">
+          <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/attacks/BasicAttack.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DefaultDungeonLevelGenerator.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/actions/MoveAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Actor.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Duration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+        <state relative-caret-position="748">
+          <caret line="38" column="1" lean-forward="true" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/actors/Action.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/Deficient.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonFeature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/foes/traits/Extraordinary.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonFeature.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state relative-caret-position="374">
+          <caret line="43" column="60" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#910#926#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/events/ResourceChangedEvent.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/environment/generation/DungeonGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/anathema_roguelike/entities/characters/events/MoveEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="72" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="14" selection-end-column="72" />
+        <state relative-caret-position="242">
+          <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
+          <folding>
+            <element signature="e#2545#2551#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

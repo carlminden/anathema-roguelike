@@ -16,11 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.classes;
 
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.SlowingPoison;
-import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
-import com.anathema_roguelike.entities.characters.player.perks.skills.KeenHearing;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Trapfinding;
-import com.anathema_roguelike.entities.characters.player.perks.skills.UncannySenses;
 import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.BowMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.DualWieldMastery;

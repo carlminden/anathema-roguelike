@@ -23,6 +23,6 @@ import com.anathema_roguelike.entities.characters.perks.PassthroughPerk
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability
 
 //TODO: need to reimplement modification abilities
-class PointBlankExpertise extends PassthroughPerk[Nothing] with Ability {
+class PointBlankExpertise extends Technique[Nothing] with Ability {
   override protected def createPerk: Nothing = ??? // TODO Auto-generated method stub
 }

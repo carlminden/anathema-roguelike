@@ -16,15 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.classes;
 
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.ElixirOfAzureFlame;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.ElixirOfPurity;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.FortificationElixir;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.PerceptiveElixir;
-import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
-import com.anathema_roguelike.entities.characters.player.perks.skills.IronBody;
-import com.anathema_roguelike.entities.characters.player.perks.skills.SureFooting;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Swiftness;
-import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.BrewingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.UnarmedMastery;
 

@@ -43,10 +43,10 @@ class Player(location: Location) extends Character(location) {
   setFaction(Faction.PLAYER)
   val itemFactory: AnyItemFactory = new AnyItemFactory
 
-  getInventory.equip(new Helm(ArmorMaterial.CHAINMAIL))
-  getInventory.equip(new Chestpiece(ArmorMaterial.LEATHER))
-  getInventory.equip(new Pants(ArmorMaterial.CHAINMAIL))
-  getInventory.equip(new Boots(ArmorMaterial.CHAINMAIL))
+  getInventory.equip(new Helm(ArmorMaterial.CHAINMAIL, Right(this)))
+  getInventory.equip(new Chestpiece(ArmorMaterial.LEATHER, Right(this)))
+  getInventory.equip(new Pants(ArmorMaterial.CHAINMAIL, Right(this)))
+  getInventory.equip(new Boots(ArmorMaterial.CHAINMAIL, Right(this)))
 
   itemFactory.generateByType[WeaponType](Right(this))
   itemFactory.generateByType[WeaponType](Right(this))

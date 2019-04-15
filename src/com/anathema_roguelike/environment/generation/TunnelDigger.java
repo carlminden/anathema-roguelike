@@ -17,10 +17,8 @@
 package com.anathema_roguelike.environment.generation;
 
 import com.anathema_roguelike.environment.generation.rooms.Door;
-import com.anathema_roguelike.environment.generation.rooms.Room;
 import com.anathema_roguelike.main.utilities.pathfinding.Path;
 import com.anathema_roguelike.main.utilities.pathfinding.PathFinder;
-import com.anathema_roguelike.main.utilities.position.Orientation;
 import com.anathema_roguelike.main.utilities.position.Point;
 
 public class TunnelDigger extends PathFinder {

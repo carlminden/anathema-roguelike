@@ -16,16 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.classes;
 
-import com.anathema_roguelike.entities.characters.player.perks.abilities.shapeshifting.Shapeshift;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.shapeshifting.ShapeshiftBat;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.shapeshifting.ShapeshiftBear;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.shapeshifting.ShapeshiftPanther;
-import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
-import com.anathema_roguelike.entities.characters.player.perks.skills.AnimalisticCasting;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Attunement;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Discipline;
-import com.anathema_roguelike.entities.characters.player.perks.skills.SureFooting;
-import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.BluntWeaponMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.ShapeshiftingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpellMastery;

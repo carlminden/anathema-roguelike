@@ -24,7 +24,6 @@ import com.anathema_roguelike.main.display.VisualRepresentation
 import com.anathema_roguelike.stats.Stat.LocationStat
 import com.anathema_roguelike.stats.effects.{Effect, HasEffect}
 abstract class LocationProperty(
-    location: Location,
     visualRepresentation: VisualRepresentation,
     fogOfWarRepresentation: VisualRepresentation,
     foreground: Boolean,
@@ -32,13 +31,19 @@ abstract class LocationProperty(
     opacity: Double,
     damping: Double) extends HasEffect[Effect[Location, LocationStat]] with HasLocation {
 
+  private var location: Option[Location] = None
+
   private var brightness = 0.0
 
   private val layer = if(foreground) DungeonLayer.FOREGROUND else DungeonLayer.FOG_OF_WAR_FOREGROUND
 
   private val fogOfWarLayer = if(foreground) DungeonLayer.FOG_OF_WAR_FOREGROUND else DungeonLayer.FOG_OF_WAR_BACKGROUND
 
-  override def getLocation: Location = location
+  override def getLocation: Location = location.get
+
+  def setLocation(loc: Location): Unit = {
+    location = loc
+  }
 
   def isPassable: Boolean = passable
 

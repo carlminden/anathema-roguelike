@@ -37,7 +37,7 @@ object ArmorMaterial {
   val MAGEPLATE = "Mageplate"
 }
 
-class ArmorMaterial(name: String, weight: Double) extends ArmorProperty {
+class ArmorMaterial(name: String, weight: Double) extends ArmorProperty(name, weight) {
 
   override def getEffect: Option[Effect[Item, ItemStat]] = {
     new Effect(this, List(

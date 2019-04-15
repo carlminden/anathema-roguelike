@@ -23,6 +23,6 @@ import com.anathema_roguelike.entities.characters.perks.PassthroughPerk
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability
 
 //TODO: Need to reimplement modification perks
-class QuietAssassination extends PassthroughPerk[Nothing] with Ability {
+class QuietAssassination extends Technique[Nothing] with Ability {
   override protected def createPerk: Nothing = ??? // TODO Auto-generated method stub
 }

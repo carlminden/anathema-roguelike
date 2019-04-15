@@ -16,14 +16,16 @@
  ******************************************************************************/
 package com.anathema_roguelike.environment.generation.rooms;
 
-import java.util.Random;
-
+import com.anathema_roguelike.environment.Location;
 import com.anathema_roguelike.environment.features.Doorway;
-import com.anathema_roguelike.environment.generation.DungeonFeature;
 import com.anathema_roguelike.environment.generation.DungeonGenerator;
+import com.anathema_roguelike.main.utilities.position.Direction;
 import com.anathema_roguelike.main.utilities.position.Orientation;
 import com.anathema_roguelike.main.utilities.position.Point;
 
+import java.util.Random;
+
+//This was a bit of a pain to port, so I am leaving this for now
 public class Door extends DungeonFeature {
 	
 	private Room room;
@@ -50,12 +52,12 @@ public class Door extends DungeonFeature {
 		for(int i = 0; i < 10; i++) {
 			point = new Point(0, 0);
 			int side = rand.nextInt(4);
-			direction = Direction.DIRECTIONS_4[side];
+			direction = Direction.DIRECTIONS_4()[side].value();
 			
-			if((direction & Orientation.VERTICAL) != 0) {
+			if((direction & Orientation.VERTICAL.value()) != 0) {
 				pos = rand.nextInt(room.getWidth() - 3) + 1;
 				
-				if((direction & Direction.UP) != 0) {
+				if((direction & Direction.UP.value()) != 0) {
 					point = new Point(room.getX() + pos, room.getY());
 				} else {
 					point = new Point(room.getX() + pos, room.getY() + room.getHeight() - 1);
@@ -63,7 +65,7 @@ public class Door extends DungeonFeature {
 			} else {
 				pos = rand.nextInt(room.getHeight() - 3) + 1;
 				
-				if((direction & Direction.LEFT) != 0) {
+				if((direction & Direction.LEFT.value()) != 0) {
 					point = new Point(room.getX(), room.getY() + pos);
 				} else {
 					point = new Point(room.getX() + room.getWidth() - 1, room.getY() + pos);
@@ -74,9 +76,9 @@ public class Door extends DungeonFeature {
 			boolean adjacentDoor = false;
 			
 			for(int j = 0; j < 8; j++) {
-				int dir = Direction.DIRECTIONS_8[j];
+				int dir = Direction.DIRECTIONS_8()[j].value();
 				
-				Point offset = Direction.offset(point, dir);
+				Point offset = Direction.offset(point, Direction.fromJavaDirection(dir));
 				
 				if(!generator.getDoors().intersections(offset).isEmpty()) {
 					adjacentDoor = true;
@@ -96,19 +98,19 @@ public class Door extends DungeonFeature {
 
 	@Override
 	public boolean validate(DungeonGenerator generator) {
-		return room.intersects(Direction.offset(getPosition(), direction, -1));
+		return room.intersects(Direction.offset(getPosition(), Direction.fromJavaDirection(direction), -1));
 	}
 
 	@Override
 	public void place(DungeonGenerator generator) {
 		Location[][] map = generator.getMap();
-		
-		map[getX()][getY()].addFeature(new Doorway(direction));
+
+		map[getX()][getY()].addFeature(new Doorway(Orientation.fromJavaDirection(direction), false));
 		
 	}
 
-	public int getDirection() {
-		return direction;
+	public Direction getDirection() {
+		return Direction.fromJavaDirection(direction);
 	}
 
 	public void remove() {

@@ -16,9 +16,12 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.foes;
 
+import com.anathema_roguelike.entities.characters.Character;
 import com.anathema_roguelike.entities.characters.foes.ai.AI;
 import com.anathema_roguelike.entities.characters.foes.ai.Faction;
+import com.anathema_roguelike.entities.characters.foes.corruptions.Corruption;
 import com.anathema_roguelike.entities.characters.foes.roles.Role;
+import com.anathema_roguelike.entities.characters.foes.traits.Trait;
 import com.anathema_roguelike.entities.characters.stimuli.PerceivedStimulus;
 import com.anathema_roguelike.main.Game;
 
@@ -26,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Stream;
-import com.anathema_roguelike.entities.characters.Character;
 
 public abstract class Foe extends Character {
 	
@@ -51,7 +53,7 @@ public abstract class Foe extends Character {
 	private Role role;
 	private Corruption corruption;
 
-	public Foe(Role role, Corruption corruption, Trait<?> ...traits) {
+	public Foe(Role role, Corruption corruption, Trait<?>...traits) {
 		setFaction(Faction.FOES);
 		
 		this.role = role;

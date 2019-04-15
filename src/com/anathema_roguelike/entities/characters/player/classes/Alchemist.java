@@ -16,16 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.classes;
 
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.AmplificationElixir;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.FireBomb;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.FleetFootedElixir;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.FreezeBomb;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.KnockoutGasBomb;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.RadiantBomb;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.TarBomb;
-import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
-import com.anathema_roguelike.entities.characters.player.perks.skills.GrandmasterBrewer;
-import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.BrewingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpearMastery;
 

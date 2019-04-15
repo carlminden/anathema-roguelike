@@ -16,9 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.classes;
 
-import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
-import com.anathema_roguelike.entities.characters.player.perks.skills.AffinityForDarkness;
-import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.CrossbowMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.DualWieldMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.LongBladeMastery;

@@ -23,6 +23,6 @@ import com.anathema_roguelike.entities.characters.perks.PassthroughPerk
 import com.anathema_roguelike.entities.characters.player.perks.abilities.Ability
 
 //TODO: Modification
-class KatanaExpertise extends PassthroughPerk[Nothing] with Ability {
+class KatanaExpertise extends Technique[Nothing] with Ability {
   override protected def createPerk: Nothing = ??? // TODO Auto-generated method stub
 }

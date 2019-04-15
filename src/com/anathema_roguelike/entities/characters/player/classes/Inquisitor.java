@@ -16,9 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.classes;
 
-import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Attunement;
-import com.anathema_roguelike.entities.characters.player.perks.skills.Discipline;
 import com.anathema_roguelike.stats.characterstats.masteries.BluntWeaponMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.ShortBladeMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.SpellMastery;

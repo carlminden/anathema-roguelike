@@ -16,12 +16,6 @@
  ******************************************************************************/
 package com.anathema_roguelike.entities.characters.player.classes;
 
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.RadiantBomb;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.SlowingPoison;
-import com.anathema_roguelike.entities.characters.player.perks.abilities.potions.SmokeBomb;
-import com.anathema_roguelike.entities.characters.player.perks.masteries.MasteryLevel;
-import com.anathema_roguelike.entities.characters.player.perks.skills.SecondSight;
-import com.anathema_roguelike.entities.characters.player.perks.specializations.AbilitySpecialization;
 import com.anathema_roguelike.stats.characterstats.masteries.BrewingMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.LongBladeMastery;
 import com.anathema_roguelike.stats.characterstats.masteries.UnarmedMastery;
