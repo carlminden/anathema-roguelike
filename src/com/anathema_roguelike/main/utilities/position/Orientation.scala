@@ -29,14 +29,6 @@ object Orientation {
 
   val ORIENTATIONS: Array[Orientation] = Array(VERTICAL, HORIZONTAL)
 
-  def getOrientation(direction: Direction): Orientation = {
-    direction match {
-      case _ if(direction == Direction.UP || direction == Direction.DOWN) => VERTICAL
-      case _ if(direction == Direction.LEFT || direction == Direction.RIGHT) => HORIZONTAL
-      case _ => VERTICAL
-    }
-  }
-
   //Didnt want to port my shitty dungeon generator, so I needed this
   def fromJavaDirection(direction: Int): Orientation = {
     direction match {

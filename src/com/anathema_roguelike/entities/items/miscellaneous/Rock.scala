@@ -28,7 +28,7 @@ import com.anathema_roguelike.stats.itemstats.{ItemStat, Weight}
 import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.environment.Location
 
-class Rock(location: Either[Location, Character]) extends Item(location) {
+class Rock extends Item {
   applyEffect(new Effect[Item, ItemStat](
     Option.empty,
     List(new Modifier[Weight](AdditiveCalculation.fixed(1.0)))

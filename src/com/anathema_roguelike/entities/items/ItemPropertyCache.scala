@@ -24,9 +24,8 @@ import com.google.common.collect.ImmutableTable
 import org.supercsv.cellprocessor.ParseDouble
 import org.supercsv.cellprocessor.constraint.NotNull
 import org.supercsv.cellprocessor.ift.CellProcessor
-import org.supercsv.io.CsvBeanReader
-import org.supercsv.prefs.CsvPreference
-import java.io.InputStreamReader
+import kantan.csv._
+import kantan.csv.ops._
 
 import com.anathema_roguelike.entities.items.weapons._
 import com.anathema_roguelike.entities.items.weapons.types.MeleeWeaponType.{BluntWeapon, LongBlade, ShortBlade, Spear}
@@ -34,22 +33,23 @@ import com.anathema_roguelike.entities.items.weapons.types.MeleeWeaponType.{Blun
 import scala.collection.mutable.ListBuffer
 import scala.collection.JavaConverters._
 import scala.collection.mutable
+import scala.reflect.runtime.universe._
 
 object ItemPropertyCache {
 
   private val builder = ImmutableTable.builder[Class[_ <: ItemProperty[_]], String, ItemProperty[_]]
 
-  loadPropertyFile(builder, classOf[ArmorMaterial], "/items/materials/armor_materials.csv", cellProcessors(4))
-  loadPropertyFile(builder, classOf[ArmorType], "/items/armor_types.csv", cellProcessors(4))
-  loadPropertyFile(builder, classOf[MetalWeaponMaterial], "/items/materials/metal_weapon_materials.csv", cellProcessors(2))
-  loadPropertyFile(builder, classOf[WoodWeaponMaterial], "/items/materials/wood_weapon_materials.csv", cellProcessors(3))
-  loadPropertyFile(builder, classOf[ShortBlade], "/items/weapon_types/short_blade.csv", cellProcessors(3))
-  loadPropertyFile(builder, classOf[LongBlade], "/items/weapon_types/long_blade.csv", cellProcessors(3))
-  loadPropertyFile(builder, classOf[BluntWeapon], "/items/weapon_types/blunt.csv", cellProcessors(3))
-  loadPropertyFile(builder, classOf[Spear], "/items/weapon_types/spear.csv", cellProcessors(3))
-  loadPropertyFile(builder, classOf[Bow], "/items/weapon_types/bow.csv", cellProcessors(4))
-  loadPropertyFile(builder, classOf[Crossbow], "/items/weapon_types/crossbow.csv", cellProcessors(4))
-  loadPropertyFile(builder, classOf[ThrowingWeapon], "/items/weapon_types/throwing.csv", cellProcessors(3))
+  loadPropertyFile[ArmorMaterial](builder, "/items/materials/armor_materials.csv", RowDecoder.decoder(0, 1, 2, 3, 4)(ArmorMaterial.apply))
+  loadPropertyFile[ArmorType](builder, "/items/armor_types.csv", RowDecoder.decoder(0, 1, 2, 3, 4)(ArmorType.apply))
+  loadPropertyFile[MetalWeaponMaterial](builder, "/items/materials/metal_weapon_materials.csv", RowDecoder.decoder(0, 1, 2)(MetalWeaponMaterial.apply))
+  loadPropertyFile[WoodWeaponMaterial](builder, "/items/materials/wood_weapon_materials.csv", RowDecoder.decoder(0, 1, 2, 3)(WoodWeaponMaterial.apply))
+  loadPropertyFile[ShortBlade](builder, "/items/weapon_types/short_blade.csv", RowDecoder.decoder(0, 1, 2, 3)(ShortBlade.apply))
+  loadPropertyFile[LongBlade](builder, "/items/weapon_types/long_blade.csv", RowDecoder.decoder(0, 1, 2, 3)(LongBlade.apply))
+  loadPropertyFile[BluntWeapon](builder, "/items/weapon_types/blunt.csv", RowDecoder.decoder(0, 1, 2, 3)(BluntWeapon.apply))
+  loadPropertyFile[Spear](builder, "/items/weapon_types/spear.csv", RowDecoder.decoder(0, 1, 2, 3)(Spear.apply))
+  loadPropertyFile[Bow](builder, "/items/weapon_types/bow.csv", RowDecoder.decoder(0, 1, 2, 3, 4)(Bow.apply))
+  loadPropertyFile[Crossbow](builder, "/items/weapon_types/crossbow.csv", RowDecoder.decoder(0, 1, 2, 3, 4)(Crossbow.apply))
+  loadPropertyFile[ThrowingWeapon](builder, "/items/weapon_types/throwing.csv", RowDecoder.decoder(0, 1, 2, 3)(ThrowingWeapon.apply))
 
   private val propertyCache: ImmutableTable[Class[_ <: ItemProperty[_]], String, ItemProperty[_]] = builder.build
 
@@ -67,7 +67,7 @@ object ItemPropertyCache {
     propertyCache.rowKeySet.forEach(r => {
       if(itemType.isAssignableFrom(r)) {
         val row = itemType.getClass.cast(r)
-        properties.addAll(ItemPropertyCache.propertyCache.row(row).values.asScala.asInstanceOf[Iterable[T]])
+        properties ++= ItemPropertyCache.propertyCache.row(row).values.asScala.asInstanceOf[Iterable[T]]
       }
     })
 
@@ -78,26 +78,22 @@ object ItemPropertyCache {
     ItemPropertyCache.propertyCache.row(itemType).get(name).asInstanceOf[T]
   }
 
-  private def loadPropertyFile[T <: ItemProperty[_]](
-    builder: ImmutableTable.Builder[Class[_ <: ItemProperty[_]], String, ItemProperty[_]],
-    itemType: Class[T],
-    filename: String,
-    processors: Array[CellProcessor]): Unit = {
+  private def loadPropertyFile[T <: ItemProperty[_] : TypeTag](
+        builder: ImmutableTable.Builder[Class[_ <: ItemProperty[_]], String, ItemProperty[_]],
+        filename: String,
+        decoder: RowDecoder[T]): Unit = {
 
-      val reader = new InputStreamReader(getClass.getResourceAsStream(filename))
-      val beanReader = new BeanReader(reader, CsvPreference.STANDARD_PREFERENCE)
-      val header = beanReader.getHeader(true)
+    val rawData: java.net.URL = getClass.getResource(filename)
 
-      var obj = beanReader.readByClass(itemType, header, processors:_*)
+    implicit val d = decoder
 
-      while(obj != null) {
-
-        builder.put(itemType, obj.getName, obj)
-        obj = beanReader.read(itemType, header, processors:_*)
-      }
+    rawData.asCsvReader[T](rfc.withHeader).foreach {
+      case Right(row) => builder.put(typeTagToClass[T], row.getName, row)
     }
 
+  }
+
   def main(args: Array[String]): Unit = {
-    ItemPropertyCache.getProperties(classOf[Spear]).foreach(p => System.out.println(p.getName))
+    ItemPropertyCache.getProperties(classOf[ArmorMaterial]).foreach(p => System.out.println(p))
   }
 }

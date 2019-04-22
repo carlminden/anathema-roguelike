@@ -17,7 +17,11 @@
 
 package com.anathema_roguelike.main.utilities;
 
+import com.google.common.collect.TreeBasedTable;
+
 public class JavaUtils {
 
-
+    public static <V> TreeBasedTable<Integer, Integer, V> createTreeBasedTable() {
+        return TreeBasedTable.create();
+    }
 }

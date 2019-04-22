@@ -22,10 +22,10 @@ import com.anathema_roguelike.entities.characters.player.Player
 import com.anathema_roguelike.entities.characters.stimuli.{Sight, Stimulus}
 import com.anathema_roguelike.environment.HasLocation
 import com.anathema_roguelike.entities.characters.Character
+import scala.reflect.runtime.universe._
 
-class StimulusCost[S <: Stimulus](
+class StimulusCost[S <: Stimulus : TypeTag](
       character: Character,
-      stimulus: Class[S],
       magnitude: () => Double,
       location: Option[HasLocation] = Option.empty,
       after: Boolean = false) extends CharacterActionCost(character, after) {
@@ -40,7 +40,7 @@ class StimulusCost[S <: Stimulus](
     l.generateStimulus(getStimulus.getConstructor(classOf[Double], classOf[Option[Character]]).newInstance(getMagnitude.asInstanceOf[AnyRef], Some(getCharacter)))
   }
 
-  def getStimulus: Class[S] = stimulus
+  def getStimulus: Class[S] = typeTagToClass[S]
 
   def getMagnitude: Double = magnitude()
 }

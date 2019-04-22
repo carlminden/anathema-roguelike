@@ -24,14 +24,13 @@ import com.anathema_roguelike.entities.characters.stimuli.{Stimulus, StimulusEve
 import com.anathema_roguelike.environment.features.Feature
 import com.anathema_roguelike.environment.terrain.Terrain
 import com.anathema_roguelike.main.utilities.position.Point
-import com.anathema_roguelike.stats.Stat.LocationStat
 import com.anathema_roguelike.stats.StatSet.LocationStats
+import com.anathema_roguelike.stats.locationstats.LocationStat
 import com.anathema_roguelike.stats.{HasStats, StatSet}
 import com.google.common.collect.TreeMultiset
 import com.google.common.eventbus.EventBus
 
 import scala.collection.JavaConverters._
-
 import scala.reflect.runtime.universe._
 
 class Location(
@@ -45,6 +44,7 @@ class Location(
   private val stats = new LocationStats(this)
 
   setTerrain(terrain)
+  eventBus.register(this)
 
   for (feature <- initialFeatures) {
     addFeature(feature)
@@ -60,7 +60,7 @@ class Location(
 
   override def getEnvironment: Environment = environment
 
-  def getTerrain: LocationProperty = terrain
+  def getTerrain: Terrain = terrain
 
   def setTerrain(terrain: Terrain): Unit = {
 

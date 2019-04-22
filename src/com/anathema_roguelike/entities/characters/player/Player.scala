@@ -39,17 +39,17 @@ import squidpony.squidgrid.gui.gdx.SColor
 
 import scala.reflect.runtime.universe._
 
-class Player(location: Location) extends Character(location) {
+class Player extends Character {
   setFaction(Faction.PLAYER)
   val itemFactory: AnyItemFactory = new AnyItemFactory
 
-  getInventory.equip(new Helm(ArmorMaterial.CHAINMAIL, Right(this)))
-  getInventory.equip(new Chestpiece(ArmorMaterial.LEATHER, Right(this)))
-  getInventory.equip(new Pants(ArmorMaterial.CHAINMAIL, Right(this)))
-  getInventory.equip(new Boots(ArmorMaterial.CHAINMAIL, Right(this)))
+  getInventory.equip(new Helm(ArmorMaterial.CHAINMAIL))
+  getInventory.equip(new Chestpiece(ArmorMaterial.LEATHER))
+  getInventory.equip(new Pants(ArmorMaterial.CHAINMAIL))
+  getInventory.equip(new Boots(ArmorMaterial.CHAINMAIL))
 
-  itemFactory.generateByType[WeaponType](Right(this))
-  itemFactory.generateByType[WeaponType](Right(this))
+  itemFactory.generateByType[WeaponType]
+  itemFactory.generateByType[WeaponType]
 
   System.out.println(getInventory.getEquippedItems)
 
@@ -104,7 +104,7 @@ class Player(location: Location) extends Character(location) {
 
     val color: SColor = Color.factory.blend(Color.NO_LIGHT_PLAYER, Color.WHITE, getStatAmount[Light] + 0.2)
 
-    Game.getInstance.getMap.renderChar(DungeonLayer.PLAYER, getX, getY, getVisualRepresentation.getChar, color)
+    Game.getInstance.getMap.renderChar(DungeonLayer.PLAYER, getX, getY, getVisualRepresentation.char, color)
   }
 
   override def setFacing(facing: Double): Unit = {

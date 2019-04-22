@@ -40,8 +40,8 @@ class SelectionMenu[T](
     centered
   ) {
 
-  override def onSelect(obj: T): Unit = {
-    setResult(obj)
+  override def onSelect(menuItem: AbstractMenuItem[T]): Unit = {
+    setResult(menuItem.getItem)
     finish()
   }
 }

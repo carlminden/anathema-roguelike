@@ -26,7 +26,7 @@ import com.anathema_roguelike.main.utilities.position.Point
 class SelectionScreen[T](
   title: String,
   choices: Array[T],
-  position: Point = new Point(0, 0),
+  position: Point = Point(0, 0),
   width: Int = UIConfig.TERM_WIDTH,
   height: Int = UIConfig.TERM_HEIGHT,
   background: Float = 1f,

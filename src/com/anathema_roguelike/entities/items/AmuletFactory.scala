@@ -24,5 +24,5 @@ import com.anathema_roguelike.environment.Location
 class AmuletFactory() extends ItemFactory[Amulet] {
   override def getSupportedType: Class[_ <: ItemType[_ <: Amulet]] = classOf[Amulet]
 
-  override def generate(location: Either[Location, Character]) = new Amulet("Enchanted Amulet of Stuff", location)
+  override def generate = new Amulet("Enchanted Amulet of Stuff")
 }

@@ -21,8 +21,8 @@ package environment
 import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer
 import com.anathema_roguelike.main.display.VisualRepresentation
-import com.anathema_roguelike.stats.Stat.LocationStat
 import com.anathema_roguelike.stats.effects.{Effect, HasEffect}
+import com.anathema_roguelike.stats.locationstats.LocationStat
 abstract class LocationProperty(
     visualRepresentation: VisualRepresentation,
     fogOfWarRepresentation: VisualRepresentation,
@@ -58,7 +58,9 @@ abstract class LocationProperty(
   }
 
   protected def renderToFogOfWar(): Unit = {
-    Game.getInstance.getMap.renderVisualRepresentation(fogOfWarLayer, location.getX, getY, getFogOfWarRepresentation)
+    location.foreach(l => {
+      Game.getInstance.getMap.renderVisualRepresentation(fogOfWarLayer, l.getX, l.getY, getFogOfWarRepresentation)
+    })
   }
 
   def render(): Unit = {

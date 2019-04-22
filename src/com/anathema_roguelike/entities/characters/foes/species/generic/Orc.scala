@@ -32,7 +32,8 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Hearing
 import com.anathema_roguelike.stats.effects.AdditiveCalculation
 import com.anathema_roguelike.stats.effects.Modifier
-import java.util.Optional
+
+import com.anathema_roguelike.environment.Location
 
 class Orc(role: Role, corruption: Corruption)
   extends GenericSpecies(role, corruption, new Supernatural[Strength], new Extraordinary[Hearing], new Deficient[Intelligence]) {

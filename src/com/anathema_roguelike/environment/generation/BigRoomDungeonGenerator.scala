@@ -24,7 +24,7 @@ import java.util
 
 class BigRoomDungeonGenerator extends DungeonGenerator {
   override protected def generateRooms(depth: Int): Iterable[Room] = {
-    (0 until 2).map(i => {
+    (0 until 2).toList.map(i => {
       new BasicRoom(depth, 55, 25)
     })
   }

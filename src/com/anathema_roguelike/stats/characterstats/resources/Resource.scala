@@ -25,19 +25,19 @@ import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.Color
 import com.anathema_roguelike.main.ui.messages.Message
 import com.anathema_roguelike.main.utilities.Utils
-import com.anathema_roguelike.stats.Stat.CharacterStat
+import com.anathema_roguelike.stats.characterstats.CharacterStat
 import com.anathema_roguelike.stats.effects.{Effect, HasEffect}
 
 abstract class Resource(character: Character) extends CharacterStat(character) {
   private var amount = 0
 
-  def modify(initiator: Option[Character], source: Option[_ <: HasEffect[_ <: Effect[Character, _]]], amount: Int): Unit = {
+  def modify(initiator: Option[Character], source: Option[ HasEffect[Effect[Character, _]]], amount: Int): Unit = {
     set(initiator, source, (getAmount + amount).toInt)
   }
 
   override def getAmount: Double = amount
 
-  def set(initiator: Option[Character], source: Option[_ <: HasEffect[_ <: Effect[Character, _]]], amount: Int): Unit = {
+  def set(initiator: Option[Character], source: Option[HasEffect[Effect[Character, _]]], amount: Int): Unit = {
     val currentAmount = getAmount.toInt
     val difference = amount - currentAmount
 
@@ -56,7 +56,7 @@ abstract class Resource(character: Character) extends CharacterStat(character) {
 
   protected def printResourceGainedMessage(
       initiator: Option[Character],
-      source: Option[_ <: HasEffect[_ <: Effect[Character, _]]],
+      source: Option[HasEffect[Effect[Character, _]]],
       target: Character,
       amount: Int
     ): Unit = {

@@ -24,7 +24,7 @@ import com.anathema_roguelike.stats.itemstats.BaseWeaponDamage
 import com.anathema_roguelike.stats.itemstats.ItemStat
 import com.anathema_roguelike.stats.itemstats.Weight
 
-class MetalWeaponMaterial(name: String, weight: Double, damage: Double) extends WeaponMaterial(name, weight, damage) {
+case class MetalWeaponMaterial(name: String, damage: Double, weight: Double) extends WeaponMaterial(name, weight, damage) {
 
   override def getEffect: Option[Effect[Item, ItemStat]] = {
     new Effect(

@@ -31,6 +31,5 @@ abstract class Terrain(
 
   override def setLocation(loc: Location): Unit = {
     super.setLocation(loc)
-    getLocation.setTerrain(this)
   }
 }

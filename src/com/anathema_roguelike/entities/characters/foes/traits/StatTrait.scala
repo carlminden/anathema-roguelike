@@ -19,7 +19,7 @@ package com.anathema_roguelike
 package entities.characters.foes.traits
 
 import com.anathema_roguelike.entities.characters.perks.{Buff, PassivePerk, PassthroughPerk}
-import com.anathema_roguelike.stats.Stat.CharacterStat
+import com.anathema_roguelike.stats.characterstats.CharacterStat
 import com.anathema_roguelike.stats.effects.{Calculation, Modifier}
 
 import scala.reflect.runtime.universe._

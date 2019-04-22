@@ -23,6 +23,6 @@ import com.anathema_roguelike.entities.items.weapons.types.MeleeWeaponType
 import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.entities.characters.Character
 
-class Unarmed(location: Either[Location, Character])
-  extends Weapon(new MeleeWeaponType("", 2.0, 1.0, 10.0), new UnarmedWeaponMaterial, location) {
+class Unarmed
+  extends Weapon(new MeleeWeaponType("", 2.0, 1.0, 10.0), new UnarmedWeaponMaterial) {
 }

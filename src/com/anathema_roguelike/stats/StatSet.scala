@@ -27,8 +27,9 @@ import scala.reflect.runtime.universe._
 import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.entities.items.Item
 import com.anathema_roguelike.environment.Location
-import com.anathema_roguelike.stats.Stat._
+import com.anathema_roguelike.stats.characterstats.CharacterStat
 import com.anathema_roguelike.stats.itemstats.ItemStat
+import com.anathema_roguelike.stats.locationstats.LocationStat
 
 object StatSet {
   type CharacterStats = StatSet[Character, CharacterStat]

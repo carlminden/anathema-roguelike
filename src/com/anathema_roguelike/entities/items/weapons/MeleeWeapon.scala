@@ -22,6 +22,6 @@ import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.entities.items.weapons.types.WeaponType
 import com.anathema_roguelike.environment.Location
 
-abstract class MeleeWeapon(val weaponType: WeaponType, val material: WeaponMaterial, location: Either[Location, Character])
-  extends Weapon(weaponType, material, location) {
+abstract class MeleeWeapon(weaponType: WeaponType, material: WeaponMaterial)
+  extends Weapon(weaponType, material) {
 }

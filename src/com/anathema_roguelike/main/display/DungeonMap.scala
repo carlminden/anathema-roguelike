@@ -156,7 +156,7 @@ class DungeonMap(var x: Int, var y: Int, var state: State) extends Renderable wi
         if (player.isVisibleTo(character)) {
           enemyDetectedVision.or(character.getCurrentVisibility)
 
-        } else if (character.getMostInterestingStimulus.isPresent) {
+        } else if (character.getMostInterestingStimulus.isDefined) {
           enemyAlertedVision.or(character.getCurrentVisibility)
 
         } else {
@@ -175,7 +175,7 @@ class DungeonMap(var x: Int, var y: Int, var state: State) extends Renderable wi
 
     for (character <- state.getCurrentEnvironment.getEntities(classOf[Foe])) {
       if (character.isVisibleTo(player)) {
-        if (!player.isVisibleTo(character) && character.getMostInterestingStimulus.isPresent) {
+        if (!player.isVisibleTo(character) && character.getMostInterestingStimulus.isDefined) {
           //TODO needs work
           //if(character.getMostInterestingStimulus().get().getLocation().isPresent()) {
           //TODO remove, this is just a debug output
@@ -211,7 +211,7 @@ class DungeonMap(var x: Int, var y: Int, var state: State) extends Renderable wi
   }
 
   def renderVisualRepresentation(layer: DungeonLayer, x: Int, y: Int, rep: VisualRepresentation): Unit = {
-    renderChar(layer, x, y, rep.getChar, rep.getColor)
+    renderChar(layer, x, y, rep.char, rep.color)
   }
 
   def renderChar(layer: DungeonLayer, x: Int, y: Int, string: Char, color: SColor): Unit = {

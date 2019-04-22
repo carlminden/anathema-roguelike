@@ -23,5 +23,5 @@ import com.anathema_roguelike.entities.items.weapons.natural_weapons.Unarmed
 import com.anathema_roguelike.entities.characters.Character
 
 class PrimaryWeapon(character: Character) extends SingleSlot[Weapon](character) {
-  override protected def getDefaultItem = new Unarmed(Right(character))
+  override protected def getDefaultItem = new Unarmed()
 }

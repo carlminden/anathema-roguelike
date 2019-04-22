@@ -26,7 +26,6 @@ import scala.reflect.runtime.universe._
 
 class ResourceCost[T <: Resource : TypeTag](
     character: Character,
-    resource: Class[T],
     var amount: Int) extends CharacterActionCost(character) with HasEffect[Effect[Character, T]] {
 
   override def pay(): Unit = {
@@ -35,7 +34,7 @@ class ResourceCost[T <: Resource : TypeTag](
 
   override def getEffect: Option[Effect[Character, T]] = new ResourceModification[T](Option.empty, Option(this), amount)
 
-  def getResource: Class[T] = resource
+  def getResource: Class[T] = typeTagToClass[T]
 
   def getAmount: Int = amount
 }

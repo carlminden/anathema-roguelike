@@ -33,6 +33,7 @@ import scala.reflect._
 import scala.reflect.runtime._
 import scala.reflect.runtime.universe._
 import Numeric.Implicits._
+import scala.util.Random
 
 object Utils {
 
@@ -46,6 +47,10 @@ object Utils {
   names.load(getClass.getResourceAsStream("/names.properties"))
   descriptions.load(getClass.getResourceAsStream("/descriptions.properties"))
   colors.load(getClass.getResourceAsStream("/colors.properties"))
+
+  private val rand = new Random()
+
+  def getRandom = rand
 
   def getWeightedRandomSample[T <: HasWeightedProbability](iterable: Iterable[T]): T = {
 
@@ -63,10 +68,10 @@ object Utils {
     if (num.gt(n, h)) h else if (num.lt(n, l)) l else n
   }
 
-  def getKeysByValue[T, E](map: Map[T, E], value: E): Set[T] = {
-    map.filter {
-      case (k, v) => Objects.equals(v, value)
-    }.keys.toSet
+  def getKeysByValue[T, E](map: Map[T, E], value: E): Iterable[T] = {
+    map.collect {
+      case (k, v) if(Objects.equals(v, value)) => k
+    }
   }
 
   def getSuperclass(subclass: Any): Class[_] = {
@@ -134,11 +139,23 @@ object Utils {
     }
   }
 
+  def getObjectField[T](obj: String, field: String): T = {
+
+    val mirror = universe.runtimeMirror(getClass.getClassLoader)
+
+    val moduleSymbol = mirror.staticModule(obj)
+    val moduleMirror = mirror.reflectModule(moduleSymbol)
+    val instanceMirror = mirror.reflect(moduleMirror.instance)
+
+    val fields = moduleSymbol.typeSignature.decls.filter(f => f.asTerm.isVal && f.name == field)
+
+    instanceMirror.reflectField(fields.head.asTerm).get.asInstanceOf[T]
+  }
+
   def getColor(obj: Any): SColor = {
     val color = getProperty(colors, classify(obj), "WHITE")
 
-    //TODO this seems odd, not 100% sure why there is a get(null)
-    classOf[Color].getField(color).get(null).asInstanceOf[SColor]
+    getObjectField[SColor]("com.anathema_roguelike.main.display.Color", color)
   }
 
   private def classify(obj: Any) = {

@@ -24,26 +24,25 @@ import com.anathema_roguelike.main.display.Color
 import squidpony.squidgrid.gui.gdx.SColor
 import com.anathema_roguelike.entities.characters.Character
 
-abstract class Armor(armorType: ArmorType, material: ArmorMaterial, location: Either[Location, Character]) extends Item(location) {
+abstract class Armor(armorType: ArmorType, material: ArmorMaterial) extends Item {
 
 
   applyEffect(armorType.getEffect)
   applyEffect(material.getEffect)
 
-  def this(armorType: String, material: String, location: Either[Location, Character]) {
+  def this(armorType: String, material: String) {
     this(
       ItemPropertyCache.getProperty(classOf[ArmorType], armorType),
-      ItemPropertyCache.getProperty(classOf[ArmorMaterial], material),
-      location
+      ItemPropertyCache.getProperty(classOf[ArmorMaterial], material)
     )
   }
 
-  def this(armorType: String, material: ArmorMaterial, location: Either[Location, Character]) {
-    this(ItemPropertyCache.getProperty(classOf[ArmorType], armorType), material, location)
+  def this(armorType: String, material: ArmorMaterial) {
+    this(ItemPropertyCache.getProperty(classOf[ArmorType], armorType), material)
   }
 
-  def this(armorType: ArmorType, material: String, location: Either[Location, Character]) {
-    this(armorType, ItemPropertyCache.getProperty(classOf[ArmorMaterial], material), location)
+  def this(armorType: ArmorType, material: String) {
+    this(armorType, ItemPropertyCache.getProperty(classOf[ArmorMaterial], material))
   }
 
   def getType: ArmorType = armorType

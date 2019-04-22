@@ -32,11 +32,11 @@ class WeaponFactory() extends ItemFactory[Weapon] {
     addFactory(new ItemFactory[Weapon]() {
       override def getSupportedType: Class[_ <: ItemType[_ <: Weapon]] = t
 
-      override def generate(location: Either[Location, Character]): Weapon = {
+      override def generate: Weapon = {
         val itemType = Utils.getWeightedRandomSample(ItemPropertyCache.getProperties(t))
         val material = Utils.getWeightedRandomSample(ItemPropertyCache.getProperties(itemType.getMaterialType))
 
-        new Weapon(itemType, material, location)
+        new Weapon(itemType, material)
       }
     })
   })

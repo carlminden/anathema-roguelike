@@ -20,20 +20,7 @@ package entities.items.armor
 
 import com.anathema_roguelike.entities.items.ItemProperty
 
-abstract class ArmorProperty(name: String, weight: Double) extends ItemProperty[Armor](name, weight) {
-  private var concealment = 0.0
-  private var veil = 0.0
-  private var attenuation = 0.0
+abstract class ArmorProperty(name: String, concealment: Double, veil: Double, attenuation: Double, weight: Double)
+  extends ItemProperty[Armor](name, weight) {
 
-  protected def getConcealment: Double = concealment
-
-  protected def getVeil: Double = veil
-
-  protected def getAttenuation: Double = attenuation
-
-  def setAttenuation(attenuation: Double): Unit = this.attenuation = attenuation
-
-  def setConcealment(concealment: Double): Unit = this.concealment = concealment
-
-  def setVeil(veil: Double): Unit = this.veil = veil
 }

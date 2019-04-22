@@ -25,16 +25,14 @@ import com.anathema_roguelike.stats.itemstats.ItemStat
 import com.anathema_roguelike.stats.itemstats.WeaponRange
 import com.anathema_roguelike.stats.itemstats.Weight
 
-class WoodWeaponMaterial(name: String, weight: Double, damage: Double, range: Double) extends WeaponMaterial(name, weight, damage) {
-
-  def getRange: Double = range
+case class WoodWeaponMaterial(name: String, damage: Double, weight: Double, range: Double) extends WeaponMaterial(name, weight, damage) {
 
   override def getEffect: Option[Effect[Item, ItemStat]] = {
     new Effect(
       this,
       List(
         new Modifier[BaseWeaponDamage](AdditiveCalculation.build(() => getDamage)),
-        new Modifier[WeaponRange](AdditiveCalculation.build(() => getRange)),
+        new Modifier[WeaponRange](AdditiveCalculation.build(() => range)),
         new Modifier[Weight](AdditiveCalculation.build(() => getWeight))
       )
     )

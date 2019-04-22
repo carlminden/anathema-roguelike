@@ -18,8 +18,6 @@
 package com.anathema_roguelike
 package entities.characters.player.perks.abilities.spells.druid
 
-import java.util.Optional
-
 import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.entities.characters.actions.TargetedAction
 import com.anathema_roguelike.entities.characters.actions.costs.{ActionCosts, EnergyCost, StimulusCost}
@@ -31,17 +29,17 @@ import com.anathema_roguelike.entities.characters.stimuli.{Resonance, Sight, Sou
 import com.anathema_roguelike.stats.characterstats.attributes.Agility
 import com.anathema_roguelike.stats.effects.{AdditiveArrayCalculation, Effect, Modifier}
 import com.anathema_roguelike.entities.characters.Character
-import com.anathema_roguelike.stats.Stat.CharacterStat
+import com.anathema_roguelike.stats.characterstats.CharacterStat
 
-class Grace(source: Any) extends Spell[SelfTargetedPerk](1, classOf[Druid]) {
+class Grace extends Spell[SelfTargetedPerk](1, classOf[Druid]) {
   override protected def createPerk: SelfTargetedPerk = new SelfTargetedPerk("Grace") {
     override protected def createAction: TargetedAction[Character] = {
 
 
       val costs = new ActionCosts(
-        new StimulusCost[Sight](getCharacter, classOf[Sight], () => 25.0),
-        new StimulusCost[Sound](getCharacter, classOf[Sound], () => 50.0),
-        new StimulusCost[Resonance](getCharacter, classOf[Resonance],
+        new StimulusCost[Sight](getCharacter, () => 25.0),
+        new StimulusCost[Sound](getCharacter, () => 50.0),
+        new StimulusCost[Resonance](getCharacter,
           new AdditiveArrayCalculation(() => getSpecializationLevel, 50.0, 70.0, 100.0, 140.0))
       )
 

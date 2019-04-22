@@ -22,6 +22,6 @@ import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.entities.items.weapons.types.WeaponType
 import com.anathema_roguelike.environment.Location
 
-class RangedWeapon(val weapongType: WeaponType, val material: WeaponMaterial, location: Either[Location, Character])
-  extends Weapon(weapongType, material, location) {
+class RangedWeapon(weapongType: WeaponType, material: WeaponMaterial)
+  extends Weapon(weapongType, material) {
 }

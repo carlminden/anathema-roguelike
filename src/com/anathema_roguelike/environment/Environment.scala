@@ -24,10 +24,11 @@ import com.anathema_roguelike.environment.Environment.EnvironmentMap
 import com.anathema_roguelike.environment.terrain.Terrain
 import com.anathema_roguelike.environment.terrain.grounds.Stairs
 import com.anathema_roguelike.fov.{LightLevels, LitFOVProcessor, ObstructionChangedEvent}
-import com.anathema_roguelike.main.Config
+import com.anathema_roguelike.main.{Config, Game}
 import com.anathema_roguelike.main.display.{DisplayBuffer, Renderable}
 import com.anathema_roguelike.main.utilities.pathfinding.Path
 import com.anathema_roguelike.main.utilities.position.Direction.Direction2
+import com.anathema_roguelike.main.utilities.position.Orientation.Orientation
 import com.anathema_roguelike.main.utilities.position.{Direction, HasPosition, Point}
 import com.anathema_roguelike.stats.locationstats.Opacity
 import com.google.common.eventbus.{EventBus, Subscribe}
@@ -37,18 +38,16 @@ import scala.reflect.runtime.universe._
 
 object Environment {
   type EnvironmentMap = Array[Array[Location]]
-
-  private val width: Int = Config.DUNGEON_WIDTH
-  private val height: Int = Config.DUNGEON_HEIGHT
-
-
-  def createEnvironmentMap: EnvironmentMap = Array.ofDim[Location](width, height)
 }
 
-class Environment(map: EnvironmentMap, upStairs: Stairs, downStairs: Stairs, depth: Int) extends Renderable {
+class Environment(mapTiles: Array[Array[MapTile]], up: Point, down: Point, depth: Int) extends Renderable {
 
-  private val width = Environment.width
-  private val height = Environment.height
+  private val width = Config.DUNGEON_WIDTH
+  private val height = Config.DUNGEON_HEIGHT
+
+  private val eventBus: EventBus = new EventBus
+
+  eventBus.register(this)
 
   private val fovResistance: Array[Array[Double]] = Array.ofDim[Double](width, height)
 
@@ -60,13 +59,19 @@ class Environment(map: EnvironmentMap, upStairs: Stairs, downStairs: Stairs, dep
   private val lightLevels = new LightLevels(width, height, this)
   private val litFOVProcessor = new LitFOVProcessor(width, height, fovResistance, lightLevels)
 
-  private val eventBus: EventBus = new EventBus
-  eventBus.register(this)
+  private val map = Array.ofDim[Location](width, height)
 
-  map(upStairs.getX)(upStairs.getY).setTerrain(upStairs)
-  map(downStairs.getX)(downStairs.getY).setTerrain(downStairs)
+  for (i <- map.indices; j <- map(i).indices) {
+    map(i)(j) = new Location(this, Point(i, j), eventBus, mapTiles(i)(j).terrain, mapTiles(i)(j).getFeatures.toSeq:_*)
+  }
 
-  for (i <- 0 until width; j <- 0 to height) {
+  private val upStairsLocation = map(up.getX)(up.getY)
+  private val downStairsLocation = map(down.getX)(down.getY)
+
+  upStairsLocation.setTerrain(new Stairs(Direction.UP))
+  downStairsLocation.setTerrain(new Stairs(Direction.DOWN))
+
+  for (i <- 0 until width; j <- 0 until height) {
     computeOpacity(getLocation(i, j))
   }
 
@@ -100,18 +105,19 @@ class Environment(map: EnvironmentMap, upStairs: Stairs, downStairs: Stairs, dep
   }
 
   def addEntity(entity: Entity, position: HasPosition): Unit = {
-    addEntity(entity, getLocation(position))
-  }
 
-  def addEntity(entity: Entity): Unit = {
+    Game.getInstance.getState.registerActor(entity)
+
     val old: Environment = entity.getEnvironment
+    val location = getLocation(position)
 
     entity.getEnvironment.removeEntity(entity)
 
-    entities :+ entity
+    entities += entity
     eventBus.register(entity)
 
-    computeOpacity(entity.getLocation)
+    entity.setLocation(location)
+    computeOpacity(location)
 
     entity.postEvent(new EnvironmentChangedEvent(old, this))
   }
@@ -129,8 +135,8 @@ class Environment(map: EnvironmentMap, upStairs: Stairs, downStairs: Stairs, dep
     moveEntityTo(entity, p.getX, p.getY)
   }
 
-  def moveEntityTo(entity: Entity, location: Location): Unit = {
-    entity.setLocation(location)
+  def moveEntityTo(entity: Entity, location: HasLocation): Unit = {
+    entity.setLocation(location.getLocation)
   }
 
   def getMap: EnvironmentMap = map
@@ -145,8 +151,8 @@ class Environment(map: EnvironmentMap, upStairs: Stairs, downStairs: Stairs, dep
 
   def getStairs(direction: Direction2): Stairs = {
     direction match {
-      case Direction.UP => upStairs
-      case Direction.DOWN => downStairs
+      case Direction.UP => upStairsLocation.getTerrain.asInstanceOf[Stairs]
+      case Direction.DOWN => downStairsLocation.getTerrain.asInstanceOf[Stairs]
     }
   }
 
@@ -179,6 +185,6 @@ class Environment(map: EnvironmentMap, upStairs: Stairs, downStairs: Stairs, dep
 
   def lineOfEffectBetween(a: HasLocation, b: HasLocation): Boolean = {
     val path: Path = Path.straightLine(a.getPosition, b.getPosition)
-    path.stream.allMatch((p: Point) => getLocation(p).isPassable)
+    path.forall(p => getLocation(p).isPassable)
   }
 }

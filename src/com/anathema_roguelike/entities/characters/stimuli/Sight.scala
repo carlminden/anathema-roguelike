@@ -47,7 +47,7 @@ class Sight(magnitude: Double, owner: Character) extends Stimulus(magnitude, own
           val percievedLocation = character.getEnvironment.getLocation(new Circle(location, () => 3.0).getRandomPoint)
           new PerceivedStimulus(percievedLocation, this, getMagnitude)
 
-        } else if (character.getVisibilityOf(getOwner.get).ordinal > VisibilityLevel.VISIBLE.ordinal) {
+        } else if (character.getVisibilityOf(getOwner.get).value > VisibilityLevel.VISIBLE.value) {
           new PerceivedStimulus(location, this, getMagnitude)
         } else {
           Option.empty

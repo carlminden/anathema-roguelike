@@ -24,9 +24,12 @@ import com.anathema_roguelike.entities.characters.player.classes.PlayerClass
 import com.anathema_roguelike.main.utilities.Utils
 
 import com.anathema_roguelike.entities.characters.Character
+import scala.reflect.runtime.universe._
 
-class SpellOrSpecialization(var spellLevel: Int, var casterClass: Class[_ <: PlayerClass])
-  extends PerkChoice("Level " + spellLevel + " " + Utils.getName(casterClass) + " Spell") {
+class SpellOrSpecialization[T <: PlayerClass : TypeTag](spellLevel: Int)
+  extends PerkChoice("Level " + spellLevel + " " + Utils.getName(typeTagToClass[T]) + " Spell") {
+
+  private val casterClass = typeTagToClass[T]
 
   override def getChoices(character: Character): Iterable[_ <: Perk] = {
     val choices = new SpellSpecializationChoice(spellLevel, casterClass).getChoices(character)

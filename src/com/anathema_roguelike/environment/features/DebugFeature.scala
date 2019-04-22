@@ -25,7 +25,6 @@ import squidpony.squidgrid.gui.gdx.SColor
 
 class DebugFeature(location: Location, color: SColor)
   extends Feature(
-    location,
     new VisualRepresentation('X', color),
     new VisualRepresentation('X', color),
     true,

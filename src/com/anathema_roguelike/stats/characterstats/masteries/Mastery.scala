@@ -20,7 +20,7 @@ package stats.characterstats.masteries
 
 import com.anathema_roguelike.stats.Stat
 import com.anathema_roguelike.entities.characters.Character
-import com.anathema_roguelike.stats.Stat.CharacterStat
+import com.anathema_roguelike.stats.characterstats.CharacterStat
 
 class Mastery(character: Character) extends CharacterStat(character) {
   override def getAmount = 0

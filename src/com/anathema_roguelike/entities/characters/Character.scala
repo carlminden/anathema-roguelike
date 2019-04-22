@@ -37,8 +37,8 @@ import com.anathema_roguelike.environment.terrain.grounds.Stairs
 import com.anathema_roguelike.main.display.BufferMask
 import com.anathema_roguelike.main.utilities.position.Direction
 import com.anathema_roguelike.main.utilities.position.Direction.Direction2
-import com.anathema_roguelike.stats.Stat.CharacterStat
 import com.anathema_roguelike.stats.StatSet.CharacterStats
+import com.anathema_roguelike.stats.characterstats.CharacterStat
 import com.anathema_roguelike.stats.characterstats.attributes.Attribute
 import com.anathema_roguelike.stats.{HasStats, StatSet}
 import com.anathema_roguelike.stats.characterstats.resources.{BoundedResource, Resource}
@@ -51,16 +51,13 @@ import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.reflect.runtime.universe._
 
-abstract class Character(location: Location) extends Entity(location) with HasStats[Character, CharacterStat] {
-
-  new BasicAttackPerk().grant(this)
-
+abstract class Character extends Entity with HasStats[Character, CharacterStat] {
   private var faction: Int = 0
   private var level: Int = 0
   private var turn: Long = 0
   private val perks: PerkSet = new PerkSet
   private val abilitySpecializations: AbilitySpecializationSet = new AbilitySpecializationSet
-  private val inventory: Inventory = new Inventory(this)
+  private lazy val inventory: Inventory = new Inventory(this)
   private var alive: Boolean = true
   private var facing: Double = Direction.UP.toAngle
 
@@ -70,7 +67,9 @@ abstract class Character(location: Location) extends Entity(location) with HasSt
   private val stats: CharacterStats = new CharacterStats(this)
   private val percievedStimuli: PerceivedStimuli = new PerceivedStimuli(this)
   private val lastSeenCharacterLocations: mutable.Map[Character, Location] = mutable.Map[Character, Location]()
-  private val pendingActions: mutable.Stack[Action[Character]] = mutable.Stack[Action[Character]]()
+  private val pendingActions: ListBuffer[Action[Character]] = ListBuffer[Action[Character]]()
+
+  new BasicAttackPerk().grant(this)
 
   def onDeath(): Unit
 
@@ -135,7 +134,12 @@ abstract class Character(location: Location) extends Entity(location) with HasSt
       setNextPendingAction()
     }
     getEventBus.post(new TurnEndEvent)
-    pendingActions.pop
+
+    val ret = pendingActions.headOption
+
+    pendingActions.drop(1)
+
+    ret
   }
 
   @Subscribe
@@ -209,7 +213,7 @@ abstract class Character(location: Location) extends Entity(location) with HasSt
       case ThisChar => VisibilityLevel.EXPOSED
       case _ if visible && adjacent => VisibilityLevel.EXPOSED
       //TODO: Check the logic below, it doesnt really make sense to me
-      case _ if visible && adjacent && visibility.ordinal < 4 => VisibilityLevel.VISIBLE
+      case _ if visible && adjacent && visibility.value < 4 => VisibilityLevel.VISIBLE
       case _ if visible && getPosition.distance(character) <= 2 &&
                 ((visibility == VisibilityLevel.CONCEALED) || (visibility == VisibilityLevel.PARTIALLYCONCEALED)) => VisibilityLevel.VISIBLE
       case _ if visible => character.getStat[Visibility].getVisibilityLevel
@@ -217,7 +221,7 @@ abstract class Character(location: Location) extends Entity(location) with HasSt
     }
   }
 
-  override def isVisibleTo(character: Character): Boolean = character.getVisibilityOf(this).ordinal >= 3
+  override def isVisibleTo(character: Character): Boolean = character.getVisibilityOf(this).value >= 3
 
   def getCurrentVisibility: BufferMask = {
     if (currentVisibility == null) computeVisibility()
@@ -250,15 +254,15 @@ abstract class Character(location: Location) extends Entity(location) with HasSt
   override def getLightEmission: Double = getStatAmount[LightEmission]
 
   def addPendingAction(pendingAction: Option[Action[Character]]): Unit = {
-    pendingAction.foreach(pa => this.pendingActions :+ pa)
+    pendingAction.foreach(pa => pendingActions += pa)
   }
 
   def addPendingActions(pendingActions: Action[Character]*): Unit = {
-    this.pendingActions.addAll(pendingActions)
+    this.pendingActions ++= pendingActions
   }
 
   def addPendingActions(pendingActions: Iterable[_ <: Action[Character]]): Unit = {
-    this.pendingActions.addAll(pendingActions)
+    this.pendingActions ++= pendingActions
   }
 
   def hasPendingActions: Boolean = pendingActions.nonEmpty

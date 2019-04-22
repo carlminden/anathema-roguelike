@@ -20,8 +20,8 @@ package main.ui.uielements.interactiveuielements.menus
 
 import com.anathema_roguelike.main.utilities.position.Point
 
-class MenuItem[T](menu: AbstractMenu[_], item: T, position: Point, background: Float, onSelectListener: T => Unit)
+class MenuItem[T](menu: AbstractMenu[_], item: T, position: Point, background: Float, onSelectListener: AbstractMenuItem[T] => Unit)
   extends AbstractMenuItem[T](menu, item, position, background) {
 
-  override def onSelect(obj: T): Unit = onSelectListener(obj)
+  override def onSelect(menuItem: AbstractMenuItem[T]): Unit = onSelectListener(menuItem)
 }

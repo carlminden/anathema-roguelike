@@ -37,11 +37,11 @@ abstract class UIElement private (
       outerWidth: Int,
       height: Int,
       outerHeight: Int,
-      background: Float,
-      border: Option[Border] = None
+      background: Float
   ) extends RenderSurface(width, height) with Renderable with HasPosition {
 
   private val elements: ListBuffer[UIElement] = ListBuffer[UIElement]()
+  private var border: Option[Border] = None
 
   def this(position: Point, width: Int, height: Int, background: Float) {
     this(position, position, width, width, height, height, background)
@@ -49,7 +49,7 @@ abstract class UIElement private (
 
   def this(position: Point, width: Int, height: Int, background: Float, borderTitle: Option[String]) {
     this(
-      new Point(position.getX + 1, position.getY + borderTitle.map(_ => 3).getOrElse(1)),
+      Point(position.getX + 1, position.getY + borderTitle.map(_ => 3).getOrElse(1)),
       position,
       width - 2,
       width,
@@ -57,6 +57,8 @@ abstract class UIElement private (
       height,
       background
     )
+
+    border = borderTitle.map(b => new Border(this, b))
   }
 
   protected def renderContent(): Unit
@@ -65,7 +67,7 @@ abstract class UIElement private (
 
     border.foreach(_.render())
 
-    for (i <- 0 to getWidth; j <- 0 to getHeight) {
+    for (i <- 0 until getWidth; j <- 0 until getHeight) {
       if (background == 0f) renderChar(DisplayLayer.UI_BACKGROUND, i, j, ' ', Color.BLACK)
       else if (background == 1f) renderChar(DisplayLayer.UI_BACKGROUND, i, j, '\u2588', Color.BLACK)
       else renderChar(DisplayLayer.UI_BACKGROUND, i, j, '\u2588', Color.opacity(Color.BLACK, background))
@@ -75,7 +77,7 @@ abstract class UIElement private (
   override def getPosition: Point = position
 
   def addUIElement(element: UIElement): Unit = {
-    elements :+ element
+    elements += element
   }
 
   def removeUIElement(element: UIElement): Unit = {
@@ -112,12 +114,12 @@ abstract class UIElement private (
     Game.getInstance.getDisplay.renderChar(layer, x + getX, y + getY, string, color)
   }
 
-  override def createAnimation(layer: Display.DisplayLayer, animation: Animation): Unit = {
+  def createAnimation(layer: Display.DisplayLayer, animation: Animation): Unit = {
     super.createAnimation(layer, animation, getPosition)
   }
 
   override def renderOutline(outline: Outline): Unit = {
-    outline.setOffset(new Point(getX, getY))
+    outline.setOffset(Point(getX, getY))
     outline.render()
   }
 }

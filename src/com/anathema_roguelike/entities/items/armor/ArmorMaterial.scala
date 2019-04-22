@@ -37,14 +37,15 @@ object ArmorMaterial {
   val MAGEPLATE = "Mageplate"
 }
 
-class ArmorMaterial(name: String, weight: Double) extends ArmorProperty(name, weight) {
+case class ArmorMaterial(name: String, concealment: Double, veil: Double, attenuation: Double, weight: Double)
+  extends ArmorProperty(name, concealment, veil, attenuation, weight) {
 
   override def getEffect: Option[Effect[Item, ItemStat]] = {
     new Effect(this, List(
-      new Modifier[ConcealmentDefense](MultiplicativeCalculation.build(() => getConcealment)),
-      new Modifier[AttenuationDefense](MultiplicativeCalculation.build(() => getAttenuation)),
-      new Modifier[VeilDefense](MultiplicativeCalculation.build(() => getVeil)),
-      new Modifier[Weight](MultiplicativeCalculation.build(() => getWeight))
+      new Modifier[ConcealmentDefense](MultiplicativeCalculation.build(() => concealment)),
+      new Modifier[AttenuationDefense](MultiplicativeCalculation.build(() => attenuation)),
+      new Modifier[VeilDefense](MultiplicativeCalculation.build(() => veil)),
+      new Modifier[Weight](MultiplicativeCalculation.build(() => weight))
     ))
   }
 }

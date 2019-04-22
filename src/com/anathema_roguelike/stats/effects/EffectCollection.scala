@@ -49,7 +49,7 @@ class EffectCollection[T, S <: Stat[_ <: T]](var affected: T) {
 
   @Subscribe
   def handleSegmentElapsedEvent(event: TimeElapsedEvent): Unit = {
-    elapse(event.getElapsedTime)
+    elapse(event.elapsedTime)
     removeExpired()
   }
 

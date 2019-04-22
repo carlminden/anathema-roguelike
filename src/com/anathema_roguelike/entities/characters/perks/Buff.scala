@@ -19,15 +19,14 @@ package com.anathema_roguelike
 package entities.characters.perks
 
 import com.anathema_roguelike.actors.Duration
-
-import com.anathema_roguelike.stats.Stat.CharacterStat
 import com.anathema_roguelike.entities.characters.Character
+import com.anathema_roguelike.stats.characterstats.CharacterStat
 import com.anathema_roguelike.stats.effects.{Effect, HasEffect, Modifier}
 
 class Buff(
     source: Option[HasEffect[_ <: Effect[Character, CharacterStat]]],
     modifiers: List[Modifier[ _ <: CharacterStat]],
-    duration: Duration = Duration.permanent())
+    duration: Duration = Duration.PERMANENT)
   extends Effect[Character, CharacterStat](source, modifiers, duration) {
 
 }

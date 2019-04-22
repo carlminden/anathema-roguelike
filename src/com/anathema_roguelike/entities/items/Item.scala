@@ -18,37 +18,20 @@
 package com.anathema_roguelike
 package entities.items
 
-import java.util.Optional
-
 import com.anathema_roguelike.actors.Action
 import com.anathema_roguelike.entities.Entity
 import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer
-import com.anathema_roguelike.stats.Stat.CharacterStat
 import com.anathema_roguelike.stats.StatSet.ItemStats
+import com.anathema_roguelike.stats.characterstats.CharacterStat
 import com.anathema_roguelike.stats.{HasStats, StatSet}
 import com.anathema_roguelike.stats.effects.{Effect, HasEffect}
 import com.anathema_roguelike.stats.itemstats.ItemStat
 
-object Item {
-  def locationOfCharacterOrLocation(location: Either[Location, Character]): Location = {
-    location match {
-      case Left(l) => l
-      case Right(c) => c.getLocation
-    }
-  }
-}
-
-abstract class Item(location: Either[Location, Character])
-  extends Entity(Item.locationOfCharacterOrLocation(location))
+abstract class Item extends Entity
     with HasStats[Item, ItemStat] with HasEffect[Effect[Character, CharacterStat]] {
-
-  location match {
-    case Left(_) =>
-    case Right(c) => c.getInventory.equip(this)
-  }
 
   private val stats = new ItemStats(this)
   private var wearer: Option[Character] = None

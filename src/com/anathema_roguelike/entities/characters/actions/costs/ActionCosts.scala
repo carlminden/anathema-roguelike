@@ -23,7 +23,7 @@ import scala.collection.mutable.ListBuffer
 
 class ActionCosts(costs: ActionCost*) {
 
-  private val costList = ListBuffer().addAll(costs)
+  private val costList = ListBuffer() ++ costs
 
   def getBeforeCosts: Iterable[ActionCost] = costList.filter(c => c.isBefore)
 

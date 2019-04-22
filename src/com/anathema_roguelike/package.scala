@@ -18,6 +18,7 @@
 package com
 
 import com.anathema_roguelike.main.display.VisualRepresentation
+import com.anathema_roguelike.main.utilities.position.{HasPosition, Point}
 
 import scala.reflect._
 import scala.reflect.api.{TypeCreator, Universe}
@@ -68,5 +69,7 @@ package object anathema_roguelike {
         else throw new IllegalArgumentException(s"Type tag defined in $mirror cannot be migrated to other mirrors.")
     })
   }
+
+  implicit def toPoint(hasPosition: HasPosition): Point = hasPosition.getPosition
 
 }

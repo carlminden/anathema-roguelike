@@ -12,8 +12,6 @@
     <parameters>
       <parameter value="-Ypartial-unification" />
     </parameters>
-    <profile name="Maven 1" modules="roguelike">
-      <option name="implicitConversions" value="true" />
-    </profile>
+    <profile name="Maven 1" modules="roguelike" />
   </component>
 </project>

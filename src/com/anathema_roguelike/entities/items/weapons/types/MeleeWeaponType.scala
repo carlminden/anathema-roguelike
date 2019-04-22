@@ -22,10 +22,10 @@ import com.anathema_roguelike.entities.items.weapons.MetalWeaponMaterial
 import com.anathema_roguelike.entities.items.weapons.WeaponMaterial
 
 object MeleeWeaponType {
-  type BluntWeapon = MeleeWeaponType
-  type LongBlade = MeleeWeaponType
-  type ShortBlade = MeleeWeaponType
-  type Spear = MeleeWeaponType
+  case class BluntWeapon(name: String, attackSpeed: Double, damage: Double, weight: Double) extends MeleeWeaponType(name, weight, attackSpeed, damage)
+  case class LongBlade(name: String, attackSpeed: Double, damage: Double, weight: Double) extends MeleeWeaponType(name, weight, attackSpeed, damage)
+  case class ShortBlade(name: String, attackSpeed: Double, damage: Double, weight: Double) extends MeleeWeaponType(name, weight, attackSpeed, damage)
+  case class Spear(name: String, attackSpeed: Double, damage: Double, weight: Double) extends MeleeWeaponType(name, weight, attackSpeed, damage)
 }
 
 class MeleeWeaponType(name: String, weight: Double, attackSpeed: Double, damage: Double) extends WeaponType(name, weight, attackSpeed, damage) {

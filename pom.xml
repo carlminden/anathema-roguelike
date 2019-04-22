@@ -89,17 +89,27 @@
 	<dependency>
 	  <groupId>org.scala-lang</groupId>
 	  <artifactId>scala-reflect</artifactId>
-	  <version>2.13.0-RC1</version>
+	  <version>2.12.8</version>
 	</dependency>
 	<dependency>
 	  <groupId>org.typelevel</groupId>
 	  <artifactId>cats-core_2.12</artifactId>
 	  <version>1.6.0</version>
 	</dependency>
-  	<dependency>
-  		<groupId>com.squidpony</groupId>
-  		<artifactId>squidlib</artifactId>
-  		<version>3.0.0-b9</version>
+	<dependency>
+	  <groupId>com.beachape</groupId>
+	  <artifactId>enumeratum_2.12</artifactId>
+	  <version>1.5.13</version>
+	</dependency>
+	<dependency>
+		<groupId>com.nrinaudo</groupId>
+		<artifactId>kantan.csv_2.12</artifactId>
+		<version>0.5.0</version>
+	</dependency>
+	<dependency>
+		<groupId>com.squidpony</groupId>
+		<artifactId>squidlib</artifactId>
+		<version>3.0.0-b9</version>
   	</dependency>
   	<dependency>
   		<groupId>com.squidpony</groupId>

@@ -68,10 +68,7 @@ class Inventory(var character: Character) {
   }
 
   def getValidSlots[T <: Item : TypeTag](item: T): Iterable[Slot[T]] = {
-    slots.getValues.collect {
-      //validItem ensures this actually should work
-      case s: Slot[T] if s.validItem(item) => s
-    }
+    slots.getValues.filter(s => s.validItem(item)).asInstanceOf[Iterable[Slot[T]]]
   }
 
   def remove[T <: Item : TypeTag](item: T): Unit = {

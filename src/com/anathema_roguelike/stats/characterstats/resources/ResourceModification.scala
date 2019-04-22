@@ -25,11 +25,11 @@ import scala.reflect.runtime.universe._
 
 class ResourceModification[T <: Resource : TypeTag](
       initiator: Option[Character],
-      source: Option[_ <: HasEffect[Effect[Character, T]]],
+      source: Option[HasEffect[Effect[Character, T]]],
       calculation: Calculation
-  ) extends Effect[Character, T](source, List(), Duration.instant()) {
+  ) extends Effect[Character, T](source, List(), Duration.INSTANT) {
 
-  def this(initiator: Option[Character], source: Option[_ <: HasEffect[Effect[Character, T]]], amount: Int) {
+  def this(initiator: Option[Character], source: Option[HasEffect[Effect[Character, T]]], amount: Int) {
 
     this(initiator, source, new FixedCalculation(amount))
   }

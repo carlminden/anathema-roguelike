@@ -21,15 +21,13 @@ package environment.features
 import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.main.display.VisualRepresentation
 import com.anathema_roguelike.stats.effects.{AdditiveCalculation, Effect, Modifier}
-import com.anathema_roguelike.stats.locationstats.Brightness
-
-import com.anathema_roguelike.stats.Stat.LocationStat
+import com.anathema_roguelike.stats.locationstats.{Brightness, LocationStat}
 
 class Brazier(location: Location) extends Feature(
-  location,
   new VisualRepresentation('\u0436'),
   new VisualRepresentation('\u0436'),
   foreground = true, passable = false, opacity = 1.0, damping = 1.0) {
+
     override def getEffect: Option[Effect[Location, LocationStat]] = {
       new Effect[Location, LocationStat](this, List(new Modifier[Brightness](AdditiveCalculation.fixed(20.0))))
     }

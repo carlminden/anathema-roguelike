@@ -19,10 +19,13 @@ package com.anathema_roguelike
 package main.utilities.position
 
 import com.anathema_roguelike.main.utilities.position.Direction._
+import com.anathema_roguelike.main.utilities.position.Orientation.{HORIZONTAL, Orientation, VERTICAL}
 
 class Direction(val value: Int) {
   def |(d: Direction): Direction = new Direction(value | d.value)
   def &(d: Direction): Direction = new Direction(value & d.value)
+  def ==(d: Direction): Boolean = d.value == value
+  def !=(d: Direction): Boolean = d.value != value
 
   def toAngle: Double = {
     this match {
@@ -46,6 +49,19 @@ class Direction(val value: Int) {
         270
     }
   }
+
+  def includes(direction: Direction): Boolean = {
+    (direction & this) != NO_DIRECTION
+  }
+
+  def toOrientation: Orientation = {
+    this match {
+      case _ if(this == Direction.UP || this == Direction.DOWN) => VERTICAL
+      case _ if(this == Direction.LEFT || this == Direction.RIGHT) => HORIZONTAL
+      case _ => VERTICAL
+    }
+  }
+
 }
 
 object Direction {
@@ -63,9 +79,31 @@ object Direction {
   case object DOWN_RIGHT extends Direction((DOWN | RIGHT).value)
   case object DOWN_LEFT extends Direction((DOWN | LEFT).value)
 
-  val DIRECTIONS_4 = Array(UP, DOWN, LEFT, RIGHT)
-  val DIAGONALS = Array(UP_RIGHT, DOWN_RIGHT, DOWN_LEFT, UP_LEFT)
-  val DIRECTIONS_8 = Array(UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT)
+  val DIRECTIONS_4: Array[Direction] = Array(UP, DOWN, LEFT, RIGHT)
+  val DIAGONALS: Array[Direction] = Array(UP_RIGHT, DOWN_RIGHT, DOWN_LEFT, UP_LEFT)
+  val DIRECTIONS_8: Array[Direction] = Array(UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT)
+
+  implicit def getOrientation(direction: Direction): Orientation = direction.toOrientation
+
+  implicit def fromDirection4(direction: Direction4): Direction = {
+    direction match {
+      case UP => UP
+      case DOWN => DOWN
+      case LEFT => LEFT
+      case RIGHT => RIGHT
+    }
+  }
+
+  implicit def toDirection4(direction: Direction): Direction4 = {
+    direction match {
+      case UP => UP
+      case DOWN => DOWN
+      case LEFT => LEFT
+      case RIGHT => RIGHT
+    }
+  }
+
+  implicit def fromInt(int: Int): Direction = new Direction(int)
 
   //Didnt want to port my shitty dungeon generator, so I needed this
   def fromJavaDirection(direction: Int): Direction = {
@@ -82,26 +120,25 @@ object Direction {
     }
   }
 
-
   def offset(point: HasPosition, direction: Direction): Point = offset(point, direction, 1)
 
   def offset(point: HasPosition, direction: Direction, amount: Int): Point = {
     var x = point.getX
     var y = point.getY
 
-    if ((direction & Direction.UP) != 0){
+    if (direction.includes(Direction.UP)) {
       y = y - amount
-    } else if ((direction & Direction.DOWN) != 0) {
+    } else if (direction.includes(Direction.DOWN)) {
       y = y + amount
     }
 
-    if ((direction & Direction.LEFT) != 0) {
+    if (direction.includes(Direction.LEFT)) {
       x = x - amount
-    } else if ((direction & Direction.RIGHT) != 0) {
+    } else if (direction.includes(Direction.RIGHT)) {
       x = x + amount
     }
 
-    new Point(x, y)
+    Point(x, y)
   }
 
   def of(src: HasPosition, dst: HasPosition): Direction = {

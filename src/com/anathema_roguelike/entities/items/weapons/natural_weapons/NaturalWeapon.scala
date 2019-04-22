@@ -23,6 +23,6 @@ import com.anathema_roguelike.entities.items.weapons.Weapon
 import com.anathema_roguelike.entities.items.weapons.types.MeleeWeaponType
 import com.anathema_roguelike.environment.Location
 
-class NaturalWeapon(weaponType: MeleeWeaponType, material: NaturalWeaponMaterial, location: Either[Location, Character])
-  extends Weapon(weaponType, material, location) {
+class NaturalWeapon(weaponType: MeleeWeaponType, material: NaturalWeaponMaterial)
+  extends Weapon(weaponType, material) {
 }

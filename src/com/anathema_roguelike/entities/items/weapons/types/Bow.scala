@@ -21,7 +21,7 @@ package entities.items.weapons.types
 import com.anathema_roguelike.entities.items.weapons.WeaponMaterial
 import com.anathema_roguelike.entities.items.weapons.WoodWeaponMaterial
 
-class Bow(name: String, weight: Double, attackSpeed: Double, damage: Double, range: Double)
+case class Bow(name: String, weight: Double, attackSpeed: Double, damage: Double, range: Double)
   extends RangedWeaponType(name, weight, attackSpeed, damage, range) {
 
   override def getMaterialType: Class[_ <: WeaponMaterial] = classOf[WoodWeaponMaterial]

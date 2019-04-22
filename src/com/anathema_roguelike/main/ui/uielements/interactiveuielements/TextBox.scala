@@ -60,13 +60,13 @@ class TextBox(location: Point, width: Int, height: Int, background: Float, text:
   }
 
   def setMessage(text: Message): Unit = {
-    messages = ListBuffer.from(Message.split(text, getWidth - 1).asScala)
+    messages = Message.split(text, getWidth - 1)
   }
 
   def setMessages(messages: Iterable[Message]): Unit = {
 
-    this.messages = ListBuffer.from(messages).flatMap(m => {
-      Message.split(m, getWidth - 1).asScala
+    this.messages = (ListBuffer() ++ messages).flatMap(m => {
+      Message.split(m, getWidth - 1)
     })
   }
 

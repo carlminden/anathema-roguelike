@@ -22,7 +22,7 @@ import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.{Color, VisualRepresentation}
 
-class PerceivedStimulus(var location: Option[Location], var stimulus: Stimulus, var magnitude: Double) {
+class PerceivedStimulus(location: Option[Location], stimulus: Stimulus, magnitude: Double) {
 
   private val created = Game.getInstance.getElapsedTime
 
@@ -37,7 +37,8 @@ class PerceivedStimulus(var location: Option[Location], var stimulus: Stimulus, 
   def getVisualRepresentation: VisualRepresentation = {
     val vr = getStimulus.getVisualRepresentation
     val opacity = (Math.min(100, getRemainingMagnitude) / 100).toFloat
-    vr.setColor(Color.opacity(vr.getColor, opacity))
+
+    vr.color = (Color.opacity(vr.color, opacity))
     vr
   }
 

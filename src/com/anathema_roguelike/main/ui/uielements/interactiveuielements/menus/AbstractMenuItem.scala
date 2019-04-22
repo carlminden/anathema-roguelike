@@ -28,14 +28,14 @@ import com.anathema_roguelike.main.utilities.position.Point
 abstract class AbstractMenuItem[T](menu: AbstractMenu[_], item: T, position: Point, background: Float)
   extends InteractiveUIElement[T](position, Utils.getName(item).length, 1, background) {
 
-  def onSelect(obj: T): Unit
+  def onSelect(menuItem: AbstractMenuItem[T]): Unit
 
   private var focused = false
 
   def getText: String = Utils.getName(item)
 
   def select(): Unit = {
-    onSelect(item)
+    onSelect(this)
   }
 
   def focus(): Unit = {
@@ -47,6 +47,8 @@ abstract class AbstractMenuItem[T](menu: AbstractMenu[_], item: T, position: Poi
   }
 
   def getItem: T = item
+
+  def getMenu: AbstractMenu[_] = menu
 
   override def registerMouseCallbacks(): Unit = {
     val callback = new MouseCallback() {
@@ -61,7 +63,7 @@ abstract class AbstractMenuItem[T](menu: AbstractMenu[_], item: T, position: Poi
     }
 
     (0 until getWidth).foreach(i => {
-      Game.getInstance.getInput.registerMouseCallback(callback, new Point(getX + i, getY))
+      Game.getInstance.getInput.registerMouseCallback(callback, Point(getX + i, getY))
     })
   }
 
@@ -73,13 +75,12 @@ abstract class AbstractMenuItem[T](menu: AbstractMenu[_], item: T, position: Poi
 
   override def renderContent(): Unit = {
 
-    if (focused) {
-      (Color.WHITE, Color.BLACK)
-    } else {
+    val colors = if (focused) {
       (Color.BLACK, Color.WHITE)
-    }.foreach {
-      case (bg, fg) => renderString(DisplayLayer.UI_FOREGROUND, DisplayLayer.UI_BACKGROUND, 0, 0, getText, fg, bg)
+    } else {
+      (Color.WHITE, Color.BLACK)
     }
 
+    renderString(DisplayLayer.UI_FOREGROUND, DisplayLayer.UI_BACKGROUND, 0, 0, getText, colors._1, colors._2)
   }
 }

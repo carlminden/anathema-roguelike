@@ -22,14 +22,15 @@ import com.anathema_roguelike.entities.items.{Item, ItemType}
 import com.anathema_roguelike.stats.effects.{AdditiveCalculation, Effect, Modifier}
 import com.anathema_roguelike.stats.itemstats.{AttenuationDefense, ConcealmentDefense, ItemStat, VeilDefense, Weight}
 
-class ArmorType(name: String, weight: Double) extends ArmorProperty(name, weight) with ItemType[Armor] {
+case class ArmorType(name: String, concealment: Double, veil: Double, attenuation: Double, weight: Double)
+  extends ArmorProperty(name, concealment, veil, attenuation, weight) with ItemType[Armor] {
 
   override def getEffect: Option[Effect[Item, ItemStat]] = {
     new Effect(
       this,List(
-        new Modifier[ConcealmentDefense](AdditiveCalculation.build(() => getConcealment)),
-        new Modifier[AttenuationDefense](AdditiveCalculation.build(() => getAttenuation)),
-        new Modifier[VeilDefense](AdditiveCalculation.build(() => getVeil)),
+        new Modifier[ConcealmentDefense](AdditiveCalculation.build(() => concealment)),
+        new Modifier[AttenuationDefense](AdditiveCalculation.build(() => attenuation)),
+        new Modifier[VeilDefense](AdditiveCalculation.build(() => veil)),
         new Modifier[Weight](AdditiveCalculation.build(() => getWeight)))
       )
   }

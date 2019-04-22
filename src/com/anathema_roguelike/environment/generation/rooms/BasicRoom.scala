@@ -21,24 +21,24 @@ package environment.generation.rooms
 import com.anathema_roguelike.entities.characters.foes.corruptions.Thrall
 import com.anathema_roguelike.entities.characters.foes.roles.Brawler
 import com.anathema_roguelike.entities.characters.foes.species.generic.Orc
-import com.anathema_roguelike.environment.Environment
+import com.anathema_roguelike.environment.{Environment, EnvironmentFactory}
 import com.anathema_roguelike.environment.generation.DungeonGenerator
 import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.utilities.position.Point
 
 class BasicRoom(depth: Int, averageWidth: Int, averageHeight: Int) extends Room(depth, averageWidth, averageHeight) {
-  def generateEncounter(level: Environment): Unit = {
+  def generateEncounter(environment: Environment): Unit = {
 
     (0 until 5).foreach(i => {
       val x = Game.getInstance.getRandom.nextInt(getWidth - 2) + getX + 1
       val y = Game.getInstance.getRandom.nextInt(getHeight - 2) + getY + 1
 
-      new Orc(level.getLocation(x, y), new Brawler, new Thrall)
+      environment.addEntity(new Orc(new Brawler, new Thrall), Point(x, y))
     })
   }
 
-  override def place(generator: DungeonGenerator): Unit = {
-    super.place(generator)
+  override def place(factory: EnvironmentFactory): Unit = {
+    super.place(factory)
     //generator.getLevel().addEntity(new Brazier(), new Point(getX() + 1, getY() + 1));
     //generator.getLevel().addEntity(new Brazier(), new Point(getX() + getWidth() - 2, getY() + 1));
     //generator.getLevel().addEntity(new Brazier(), new Point(getX() + 1, getY() + getHeight() - 2));

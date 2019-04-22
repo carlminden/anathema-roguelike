@@ -28,13 +28,12 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.{Accuracy, Bon
 import com.anathema_roguelike.stats.itemstats.{BaseWeaponDamage, Weight}
 import com.anathema_roguelike.entities.characters.Character
 
-class Weapon(weaponType: WeaponType, material: WeaponMaterial, location: Either[Location, Character]) extends Item(location) {
+class Weapon(weaponType: WeaponType, material: WeaponMaterial) extends Item {
 
-  def this(weaponType: String, material: String, location: Either[Location, Character]) {
+  def this(weaponType: String, material: String) {
     this(
       ItemPropertyCache.getProperty(classOf[WeaponType], weaponType),
-      ItemPropertyCache.getProperty(classOf[WeaponMaterial], material),
-      location
+      ItemPropertyCache.getProperty(classOf[WeaponMaterial], material)
     )
   }
 

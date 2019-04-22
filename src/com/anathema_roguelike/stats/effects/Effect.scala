@@ -27,7 +27,7 @@ import scala.reflect.runtime.universe._
 class Effect[T, +S <: Stat[_ <: T]](
     source: Option[_ <: HasEffect[_ <: Effect[T, S]]],
     modifiers: List[Modifier[_ <: Stat[_ <: T]]],
-    duration: Duration = Duration.permanent(),
+    duration: Duration = Duration.PERMANENT,
     var target: Option[T] = None) {
 
   private val modifiersListBuffer: ListBuffer[Modifier[_ <: Stat[_ <: T]]] = ListBuffer[Modifier[_ <: Stat[_ <: T]]]() ++ modifiers

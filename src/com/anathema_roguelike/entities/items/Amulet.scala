@@ -22,7 +22,7 @@ import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.main.display.VisualRepresentation
 
-class Amulet(name: String, location: Either[Location, Character]) extends Item(location) with ItemType[Amulet] {
+class Amulet(name: String) extends Item with ItemType[Amulet] {
   override def toString: String = name
 
   override def getVisualRepresentation = new VisualRepresentation('$')

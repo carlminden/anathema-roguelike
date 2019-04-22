@@ -25,16 +25,15 @@ import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.{Renderable, VisualRepresentation}
 import com.google.common.eventbus.EventBus
 
-abstract class Entity(var location: Location) extends Renderable with Targetable with Actor {
-
-  Game.getInstance.getEventBus.register(this)
-  eventBus.register(this)
-  Game.getInstance.getState.registerActor(this)
-
-  location.getEnvironment.addEntity(this)
+abstract class Entity extends Renderable with Targetable with Actor {
 
   private val energy = new Energy
   private val eventBus = new EventBus
+
+  private var location: Location = _
+
+  Game.getInstance.getEventBus.register(this)
+  eventBus.register(this)
 
   protected def renderThis(): Unit
 
@@ -62,7 +61,7 @@ abstract class Entity(var location: Location) extends Renderable with Targetable
     eventBus.post(obj)
   }
 
-  override def getDuration: Duration = Duration.permanent
+  override def getDuration: Duration = Duration.PERMANENT
 
   override def getEnergy: Energy = energy
 }

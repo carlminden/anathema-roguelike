@@ -24,11 +24,11 @@ import com.anathema_roguelike.entities.items.ItemType
 import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.main.display.VisualRepresentation
 
-class Pants(material: ArmorMaterial, location: Either[Location, Character])
-  extends Armor(ItemPropertyCache.getProperty(classOf[ArmorType], "Pants"), material, location) with ItemType[Pants] {
+class Pants(material: ArmorMaterial)
+  extends Armor(ItemPropertyCache.getProperty(classOf[ArmorType], "Pants"), material) with ItemType[Pants] {
 
-  def this(material: String, location: Either[Location, Character]) {
-    this(ItemPropertyCache.getProperty(classOf[ArmorMaterial], material), location)
+  def this(material: String) {
+    this(ItemPropertyCache.getProperty(classOf[ArmorMaterial], material))
   }
 
   override def getVisualRepresentation = new VisualRepresentation('\u03A0', getColor)

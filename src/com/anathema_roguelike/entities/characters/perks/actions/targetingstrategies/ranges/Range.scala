@@ -43,15 +43,15 @@ abstract class Range[T <: Targetable : TypeTag](constraints: TargetConstraint[T,
   }
 
   def getTarget(character: Option[Character]): Option[T] = {
-    character.map(c => {
+    character.flatMap(c => {
       val validTargets: Iterable[T] = getTargetsInShape(getShape(c), c.getEnvironment, c)
 
       if (validTargets.size == 1) {
-        validTargets.iterator.next
+        Some(validTargets.iterator.next)
       } else {
         val instructions: String = "Select a " + Utils.getName(getTargetType) + " within " + Utils.getName(this)
 
-        new GetTargetInterface[T](validTargets.asJavaCollection, instructions).run
+        new GetTargetInterface[T](validTargets, instructions).run
       }
     })
   }

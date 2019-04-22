@@ -29,7 +29,7 @@ class ArmorFactory() extends ItemFactory[Armor] {
     addFactory(new ItemFactory[Armor]() {
       override def getSupportedType: Class[_ <: ItemType[_ <: Armor]] = t.asInstanceOf[Class[_ <: ItemType[_ <: Armor]]]
 
-      def generate: Armor = {
+      override def generate: Armor = {
         val material = Utils.getWeightedRandomSample(ItemPropertyCache.getProperties(classOf[ArmorMaterial]))
 
         t.getConstructor(classOf[ArmorMaterial]).newInstance(material)

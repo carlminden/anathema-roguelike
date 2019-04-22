@@ -18,27 +18,28 @@
 package com.anathema_roguelike
 package entities.characters.foes.ai
 
-import com.anathema_roguelike.environment.Environment
 import com.anathema_roguelike.environment.HasLocation
 import com.anathema_roguelike.main.utilities.pathfinding.Path
 import com.anathema_roguelike.main.utilities.pathfinding.PathFinder
-import com.anathema_roguelike.main.utilities.position.Point
+import com.anathema_roguelike.main.utilities.position.{Direction, Point}
 import com.anathema_roguelike.entities.characters.Character
 
 class AIPathFinder(var character: Character) extends PathFinder {
-  private val level = character.getEnvironment
+  private lazy val level = character.getEnvironment
 
-  def getPath(src: HasLocation, dst: HasLocation): Path = getPath(src.getPosition, dst.getPosition)
+  def getPath(src: HasLocation, dst: HasLocation): Option[Path] = getPath(src.getPosition, dst.getPosition)
 
-  override def getPath(src: Point, dst: Point): Path = {
+  override def getPath(src: Point, dst: Point): Option[Path] = {
     super.getPath(src, dst)
   }
 
-  override protected def isPassable(p: Point, direction: Int): Boolean = level.isPassable(p)
+  override protected def isPassable(p: Point, direction: Direction): Boolean = level.isPassable(p)
 
-  override protected def getExtraCost(p: Point, direction: Int, previousDirection: Int): Int = {
+  override protected def getExtraCost(p: Point, direction: Direction, previousDirection: Direction): Int = {
     val location = level.getLocation(p)
 
-    if(location.getEntities[Character].exists(c => Faction.friendly(character, c))) 50 else 0
+    if(location.getEntities[Character].exists(c => Faction.friendly(character, c))) {
+      50
+    } else 0
   }
 }

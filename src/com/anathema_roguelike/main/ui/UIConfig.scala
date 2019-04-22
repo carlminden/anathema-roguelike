@@ -21,13 +21,13 @@ package main.ui
 import com.anathema_roguelike.main.utilities.position.Point
 
 object UIConfig {
-  final val DUNGEON_MAP_WIDTH = 108
-  final val DUNGEON_MAP_HEIGHT = 57
-  final val TERM_HEIGHT = 60
-  final val TERM_WIDTH = 160
-  final val SCREEN_START_X = 1
-  final val SCREEN_START_Y = 1
-  final val MAP_START_Y = 0
-  final val MAP_START_X = 0
-  final val DUNGEON_OFFSET = new Point(1, 3)
+  final val DUNGEON_MAP_WIDTH: Int = 108
+  final val DUNGEON_MAP_HEIGHT: Int = 57
+  final val TERM_HEIGHT: Int = 60
+  final val TERM_WIDTH: Int = 160
+  final val SCREEN_START_X: Int = 1
+  final val SCREEN_START_Y: Int = 1
+  final val MAP_START_Y: Int = 0
+  final val MAP_START_X: Int = 0
+  final val DUNGEON_OFFSET: Point = Point(1, 3)
 }

@@ -27,58 +27,60 @@ import scala.collection.mutable.ArrayBuffer
 
 //The way I handled the finishItem is horrible
 abstract class AbstractMenu[T](
-      position: Point,
-      width: Int,
-      height: Int,
-      spacing: Int,
-      background: Float,
-      cancellable: Boolean,
-      items: Array[_ <: T],
-      centered: Boolean = false,
-      finishText: Option[String] = None
+        position: Point,
+        width: Int,
+        height: Int,
+        spacing: Int,
+        background: Float,
+        cancellable: Boolean,
+        items: Iterable[T],
+        centered: Boolean = false,
+        finishText: Option[String] = None,
+        selectListenerOverrides: Map[T, (AbstractMenuItem[T]) => Unit] = Map[T, (AbstractMenuItem[T]) => Unit]()
     ) extends InteractiveUIElement[T](position, width, height, background, cancellable) {
 
-  def onSelect(obj: T): Unit
+  def onSelect(menuItem: AbstractMenuItem[T]): Unit
 
-  private val typedMenuItems: ArrayBuffer[AbstractMenuItem[T]] = ArrayBuffer[AbstractMenuItem[T]]()
-  private val menuItems: ArrayBuffer[AbstractMenuItem[_]] = ArrayBuffer[AbstractMenuItem[_]]()
-  private val onFocusChangedListeners: ArrayBuffer[OnFocusChangedListener] = ArrayBuffer[OnFocusChangedListener]()
+  private var typedMenuItems: Vector[AbstractMenuItem[T]] = Vector[AbstractMenuItem[T]]()
+  private var menuItems: Vector[AbstractMenuItem[_]] = Vector[AbstractMenuItem[_]]()
+  private val onFocusChangedListeners: Vector[() => Unit] = Vector[() => Unit]()
   private var focused: Int = 0
 
-  items.zipWithIndex.foreach {
+  typedMenuItems = items.zipWithIndex.map {
     case (item, i)  => {
       if (isCentered) {
-        typedMenuItems :+ new MenuItem[T](
+        new MenuItem[T](
           this,
           item,
-          new Point(getX + (getWidth / 2) - (Utils.getName(item).length / 2), getY + i * spacing),
+          Point(getX + (getWidth / 2) - (Utils.getName(item).length / 2), getY + i * spacing),
           getBackground,
-          onSelect
+          selectListenerOverrides.getOrElse(item, onSelect)
         )
 
       } else {
-        typedMenuItems :+ new MenuItem[T](
+        new MenuItem[T](
           this,
           item,
           Direction.offset(getPosition, Direction.DOWN, i * spacing),
           getBackground,
-          onSelect
+          selectListenerOverrides.getOrElse(item, onSelect)
         )
       }
     }
-  }
+  }.toVector
 
-  menuItems.addAll(typedMenuItems)
+  menuItems ++= typedMenuItems
   menuItems.get(0).focus()
 
   finishText.foreach(text => {
-    this.menuItems :+ new MenuItem[String](
+    menuItems :+= new AbstractMenuItem[String](
       this,
       text,
-      Direction.offset(getPosition, Direction.DOWN, this.items.size + 1 * this.spacing),
-      getBackground,
-      (_: String) => finish()
-    )
+      Direction.offset(getPosition, Direction.DOWN, typedMenuItems.length + 1 * this.spacing),
+      getBackground
+    ) {
+      override def onSelect(menuItem: AbstractMenuItem[String]): Unit = finish()
+    }
   })
 
   private def initializeMenuItems(): Unit = {
@@ -116,7 +118,7 @@ abstract class AbstractMenu[T](
       }
 
       for (listener <- onFocusChangedListeners) {
-        listener.onChanged()
+        listener()
       }
     }
 
@@ -137,23 +139,23 @@ abstract class AbstractMenu[T](
     menuItems.get(focused).select()
   }
 
-  def getItems: Iterable[_ <: T] = items
+  def getItems: Iterable[_ <: T] = typedMenuItems.map(i => i.getItem)
 
-  def getItem(i: Int): T = items(i)
+  def getItem(i: Int): T = typedMenuItems(i).getItem
 
-  protected def getMenuItems: ArrayBuffer[AbstractMenuItem[_]] = menuItems
+  protected def getMenuItems: Vector[AbstractMenuItem[_]] = menuItems
 
-  def addOnSelectionChangedListener(listener: OnFocusChangedListener): Unit = {
+  def addOnSelectionChangedListener(listener: () => Unit): Unit = {
     onFocusChangedListeners :+ listener
   }
 
-  protected def getOnSelectionChangedListeners: Iterable[OnFocusChangedListener] = onFocusChangedListeners
+  protected def getOnSelectionChangedListeners: Iterable[() => Unit] = onFocusChangedListeners
 
   def getFocusedItem: Option[T] = {
-    if (getFocused >= items.length) {
+    if (getFocused >= typedMenuItems.length) {
       Option.empty
     } else {
-      items.get(getFocused)
+      typedMenuItems.get(getFocused).getItem
     }
   }
 

@@ -19,8 +19,8 @@ package com.anathema_roguelike
 package stats.characterstats.secondarystats
 
 import com.anathema_roguelike.entities.characters.Character
-import com.anathema_roguelike.stats.Stat.CharacterStat
+import com.anathema_roguelike.stats.characterstats.CharacterStat
 
-abstract class SecondaryStat(val character: Character) extends CharacterStat(character) {
+abstract class SecondaryStat(character: Character) extends CharacterStat(character) {
   def getAmount = 0
 }

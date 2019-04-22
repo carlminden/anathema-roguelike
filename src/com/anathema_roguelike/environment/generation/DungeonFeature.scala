@@ -18,26 +18,20 @@
 package com.anathema_roguelike
 package environment.generation
 
-import java.util
-
-import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable
-import com.anathema_roguelike.main.utilities.position.Point
+import com.anathema_roguelike.environment.EnvironmentFactory
+import com.anathema_roguelike.main.utilities.position.{HasPosition, Point}
 
 import scala.collection.mutable
 
-abstract class DungeonFeature(var position: Point = new Point(0, 0)) {
+abstract class DungeonFeature(private var position: Point = Point(0, 0)) extends HasPosition {
 
   private val points = mutable.Set[Point]()
 
   addPoint(position)
 
-  def getX: Int = position.getX
-
-  def getY: Int = position.getY
-
   def getPosition: Point = position
 
-  def setPosition(p: Point): Unit = position = new Point(p)
+  def setPosition(p: Point): Unit = position = p.copy()
 
   def intersects(targetPoint: Point): Boolean = points.contains(targetPoint)
 
@@ -49,13 +43,16 @@ abstract class DungeonFeature(var position: Point = new Point(0, 0)) {
 
   protected def addPoint(p: Point): Unit = points.add(p)
 
-  def placeIfValidates(generator: DungeonGenerator): Boolean = if(!validate(generator)) false
-  else {
-    place(generator)
-    true
+  def placeIfValidates(generator: DungeonGenerator, factory: EnvironmentFactory): Boolean = {
+    if(!validate(generator)) {
+      false
+    } else {
+      place(factory)
+      true
+    }
   }
 
   def validate(generator: DungeonGenerator): Boolean
 
-  def place(generator: DungeonGenerator): Unit
+  def place(factory: EnvironmentFactory): Unit
 }

@@ -40,17 +40,16 @@ class State() extends Renderable {
   private val dungeonLevelFactory: DungeonGenerator = new CaveDungeonGenerator
   //	private DungeonGenerator dungeonLevelFactory = new BigRoomDungeonGenerator();
 
+  //TODO: Probably should move this to environment? doesnt make sense to simulate every level in the game (if we actually make more than one at a time)
   private val actors: PriorityQueue[Actor] = new PriorityQueue[Actor](Collections.reverseOrder(new Comparator[Actor]() {
     override def compare(o1: Actor, o2: Actor): Int = o1.getEnergyLevel.compareTo(o2.getEnergyLevel)
   }))
 
-  private val dungeonLevels = ListBuffer[Environment]()
-  generateDungeonLevels()
+  private lazy val dungeonLevels = generateDungeonLevels()
 
+  private lazy val upstairs: Location = getEnvironment(0).getStairs(Direction.UP).getLocation
 
-  val upstairs: Location = getEnvironment(0).getStairs(Direction.UP).getLocation
-
-  private val player: Player = CharacterCreationUI.createCharacter(upstairs)
+  private lazy val player: Player = CharacterCreationUI.createCharacter(upstairs)
 
   def computeNextState(): Unit = {
     var currentActor: Actor = actors.remove
@@ -80,7 +79,7 @@ class State() extends Renderable {
 
       elapsedTime += timePassed
       currentSegmentTime -= timePassed
-      Game.getInstance.getEventBus.post(new TimeElapsedEvent(elapsedTime))
+      Game.getInstance.getEventBus.post(TimeElapsedEvent(elapsedTime))
     }
   }
 
@@ -97,17 +96,18 @@ class State() extends Renderable {
     //TODO: WTF is this? is it to wait for another thread or something? seems like we could do better with a concurrency object
     while (dungeonLevels.size <= z) { }
 
-    dungeonLevels.get(z)
+    dungeonLevels(z)
   }
 
-  def generateDungeonLevels(): Unit = {
+  def generateDungeonLevels(): Vector[Environment] = {
 
-    (0 until Config.DUNGEON_DEPTH).foreach(i => {
+    (0 until Config.DUNGEON_DEPTH).toVector.map(i => {
 
       val newLevel: Environment = dungeonLevelFactory.createLevel(i)
-      dungeonLevels :+ newLevel
 
-      newLevel.getEntities(classOf[Character]).foreach(c => c.computeVisibility())
+      newLevel.getEntities[Character].foreach(c => c.computeVisibility())
+
+      newLevel
     })
   }
 

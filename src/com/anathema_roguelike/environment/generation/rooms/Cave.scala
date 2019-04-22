@@ -21,7 +21,7 @@ package environment.generation.rooms
 import com.anathema_roguelike.entities.characters.foes.corruptions.Thrall
 import com.anathema_roguelike.entities.characters.foes.roles.Brawler
 import com.anathema_roguelike.entities.characters.foes.species.generic.Orc
-import com.anathema_roguelike.environment.Environment
+import com.anathema_roguelike.environment.{Environment, EnvironmentFactory}
 import com.anathema_roguelike.environment.generation.DungeonGenerator
 import com.anathema_roguelike.environment.terrain.grounds.Stone
 import com.anathema_roguelike.environment.terrain.walls.StoneWall
@@ -30,6 +30,8 @@ import com.anathema_roguelike.main.utilities.position.Direction
 import com.anathema_roguelike.main.utilities.position.Point
 import java.util.Random
 
+import com.anathema_roguelike.main.utilities.Utils
+
 import scala.collection.mutable.ListBuffer
 
 class Cave(val depth: Int, val averageWidth: Int, val averageHeight: Int)
@@ -37,7 +39,7 @@ class Cave(val depth: Int, val averageWidth: Int, val averageHeight: Int)
 
   private var cells = Array.ofDim[Boolean](getWidth, getHeight)
   private var cells2 = Array.ofDim[Boolean](getWidth, getHeight)
-  private val rand = new Random
+  private val rand = Utils.getRandom
   private val floors = ListBuffer[Point]()
 
   var openArea = 0f
@@ -58,7 +60,6 @@ class Cave(val depth: Int, val averageWidth: Int, val averageHeight: Int)
           cells2(i)(j) = false
         }
       }
-
       cells = cells2
       cells2 = Array.ofDim[Boolean](getWidth, getHeight)
     }
@@ -90,6 +91,7 @@ class Cave(val depth: Int, val averageWidth: Int, val averageHeight: Int)
     }
 
     openArea = floodFill(x, y, cells2).toFloat / (getWidth * getHeight)
+
   }
 
   for (i <- 0 until getWidth; j <- 0 until getHeight) {
@@ -98,7 +100,7 @@ class Cave(val depth: Int, val averageWidth: Int, val averageHeight: Int)
 
   for (i <- 0 until getWidth; j <- 0 until getHeight) {
     if(!cells(i)(j)) {
-      floors += new Point(i, j)
+      floors += Point(i, j)
     }
   }
 
@@ -110,40 +112,41 @@ class Cave(val depth: Int, val averageWidth: Int, val averageHeight: Int)
 
       var ret = 1
 
-      for (i <- 0 until 8) {
-        val direction = Direction.DIRECTIONS_8(i)
-        val next = Direction.offset(new Point(x, y), direction)
+      for (direction <- Direction.DIRECTIONS_8) {
+        val next = Direction.offset(Point(x, y), direction)
 
-        if(next.getX >= getX && next.getX < getX + getWidth && next.getY >= getY && next.getY < getY + getHeight) {
+        if((0 until getWidth).contains(next.x) && (0 until getHeight).contains(next.y)) {
           ret += floodFill(next.getX, next.getY, temp)
         }
       }
-
       ret
     }
   }
 
-  override def place(generator: DungeonGenerator): Unit = {
-    val map = generator.getMap
-    val level = generator.getLevel
+  override def place(factory: EnvironmentFactory): Unit = {
 
     for (floor <- floors) {
       val x = floor.getX + getX
       val y = floor.getY + getY
 
-      map(x)(y).setTerrain(new Stone)
+      factory.setTerrain(Point(x, y), new Stone)
     }
 
     for (door <- getDoors) {
       var current = door.getPosition
 
-      while(DungeonGenerator.validPoint(current) && map(current.getX)(current.getY).getTerrain.isInstanceOf[StoneWall]) {
-        map(current.getX)(current.getY).setTerrain(new Stone)
+      while(DungeonGenerator.validPoint(current) && factory.getTerrainAt(current).isInstanceOf[StoneWall]) {
+
+        factory.setTerrain(current, new Stone)
+
         current = Direction.offset(current, door.getDirection, 1)
       }
+
       current = Direction.offset(door.getPosition, door.getDirection, -1)
-      while(DungeonGenerator.validPoint(current) && map(current.getX)(current.getY).getTerrain.isInstanceOf[StoneWall]) {
-        map(current.getX)(current.getY).setTerrain(new Stone)
+      while(DungeonGenerator.validPoint(current) && factory.getTerrainAt(current).isInstanceOf[StoneWall]) {
+
+        factory.setTerrain(current, new Stone)
+
         current = Direction.offset(current, door.getDirection, -1)
       }
     }
@@ -151,14 +154,14 @@ class Cave(val depth: Int, val averageWidth: Int, val averageHeight: Int)
 
   override def getRandomPointInRoom: Point = {
     val floor = floors.get(rand.nextInt(floors.size))
-    new Point(floor.getX + getX, floor.getY + getY)
+    Point(floor.getX + getX, floor.getY + getY)
   }
 
   private def filledCellsWithin(x: Int, y: Int, distance: Int) = {
 
     var ret = 0
 
-    for (i <- -distance until distance; j <- -distance until distance) {
+    for (i <- -distance to distance; j <- -distance to distance) {
       if(getCell(x + i, y + j)) {
         ret += 1
       }
@@ -181,9 +184,9 @@ class Cave(val depth: Int, val averageWidth: Int, val averageHeight: Int)
       val x = Game.getInstance.getRandom.nextInt(getWidth - 2) + getX + 1
       val y = Game.getInstance.getRandom.nextInt(getHeight - 2) + getY + 1
 
-      if(level.isPassable(new Point(x, y))) {
+      if(level.isPassable(Point(x, y))) {
         val orc = new Orc(new Brawler, new Thrall)
-        level.addEntity(orc, new Point(x, y))
+        level.addEntity(orc, Point(x, y))
       }
     }
   }
