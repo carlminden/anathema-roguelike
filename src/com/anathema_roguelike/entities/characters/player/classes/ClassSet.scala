@@ -33,9 +33,9 @@ object ClassSet {
 
 class ClassSet(var character: Character) {
 
-  Utils.getSubclasses[PlayerClass]().foreach(c => classLevels.put(c, 0))
-
   private val classLevels: mutable.Map[Class[_ <: PlayerClass], Int] = mutable.Map[Class[_ <: PlayerClass], Int]()
+
+  Utils.getSubclasses[PlayerClass]().foreach(c => classLevels.put(c, 0))
 
   def getClassLevels[T <: PlayerClass : TypeTag]: Int = classLevels.getOrElse(typeTagToClass[T], 0)
 

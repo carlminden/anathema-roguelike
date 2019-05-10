@@ -25,12 +25,11 @@ import com.anathema_roguelike.entities.characters.foes.roles.Role
 import com.anathema_roguelike.entities.characters.foes.traits.Trait
 import com.anathema_roguelike.entities.characters.stimuli.PerceivedStimulus
 import com.anathema_roguelike.main.Game
-
 import com.anathema_roguelike.entities.characters.Character
-import com.anathema_roguelike.environment.Location
+import com.anathema_roguelike.environment.{HasLocation, Location}
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer
 
-abstract class Foe(role: Role, corruption: Corruption, traits: Trait[_]*) extends Character {
+abstract class Foe(location: HasLocation, role: Role, corruption: Corruption, traits: Trait[_]*) extends Character(location) {
   setFaction(Faction.FOES)
 
   private val ai = new AI(this)

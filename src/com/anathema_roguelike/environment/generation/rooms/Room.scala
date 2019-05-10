@@ -57,7 +57,7 @@ abstract class Room(depth: Int, averageWidth: Int, averageHeight: Int, minWidth:
 
   width = Math.min(Config.DUNGEON_WIDTH - 7, width)
 
-  def generateEncounter(environment: Environment): Unit
+  def generateEncounter(factory: EnvironmentFactory): Unit
 
   override def getWidth: Int = width
 

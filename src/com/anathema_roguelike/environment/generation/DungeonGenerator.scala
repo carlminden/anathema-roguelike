@@ -86,7 +86,7 @@ abstract class DungeonGenerator(defaultTerrain: () => Terrain = () => new StoneW
     val environment = factory.build(depth)
 
     for (room <- rooms) {
-      room.generateEncounter(environment)
+      room.generateEncounter(factory)
     }
 
     environment

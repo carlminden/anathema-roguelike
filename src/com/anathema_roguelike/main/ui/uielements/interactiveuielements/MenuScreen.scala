@@ -45,7 +45,7 @@ abstract class MenuScreen[T, M <: AbstractMenu[T]](
 
   override def run: Option[T] = {
 
-    val menu = createMenu(new Point(x, y), (getWidth * .3).toInt, getHeight / 2, choices, cancellable, contentBackground)
+    val menu = createMenu(Point(x, y), (getWidth * .3).toInt, getHeight / 2, choices, cancellable, contentBackground)
 
     val description = new MenuDescription[T](menu, choices.headOption.map(c => Utils.getSuperclass(c)))
 

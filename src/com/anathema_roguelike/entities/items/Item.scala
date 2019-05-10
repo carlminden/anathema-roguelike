@@ -18,27 +18,27 @@
 package com.anathema_roguelike
 package entities.items
 
-import com.anathema_roguelike.actors.Action
+import com.anathema_roguelike.actors.{Action, Actor, Duration}
 import com.anathema_roguelike.entities.Entity
 import com.anathema_roguelike.entities.characters.Character
 import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer
+import com.anathema_roguelike.main.display.VisualRepresentation
 import com.anathema_roguelike.stats.StatSet.ItemStats
 import com.anathema_roguelike.stats.characterstats.CharacterStat
 import com.anathema_roguelike.stats.{HasStats, StatSet}
 import com.anathema_roguelike.stats.effects.{Effect, HasEffect}
 import com.anathema_roguelike.stats.itemstats.ItemStat
 
-abstract class Item extends Entity
-    with HasStats[Item, ItemStat] with HasEffect[Effect[Character, CharacterStat]] {
+trait Item extends HasStats[Item, ItemStat] with HasEffect[Effect[Character, CharacterStat]] with Actor {
 
   private val stats = new ItemStats(this)
   private var wearer: Option[Character] = None
 
-  override protected def renderThis(): Unit = {
-    Game.getInstance.getMap.renderEntity(DungeonLayer.NORMAL, this)
-  }
+
+
+  def getVisualRepresentation: VisualRepresentation
 
   def equippedTo(character: Character): Unit = {
     wearer = Some(character)
@@ -48,19 +48,18 @@ abstract class Item extends Entity
   def removedFrom(character: Character): Unit = {
     wearer = Option.empty
     character.removeEffectBySource(this)
-    setLocation(character.getLocation)
+
+    character.getEnvironment.addEntity(new ItemEntity(character.getLocation, this))
   }
 
   def getWearer: Option[Character] = wearer
 
   override def getStatSet: ItemStats = stats
 
-  override def getLocation: Location = {
-    wearer.map(_.getLocation).getOrElse(super.getLocation)
-  }
-
   override def getNextAction: Option[Action[_]] = {
     //Most Items shouldnt do anything, but it could be interesting in some cases, maybe certain magical items will make noise/resonance
     Option.empty
   }
+
+  override def getDuration: Duration = Duration.PERMANENT
 }

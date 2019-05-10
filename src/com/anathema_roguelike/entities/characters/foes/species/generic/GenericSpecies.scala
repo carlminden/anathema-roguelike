@@ -22,8 +22,8 @@ import com.anathema_roguelike.entities.characters.foes.Foe
 import com.anathema_roguelike.entities.characters.foes.corruptions.Corruption
 import com.anathema_roguelike.entities.characters.foes.roles.Role
 import com.anathema_roguelike.entities.characters.foes.traits.Trait
-import com.anathema_roguelike.environment.Location
+import com.anathema_roguelike.environment.{HasLocation, Location}
 
-abstract class GenericSpecies(role: Role, corruption: Corruption, traits: Trait[_]*)
-  extends Foe(role, corruption, traits:_*) {
+abstract class GenericSpecies(location: HasLocation, role: Role, corruption: Corruption, traits: Trait[_]*)
+  extends Foe(location, role, corruption, traits:_*) {
 }

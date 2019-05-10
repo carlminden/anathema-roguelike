@@ -27,15 +27,10 @@ import com.anathema_roguelike.main.Game
 abstract class LingeringActivation(var duration: Duration) extends Actor {
 
   duration = Duration.copy(duration)
-  Game.getInstance.getState.registerActor(this)
-
-  private val energy = new Energy
 
   protected def createLingeringAction: Option[Action[_]]
 
   override def getDuration: Duration = duration
-
-  override def getEnergy: Energy = energy
 
   override def getNextAction: Option[Action[_]] = createLingeringAction
 }

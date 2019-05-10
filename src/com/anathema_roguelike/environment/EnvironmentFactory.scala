@@ -18,6 +18,7 @@
 package com.anathema_roguelike
 package environment
 
+import com.anathema_roguelike.entities.Entity
 import com.anathema_roguelike.environment.features.Feature
 import com.anathema_roguelike.environment.terrain.Terrain
 import com.anathema_roguelike.main.Config
@@ -25,12 +26,15 @@ import com.anathema_roguelike.main.utilities.position.Direction.Direction2
 import com.anathema_roguelike.main.utilities.position.Point
 
 import scala.annotation.varargs
+import scala.collection.mutable.ListBuffer
 
 class EnvironmentFactory(defaultTerrain: () => Terrain) {
   private val map = Array.ofDim[MapTile](Config.DUNGEON_WIDTH, Config.DUNGEON_HEIGHT)
 
   private var upStairs: Option[Point] = None
   private var downStairs: Option[Point] = None
+
+  private val entities: ListBuffer[((Location) => Entity, Point)] = ListBuffer()
 
   for (i <- map.indices; j <- map(i).indices) {
     map(i)(j) = new MapTile(defaultTerrain())
@@ -57,5 +61,9 @@ class EnvironmentFactory(defaultTerrain: () => Terrain) {
     upStairs = point
   }
 
-  def build(depth: Int): Environment = new Environment(map, upStairs.get, downStairs.get, depth)
+  def addEntity(entityBuilder: (Location) => Entity, position: Point): Unit = {
+    entities += ((entityBuilder, position))
+  }
+
+  def build(depth: Int): Environment = new Environment(map, upStairs.get, downStairs.get, depth, entities)
 }

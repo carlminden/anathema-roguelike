@@ -19,11 +19,15 @@ package com.anathema_roguelike
 package actors
 
 import com.anathema_roguelike.entities.characters.actions.costs.EnergyCost
+import com.anathema_roguelike.main.Game
 
 trait Actor {
-  def getDuration: Duration
 
-  def getEnergy: Energy
+  private val energy = new Energy
+
+  Game.getInstance.getState.registerActor(this)
+
+  def getDuration: Duration
 
   def getNextAction: Option[Action[_]]
 
@@ -32,6 +36,8 @@ trait Actor {
 
     }
   }
+
+  def getEnergy: Energy = energy
 
   def energize(): Unit = {
     getEnergy.energize()

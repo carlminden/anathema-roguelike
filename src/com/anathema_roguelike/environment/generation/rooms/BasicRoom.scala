@@ -27,13 +27,13 @@ import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.utilities.position.Point
 
 class BasicRoom(depth: Int, averageWidth: Int, averageHeight: Int) extends Room(depth, averageWidth, averageHeight) {
-  def generateEncounter(environment: Environment): Unit = {
+  def generateEncounter(factory: EnvironmentFactory): Unit = {
 
     (0 until 5).foreach(i => {
       val x = Game.getInstance.getRandom.nextInt(getWidth - 2) + getX + 1
       val y = Game.getInstance.getRandom.nextInt(getHeight - 2) + getY + 1
 
-      environment.addEntity(new Orc(new Brawler, new Thrall), Point(x, y))
+      factory.addEntity((l) => new Orc(l, new Brawler, new Thrall), Point(x, y))
     })
   }
 

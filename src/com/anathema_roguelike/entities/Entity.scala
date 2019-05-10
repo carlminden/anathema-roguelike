@@ -20,28 +20,27 @@ package entities
 
 import com.anathema_roguelike.actors.{Actor, Duration, Energy}
 import com.anathema_roguelike.entities.characters.perks.actions.targetingstrategies.Targetable
-import com.anathema_roguelike.environment.Location
+import com.anathema_roguelike.environment.{HasLocation, Location}
 import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.{Renderable, VisualRepresentation}
 import com.google.common.eventbus.EventBus
 
-abstract class Entity extends Renderable with Targetable with Actor {
+abstract class Entity(private var location: HasLocation) extends Renderable with Targetable with Actor {
 
-  private val energy = new Energy
   private val eventBus = new EventBus
-
-  private var location: Location = _
 
   Game.getInstance.getEventBus.register(this)
   eventBus.register(this)
 
+  getLocation.addEntity(this)
+
   protected def renderThis(): Unit
 
-  def setLocation(location: Location): Unit = {
-    this.location = location
+  def setLocation(location: HasLocation): Unit = {
+    this.location = location.getLocation
   }
 
-  override def getLocation: Location = location
+  override def getLocation: Location = location.getLocation
 
   //	public VisualRepresentation getVisualRepresentation() {
   //	return new VisualRepresentation('X', Color.ERROR);
@@ -62,7 +61,5 @@ abstract class Entity extends Renderable with Targetable with Actor {
   }
 
   override def getDuration: Duration = Duration.PERMANENT
-
-  override def getEnergy: Energy = energy
 }
 

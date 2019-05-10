@@ -101,7 +101,7 @@ class Message(initial: Option[String] = None, color: SColor = Color.WHITE, turn:
 
   def appendMessagePart(part: MessagePart): Unit = message += part
 
-  def appendMessage(m: String, color: SColor): Unit = message += new MessagePart(m, color)
+  def appendMessage(m: String, color: SColor): Unit = message += MessagePart(m, color)
 
   def appendMessage(m: String): Unit = appendMessage(m, Color.WHITE)
 

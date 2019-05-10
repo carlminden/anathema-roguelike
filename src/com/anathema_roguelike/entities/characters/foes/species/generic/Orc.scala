@@ -32,11 +32,10 @@ import com.anathema_roguelike.stats.characterstats.secondarystats.LightEmission
 import com.anathema_roguelike.stats.characterstats.secondarystats.detection.senses.Hearing
 import com.anathema_roguelike.stats.effects.AdditiveCalculation
 import com.anathema_roguelike.stats.effects.Modifier
+import com.anathema_roguelike.environment.{HasLocation, Location}
 
-import com.anathema_roguelike.environment.Location
-
-class Orc(role: Role, corruption: Corruption)
-  extends GenericSpecies(role, corruption, new Supernatural[Strength], new Extraordinary[Hearing], new Deficient[Intelligence]) {
+class Orc(location: HasLocation, role: Role, corruption: Corruption)
+  extends GenericSpecies(location, role, corruption, new Supernatural[Strength], new Extraordinary[Hearing], new Deficient[Intelligence]) {
   applyEffect(new Buff(Option.empty, List(new Modifier[LightEmission](AdditiveCalculation.fixed(15.0)))))
 
   override def toString = "The Orc"

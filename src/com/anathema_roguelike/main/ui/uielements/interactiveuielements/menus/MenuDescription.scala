@@ -25,7 +25,7 @@ import com.anathema_roguelike.main.utilities.position.Point
 
 class MenuDescription[T](var menu: AbstractMenu[T], val itemType: Option[Any])
   extends TextBox(
-    new Point(menu.getX + menu.getWidth, menu.getY - 1),
+    Point(menu.getX + menu.getWidth, menu.getY - 1),
     menu.getWidth * 2,
     menu.getHeight,
     menu.getBackground,

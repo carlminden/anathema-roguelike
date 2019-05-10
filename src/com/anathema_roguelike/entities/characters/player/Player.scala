@@ -27,7 +27,7 @@ import com.anathema_roguelike.entities.items.AnyItemFactory
 import com.anathema_roguelike.entities.items.armor.{ArmorMaterial, Boots, Chestpiece, Helm, Pants}
 import com.anathema_roguelike.entities.items.weapons.Weapon
 import com.anathema_roguelike.entities.items.weapons.types.WeaponType
-import com.anathema_roguelike.environment.Location
+import com.anathema_roguelike.environment.{HasLocation, Location}
 import com.anathema_roguelike.main.Game
 import com.anathema_roguelike.main.display.DungeonMap.DungeonLayer
 import com.anathema_roguelike.main.display.{Color, VisualRepresentation}
@@ -39,7 +39,7 @@ import squidpony.squidgrid.gui.gdx.SColor
 
 import scala.reflect.runtime.universe._
 
-class Player extends Character {
+class Player(location: HasLocation) extends Character(location) {
   setFaction(Faction.PLAYER)
   val itemFactory: AnyItemFactory = new AnyItemFactory
 

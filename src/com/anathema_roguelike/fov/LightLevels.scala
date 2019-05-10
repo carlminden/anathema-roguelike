@@ -80,7 +80,7 @@ class LightLevels(width: Int, height: Int, level: Environment) extends FOVProces
 
   def recomputeLightLevels(): Unit = {
     for (entity <- level.getEntities[Entity]) {
-      if(entity.getLightEmission > 0 && !(entity.getPosition == lastSeen(entity)) || isDirty(entity)) {
+      if(entity.getLightEmission > 0 && !lastSeen.get(entity).contains(entity.getPosition) || isDirty(entity)) {
 
         lightLevels.row(entity).entrySet.forEach(entry => {
           val p = entry.getKey.position

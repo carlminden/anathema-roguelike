@@ -40,7 +40,7 @@ object Environment {
   type EnvironmentMap = Array[Array[Location]]
 }
 
-class Environment(mapTiles: Array[Array[MapTile]], up: Point, down: Point, depth: Int) extends Renderable {
+class Environment(mapTiles: Array[Array[MapTile]], up: Point, down: Point, depth: Int, initialEntities: ListBuffer[((Location) => Entity, Point)]) extends Renderable {
 
   private val width = Config.DUNGEON_WIDTH
   private val height = Config.DUNGEON_HEIGHT
@@ -50,8 +50,6 @@ class Environment(mapTiles: Array[Array[MapTile]], up: Point, down: Point, depth
   eventBus.register(this)
 
   private val fovResistance: Array[Array[Double]] = Array.ofDim[Double](width, height)
-
-  private val entities: ListBuffer[Entity] = ListBuffer[Entity]()
 
   private val fogOfWarForeground = new DisplayBuffer(width, height, false)
   private val fogOfWarBackground = new DisplayBuffer(width, height, false)
@@ -65,6 +63,12 @@ class Environment(mapTiles: Array[Array[MapTile]], up: Point, down: Point, depth
     map(i)(j) = new Location(this, Point(i, j), eventBus, mapTiles(i)(j).terrain, mapTiles(i)(j).getFeatures.toSeq:_*)
   }
 
+  private val entities: ListBuffer[Entity] = ListBuffer()
+
+  initialEntities.foreach {
+    case (entitiyBuilder, p) => entitiyBuilder(map(p.x)(p.y))
+  }
+
   private val upStairsLocation = map(up.getX)(up.getY)
   private val downStairsLocation = map(down.getX)(down.getY)
 
@@ -75,8 +79,8 @@ class Environment(mapTiles: Array[Array[MapTile]], up: Point, down: Point, depth
     computeOpacity(getLocation(i, j))
   }
 
-  def computeOpacity(location: Location): Unit = {
-    fovResistance(location.getX)(location.getY) = location.getStatAmount[Opacity]
+  def computeOpacity(location: HasLocation): Unit = {
+    fovResistance(location.getX)(location.getY) = location.getLocation.getStatAmount[Opacity]
   }
 
   override def render(): Unit = {
@@ -104,22 +108,25 @@ class Environment(mapTiles: Array[Array[MapTile]], up: Point, down: Point, depth
     eventBus.unregister(entity)
   }
 
-  def addEntity(entity: Entity, position: HasPosition): Unit = {
+  def addEntity(entity: Entity): Unit = {
+    addEntity(entity, entity.getLocation)
+  }
 
-    Game.getInstance.getState.registerActor(entity)
+  def addEntity(entity: Entity, location: HasLocation): Unit = {
 
-    val old: Environment = entity.getEnvironment
-    val location = getLocation(position)
+    if(entity.getEnvironment != location.getEnvironment) {
+      val old: Environment = entity.getEnvironment
 
-    entity.getEnvironment.removeEntity(entity)
+      old.removeEntity(entity)
+
+      entity.postEvent(new EnvironmentChangedEvent(old, this))
+    }
 
     entities += entity
     eventBus.register(entity)
 
     entity.setLocation(location)
     computeOpacity(location)
-
-    entity.postEvent(new EnvironmentChangedEvent(old, this))
   }
 
   def moveEntityBy(entity: Entity, xOffset: Int, yOffset: Int): Unit = {

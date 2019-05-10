@@ -36,7 +36,7 @@ abstract class ItemFactory[T <: Item] extends HasWeightedProbability {
 //  }
 
   protected def addFactory[F <: ItemFactory[_ <: T]](factory: F): Unit = {
-    factories :+ factory
+    factories += factory
 
     factory.getSubFactories.foreach(t => addFactory(t))
   }
@@ -49,19 +49,19 @@ abstract class ItemFactory[T <: Item] extends HasWeightedProbability {
     }
   }
 
-  def generateByType[S <: ItemType[_ <: T] : TypeTag]: S = {
+  def generateByType[S <: ItemType[_ <: T] : TypeTag]: T = {
 
     val cls: Class[S] = typeTagToClass[S]
 
     if (cls == getSupportedType) {
-      generate.asInstanceOf[S]
+      generate
     } else if (getFactories[S].isEmpty) {
       throw new RuntimeException("This Factory does not support that type")
     } else {
       val f: ItemFactory[T] = Utils.getWeightedRandomSample(getFactories(cls))
 
       if (f.getSupportedType == cls) {
-        f.generate.asInstanceOf[S]
+        f.generate
       } else {
         f.generateByType[S]
       }

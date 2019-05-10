@@ -178,15 +178,14 @@ class Cave(val depth: Int, val averageWidth: Int, val averageHeight: Int)
     }
   }
 
-  override def generateEncounter(level: Environment): Unit = {
+  override def generateEncounter(factory: EnvironmentFactory): Unit = {
 
     for (_ <- 0 until 10) {
       val x = Game.getInstance.getRandom.nextInt(getWidth - 2) + getX + 1
       val y = Game.getInstance.getRandom.nextInt(getHeight - 2) + getY + 1
 
-      if(level.isPassable(Point(x, y))) {
-        val orc = new Orc(new Brawler, new Thrall)
-        level.addEntity(orc, Point(x, y))
+      if(factory.getTerrainAt(Point(x, y)).isPassable) {
+          factory.addEntity((l) => new Orc(l, new Brawler, new Thrall), Point(x, y))
       }
     }
   }

@@ -49,7 +49,7 @@ class State() extends Renderable {
 
   private lazy val upstairs: Location = getEnvironment(0).getStairs(Direction.UP).getLocation
 
-  private lazy val player: Player = CharacterCreationUI.createCharacter(upstairs)
+  private lazy val player: Player = new Player(upstairs)
 
   def computeNextState(): Unit = {
     var currentActor: Actor = actors.remove

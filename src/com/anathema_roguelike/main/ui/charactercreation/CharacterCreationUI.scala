@@ -23,15 +23,10 @@ import com.anathema_roguelike.environment.Location
 import com.anathema_roguelike.main.ui.charactercreation.attributeselectors.PointBuy
 
 object CharacterCreationUI {
-  def createCharacter(location: Location): Player = {
+  def createCharacter(player: Player): Unit = {
 
-    val player = new Player
     player.levelUp()
 
     new PointBuy().selectScores(player)
-
-    location.addEntity(player)
-
-    player
   }
 }

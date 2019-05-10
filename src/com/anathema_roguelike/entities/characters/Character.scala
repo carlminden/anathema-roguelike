@@ -51,7 +51,7 @@ import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import scala.reflect.runtime.universe._
 
-abstract class Character extends Entity with HasStats[Character, CharacterStat] {
+abstract class Character(location: HasLocation) extends Entity(location) with HasStats[Character, CharacterStat] {
   private var faction: Int = 0
   private var level: Int = 0
   private var turn: Long = 0

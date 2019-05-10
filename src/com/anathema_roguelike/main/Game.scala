@@ -32,6 +32,7 @@ import com.google.common.eventbus.EventBus
 import java.util.Random
 
 import com.anathema_roguelike.main.display.Display.DisplayLayer
+import com.anathema_roguelike.main.ui.charactercreation.CharacterCreationUI
 import com.anathema_roguelike.main.ui.uielements.interactiveuielements.SplashScreen
 
 object Game {
@@ -105,11 +106,13 @@ class Game protected() extends ApplicationAdapter {
     latch.await()
     new SplashScreen().run
 
+    CharacterCreationUI.createCharacter(getState.getPlayer)
+
     ui.init(state.get)
 
     while(true) {
       display.lock()
-      state.foreach(_.computeNextState())
+      getState.computeNextState()
       display.unlock()
     }
   }
